@@ -1,0 +1,97 @@
+\documentclass[11pt]{report}
+\usepackage[a4paper,left=2.2cm,right=2.2cm,top=2.2cm,bottom=2.2cm]{geometry}
+\usepackage[french]{babel}
+\usepackage{fontspec} % Nécessaire pour XeLaTeX
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+% ============================================================
+% Packages 
+% ============================================================
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\usepackage{caption}
+
+% ============================================================
+% Configuration Code C
+% ============================================================
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!60!black},
+  stringstyle=\color{orange},
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  showstringspaces=false,
+  captionpos=b
+}
+
+% Input image macro
+\newcommand{\inputImage}[5]{%
+  \begin{figure}[H]
+    \centering
+    \fbox{%
+      \includegraphics[
+        width=#3,
+        height=#4,
+        keepaspectratio
+      ]{#1}%
+    }
+    \caption{#2}
+    \label{#5}
+  \end{figure}
+}
+
+% ============================================================
+% Begin Document
+% ============================================================
+\begin{document}
+\title{Rapport TP2: Architecture et Optimisation de codes pour Microprecesse HP}
+\author{Kim Davy NDAYONGEJE}
+\date{\today}
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\input{abstract}
+
+\newpage
+\tableofcontents
+
+\newpage
+\input{introduction}
+
+\newpage
+\input{analyse_initiale}
+
+\newpage
+\input{implementation}
+
+\newpage
+\input{resultats}
+
+% \newpage
+\vspace{1.0cm}
+\input{conclusion}
+
+\newpage
+% ============================================================
+% Code Source Final
+% ============================================================
+\appendix
+\input{codes}
+\end{document}
