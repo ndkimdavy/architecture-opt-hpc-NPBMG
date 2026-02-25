@@ -27,11 +27,11 @@
 #---------------------------------------------------------------------------
 # This is the C compiler used for OpenMP programs
 #---------------------------------------------------------------------------
-CC = clang++
+CC = g++ -std=c++14
 
 
 # This links C programs; usually the same as ${CC}
-CLINK = $(CC)
+CLINK	= $(CC)
 
 
 #---------------------------------------------------------------------------
@@ -49,14 +49,14 @@ C_INC = -I../common
 #---------------------------------------------------------------------------
 # Global *compile time* flags for C programs
 #---------------------------------------------------------------------------
-CFLAGS = -O3 -march=native -fPIC -fopenmp
+CFLAGS	= -O3 -fopenmp -mcmodel=medium
 
 
 #---------------------------------------------------------------------------
 # Global *link time* flags. Flags for increasing maximum executable 
 # size usually go here. 
 #---------------------------------------------------------------------------
-CLINKFLAGS = -O3 -march=native -fPIC -fopenmp
+CLINKFLAGS = -O3 -fopenmp -mcmodel=medium
 
 
 #---------------------------------------------------------------------------
@@ -72,7 +72,7 @@ UCC	= g++ -fopenmp
 #---------------------------------------------------------------------------
 # Destination of executables, relative to subdirs of the main directory. . 
 #---------------------------------------------------------------------------
-BINDIR = ../bin
+BINDIR	= ../bin
 
 
 #---------------------------------------------------------------------------
@@ -92,7 +92,7 @@ RAND   = randdp
 # For most machines,       use wtime.c
 # For SGI power challenge: use wtime_sgi64.c
 #---------------------------------------------------------------------------
-WTIME = wtime.cpp
+WTIME  = wtime.cpp
 
 
 #---------------------------------------------------------------------------
