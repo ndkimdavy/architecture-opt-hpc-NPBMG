@@ -21,10 +21,10 @@
         parameter (compiletime='25 Feb 2026')
         character npbversion*5
         parameter (npbversion='3.4.4')
-        character cs1*8
-        parameter (cs1='gfortran')
-        character cs2*8
-        parameter (cs2='gfortran')
+        character cs1*5
+        parameter (cs1='flang')
+        character cs2*5
+        parameter (cs2='flang')
         character cs3*6
         parameter (cs3='(none)')
         character cs4*6

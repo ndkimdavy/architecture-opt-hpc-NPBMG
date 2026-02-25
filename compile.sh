@@ -34,7 +34,13 @@ build() {
     if [[ "$compiler" == "aocc" ]]; then
         echo "Loading AOCC..."
         spack load aocc || { echo "AOCC error"; exit 1; }
-        compiler="clang++"
+        
+        # AOCC handling: use flang for Fortran, clang++ for C++
+        if [[ "$ext" == "f90" ]]; then
+            compiler="flang"
+        else
+            compiler="clang++"
+        fi
     fi
 
     echo "Compiling: $path with $compiler"
@@ -90,11 +96,13 @@ build() {
 
     sed -i "s|^BINDIR[[:space:]]*=.*|BINDIR = ../bin|" "$make_def"
 
-    # Use -r to disable implicit rules (prevents 'default' linker error)
+    # Use -r to disable implicit rules
     make -r mg CLASS="$CLASS"
 
     local type="omp"
     [[ "$path" == *"MPI"* ]] && type="mpi"
+    
+    # output binary name
     local out_bin="mg_${type}_${ext}_${args[2]}"
     
     # Collect binary from bin/ to build/
@@ -120,10 +128,12 @@ build() {
 # MAIN
 # ==============================================================
 for compiler in "${COMPILERS[@]}"; do
-    if [[ "$compiler" == "gfortran" ]]; then
+    if [[ "$compiler" == "gfortran" || "$compiler" == "aocc" ]]; then
         build "${OFFICIAL_MPI_DIR[@]}" "$compiler"
         build "${OFFICIAL_OMP_DIR[@]}" "$compiler"
-    else
+    fi
+    
+    if [[ "$compiler" != "gfortran" ]]; then
         build "${NOOFFICIAL_OMP_DIR[@]}" "$compiler"
     fi
 done
