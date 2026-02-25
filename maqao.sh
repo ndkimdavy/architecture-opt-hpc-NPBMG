@@ -72,15 +72,15 @@ analyze() {
     [[ "$bin" == *"mpi"* ]] && cmd="$(which mpirun) -np ${NP} ./${bin}"
 
     echo "=== Analyzing ${bin} ==="
-        
+
     cd "${BUILD_DIR}"
-        
+
     # Normal Report (-R1)
     maqao oneview -R1 -xp="${OUTPUT_DIR}/ov_r1_${bin}" --replace -- ${cmd}
-        
+
     # Stability Report (-S1)
     maqao oneview -S1 -xp="${OUTPUT_DIR}/ov_s1_${bin}" --replace -- ${cmd}
-        
+
     # Scalability Report (-R1 -WS)
     maqao oneview -R1 -WS -xp="${OUTPUT_DIR}/ov_ws_${bin}" --replace -- ${cmd}
 
@@ -102,9 +102,9 @@ echo "=== Comparison Reports ==="
 for ((i=0; i<${#COMPARE_BINARIES[@]}; i+=2)); do
     binA=${COMPARE_BINARIES[i]}
     binB=${COMPARE_BINARIES[i+1]}
-        
+
     echo "Duel: $binA vs $binB"
-        
+
     maqao oneview --compare-reports \
         --inputs="${OUTPUT_DIR}/ov_r1_${binA},${OUTPUT_DIR}/ov_r1_${binB}" \
         -xp="${OUTPUT_DIR}/cmp_${binA}_vs_${binB}" --replace
