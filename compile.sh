@@ -9,10 +9,10 @@ set -o pipefail
 CLASS="C"
 CLEAN_ENABLED=1
 
-# For AOCC need Spack to be installed
+# For AOCC/INTEL need Spack to be installed
 # -fPIC is mandatory for AOCC/LLVM to handle relocations in Class C
 FLAGS="-O3 -march=native -fPIC"
-COMPILERS=("gfortran" "g++" "clang++" "aocc")
+COMPILERS=("gfortran" "g++" "clang++" "aocc" "intel")
 
 WORK_DIR=$(pwd)
 BUILD_DIR="${WORK_DIR}/build"
@@ -41,11 +41,22 @@ build() {
         else
             compiler="clang++"
         fi
+    elif [[ "$compiler" == "intel" ]]; then
+        echo "Loading INTEL..."
+        spack load intel-oneapi-compilers || { echo "INTEL error"; exit 1; }
+        
+        # INTEL handling: use ifx for Fortran, icpx for C++
+        if [[ "$ext" == "f90" ]]; then
+            compiler="ifx"
+        else
+            compiler="icpx"
+        fi
     fi
 
     echo "Compiling: $path with $compiler"
     cd "$path"
-
+    mkdir -p ../bin
+    
     local config_path="${path}/../config"
     local sys_path="${path}/../sys"
     local make_def="${config_path}/make.def"
@@ -121,6 +132,7 @@ build() {
     fi
 
     [[ "${args[2]}" == "aocc" ]] && spack unload aocc || true
+    [[ "${args[2]}" == "intel" ]] && spack unload intel-oneapi-compilers || true
     cd "$WORK_DIR"
 }
 
@@ -128,11 +140,11 @@ build() {
 # MAIN
 # ==============================================================
 for compiler in "${COMPILERS[@]}"; do
-    if [[ "$compiler" == "gfortran" || "$compiler" == "aocc" ]]; then
+    if [[ "$compiler" == "gfortran" || "$compiler" == "aocc" || "$compiler" == "intel" ]]; then
         build "${OFFICIAL_MPI_DIR[@]}" "$compiler"
         build "${OFFICIAL_OMP_DIR[@]}" "$compiler"
     fi
-    
+
     if [[ "$compiler" != "gfortran" ]]; then
         build "${NOOFFICIAL_OMP_DIR[@]}" "$compiler"
     fi
