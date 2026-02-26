@@ -85,7 +85,7 @@ analyze() {
     if [[ "$bin" == *"mpi"* ]]; then
         # MPI Scalability: 1 -> 2 -> 4 -> 8 processes
         maqao oneview -R1 -WS --number-processes=1 \
-            --mpi-command="mpirun -np <number_processes>" \
+            --mpi-command="$(which mpirun) -np <number_processes>" \
             --multiruns-params='{{number_processes=2},{number_processes=4},{number_processes=8}}' \
             -xp="${OUTPUT_DIR}/ov_ws_${bin}" --replace -- ./${bin}
     else
@@ -113,11 +113,22 @@ for ((i=0; i<${#COMPARE_BINARIES[@]}; i+=2)); do
     binA=${COMPARE_BINARIES[i]}
     binB=${COMPARE_BINARIES[i+1]}
 
+    reportA="${OUTPUT_DIR}/ov_r1_${binA}"
+    reportB="${OUTPUT_DIR}/ov_r1_${binB}"
+
     echo "Duel: $binA vs $binB"
 
-    maqao oneview --compare-reports \
-        --inputs="${OUTPUT_DIR}/ov_r1_${binA},${OUTPUT_DIR}/ov_r1_${binB}" \
-        -xp="${OUTPUT_DIR}/cmp_${binA}_vs_${binB}" --replace
+    # Ensure both reports exist before comparing
+    if [[ -d "$reportA" && -d "$reportB" ]]; then
+        maqao oneview --compare-reports \
+            --inputs="${reportA},${reportB}" \
+            -xp="${OUTPUT_DIR}/cmp_${binA}_vs_${binB}" --replace
+    else
+        echo "Skip Duel: One or both reports missing."
+        [[ ! -d "$reportA" ]] && echo "  -> Missing: $binA"
+        [[ ! -d "$reportB" ]] && echo "  -> Missing: $binB"
+        continue
+    fi
 done
 
 echo "Done. Reports in $OUTPUT_DIR"
