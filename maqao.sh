@@ -6,7 +6,7 @@ sudo cpupower frequency-set -g performance
 sudo sysctl -w kernel.perf_event_paranoid=1
 
 # ==============================================================
-# SETUP 
+# SETUP 
 # ==============================================================
 BUILD_DIR="$(pwd)/build"
 OUTPUT_DIR="${BUILD_DIR}/maqao_reports"
@@ -42,7 +42,7 @@ COMPARE_BINARIES=(
     "mg_omp_f90_intel" "mg_omp_f90_gfortran"
     "mg_omp_cpp_aocc" "mg_omp_cpp_clang++"
     "mg_omp_cpp_intel" "mg_omp_cpp_clang++"
-    "mg_omp_cpp_aocc" "mg_omp_cpp_g++" 
+    "mg_omp_cpp_aocc" "mg_omp_cpp_g++" 
 
     # Language & Paradigm Duels
     # 1. OMP(f90_aoc/intel) vs OMP(cpp_aoc/intel)
@@ -82,8 +82,18 @@ analyze() {
     maqao oneview -S1 -xp="${OUTPUT_DIR}/ov_s1_${bin}" --replace -- ${cmd}
 
     # Scalability Report (-R1 -WS)
-    maqao oneview -R1 -WS -xp="${OUTPUT_DIR}/ov_ws_${bin}" --replace -- ${cmd}
-
+    if [[ "$bin" == *"mpi"* ]]; then
+        # MPI Scalability: 1 -> 2 -> 4 -> 8 processes
+        maqao oneview -R1 -WS --number-processes=1 \
+            --mpi-command="mpirun -np <number_processes>" \
+            --multiruns-params='{{number_processes=2},{number_processes=4},{number_processes=8}}' \
+            -xp="${OUTPUT_DIR}/ov_ws_${bin}" --replace -- ./${bin}
+    else
+        # OpenMP Scalability: 1 -> 2 -> 4 -> 8 threads
+        maqao oneview -R1 -WS --envv_OMP_NUM_THREADS=1 \
+            --multiruns-params='{{envv_OMP_NUM_THREADS="2"},{envv_OMP_NUM_THREADS="4"},{envv_OMP_NUM_THREADS="8"}}' \
+            -xp="${OUTPUT_DIR}/ov_ws_${bin}" --replace -- ./${bin}
+    fi
     cd ..
 }
 

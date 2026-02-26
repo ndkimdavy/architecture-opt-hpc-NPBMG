@@ -16,7 +16,7 @@
 #define NDIM3         9
 #define ONE           1
 #define	CONVERTDOUBLE	FALSE
-#define COMPILETIME "25 Feb 2026"
+#define COMPILETIME "26 Feb 2026"
 #define NPBVERSION "4.1"
 #define LIBVERSION "201511"
 #define COMPILERVERSION "15.2.1"
