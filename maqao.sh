@@ -79,7 +79,7 @@ analyze() {
     maqao oneview -R1 -xp="${OUTPUT_DIR}/ov_r1_${bin}" --replace -- ${cmd}
 
     # Stability Report (-S1)
-    maqao oneview -S1 -xp="${OUTPUT_DIR}/ov_s1_${bin}" --replace -- ${cmd}
+    maqao oneview -S1 --repetitions=10 -xp="${OUTPUT_DIR}/ov_s1_${bin}" --replace -- ${cmd}
 
     # Scalability Report (-R1 -WS)
     if [[ "$bin" == *"mpi"* ]]; then
