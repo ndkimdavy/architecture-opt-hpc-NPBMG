@@ -14,7 +14,7 @@ NP=8
 
 # OpenMP environment variables
 export OMP_NUM_THREADS=$NP
-export OMP_PROC_BIND=true
+export OMP_PROC_BIND=spread
 export OMP_PLACES=cores
 
 BINARIES=(
