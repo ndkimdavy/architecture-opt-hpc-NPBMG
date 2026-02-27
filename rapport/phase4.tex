@@ -1,0 +1,44 @@
+\section{Analyse des résultats et identification des fonctions critiques sur Intel}
+
+L'extension de l'étude à l'architecture \textbf{Intel} permet de vérifier si les comportements observés sur AMD se généralisent. Cette analyse se concentre exclusivement sur l'implémentation \textbf{C++ OpenMP}, afin d'isoler les facteurs de performance propres au code indépendamment du matériel utilisé.
+
+\subsection{Analyse des sections les plus chronophages (Option -R1)}
+Le profilage statistique sur Intel confirme que les zones de forte activité du code sont liées à la structure de l'algorithme. Les fonctions \textbf{resid}, \textbf{zran3}, \textbf{psinv} et \textbf{vranlc} occupent la majeure partie du temps d'exécution.
+
+La hiérarchie des sections les plus sollicitées s'établit comme suit :
+\begin{itemize}
+    \item \texttt{resid} : Demeure la fonction principale avec \textbf{35,48 \%} du temps total. La charge est portée par la \textbf{boucle 44} (\textbf{22,05 \%}) et la \textbf{boucle 42} (\textbf{13,87 \%}).
+    \item \texttt{zran3} : Représente \textbf{17,23 \%} de l'exécution, concentrée dans la boucle 19.
+    \item \texttt{psinv} : Contribue à hauteur de \textbf{15,65 \%}, dont \textbf{10,35 \%} pour la boucle 81.
+    \item \texttt{vranlc} : Représente \textbf{13,72 \%} du temps total.
+\end{itemize}
+On observe une part importante de synchronisation via \texttt{kmp\_wait} (\textbf{25,24 \%}), indiquant des temps d'attente entre les threads qui limitent l'efficacité du parallélisme en C++ sur cette architecture.
+
+\inputImage{figures/top_functions_intel_r1.png}
+{Distribution du temps d'exécution par section dominante (Intel)}
+{1.0\textwidth}{!}{fig:top_functions_intel_r1}
+
+\subsection{Fiabilité des mesures (Option -S1)}
+La cohérence de l'environnement de test a été vérifiée sur 10 exécutions. Le temps moyen est de \textbf{23,68 s}, avec des mesures stables comprises entre un minimum de \textbf{23,39 s} et un maximum de \textbf{23,82 s}. Cette faible variation confirme la répétabilité des tests sur ce système.
+
+\inputImage{figures/stability_analysis_intel_s1.png}
+{Évaluation de la stabilité des mesures sur 10 répétitions (Intel)}
+{1.0\textwidth}{!}{fig:stability_analysis_intel_s1}
+
+\subsection{Étude du passage à l'échelle (Option -WS)}
+L'analyse de scalabilité montre les limites de la version C++ dans l'utilisation des cœurs disponibles :
+\begin{itemize}
+    \item \textbf{Gain de performance} : Le passage de 1 à 8 cœurs est très limité, le temps de calcul n'évoluant que de \textbf{25,91 s} à \textbf{23,78 s}.
+    \item \textbf{Scalability Gap} : Le score de \textbf{7,34} sur 8 threads indique une perte massive d'efficacité parallèle. Ce résultat confirme une saturation des ressources mémoire, le processeur ne parvenant pas à alimenter les unités de calcul de manière fluide.
+\end{itemize}
+
+\inputImage{figures/scalability_speedup_intel_ws.png}
+{Analyse de la scalabilité et du gain de performance (Intel)}
+{1.0\textwidth}{!}{fig:scalability_speedup_intel_ws}
+
+\subsection{Comparaison des compilateurs (Rapports différentiels)}
+La comparaison entre \textbf{Intel Compiler (icpx)} et \textbf{Clang++} montre que le compilateur n'influence pas la capacité de vectorisation. Les deux outils affichent un \textit{Compilation Options Score} de \textbf{16,7 \%}. Cela prouve que, même sur son architecture native, le compilateur Intel se heurte à la structure du code C++, ce qui empêche une optimisation automatique efficace.
+
+\inputImage{figures/comparison_duel_report_intel.png}
+{Comparaison des métriques entre Intel Compiler et Clang++ (Intel)}
+{1.0\textwidth}{!}{fig:comparison_duel_report_intel}

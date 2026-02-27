@@ -3,8 +3,15 @@
 Les résultats fournis par MAQAO ont été très informatifs sur les aspects détaillés des optimisations requises. L'utilisation des différentes options de l'outil nous a permis de disséquer le comportement du kernel MG sans modifier le code d'origine, en isolant les facteurs de performance liés au matériel et aux choix de compilation.
 
 \subsection{Analyse des sections critiques (Option -R1)}
-L'examen du profilage statistique via les rapports de type \textit{Overview} confirme que le temps d'exécution du kernel MG est concentré sur un groupe restreint de fonctions mathématiques. Les fonctions \textbf{psinv}, \textbf{resid} et \textbf{rprj} monopolisent la quasi-totalité du temps CPU, indépendamment de l'architecture ou du compilateur utilisé.\\
-Par exemple, avec notre configuration de test (AOCC sur architecture AMD), la fonction \texttt{\_\_nv\_resid} est la plus critique avec \textbf{47,85 \%} du temps total, suivie de \texttt{\_\_nv\_psinv} à \textbf{19,36 \%}. À l'intérieur de \texttt{resid}, la boucle 26 (lignes 608-610 du fichier \texttt{mg.f90}) représente à elle seule \textbf{29,31 \%} de la charge CPU.
+L'examen du profilage statistique via les rapports de type \textit{Overview} confirme que le temps d'exécution du kernel MG est concentré sur un groupe de quatre fonctions dominantes. Les noyaux \textbf{resid}, \textbf{psinv}, \textbf{interp} et \textbf{rprj3} monopolisent la quasi-totalité du temps CPU. Cette distribution est caractéristique de l'algorithme Multigrid, où les phases de lissage, de restriction et d'interpolation se partagent la charge de calcul.
+
+Avec notre configuration de test (AOCC sur architecture AMD), la hiérarchie des points chauds s'établit de la manière suivante :
+\begin{itemize}
+    \item \textbf{resid} : Représente \textbf{47,85 \%} du temps total. À l'intérieur de ce module, la boucle 26 (lignes 608-610) est la plus critique avec \textbf{29,31 \%} de la charge CPU à elle seule.
+    \item \textbf{psinv} : Constitue le second goulot d'étranglement avec \textbf{19,36 \%} du temps.
+    \item \textbf{interp} : Apparaît comme un contributeur significatif avec \textbf{9,50 \%} du temps total.
+    \item \textbf{rprj3} : Complète ce profil avec \textbf{6,69 \%} du temps.
+\end{itemize}
 
 \inputImage 
 {figures/top_functions_amd_r1.png}
