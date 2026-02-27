@@ -580,14 +580,19 @@ subroutine resid( u,v,r,n1,n2,n3,a,k )
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!     resid computes the residual:  r = v - Au
 !
-!     This  implementation costs  15A + 4M per result, where
-!     A and M denote the costs of Addition (or Subtraction) and
+! resid computes the residual:  r = v - Au
+!
+!
+! This  implementation costs  15A + 4M per result, where
+!
+! A and M denote the costs of Addition (or Subtraction) and
 !     Multiplication, respectively.
-!     Presuming coefficient a(1) is zero (the NPB assumes this,
+!
+! Presuming coefficient a(1) is zero (the NPB assumes this,
 !     but it is thus not a general case), 3A + 1M may be eliminated,
-!     resulting in 12A + 3M.
+!
+! resulting in 12A + 3M.
 !     Note that this vectorizes, and is also fine for cache
 !     based machines.
 !---------------------------------------------------------------------
@@ -596,27 +601,40 @@ subroutine resid( u,v,r,n1,n2,n3,a,k )
    implicit none
 
    integer n1,n2,n3,k
-   double precision u(n1,n2,n3),v(n1,n2,n3),r(n1,n2,n3),a(0:3)
+
+   ! MAQAO CQA Correction: Ajout de l'attribut contiguous et des intents
+   ! pour optimiser le calcul d'adresses et limiter l'aliasing.
+   double precision, intent(in), contiguous :: u(n1,n2,n3), v(n1,n2,n3)
+   double precision, intent(out), contiguous :: r(n1,n2,n3)
+   double precision, intent(in) :: a(0:3)
+
    integer i3, i2, i1
-   double precision u1(m), u2(m)
+
+   ! MAQAO CQA Correction: Ajustement de la taille des temporaires
+   ! pour une meilleure localité cache.
+   double precision u1(n1), u2(n1)
 
    if (timeron) call timer_start(T_resid)
 !$omp parallel do default(shared) private(i1,i2,i3,u1,u2) collapse(2)
    do i3=2,n3-1
       do i2=2,n2-1
          do i1=1,n1
+
             u1(i1) = u(i1,i2-1,i3) + u(i1,i2+1,i3)  &
             &                + u(i1,i2,i3-1) + u(i1,i2,i3+1)
             u2(i1) = u(i1,i2-1,i3-1) + u(i1,i2+1,i3-1)  &
             &                + u(i1,i2-1,i3+1) + u(i1,i2+1,i3+1)
          enddo
+
          do i1=2,n1-1
             r(i1,i2,i3) = v(i1,i2,i3)  &
             &                     - a(0) * u(i1,i2,i3)  &
 !---------------------------------------------------------------------
-!  Assume a(1) = 0      (Enable 2 lines below if a(1) not= 0)
+!
+! Assume a(1) = 0      (Enable 2 lines below if a(1) not= 0)
 !---------------------------------------------------------------------
-!    >                     - a(1) * ( u(i1-1,i2,i3) + u(i1+1,i2,i3)
+!
+! >                     - a(1) * ( u(i1-1,i2,i3) + u(i1+1,i2,i3)
 !    >                              + u1(i1) )
 !---------------------------------------------------------------------
             &                     - a(2) * ( u2(i1) + u1(i1-1) + u1(i1+1) )  &
@@ -627,7 +645,8 @@ subroutine resid( u,v,r,n1,n2,n3,a,k )
    if (timeron) call timer_stop(T_resid)
 
 !---------------------------------------------------------------------
-!     exchange boundary data
+!
+! exchange boundary data
 !---------------------------------------------------------------------
    call comm3(r,n1,n2,n3,k)
 
