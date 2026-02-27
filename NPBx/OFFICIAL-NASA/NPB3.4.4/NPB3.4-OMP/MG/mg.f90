@@ -506,57 +506,51 @@ end
 subroutine psinv( r,u,n1,n2,n3,c,k)
 
 !---------------------------------------------------------------------
-!---------------------------------------------------------------------
-
-!---------------------------------------------------------------------
-!     psinv applies an approximate inverse as smoother:  u = u + Cr
-!
-!     This  implementation costs  15A + 4M per result, where
-!     A and M denote the costs of Addition and Multiplication.
-!     Presuming coefficient c(3) is zero (the NPB assumes this,
-!     but it is thus not a general case), 2A + 1M may be eliminated,
-!     resulting in 13A + 3M.
-!     Note that this vectorizes, and is also fine for cache
-!     based machines.
+! psinv applies an approximate inverse as smoother:  u = u + Cr
+! Optimization: Added intents and forced SIMD to improve cycle efficiency
+! as recommended by MAQAO CQA.
 !---------------------------------------------------------------------
 
    use mg_data
    implicit none
 
    integer n1,n2,n3,k
-   double precision u(n1,n2,n3),r(n1,n2,n3),c(0:3)
+   ! Technical Fix: Adding intents to resolve potential data dependencies
+   double precision, intent(in) :: r(n1,n2,n3), c(0:3)
+   double precision, intent(inout) :: u(n1,n2,n3)
    integer i3, i2, i1
 
    double precision r1(m), r2(m)
 
    if (timeron) call timer_start(T_psinv)
+
 !$omp parallel do default(shared) private(i1,i2,i3,r1,r2) collapse(2)
    do i3=2,n3-1
       do i2=2,n2-1
+         ! Optimization: Vectorize neighbor summation
+         !$omp simd
          do i1=1,n1
             r1(i1) = r(i1,i2-1,i3) + r(i1,i2+1,i3)  &
             &                + r(i1,i2,i3-1) + r(i1,i2,i3+1)
             r2(i1) = r(i1,i2-1,i3-1) + r(i1,i2+1,i3-1)  &
             &                + r(i1,i2-1,i3+1) + r(i1,i2+1,i3+1)
          enddo
+
+         ! Optimization: Forced SIMD update to resolve scalar integer instruction overhead
+         !$omp simd
          do i1=2,n1-1
             u(i1,i2,i3) = u(i1,i2,i3)  &
             &                     + c(0) * r(i1,i2,i3)  &
             &                     + c(1) * ( r(i1-1,i2,i3) + r(i1+1,i2,i3)  &
-            &                              + r1(i1) )  &
+            &                + r1(i1) )  &
             &                     + c(2) * ( r2(i1) + r1(i1-1) + r1(i1+1) )
-!---------------------------------------------------------------------
-!  Assume c(3) = 0    (Enable line below if c(3) not= 0)
-!---------------------------------------------------------------------
-!    >                     + c(3) * ( r2(i1-1) + r2(i1+1) )
-!---------------------------------------------------------------------
          enddo
       enddo
    enddo
    if (timeron) call timer_stop(T_psinv)
 
 !---------------------------------------------------------------------
-!     exchange boundary points
+! exchange boundary points
 !---------------------------------------------------------------------
    call comm3(u,n1,n2,n3,k)
 
@@ -577,66 +571,43 @@ end
 subroutine resid( u,v,r,n1,n2,n3,a,k )
 
 !---------------------------------------------------------------------
-!---------------------------------------------------------------------
-
-!---------------------------------------------------------------------
-!
 ! resid computes the residual:  r = v - Au
-!
-!
-! This  implementation costs  15A + 4M per result, where
-!
-! A and M denote the costs of Addition (or Subtraction) and
-!     Multiplication, respectively.
-!
-! Presuming coefficient a(1) is zero (the NPB assumes this,
-!     but it is thus not a general case), 3A + 1M may be eliminated,
-!
-! resulting in 12A + 3M.
-!     Note that this vectorizes, and is also fine for cache
-!     based machines.
+! This implementation costs 15A + 4M per result.
+! Optimization: Explicit intents and SIMD directives to resolve
+! scalar integer bottlenecks identified by MAQAO.
 !---------------------------------------------------------------------
 
    use mg_data
    implicit none
 
    integer n1,n2,n3,k
-
-   ! MAQAO CQA Correction: Ajout de l'attribut contiguous et des intents
-   ! pour optimiser le calcul d'adresses et limiter l'aliasing.
+   ! Technical Fix: Use explicit intents to help the compiler optimize data flow
    double precision, intent(in) :: u(n1,n2,n3), v(n1,n2,n3)
    double precision, intent(out) :: r(n1,n2,n3)
    double precision, intent(in) :: a(0:3)
 
    integer i3, i2, i1
-
-   ! MAQAO CQA Correction: Ajustement de la taille des temporaires
-   ! pour une meilleure localité cache.
    double precision u1(n1), u2(n1)
 
    if (timeron) call timer_start(T_resid)
+
 !$omp parallel do default(shared) private(i1,i2,i3,u1,u2) collapse(2)
    do i3=2,n3-1
       do i2=2,n2-1
+         ! Optimization: Force SIMD vectorization for stencil neighbor summation
+         !$omp simd
          do i1=1,n1
-
             u1(i1) = u(i1,i2-1,i3) + u(i1,i2+1,i3)  &
             &                + u(i1,i2,i3-1) + u(i1,i2,i3+1)
             u2(i1) = u(i1,i2-1,i3-1) + u(i1,i2+1,i3-1)  &
             &                + u(i1,i2-1,i3+1) + u(i1,i2+1,i3+1)
          enddo
 
+         ! Optimization: Explicit SIMD for residual update to utilize hardware vector registers
+         !$omp simd
          do i1=2,n1-1
             r(i1,i2,i3) = v(i1,i2,i3)  &
             &                     - a(0) * u(i1,i2,i3)  &
-!---------------------------------------------------------------------
-!
-! Assume a(1) = 0      (Enable 2 lines below if a(1) not= 0)
-!---------------------------------------------------------------------
-!
-! >                     - a(1) * ( u(i1-1,i2,i3) + u(i1+1,i2,i3)
-!    >                              + u1(i1) )
-!---------------------------------------------------------------------
             &                     - a(2) * ( u2(i1) + u1(i1-1) + u1(i1+1) )  &
             &                     - a(3) * ( u2(i1-1) + u2(i1+1) )
          enddo
@@ -645,7 +616,6 @@ subroutine resid( u,v,r,n1,n2,n3,a,k )
    if (timeron) call timer_stop(T_resid)
 
 !---------------------------------------------------------------------
-!
 ! exchange boundary data
 !---------------------------------------------------------------------
    call comm3(r,n1,n2,n3,k)
@@ -760,30 +730,21 @@ end
 subroutine interp( z,mm1,mm2,mm3,u,n1,n2,n3,k )
 
 !---------------------------------------------------------------------
-!---------------------------------------------------------------------
-
-!---------------------------------------------------------------------
-!     interp adds the trilinear interpolation of the correction
-!     from the coarser grid to the current approximation:  u = u + Qu'
-!
-!     Observe that this  implementation costs  16A + 4M, where
-!     A and M denote the costs of Addition and Multiplication.
-!     Note that this vectorizes, and is also fine for cache
-!     based machines.  Vector machines may get slightly better
-!     performance however, with 8 separate "do i1" loops, rather than 4.
+! interp adds the trilinear interpolation of the correction
+! from the coarser grid to the current approximation:  u = u + Qu'
+! Optimization: Added intents and SIMD pragmas to address strided
+! memory access (2*i1) and improve vectorization ratio.
 !---------------------------------------------------------------------
 
    use mg_data
    implicit none
 
-   integer mm1, mm2, mm3, n1, n2, n3,k
-   double precision z(mm1,mm2,mm3),u(n1,n2,n3)
+   integer mm1, mm2, mm3, n1, n2, n3, k
+   ! Technical Fix: Use explicit intents for compiler optimization
+   double precision, intent(in) :: z(mm1,mm2,mm3)
+   double precision, intent(inout) :: u(n1,n2,n3)
    integer i3, i2, i1, d1, d2, d3, t1, t2, t3
 
-! note that m = 1037 in globals.h but for this only need to be
-! 535 to handle up to 1024^3
-!      integer m
-!      parameter( m=535 )
    double precision z1(m),z2(m),z3(m)
 
    if (timeron) call timer_start(T_interp)
@@ -793,41 +754,40 @@ subroutine interp( z,mm1,mm2,mm3,u,n1,n2,n3,k )
       do  i3=1,mm3-1
          do  i2=1,mm2-1
 
+            ! Optimization: Pre-calculating corrections with SIMD
+            !$omp simd
             do i1=1,mm1
                z1(i1) = z(i1,i2+1,i3) + z(i1,i2,i3)
                z2(i1) = z(i1,i2,i3+1) + z(i1,i2,i3)
                z3(i1) = z(i1,i2+1,i3+1) + z(i1,i2,i3+1) + z1(i1)
             enddo
 
+            ! Optimization: Forced SIMD to mitigate strided access (2*i1)
+            !$omp simd
             do  i1=1,mm1-1
-               u(2*i1-1,2*i2-1,2*i3-1)=u(2*i1-1,2*i2-1,2*i3-1)  &
-               &                 +z(i1,i2,i3)
-               u(2*i1,2*i2-1,2*i3-1)=u(2*i1,2*i2-1,2*i3-1)  &
-               &                 +0.5d0*(z(i1+1,i2,i3)+z(i1,i2,i3))
+               u(2*i1-1,2*i2-1,2*i3-1)=u(2*i1-1,2*i2-1,2*i3-1) + z(i1,i2,i3)
+               u(2*i1,2*i2-1,2*i3-1)=u(2*i1,2*i2-1,2*i3-1) + 0.5d0*(z(i1+1,i2,i3)+z(i1,i2,i3))
             enddo
+            !$omp simd
             do i1=1,mm1-1
-               u(2*i1-1,2*i2,2*i3-1)=u(2*i1-1,2*i2,2*i3-1)  &
-               &                 +0.5d0 * z1(i1)
-               u(2*i1,2*i2,2*i3-1)=u(2*i1,2*i2,2*i3-1)  &
-               &                 +0.25d0*( z1(i1) + z1(i1+1) )
+               u(2*i1-1,2*i2,2*i3-1)=u(2*i1-1,2*i2,2*i3-1) + 0.5d0 * z1(i1)
+               u(2*i1,2*i2,2*i3-1)=u(2*i1,2*i2,2*i3-1) + 0.25d0*( z1(i1) + z1(i1+1) )
             enddo
+            !$omp simd
             do i1=1,mm1-1
-               u(2*i1-1,2*i2-1,2*i3)=u(2*i1-1,2*i2-1,2*i3)  &
-               &                 +0.5d0 * z2(i1)
-               u(2*i1,2*i2-1,2*i3)=u(2*i1,2*i2-1,2*i3)  &
-               &                 +0.25d0*( z2(i1) + z2(i1+1) )
+               u(2*i1-1,2*i2-1,2*i3)=u(2*i1-1,2*i2-1,2*i3) + 0.5d0 * z2(i1)
+               u(2*i1,2*i2-1,2*i3)=u(2*i1,2*i2-1,2*i3) + 0.25d0*( z2(i1) + z2(i1+1) )
             enddo
+            !$omp simd
             do i1=1,mm1-1
-               u(2*i1-1,2*i2,2*i3)=u(2*i1-1,2*i2,2*i3)  &
-               &                 +0.25d0* z3(i1)
-               u(2*i1,2*i2,2*i3)=u(2*i1,2*i2,2*i3)  &
-               &                 +0.125d0*( z3(i1) + z3(i1+1) )
+               u(2*i1-1,2*i2,2*i3)=u(2*i1-1,2*i2,2*i3) + 0.25d0* z3(i1)
+               u(2*i1,2*i2,2*i3)=u(2*i1,2*i2,2*i3) + 0.125d0*( z3(i1) + z3(i1+1) )
             enddo
          enddo
       enddo
 
    else
-
+      ! RESTORED: Handling for small grid cases (n=3)
       if(n1.eq.3)then
          d1 = 2
          t1 = 1
@@ -856,26 +816,26 @@ subroutine interp( z,mm1,mm2,mm3,u,n1,n2,n3,k )
 !$omp do collapse(2)
       do  i3=d3,mm3-1
          do  i2=d2,mm2-1
+            !$omp simd
             do  i1=d1,mm1-1
-               u(2*i1-d1,2*i2-d2,2*i3-d3)=u(2*i1-d1,2*i2-d2,2*i3-d3)  &
-               &                 +z(i1,i2,i3)
+               u(2*i1-d1,2*i2-d2,2*i3-d3)=u(2*i1-d1,2*i2-d2,2*i3-d3) + z(i1,i2,i3)
             enddo
+            !$omp simd
             do  i1=1,mm1-1
-               u(2*i1-t1,2*i2-d2,2*i3-d3)=u(2*i1-t1,2*i2-d2,2*i3-d3)  &
-               &                 +0.5D0*(z(i1+1,i2,i3)+z(i1,i2,i3))
+               u(2*i1-t1,2*i2-d2,2*i3-d3)=u(2*i1-t1,2*i2-d2,2*i3-d3) + 0.5D0*(z(i1+1,i2,i3)+z(i1,i2,i3))
             enddo
          enddo
       enddo
 !$omp do collapse(2)
       do  i3=d3,mm3-1
          do  i2=1,mm2-1
+            !$omp simd
             do  i1=d1,mm1-1
-               u(2*i1-d1,2*i2-t2,2*i3-d3)=u(2*i1-d1,2*i2-t2,2*i3-d3)  &
-               &                 +0.5D0*(z(i1,i2+1,i3)+z(i1,i2,i3))
+               u(2*i1-d1,2*i2-t2,2*i3-d3)=u(2*i1-d1,2*i2-t2,2*i3-d3) + 0.5D0*(z(i1,i2+1,i3)+z(i1,i2,i3))
             enddo
+            !$omp simd
             do  i1=1,mm1-1
-               u(2*i1-t1,2*i2-t2,2*i3-d3)=u(2*i1-t1,2*i2-t2,2*i3-d3)  &
-               &                 +0.25D0*(z(i1+1,i2+1,i3)+z(i1+1,i2,i3)  &
+               u(2*i1-t1,2*i2-t2,2*i3-d3)=u(2*i1-t1,2*i2-t2,2*i3-d3) + 0.25D0*(z(i1+1,i2+1,i3)+z(i1+1,i2,i3)  &
                &                 +z(i1,  i2+1,i3)+z(i1,  i2,i3))
             enddo
          enddo
@@ -884,13 +844,13 @@ subroutine interp( z,mm1,mm2,mm3,u,n1,n2,n3,k )
 !$omp do collapse(2)
       do  i3=1,mm3-1
          do  i2=d2,mm2-1
+            !$omp simd
             do  i1=d1,mm1-1
-               u(2*i1-d1,2*i2-d2,2*i3-t3)=u(2*i1-d1,2*i2-d2,2*i3-t3)  &
-               &                 +0.5D0*(z(i1,i2,i3+1)+z(i1,i2,i3))
+               u(2*i1-d1,2*i2-d2,2*i3-t3)=u(2*i1-d1,2*i2-d2,2*i3-t3) + 0.5D0*(z(i1,i2,i3+1)+z(i1,i2,i3))
             enddo
+            !$omp simd
             do  i1=1,mm1-1
-               u(2*i1-t1,2*i2-d2,2*i3-t3)=u(2*i1-t1,2*i2-d2,2*i3-t3)  &
-               &                 +0.25D0*(z(i1+1,i2,i3+1)+z(i1,i2,i3+1)  &
+               u(2*i1-t1,2*i2-d2,2*i3-t3)=u(2*i1-t1,2*i2-d2,2*i3-t3) + 0.25D0*(z(i1+1,i2,i3+1)+z(i1,i2,i3+1)  &
                &                 +z(i1+1,i2,i3  )+z(i1,i2,i3  ))
             enddo
          enddo
@@ -898,14 +858,14 @@ subroutine interp( z,mm1,mm2,mm3,u,n1,n2,n3,k )
 !$omp do collapse(2)
       do  i3=1,mm3-1
          do  i2=1,mm2-1
+            !$omp simd
             do  i1=d1,mm1-1
-               u(2*i1-d1,2*i2-t2,2*i3-t3)=u(2*i1-d1,2*i2-t2,2*i3-t3)  &
-               &                 +0.25D0*(z(i1,i2+1,i3+1)+z(i1,i2,i3+1)  &
+               u(2*i1-d1,2*i2-t2,2*i3-t3)=u(2*i1-d1,2*i2-t2,2*i3-t3) + 0.25D0*(z(i1,i2+1,i3+1)+z(i1,i2,i3+1)  &
                &                 +z(i1,i2+1,i3  )+z(i1,i2,i3  ))
             enddo
+            !$omp simd
             do  i1=1,mm1-1
-               u(2*i1-t1,2*i2-t2,2*i3-t3)=u(2*i1-t1,2*i2-t2,2*i3-t3)  &
-               &                 +0.125D0*(z(i1+1,i2+1,i3+1)+z(i1+1,i2,i3+1)  &
+               u(2*i1-t1,2*i2-t2,2*i3-t3)=u(2*i1-t1,2*i2-t2,2*i3-t3) + 0.125D0*(z(i1+1,i2+1,i3+1)+z(i1+1,i2,i3+1)  &
                &                 +z(i1  ,i2+1,i3+1)+z(i1  ,i2,i3+1)  &
                &                 +z(i1+1,i2+1,i3  )+z(i1+1,i2,i3  )  &
                &                 +z(i1  ,i2+1,i3  )+z(i1  ,i2,i3  ))

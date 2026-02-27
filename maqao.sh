@@ -18,16 +18,16 @@ export OMP_PROC_BIND=spread
 export OMP_PLACES=cores
 
 BINARIES=(
-    "mg_mpi_f90_aocc"
+    # "mg_mpi_f90_aocc"
     # "mg_mpi_f90_gfortran"
-    "mg_mpi_f90_intel"
+    # "mg_mpi_f90_intel"
     "mg_omp_cpp_aocc"
     # "mg_omp_cpp_clang++"
     # "mg_omp_cpp_g++"
     "mg_omp_cpp_intel"
-    # "mg_omp_f90_aocc"
+    "mg_omp_f90_aocc"
     # "mg_omp_f90_gfortran"
-    # "mg_omp_f90_intel"
+    "mg_omp_f90_intel"
 )
 
 COMPARE_BINARIES=(

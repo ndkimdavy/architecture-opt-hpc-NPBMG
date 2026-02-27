@@ -11,7 +11,7 @@ CLEAN_ENABLED=1
 
 # For AOCC/INTEL need Spack to be installed
 # -fPIC is mandatory for AOCC/LLVM to handle relocations in Class C
-FLAGS="-g -Ofast -march=native -fPIC -funroll-loops"
+FLAGS="-g -O3 -ffast-math -march=native -mavx2 -funroll-loops -fPIC"
 COMPILERS=("gfortran" "g++" "clang++" "aocc") # "intel"
 
 WORK_DIR=$(pwd)

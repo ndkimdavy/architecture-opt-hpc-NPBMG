@@ -46,13 +46,13 @@ FMPI_INC =
 #---------------------------------------------------------------------------
 # Global *compile time* flags for Fortran programs
 #---------------------------------------------------------------------------
-FFLAGS = -g -Ofast -march=native -fPIC -funroll-loops
+FFLAGS = -g -O3 -ffast-math -march=native -mavx2 -funroll-loops -fPIC
 
 #---------------------------------------------------------------------------
 # Global *link time* flags. Flags for increasing maximum executable 
 # size usually go here. 
 #---------------------------------------------------------------------------
-FLINKFLAGS = -g -Ofast -march=native -fPIC -funroll-loops
+FLINKFLAGS = -g -O3 -ffast-math -march=native -mavx2 -funroll-loops -fPIC
 
 
 #---------------------------------------------------------------------------
