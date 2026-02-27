@@ -987,16 +987,18 @@ static void rep_nrm(void* pointer_u, int n1, int n2, int n3, char* title, int kk
  */
 static void resid(void* pointer_u, void* pointer_v, void* pointer_r, int n1, int n2, int n3, double a[4], int k){
 #ifdef __clang__
-	using custom_cast = double (*)[n2][n1];
+    // MAQAO CQA: Ajout de __restrict pour lever l'ambiguïté d'aliasing
+	using custom_cast = double (* __restrict)[n2][n1];
 	custom_cast u = reinterpret_cast<custom_cast>(pointer_u);	
-	using custom_cast2 = double (*)[n2][n1];
+	using custom_cast2 = double (* __restrict)[n2][n1];
 	custom_cast2 v = reinterpret_cast<custom_cast2>(pointer_v);
-	using custom_cast3 = double (*)[n2][n1];
+	using custom_cast3 = double (* __restrict)[n2][n1];
 	custom_cast3 r = reinterpret_cast<custom_cast3>(pointer_r);	
 #else
-	double (*u)[n2][n1] = (double (*)[n2][n1])pointer_u;
-	double (*v)[n2][n1] = (double (*)[n2][n1])pointer_v;
-	double (*r)[n2][n1] = (double (*)[n2][n1])pointer_r;		
+    // MAQAO CQA: Ajout de __restrict pour débloquer la vectorisation SIMD
+	double (* __restrict u)[n2][n1] = (double (*)[n2][n1])pointer_u;
+	double (* __restrict v)[n2][n1] = (double (*)[n2][n1])pointer_v;
+	double (* __restrict r)[n2][n1] = (double (*)[n2][n1])pointer_r;		
 #endif
 
 	int i3, i2, i1;
@@ -1006,26 +1008,25 @@ static void resid(void* pointer_u, void* pointer_v, void* pointer_r, int n1, int
 		#pragma omp master
 			timer_start(T_RESID);
 	}
-	#pragma omp for
+
+    // MAQAO Recommendation: Fusion des boucles i3 et i2 pour le parallélisme
+	#pragma omp for collapse(2)
 	for(i3 = 1; i3 < n3-1; i3++){
 		for(i2 = 1; i2 < n2-1; i2++){
+            // MAQAO: Force la vectorisation sur la boucle la plus interne
+            #pragma omp simd
 			for(i1 = 0; i1 < n1; i1++){
 				u1[i1] = u[i3][i2-1][i1] + u[i3][i2+1][i1]
 					+ u[i3-1][i2][i1] + u[i3+1][i2][i1];
 				u2[i1] = u[i3-1][i2-1][i1] + u[i3-1][i2+1][i1]
 					+ u[i3+1][i2-1][i1] + u[i3+1][i2+1][i1];
 			}
+            
+            // MAQAO: Réduction du coût d'itération par vectorisation SIMD
+            #pragma omp simd
 			for(i1 = 1; i1 < n1-1; i1++){
 				r[i3][i2][i1] = v[i3][i2][i1]
 					- a[0] * u[i3][i2][i1]
-					/*
-					 * ---------------------------------------------------------------------
-					 * assume a(1) = 0 (enable 2 lines below if a(1) not= 0)
-					 * ---------------------------------------------------------------------
-					 * > - a(1) * ( u(i1-1,i2,i3) + u(i1+1,i2,i3)
-					 * > + u1(i1) )
-					 * ---------------------------------------------------------------------
-					 */
 					- a[2] * ( u2[i1] + u1[i1-1] + u1[i1+1] )
 					- a[3] * ( u2[i1-1] + u2[i1+1] );
 			}
