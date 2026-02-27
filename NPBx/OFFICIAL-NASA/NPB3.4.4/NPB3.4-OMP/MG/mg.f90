@@ -604,8 +604,8 @@ subroutine resid( u,v,r,n1,n2,n3,a,k )
 
    ! MAQAO CQA Correction: Ajout de l'attribut contiguous et des intents
    ! pour optimiser le calcul d'adresses et limiter l'aliasing.
-   double precision, intent(in), contiguous :: u(n1,n2,n3), v(n1,n2,n3)
-   double precision, intent(out), contiguous :: r(n1,n2,n3)
+   double precision, intent(in) :: u(n1,n2,n3), v(n1,n2,n3)
+   double precision, intent(out) :: r(n1,n2,n3)
    double precision, intent(in) :: a(0:3)
 
    integer i3, i2, i1
