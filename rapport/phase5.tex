@@ -2,24 +2,24 @@
 
 L'objectif de cette phase était d'investiguer les pistes d'amélioration du code de base en s'appuyant sur les recommandations du \textit{Code Quality Analyzer} (CQA) de MAQAO. Nous avons cherché à pousser les compilateurs AOCC dans leurs derniers retranchements en levant les verrous d'aliasing et en maximisant le parallélisme au sein des routines critiques identifiées.
 
-\paragraph{Note sur l'expérience Fortran :} Bien que le Fortran soit un langage ancien, il demeure une référence absolue dans le domaine scientifique pour sa gestion native des tableaux multidimensionnels. Plus habitués aux optimisations en C/C++, nous avons également appliqué les recommandations de MAQAO à la version d'origine en Fortran pour observer si l'analyse CQA pouvait encore améliorer un langage déjà hautement optimisé par nature, afin de comparer l'évolution des rapports de performance.
+\paragraph{Note sur l'expérience Fortran :} Bien que le Fortran soit un langage ancien, il demeure une référence majeure et historique dans le calcul scientifique pour sa gestion native des tableaux multidimensionnels. Plus habitués aux optimisations en C/C++, nous avons également appliqué les recommandations de MAQAO à la version d'origine en Fortran pour observer si l'analyse CQA pouvait encore améliorer un langage déjà hautement optimisé par nature, afin de comparer l'évolution des rapports de performance.
 
 \subsection{Analyse des routines critiques : \texttt{resid}, \texttt{psinv} et \texttt{interp}}
 
 L'analyse du profilage montre que le temps d'exécution est concentré sur trois routines de calcul intensif. L'effort d'optimisation s'est porté sur ces sections pour tenter de réduire le temps global :
 
 \inputImage{figures/top_functions_amd_r1_opt.png}
-{{Distribution du temps d'exécution par section dominante (AMD - Optimisé)}}
+{Distribution du temps d'exécution par section dominante (AMD - Optimisé)}
 {1.0\textwidth}{!}{fig:top_functions_amd_r1_opt}
 
 \begin{itemize}
-    \item La fonction \texttt{resid :} Elle représente 29,57 \% de la couverture totale. Le calcul est dominé par la Loop 37 (18,68 \%) et la Loop 38 (12,37 \%).
-    \item La fonction \texttt{psinv :} Cette routine représente 11,68 \% du temps. Elle est portée par la Loop 77 (7,31 \%) et la Loop 78 (4,72 \%).
-    \item La fonction \texttt{interp :} Bien que moins coûteuse (5,42 \%), elle présentait des problèmes d'accès mémoire à pas non unitaires (\textit{strided access}) signalés par MAQAO.
+    \item La fonction \texttt{resid} : Elle représente 29,57 \% du temps total d’exécution. Le calcul est dominé par la Loop 37 (18,68 \%) et la Loop 38 (12,37 \%).
+    \item La fonction \texttt{psinv} : Cette routine représente 11,68 \% du temps total d’exécution. Elle est portée par la Loop 77 (7,31 \%) et la Loop 78 (4,72 \%).
+    \item La fonction \texttt{interp} : Bien que moins coûteuse (5,42 \%), elle présentait des problèmes d'accès mémoire à pas non unitaires (\textit{strided access}) signalés par MAQAO.
 \end{itemize}
 
 \vspace{0.5cm}
-Malgré nos modifications manuelles, le score de compilation (\textit{Compilation Options Score}) du C++ stagne à 16,7 \%. Ce score n'indique pas une absence de performance, mais traduit la difficulté du compilateur AOCC à analyser statiquement les structures de pointeurs du projet NPB-CPP. Là où le Fortran obtient 100 \% grâce à sa gestion native des tableaux multidimensionnels, la version C++ impose un "bruit" structurel qui limite la portée des optimisations automatiques. Cela confirme que les gains de temps observés résultent exclusivement de nos directives explicites (\texttt{simd}, \texttt{restrict}) et non d'une optimisation naturelle du binaire par le compilateur.
+Malgré nos modifications manuelles, le score de compilation (\textit{Compilation Options Score}) du C++ stagne à 16,7 \%. Ce score ne traduit pas une absence de performance, mais reflète la difficulté du compilateur AOCC à analyser statiquement les structures de pointeurs du projet NPB-CPP. Là où le Fortran atteint 100 \% grâce à sa gestion native des tableaux multidimensionnels, la version C++ introduit un surcoût structurel lié à l’organisation des pointeurs, ce qui limite la portée des optimisations automatiques. Cela confirme que les gains de temps observés résultent principalement de nos directives explicites (\texttt{simd}, \texttt{restrict}) plutôt que d’une optimisation intrinsèque du binaire par le compilateur.
 
 \subsection{Optimisation du Code C++ : Mise en œuvre des recommandations CQA}
 
@@ -91,7 +91,7 @@ static void interp(void* pointer_z, int mm1, int mm2, int mm3, void* pointer_u, 
 }
 \end{lstlisting}
 
-\subsection{Expérience Fortran : Approfondissement des performances}
+\subsection{Expérience d’optimisation sur la version Fortran}
 
 Par curiosité, nous avons appliqué des transformations similaires dans \texttt{mg.f90}, en utilisant les \texttt{intents} pour clarifier le flux de données et des pragmas \texttt{simd} pour forcer l'usage des registres vectoriels.
 
@@ -126,12 +126,13 @@ L'analyse de scalabilité du code C++ révèle une amélioration nette du temps 
 \end{itemize}
 
 \vspace{0.5cm}
-Le duel entre les deux langages optimisés confirme la supériorité structurelle du Fortran pour ce type de benchmark scientifique. En effet, alors que la version Fortran (\texttt{r0}) s'établit à un temps performant de 11,83 s, la version C++ (\texttt{r1}) accuse un retard notable avec 19,48 s. 
+
+Cette observation conduit à comparer les deux implémentations optimisées afin d’évaluer l’impact réel des transformations appliquées.\\
+Le duel entre les deux langages optimisés met en évidence un avantage structurel du Fortran pour ce type de benchmark scientifique.
 
 \inputImage{figures/comparison_duel_report_amd_cpp_vs_f90_opt.png}
 {Comparaison des métriques entre Fortran vs C++}
 {1.0\textwidth}{!}{fig:comparison_duel_report_amd_cpp_vs_f90_opt}
 
-Cet écart s’explique en partie par une \textit{Array Access Efficiency} plus élevée en Fortran (97,2~\%) ainsi que par un score de compilation optimal (100~\%). Ces indicateurs suggèrent que le compilateur exploite plus efficacement le modèle mémoire et les structures de données propres au Fortran. À l’inverse, la version C++ semble conserver un overhead structurel, malgré les optimisations manuelles appliquées.
-
+Cet écart s’explique en partie par une \textit{Array Access Efficiency} plus élevée en Fortran (97,2~\%) ainsi que par un score de compilation optimal (100~\%). Ces indicateurs suggèrent que le compilateur exploite plus efficacement le modèle mémoire et les structures de données propres au Fortran. À l’inverse, la version C++ semble conserver un surcoût structurel, malgré les optimisations manuelles appliquées.\\
 Bien qu’une analyse plus approfondie puisse permettre de réduire cet écart, cette comparaison met en évidence la difficulté de rivaliser avec le Fortran sur des noyaux de calcul intensifs en physique numérique, notamment en raison de sa gestion intrinsèquement optimisée des tableaux multidimensionnels.
