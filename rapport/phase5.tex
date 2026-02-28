@@ -1,0 +1,137 @@
+\section{Optimisation du code et Analyse des Limites}
+
+L'objectif de cette phase était d'investiguer les pistes d'amélioration du code de base en s'appuyant sur les recommandations du \textit{Code Quality Analyzer} (CQA) de MAQAO. Nous avons cherché à pousser les compilateurs AOCC dans leurs derniers retranchements en levant les verrous d'aliasing et en maximisant le parallélisme au sein des routines critiques identifiées.
+
+\paragraph{Note sur l'expérience Fortran :} Bien que le Fortran soit un langage ancien, il demeure une référence absolue dans le domaine scientifique pour sa gestion native des tableaux multidimensionnels. Plus habitués aux optimisations en C/C++, nous avons également appliqué les recommandations de MAQAO à la version d'origine en Fortran pour observer si l'analyse CQA pouvait encore améliorer un langage déjà hautement optimisé par nature, afin de comparer l'évolution des rapports de performance.
+
+\subsection{Analyse des routines critiques : \texttt{resid}, \texttt{psinv} et \texttt{interp}}
+
+L'analyse du profilage montre que le temps d'exécution est concentré sur trois routines de calcul intensif. L'effort d'optimisation s'est porté sur ces sections pour tenter de réduire le temps global :
+
+\inputImage{figures/top_functions_amd_r1_opt.png}
+{{Distribution du temps d'exécution par section dominante (AMD - Optimisé)}}
+{1.0\textwidth}{!}{fig:top_functions_amd_r1_opt}
+
+\begin{itemize}
+    \item \textbf{La fonction \texttt{resid} :} Elle représente \textbf{29,57 \%} de la couverture totale. Le calcul est dominé par la \textbf{Loop 37} (18,68 \%) et la \textbf{Loop 38} (12,37 \%).
+    \item \textbf{La fonction \texttt{psinv} :} Cette routine représente \textbf{11,68 \%} du temps. Elle est portée par la \textbf{Loop 77} (7,31 \%) et la \textbf{Loop 78} (4,72 \%).
+    \item \textbf{La fonction \texttt{interp} :} Bien que moins coûteuse (\textbf{5,42 \%}), elle présentait des problèmes d'accès mémoire à pas non unitaires (\textit{strided access}) signalés par MAQAO.
+\end{itemize}
+
+\vspace{0.5cm}
+Malgré nos modifications manuelles, le score de compilation (\textit{Compilation Options Score}) du C++ stagne à \textbf{16,7 \%}. Ce score n'indique pas une absence de performance, mais traduit la difficulté du compilateur AOCC à analyser statiquement les structures de pointeurs du projet NPB-CPP. Là où le Fortran obtient \textbf{100 \%} grâce à sa gestion native des tableaux multidimensionnels, la version C++ impose un "bruit" structurel qui limite la portée des optimisations automatiques. Cela confirme que les gains de temps observés résultent exclusivement de nos directives explicites (\texttt{simd}, \texttt{restrict}) et non d'une optimisation naturelle du binaire par le compilateur.
+
+\subsection{Optimisation du Code C++ : Mise en œuvre des recommandations CQA}
+
+Nous avons modifié les routines de calcul dans \texttt{mg.cpp} en utilisant \texttt{\_\_restrict} pour l'aliasing et en forçant la vectorisation. Les routines \texttt{psinv} et \texttt{resid} partagent la même structure de stencil et ont donc bénéficié des mêmes optimisations.
+
+\begin{lstlisting}[language=C++, caption={Optimisation de la routine resid dans mg.cpp}]
+static void resid(void* pointer_u, void* pointer_v, void* pointer_r, 
+                  int n1, int n2, int n3, double a[4], int k){
+    // Utilisation de __restrict pour garantir l'absence d'aliasing
+    // Cela permet au compilateur de vectoriser sans crainte de chevauchement
+    double (* __restrict u)[n2][n1] = (double (*)[n2][n1])pointer_u;
+    double (* __restrict v)[n2][n1] = (double (*)[n2][n1])pointer_v;
+    double (* __restrict r)[n2][n1] = (double (*)[n2][n1])pointer_r;
+
+    // Fusion des boucles i3 et i2 pour augmenter la charge de travail par thread
+    #pragma omp for collapse(2)
+    for(i3 = 1; i3 < n3-1; i3++){
+        for(i2 = 1; i2 < n2-1; i2++){
+            // Force la vectorisation SIMD pour le calcul du stencil
+            #pragma omp simd 
+            for(i1 = 0; i1 < n1; i1++){
+                u1[i1] = u[i3][i2-1][i1] + u[i3][i2+1][i1] + ... ;
+            }
+            ...
+        }
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=C++, caption={Optimisation de la routine psinv dans mg.cpp}]
+static void psinv(void* pointer_r, void* pointer_u, int n1, int n2, int n3, double c[4], int k){
+    // __restrict assure que r et u pointent vers des zones memoires distinctes
+    double (* __restrict r)[n2][n1] = (double (*)[n2][n1])pointer_r;
+    double (* __restrict u)[n2][n1] = (double (*)[n2][n1])pointer_u;    
+
+    // Amelioration de l'equilibrage de charge via le collapse
+    #pragma omp for collapse(2)
+    for(i3 = 1; i3 < n3-1; i3++){
+        for(i2 = 1; i2 < n2-1; i2++){
+            // Utilisation optimale des registres vectoriels du processeur
+            #pragma omp simd
+            for(i1 = 0; i1 < n1; i1++){
+                r1[i1] = r[i3][i2-1][i1] + r[i3][i2+1][i1] + ... ;
+            }
+            ...
+        }
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=C++, caption={Optimisation de la routine interp dans mg.cpp}]
+static void interp(void* pointer_z, int mm1, int mm2, int mm3, void* pointer_u, int n1, int n2, int n3, int k){
+    // Resolution des problemes de dependances pointeurs avec __restrict
+    double (* __restrict z)[mm2][mm1] = (double (*)[mm2][mm1])pointer_z;
+    double (* __restrict u)[n2][n1] = (double (*)[n2][n1])pointer_u;
+
+    // Distribution parallele des iterations sur les coeurs
+    #pragma omp for collapse(2)
+    for(i3 = 0; i3 < mm3-1; i3++){
+        for(i2 = 0; i2 < mm2-1; i2++){
+            // Mitigation des acces memoire a pas non-unitaires via SIMD
+            #pragma omp simd
+            for(i1 = 0; i1 < mm1-1; i1++){
+                u[2*i3][2*i2][2*i1] += z[i3][i2][i1];
+                ...
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+\subsection{Expérience Fortran : Approfondissement des performances}
+
+Par curiosité, nous avons appliqué des transformations similaires dans \texttt{mg.f90}, en utilisant les \texttt{intents} pour clarifier le flux de données et des pragmas \texttt{simd} pour forcer l'usage des registres vectoriels.
+
+\begin{lstlisting}[language=Fortran, caption={Optimisation de la routine resid dans mg.f90}]
+subroutine resid( u,v,r,n1,n2,n3,a,k )
+   double precision, intent(in) :: u(n1,n2,n3), v(n1,n2,n3), a(0:3)
+   double precision, intent(out) :: r(n1,n2,n3)
+
+   !$omp parallel do collapse(2)
+   do i3=2,n3-1
+      do i2=2,n2-1
+         !$omp simd
+         do i1=1,n1
+            u1(i1) = u(i1,i2-1,i3) + u(i1,i2+1,i3) + ...
+         enddo
+      enddo
+   enddo
+\end{lstlisting}
+
+\subsection{Analyse de la Scalabilité et des Plateaux de Performance}
+
+L'analyse de scalabilité du code C++ révèle une amélioration nette du temps jusqu'à 4 threads, suivie d'un plateau.
+
+\inputImage{figures/scalability_speedup_amd_ws_opt.png}
+{Analyse de la scalabilité et du gain de performance (AMD - Optimisé)}
+{1.0\textwidth}{!}{fig:scalability_speedup_amd_ws_opt}
+
+\begin{itemize}
+    \item \textbf{Progression :} Le temps total d'exécution chute de \textbf{31,99 s} (1 thread - \texttt{r0}) à \textbf{19,56 s} (4 threads - \texttt{r2}).
+    \item \textbf{Saturation :} À 8 threads (\texttt{r3}), le temps stagne à \textbf{19,68 s}. Le \textbf{Scalability Gap} de \textbf{4,92} indique que l'application sature les ressources mémoire de l'architecture AMD, rendant l'ajout de threads supplémentaire inefficace.
+    \item \textbf{Affinité :} Nos réglages \texttt{OMP\_PLACES=cores} ont permis de stabiliser l'affinité à \textbf{77,9 \%} à 8 threads (\texttt{r3}), contre seulement \textbf{23,4 \%} initialement sur le run \texttt{r0}.
+\end{itemize}
+
+\vspace{0.5cm}
+Le duel entre les deux langages optimisés confirme la supériorité structurelle du Fortran pour ce type de benchmark scientifique. En effet, alors que la version Fortran (\texttt{r0}) s'établit à un temps performant de \textbf{11,83 s}, la version C++ (\texttt{r1}) accuse un retard notable avec \textbf{19,48 s}. 
+
+\inputImage{figures/comparison_duel_report_amd_cpp_vs_f90_opt.png}
+{Comparaison des métriques entre Fortran vs C++}
+{1.0\textwidth}{!}{figcomparison_duel_report_amd_cpp_vs_f90_opt}
+
+Cet écart s’explique en partie par une \textit{Array Access Efficiency} plus élevée en Fortran (\textbf{97,2~\%}) ainsi que par un score de compilation optimal (\textbf{100~\%}). Ces indicateurs suggèrent que le compilateur exploite plus efficacement le modèle mémoire et les structures de données propres au Fortran. À l’inverse, la version C++ semble conserver un overhead structurel, malgré les optimisations manuelles appliquées.
+
+Bien qu’une analyse plus approfondie puisse permettre de réduire cet écart, cette comparaison met en évidence la difficulté de rivaliser avec le Fortran sur des noyaux de calcul intensifs en physique numérique, notamment en raison de sa gestion intrinsèquement optimisée des tableaux multidimensionnels.

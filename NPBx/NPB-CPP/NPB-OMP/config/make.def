@@ -49,14 +49,14 @@ C_INC = -I../common
 #---------------------------------------------------------------------------
 # Global *compile time* flags for C programs
 #---------------------------------------------------------------------------
-CFLAGS = -g -O3 -ffast-math -march=native -mavx2 -funroll-loops -fPIC -fopenmp
+CFLAGS = -g -Ofast -march=native -mavx2 -funroll-loops -fPIC -fopenmp
 
 
 #---------------------------------------------------------------------------
 # Global *link time* flags. Flags for increasing maximum executable 
 # size usually go here. 
 #---------------------------------------------------------------------------
-CLINKFLAGS = -g -O3 -ffast-math -march=native -mavx2 -funroll-loops -fPIC -fopenmp
+CLINKFLAGS = -g -Ofast -march=native -mavx2 -funroll-loops -fPIC -fopenmp
 
 
 #---------------------------------------------------------------------------
