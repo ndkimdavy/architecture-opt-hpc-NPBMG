@@ -1,9 +1,9 @@
 \begin{abstract}
 Ce rapport présente une analyse de performance du benchmark \textbf{Multi-Grid (MG)} issu de la collection de kernels \textbf{NAS Parallel Benchmarks (NPB)}, un ensemble d'outils développés pour reproduire les caractéristiques de calcul et de transfert de données des applications de mécanique des fluides (CFD) à grande échelle.
-La particularité de ce benchmark réside dans sa spécification "pencil and paper" : il définit l'algorithme de manière théorique pour garantir une portabilité totale, laissant ainsi aux développeurs la liberté d'optimiser l'implémentation selon l'architecture cible.
+La particularité de ce benchmark réside dans sa spécification "pencil and paper" \cite{nasbenchmarks1994}: il définit l'algorithme de manière théorique pour garantir une portabilité totale, laissant ainsi aux développeurs la liberté d'optimiser l'implémentation selon l'architecture cible.
 L'objectif de notre étude est de confronter les différentes approches de parallélisation, notamment le passage de messages avec MPI et le modèle à mémoire partagée avec OpenMP, tout en évaluant l'efficacité des différentes toolchains de compilation.
 
-L'analyse est pilotée par l'outil \textbf{MAQAO (Modular Assembly Quality Analyzer and Optimizer)}, un framework d'analyse et d'optimisation des performances qui permet de mettre en lumière l'influence directe des choix d'implémentation sur l'exploitation des ressources matérielles.
+L'analyse est pilotée par l'outil \textbf{MAQAO (Modular Assembly Quality Analyzer and Optimizer)} \cite{maqao}, un framework d'analyse et d'optimisation des performances qui permet de mettre en lumière l'influence directe des choix d'implémentation sur l'exploitation des ressources matérielles.
 Les observations ont souligné l'importance du choix du paradigme de langage et du compilateur associé au vu des variations de comportement entre les codes Fortran et C++, notamment en ce qui concerne la gestion du load balancing.
 L'étude examine également les phénomènes de scalability gap et l'impact des overheads de communication lors de la montée en charge.
 En s'appuyant sur des diagnostics de qualité de code, ce travail identifie les principaux bottlenecks (goulots d'étranglement au niveau matériel) et propose des pistes d'optimisation ciblées pour améliorer la vectorisation au sein des routines critiques.

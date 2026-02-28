@@ -1,11 +1,11 @@
 \section{Introduction et État de l'Art}
 
 Le développement des supercalculateurs hautement parallèles a été motivé par la nécessité de résoudre des grand challenges scientifiques, particulièrement dans le domaine de la dynamique des fluides numérique (CFD).
-Le programme NAS (Numerical Aerodynamic Simulation), basé au centre de recherche NASA Ames, a identifié dès les années 90 que les outils d'évaluation de performance traditionnels n'étaient plus adaptés aux architectures massives.
+Le programme NAS (Numerical Aerodynamic Simulation) \cite{nasbenchmarks1994}, basé au centre de recherche NASA Ames, a identifié dès les années 90 que les outils d'évaluation de performance traditionnels n'étaient plus adaptés aux architectures massives.
 Ces anciens benchmarks, comme les Livermore Loops ou LINPACK, ne reflétaient pas fidèlement les besoins complexes en mouvement de données des applications aéronautiques modernes.
 Pour répondre à ce besoin, la NASA a introduit une approche novatrice avec les NPB.
 Contrairement aux suites de tests classiques fournies sous forme de code source figé, ils reposent sur une spécification "pencil and paper".
-Cette méthode consiste à définir les problèmes uniquement de manière algorithmique, laissant ainsi aux implémenteurs la liberté de choisir les structures de données, l'allocation des processeurs et les langages les plus appropriés pour leur matériel.
+Cette méthode consiste à définir les problèmes uniquement de manière algorithmique, laissant ainsi aux implémenteurs la liberté de choisir les structures de données \cite{nasbenchmarks1994}, l'allocation des processeurs et les langages les plus appropriés pour leur matériel.
 
 \subsection{Le Kernel Multi-Grid (MG)}
 Le kernel MG, au cœur de notre étude, est conçu pour évaluer les performances de communication à courte et longue distance sur des grilles structurées.
