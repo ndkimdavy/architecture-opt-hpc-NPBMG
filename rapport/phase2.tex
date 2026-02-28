@@ -1,8 +1,8 @@
 \section{Méthodologie et environnement de test}
 
-Dans le cadre de nos expérimentations, nous avons mis en place un protocole visant à garantir la fiabilité et la reproductibilité des mesures. Les tests ont été réalisés sur deux architectures CPU distinctes. 
-Sur chacune d’elles, un compilateur optimisé propre au constructeur a été installé (AOCC pour AMD et Intel oneAPI pour Intel), tout en conservant une base commune de compilateurs (GFortran, GCC, Clang++) afin d’évaluer les performances de chaque outil sur les deux plateformes.
-Cette approche permet également d’analyser l’impact du paradigme de langage (Fortran vs C++) sur des topologies de cœurs et des hiérarchies de cache sensiblement différentes.
+Un protocole expérimental a été mis en place afin de garantir la fiabilité et la reproductibilité des mesures. Les tests ont été réalisés sur deux architectures CPU distinctes. 
+Sur chacune d'elles, un compilateur optimisé spécifique au constructeur a été utilisé (AOCC pour AMD et Intel oneAPI pour Intel), tout en conservant une base commune de compilateurs (GFortran, GCC, Clang++) afin d'évaluer les performances de chaque outil sur les deux plateformes.
+Cette approche permet également d'analyser l'impact du paradigme de langage (Fortran vs C++) sur des topologies de cœurs et des hiérarchies de cache distinctes.
 
 \subsection{Comparatif des topologies matérielles}
 L'analyse repose sur deux plateformes présentant des organisations de mémoire et de cœurs distinctes, résumées dans le tableau suivant :
@@ -27,17 +27,17 @@ La plateforme AMD utilise une architecture homogène où chaque cœur possède s
 \subsection{Stratégie de compilation et d'automatisation}
 La génération des exécutables a été automatisée pour assurer une cohérence stricte entre les tests :
 \begin{itemize}
-    \item \textbf{Classe de test} : Tous les essais ont été réalisés en Class C (grille de $512 \times 512 \times 512$ points), offrant une charge de calcul suffisante pour saturer les unités d'exécution.
-    \item \textbf{Optimisations communes} : Nous avons appliqué un niveau d'optimisation agressif (-O3) complété par des drapeaux favorisant la vectorisation et le déroulage de boucles (\texttt{-march=native}, \texttt{-ffast-math}, \texttt{-funroll-loops}).
-    \item \textbf{Diversité des toolchains} : Nous avons confronté les compilateurs standards (GCC, Clang) aux solutions propriétaires optimisées (AOCC pour AMD, Intel oneAPI pour Intel).
-    \item \textbf{Comparaison de paradigmes} : Cette approche permet de tester simultanément le code Fortran historique (en MPI et OpenMP) et sa réécriture en C++ (OpenMP).
+    \item Classe de test : Tous les essais ont été réalisés en Class C (grille de $512 \times 512 \times 512$ points), offrant une charge de calcul significative.
+    \item Optimisations communes : Un niveau d'optimisation (-O3) a été appliqué, complété par des drapeaux favorisant la vectorisation et le déroulage de boucles (\texttt{-march=native}, \texttt{-ffast-math}, \texttt{-funroll-loops}).
+    \item Diversité des toolchains : Les compilateurs standards (GCC, Clang) ont été confrontés aux solutions propriétaires optimisées (AOCC pour AMD, Intel oneAPI pour Intel).
+    \item Comparaison de paradigmes : Cette approche permet de tester simultanément le code Fortran historique (en MPI et OpenMP) et sa réécriture en C++ (OpenMP).
 \end{itemize}
 
 \subsection{Protocole d'analyse de performance (MAQAO)}
-Le profilage repose sur trois axes majeurs via des procédures automatisées. Bien que l'adaptation des scripts ait représenté un défi technique pour générer les différents rapports selon les configurations de chaque projet, ce processus s'est révélé très efficace pour obtenir des analyses dans différentes combinaisons selon les options suivantes :
+Le profilage repose sur trois axes majeurs, mis en œuvre via des procédures automatisées. L'adaptation des scripts nécessaires à la génération des différents rapports selon les configurations testées a représenté un travail technique conséquent. Cette démarche a néanmoins permis d'obtenir des analyses systématiques et comparables pour les différentes combinaisons étudiées, selon les options suivantes :
 \begin{itemize}
-    \item \textbf{Analyse de base (-R1)} : Identification et localisation des fonctions critiques les plus coûteuses pour concentrer l'effort d'analyse.
-    \item \textbf{Analyse de stabilité (-S1)} : Réalisation de 10 répétitions par test pour filtrer les biais liés au système d'exploitation et obtenir une moyenne robuste.
-    \item \textbf{Étude de scalabilité (-R1 -WS)} : Mesure de l'efficacité du parallélisme en faisant varier la charge de 1 à 8 cœurs physiques, permettant de détecter les goulots d'étranglement matériels (saturation mémoire ou latence des caches).
-    \item \textbf{Duels comparatifs} : Génération automatique de rapports différentiels pour isoler l'impact d'un compilateur ou d'un langage spécifique sur une même architecture.
+    \item Analyse de base (-R1) : Identification et localisation des fonctions critiques les plus coûteuses pour concentrer l'effort d'analyse.
+    \item Analyse de stabilité (-S1) : Réalisation de 10 répétitions par test pour filtrer les biais liés au système d'exploitation et obtenir une moyenne robuste.
+    \item Étude de scalabilité (-R1 -WS) : Mesure de l'efficacité du parallélisme en faisant varier la charge de 1 à 8 cœurs physiques, permettant de détecter les goulots d'étranglement matériels (saturation mémoire ou latence des caches).
+    \item Comparaisons différentielles : Génération automatique de rapports différentiels pour isoler l'impact d'un compilateur ou d'un langage spécifique sur une même architecture.
 \end{itemize}
