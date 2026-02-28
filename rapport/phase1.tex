@@ -1,33 +1,32 @@
-\section{Introduction et État de l'Art}
+\section{Introduction}
 
-Le développement des supercalculateurs hautement parallèles a été motivé par la nécessité de résoudre des grand challenges scientifiques, particulièrement dans le domaine de la dynamique des fluides numérique (CFD).
-Le programme NAS (Numerical Aerodynamic Simulation) \cite{nasbenchmarks1994}, basé au centre de recherche NASA Ames, a identifié dès les années 90 que les outils d'évaluation de performance traditionnels n'étaient plus adaptés aux architectures massives.
-Ces anciens benchmarks, comme les Livermore Loops ou LINPACK, ne reflétaient pas fidèlement les besoins complexes en mouvement de données des applications aéronautiques modernes.
-Pour répondre à ce besoin, la NASA a introduit une approche novatrice avec les NPB.
-Contrairement aux suites de tests classiques fournies sous forme de code source figé, ils reposent sur une spécification "pencil and paper".
-Cette méthode consiste à définir les problèmes uniquement de manière algorithmique, laissant ainsi aux implémenteurs la liberté de choisir les structures de données \cite{nasbenchmarks1994}, l'allocation des processeurs et les langages les plus appropriés pour leur matériel.
+Le développement des supercalculateurs hautement parallèles a été motivé par la nécessité de résoudre des défis scientifiques majeurs, particulièrement dans le domaine de la dynamique des fluides numérique (CFD).
+Le programme NAS (Numerical Aerodynamic Simulation) \cite{nasbenchmarks1994}, basé au centre de recherche NASA Ames, a identifié dès les années 90 que les outils d'évaluation de performance traditionnels n'étaient plus adaptés aux architectures massivement parallèles.
+Ces anciens benchmarks, comme les Livermore Loops ou LINPACK, ne reflétaient pas fidèlement les besoins complexes en transferts de données des applications aéronautiques modernes.
+Pour répondre à ce besoin, la NASA a introduit les NAS Parallel Benchmarks (NPB).
+Contrairement aux suites de tests classiques fournies sous forme de code source figé, les NPB reposent sur une spécification "pencil and paper".
+Cette méthode consiste à définir les problèmes uniquement de manière algorithmique, laissant ainsi aux implémenteurs la liberté de choisir les structures de données \cite{nasbenchmarks1994}, la répartition des processeurs et les langages les plus appropriés pour leur matériel.
+\vspace{0.5cm}
 
-\subsection{Le Kernel Multi-Grid (MG)}
-Le kernel MG, au cœur de notre étude, est conçu pour évaluer les performances de communication à courte et longue distance sur des grilles structurées.
-Il utilise un algorithme de type \textbf{V-cycle multigrid} pour obtenir une solution approximative d'un problème de Poisson discret en 3D avec des conditions aux limites périodiques.
-
+Le kernel MG constitue le cœur de notre étude. Il est conçu pour évaluer les performances de communication à courte et longue distance sur des grilles structurées.
+Il utilise un algorithme de type V-cycle multigrid pour obtenir une solution approximative d'un problème de Poisson discret en 3D avec des conditions aux limites périodiques.
 Ce noyau est particulièrement représentatif des solveurs itératifs utilisés pour simuler des véhicules aérospatiaux complets.
 Chaque itération du V-cycle comprend des étapes de restriction du résiduel, de résolution récursive sur des grilles plus grossières, et de prolongation pour appliquer les corrections.
 
 \subsection{Règles et contraintes d'implémentation}
 Bien que la spécification soit algorithmique, le benchmark impose des règles strictes pour garantir l'équité des résultats :
 \begin{itemize}
-    \item Les implémentations doivent être basées sur le \textbf{Fortran 90} ou le \textbf{C}.
-    \item Toutes les opérations en virgule flottante doivent être effectuées en \textbf{64 bits}.
+    \item Les implémentations doivent être basées sur le Fortran 90 ou le C.
+    \item Toutes les opérations en virgule flottante doivent être effectuées en 64 bits.
     \item L'utilisation de l'assembleur est proscrite, sauf pour certaines bibliothèques spécifiques fournies par les constructeurs, afin que les résultats reflètent le mérite du matériel et non uniquement l'effort de programmation.
     \item L'usage de directives (comme OpenMP) ou de bibliothèques de communication (comme MPI) est autorisé pour distribuer la charge sur les nœuds de calcul.
 \end{itemize}
 
 \subsection{Versions logicielles utilisées}
-Pour mener à bien cette étude comparative, nous nous sommes appuyés sur deux implémentations distinctes du benchmark :
+Pour mener à bien cette étude comparative, l’analyse s’appuie sur deux implémentations distinctes du benchmark :
 \begin{itemize}
-    \item \textbf{La version officielle de la NASA} : Le code source de référence écrit en Fortran, qui constitue la base historique des tests de performance pour ce kernel.
-    \item \textbf{La version NPB-CPP} : Une réécriture moderne disponible sur \textbf{GitHub}, qui transpose les spécifications algorithmiques de la NASA en \textbf{C++}.
+    \item La version officielle de la NASA : Le code source de référence écrit en Fortran, qui constitue la base historique des tests de performance pour ce kernel.
+    \item La version NPB-CPP : Une réécriture moderne disponible sur GitHub, qui transpose les spécifications algorithmiques de la NASA en C++.
 \end{itemize}
 
-Cette double approche nous permet d'analyser l'impact du paradigme de langage sur l'efficacité des optimisations générées par les différents compilateurs.
+\noindent Cette double approche permet d’analyser l’impact du paradigme de langage sur l’efficacité des optimisations générées par les différents compilateurs.
