@@ -13,13 +13,13 @@ L'analyse du profilage montre que le temps d'exécution est concentré sur trois
 {1.0\textwidth}{!}{fig:top_functions_amd_r1_opt}
 
 \begin{itemize}
-    \item \textbf{La fonction \texttt{resid} :} Elle représente \textbf{29,57 \%} de la couverture totale. Le calcul est dominé par la \textbf{Loop 37} (18,68 \%) et la \textbf{Loop 38} (12,37 \%).
-    \item \textbf{La fonction \texttt{psinv} :} Cette routine représente \textbf{11,68 \%} du temps. Elle est portée par la \textbf{Loop 77} (7,31 \%) et la \textbf{Loop 78} (4,72 \%).
-    \item \textbf{La fonction \texttt{interp} :} Bien que moins coûteuse (\textbf{5,42 \%}), elle présentait des problèmes d'accès mémoire à pas non unitaires (\textit{strided access}) signalés par MAQAO.
+    \item La fonction \texttt{resid :} Elle représente 29,57 \% de la couverture totale. Le calcul est dominé par la Loop 37 (18,68 \%) et la Loop 38 (12,37 \%).
+    \item La fonction \texttt{psinv :} Cette routine représente 11,68 \% du temps. Elle est portée par la Loop 77 (7,31 \%) et la Loop 78 (4,72 \%).
+    \item La fonction \texttt{interp :} Bien que moins coûteuse (5,42 \%), elle présentait des problèmes d'accès mémoire à pas non unitaires (\textit{strided access}) signalés par MAQAO.
 \end{itemize}
 
 \vspace{0.5cm}
-Malgré nos modifications manuelles, le score de compilation (\textit{Compilation Options Score}) du C++ stagne à \textbf{16,7 \%}. Ce score n'indique pas une absence de performance, mais traduit la difficulté du compilateur AOCC à analyser statiquement les structures de pointeurs du projet NPB-CPP. Là où le Fortran obtient \textbf{100 \%} grâce à sa gestion native des tableaux multidimensionnels, la version C++ impose un "bruit" structurel qui limite la portée des optimisations automatiques. Cela confirme que les gains de temps observés résultent exclusivement de nos directives explicites (\texttt{simd}, \texttt{restrict}) et non d'une optimisation naturelle du binaire par le compilateur.
+Malgré nos modifications manuelles, le score de compilation (\textit{Compilation Options Score}) du C++ stagne à 16,7 \%. Ce score n'indique pas une absence de performance, mais traduit la difficulté du compilateur AOCC à analyser statiquement les structures de pointeurs du projet NPB-CPP. Là où le Fortran obtient 100 \% grâce à sa gestion native des tableaux multidimensionnels, la version C++ impose un "bruit" structurel qui limite la portée des optimisations automatiques. Cela confirme que les gains de temps observés résultent exclusivement de nos directives explicites (\texttt{simd}, \texttt{restrict}) et non d'une optimisation naturelle du binaire par le compilateur.
 
 \subsection{Optimisation du Code C++ : Mise en œuvre des recommandations CQA}
 
@@ -120,18 +120,18 @@ L'analyse de scalabilité du code C++ révèle une amélioration nette du temps 
 {1.0\textwidth}{!}{fig:scalability_speedup_amd_ws_opt}
 
 \begin{itemize}
-    \item \textbf{Progression :} Le temps total d'exécution chute de \textbf{31,99 s} (1 thread - \texttt{r0}) à \textbf{19,56 s} (4 threads - \texttt{r2}).
-    \item \textbf{Saturation :} À 8 threads (\texttt{r3}), le temps stagne à \textbf{19,68 s}. Le \textbf{Scalability Gap} de \textbf{4,92} indique que l'application sature les ressources mémoire de l'architecture AMD, rendant l'ajout de threads supplémentaire inefficace.
-    \item \textbf{Affinité :} Nos réglages \texttt{OMP\_PLACES=cores} ont permis de stabiliser l'affinité à \textbf{77,9 \%} à 8 threads (\texttt{r3}), contre seulement \textbf{23,4 \%} initialement sur le run \texttt{r0}.
+    \item Progression : Le temps total d'exécution chute de 31,99 s (1 thread - \texttt{r0}) à 19,56 s (4 threads - \texttt{r2}).
+    \item Saturation : À 8 threads (\texttt{r3}), le temps stagne à 19,68 s. Le Scalability Gap de 4,92 indique que l'application sature les ressources mémoire de l'architecture AMD, rendant l'ajout de threads supplémentaire inefficace.
+    \item Affinité : Nos réglages \texttt{OMP\_PLACES=cores} ont permis de stabiliser l'affinité à 77,9 \% à 8 threads (\texttt{r3}), contre seulement 23,4 \% initialement sur le run \texttt{r0}.
 \end{itemize}
 
 \vspace{0.5cm}
-Le duel entre les deux langages optimisés confirme la supériorité structurelle du Fortran pour ce type de benchmark scientifique. En effet, alors que la version Fortran (\texttt{r0}) s'établit à un temps performant de \textbf{11,83 s}, la version C++ (\texttt{r1}) accuse un retard notable avec \textbf{19,48 s}. 
+Le duel entre les deux langages optimisés confirme la supériorité structurelle du Fortran pour ce type de benchmark scientifique. En effet, alors que la version Fortran (\texttt{r0}) s'établit à un temps performant de 11,83 s, la version C++ (\texttt{r1}) accuse un retard notable avec 19,48 s. 
 
 \inputImage{figures/comparison_duel_report_amd_cpp_vs_f90_opt.png}
 {Comparaison des métriques entre Fortran vs C++}
-{1.0\textwidth}{!}{figcomparison_duel_report_amd_cpp_vs_f90_opt}
+{1.0\textwidth}{!}{fig:comparison_duel_report_amd_cpp_vs_f90_opt}
 
-Cet écart s’explique en partie par une \textit{Array Access Efficiency} plus élevée en Fortran (\textbf{97,2~\%}) ainsi que par un score de compilation optimal (\textbf{100~\%}). Ces indicateurs suggèrent que le compilateur exploite plus efficacement le modèle mémoire et les structures de données propres au Fortran. À l’inverse, la version C++ semble conserver un overhead structurel, malgré les optimisations manuelles appliquées.
+Cet écart s’explique en partie par une \textit{Array Access Efficiency} plus élevée en Fortran (97,2~\%) ainsi que par un score de compilation optimal (100~\%). Ces indicateurs suggèrent que le compilateur exploite plus efficacement le modèle mémoire et les structures de données propres au Fortran. À l’inverse, la version C++ semble conserver un overhead structurel, malgré les optimisations manuelles appliquées.
 
 Bien qu’une analyse plus approfondie puisse permettre de réduire cet écart, cette comparaison met en évidence la difficulté de rivaliser avec le Fortran sur des noyaux de calcul intensifs en physique numérique, notamment en raison de sa gestion intrinsèquement optimisée des tableaux multidimensionnels.
