@@ -1,16 +1,16 @@
 \section{Analyse des résultats et identification des fonctions critiques sur AMD}
 
-Les résultats fournis par MAQAO ont été très informatifs sur les aspects détaillés des optimisations requises. L'utilisation des différentes options de l'outil nous a permis de disséquer le comportement du kernel MG sans modifier le code d'origine, en isolant les facteurs de performance liés au matériel et aux choix de compilation.
+Les résultats fournis par MAQAO ont été très informatifs sur les aspects détaillés des optimisations requises. L'utilisation des différentes options de l'outil a permis d’analyser finement le comportement du kernel MG sans modifier le code d'origine, en isolant les facteurs de performance liés au matériel et aux choix de compilation.
 
 \subsection{Analyse des sections critiques (Option -R1)}
-L'examen du profilage statistique via les rapports de type \textit{Overview} confirme que le temps d'exécution du kernel MG est concentré sur un groupe de quatre fonctions dominantes. Les noyaux \textbf{resid}, \textbf{psinv}, \textbf{interp} et \textbf{rprj3} monopolisent la quasi-totalité du temps CPU. Cette distribution est caractéristique de l'algorithme Multigrid, où les phases de lissage, de restriction et d'interpolation se partagent la charge de calcul.
+L'examen du profilage statistique via les rapports de type \textit{Overview} confirme que le temps d'exécution du kernel MG est concentré sur un groupe de quatre fonctions dominantes. Les fonctions resid, psinv, interp et rprj3 monopolisent la quasi-totalité du temps CPU. Cette distribution est caractéristique de l'algorithme Multigrid, où les phases de lissage, de restriction et d'interpolation se partagent la charge de calcul.
 
-Avec notre configuration de test (AOCC sur architecture AMD), la hiérarchie des points chauds s'établit de la manière suivante :
+Avec la configuration de test utilisée (AOCC sur architecture AMD), la hiérarchie des points chauds s'établit de la manière suivante :
 \begin{itemize}
-    \item \textbf{resid} : Représente \textbf{47,85 \%} du temps total. À l'intérieur de ce module, la boucle 26 (lignes 608-610) est la plus critique avec \textbf{29,31 \%} de la charge CPU à elle seule.
-    \item \textbf{psinv} : Constitue le second goulot d'étranglement avec \textbf{19,36 \%} du temps.
-    \item \textbf{interp} : Apparaît comme un contributeur significatif avec \textbf{9,50 \%} du temps total.
-    \item \textbf{rprj3} : Complète ce profil avec \textbf{6,69 \%} du temps.
+    \item resid : Représente 47,85 \% du temps total. À l'intérieur de ce module, la boucle 26 (lignes 608-610) constitue la section la plus coûteuse avec 29,31 \% de la charge CPU à elle seule.
+    \item psinv : Constitue le second goulot d'étranglement avec 19,36 \% du temps.
+    \item interp : Apparaît comme un contributeur significatif avec 9,50 \% du temps total.
+    \item rprj3 : Complète ce profil avec 6,69 \% du temps.
 \end{itemize}
 
 \inputImage 
@@ -21,7 +21,7 @@ Avec notre configuration de test (AOCC sur architecture AMD), la hiérarchie des
 
 \subsection{Fiabilité et stabilité des mesures (Option -S1)}
 L'activation du mode stabilité a permis de valider la robustesse de notre environnement de test. En répétant chaque exécution 10 fois, nous avons pu vérifier la constance des résultats.
-Le temps moyen observé est de \textbf{13,11 s} avec des variations extrêmement faibles, comprises entre \textbf{13,00 s} (minimum) et \textbf{13,41 s} (maximum). Cette stabilité garantit que les fluctuations observées lors des comparaisons de compilateurs sont dues aux optimisations du code et non à des interférences du système d'exploitation.
+Le temps moyen observé est de 13,11 s avec des variations extrêmement faibles, comprises entre 13,00 s (minimum) et 13,41 s (maximum). Cette stabilité garantit que les fluctuations observées lors des comparaisons de compilateurs sont dues aux optimisations du code et non à des interférences du système d'exploitation.
 
 \inputImage{figures/stability_analysis_amd_s1.png}
 {Évaluation de la stabilité des mesures sur 10 répétitions (AMD)}
@@ -31,8 +31,8 @@ Le temps moyen observé est de \textbf{13,11 s} avec des variations extrêmement
 L'analyse de scalabilité (\textit{Workload Scalability}) permet de comprendre comment le kernel MG exploite les ressources multi-cœurs :
 
 \begin{itemize}
-    \item \textbf{Observations de montée en charge} : Le passage de 1 cœur (\texttt{r0}) à 8 cœurs (\texttt{r3}) réduit le temps de calcul de \textbf{30,27 s} à \textbf{10,73 s}, validant l'efficacité de l'implémentation hybride.
-    \item \textbf{Limites de scalabilité} : On observe une efficacité décroissante avec un \textit{Scalability Gap} qui passe de 1.00 (\texttt{r0}) à \textbf{2,84} (\texttt{r3}). Cela indique que le kernel MG est \textit{Memory Bound} : le processeur traite les données plus vite que la mémoire vive ne peut les fournir.
+    \item Observations de montée en charge : Le passage de 1 cœur (\texttt{r0}) à 8 cœurs (\texttt{r3}) réduit le temps de calcul de 30,27 s à 10,73 s, ce qui confirme l'efficacité de l'implémentation parallèle.
+    \item Limites de scalabilité : On observe une efficacité décroissante avec un \textit{Scalability Gap} qui passe de 1.00 (\texttt{r0}) à 2,84 (\texttt{r3}). Cela indique que le kernel MG est \textit{Memory Bound} : le processeur traite les données plus vite que la mémoire vive ne peut les fournir.
 \end{itemize}
 
 \inputImage{figures/scalability_speedup_amd_ws.png}
@@ -42,14 +42,14 @@ L'analyse de scalabilité (\textit{Workload Scalability}) permet de comprendre c
 
 \subsection{Confrontation des paradigmes (Rapports différentiels)}
 
-L'utilisation des fonctions de comparaison automatique de MAQAO a permis d'isoler l'impact du langage de programmation sur la performance brute, en conservant une stratégie de compilation strictement identique pour les deux versions. Cette analyse nous a permis de confronter deux implémentations du benchmark MG, toutes deux compilées avec la toolchain \textbf{AOCC} (AMD Optimizing C/C++ and Fortran Compilers) en utilisant des drapeaux d'optimisation agressifs : \texttt{-O3 -march=native -fPIC -funroll-loops -ffast-math}.
+L'utilisation des fonctions de comparaison automatique de MAQAO a permis d'isoler l'impact du langage de programmation sur la performance brute, en conservant une stratégie de compilation strictement identique pour les deux versions. Cette analyse a permis de confronter deux implémentations du benchmark MG, toutes deux compilées avec la toolchain AOCC (AMD Optimizing C/C++ and Fortran Compilers) en utilisant des drapeaux d'optimisation agressifs : \texttt{-O3 -march=native -fPIC -funroll-loops -ffast-math}.
 
 \begin{itemize}
-    \item \textbf{Le binaire de référence (r0)} : Correspond à la version originale en \textbf{Fortran 90}. Elle affiche un temps d'exécution de \textbf{11,06 s} et un \textit{Compilation Options Score} de \textbf{100 \%}. Le compilateur parvient ici à exploiter parfaitement les structures de données pour générer un code vectoriel optimal.
-    \item \textbf{Le binaire comparatif (r1)} : Correspond à la réécriture en \textbf{C++} (NPB-CPP). Malgré l'utilisation des mêmes paramètres de compilation, son temps d'exécution grimpe à \textbf{18,24 s}. Son score d'optimisation s'effondre à \textbf{16,7 \%}, ce qui témoigne d'une grande difficulté du compilateur à vectoriser les boucles de calcul dans ce langage.
+    \item Le binaire de référence (r0) : Correspond à la version originale en Fortran 90. Elle affiche un temps d'exécution de 11,06 s et un \textit{Compilation Options Score} de 100 \%. Le compilateur exploite efficacement les structures de données pour générer un code vectoriel optimal.
+    \item Le binaire comparatif (r1) : Correspond à la réécriture en C++ (NPB-CPP). Malgré l'utilisation des mêmes paramètres de compilation, son temps d'exécution atteint 18,24 s. Son score d'optimisation est de 16,7 \%, ce qui indique une grande difficulté du compilateur à vectoriser les boucles de calcul dans ce langage.
 \end{itemize}
 
-Cette différence de performance de près de \textbf{65 \%} souligne que, pour le kernel MG, la sémantique du langage Fortran (notamment la gestion native des tableaux multidimensionnels et l'absence d'aliasing) facilite grandement le travail d'optimisation automatique du compilateur AOCC par rapport au C++. 
+Cette différence de performance de près de 65 \% souligne que, pour le kernel MG, la sémantique du langage Fortran (notamment la gestion native des tableaux multidimensionnels et l'absence d'aliasing) facilite grandement le travail d'optimisation automatique du compilateur AOCC par rapport au C++. 
 
 \inputImage{figures/comparison_duel_report_amd.png}
 {Duel de paradigmes : Fortran 90 vs C++ sous le compilateur AOCC (AMD)}
