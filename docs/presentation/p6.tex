@@ -1,0 +1,67 @@
+\section{Conclusion et Perspectives}
+
+\begin{frame}{Bilan technique des optimisations}
+    \begin{block}{Synthèse des gains en C++}
+        \fontsize{8}{9}\selectfont
+        \begin{itemize}
+            \item \textbf{Levée des verrous} : L'identification de l'aliasing comme goulot d'étranglement a permis une restructuration sémantique efficace (\texttt{\_\_restrict}).
+            \item \textbf{Efficacité des noyaux} : La charge relative de la routine \texttt{resid} a été réduite de \textbf{47,85 \%} à \textbf{29,57 \%} sur AMD.
+            \item \textbf{Paradoxe MAQAO} : Le score de compilation reste à \textbf{16,7 \%}, confirmant un défaut de détection des métadonnées du binaire C++, ce qui était gênant pour nos déductions initiales.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Le Duel Final : C++ Optimisé vs Fortran Natif}
+    \centering
+    \inputImage{figures/comparison_duel_report_amd_cpp_vs_f90_opt.png}{Duel final sur architecture AMD (r0: Fortran vs r1: C++ opt)}{0.8\textwidth}{!}{fig:duel_final}
+    
+    \vspace{-0.3cm}
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{exampleblock}{\footnotesize Fortran (Référence)}
+                \fontsize{7}{8}\selectfont
+                \begin{itemize}
+                    \item Temps total : \textbf{11,83 s}.
+                    \item Score : \textbf{100 \%}.
+                    \item Ratio d'activité : \textbf{99,6 \%}.
+                \end{itemize}
+            \end{exampleblock}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{alertblock}{\footnotesize C++ (Optimisé)}
+                \fontsize{7}{8}\selectfont
+                \begin{itemize}
+                    \item Temps total : \textbf{19,48 s}.
+                    \item Score : \textbf{16,7 \%}.
+                    \item Ratio d'activité : \textbf{64,1 \%}.
+                \end{itemize}
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+
+\begin{frame}{Conclusion}
+    \begin{itemize}
+        \fontsize{9}{10}\selectfont
+        \item \textbf{Performance} : Malgré les optimisations manuelles, le Fortran reste \textbf{1,65x plus rapide} que le C++ sur cet algorithme multigrid.
+        \item \textbf{Architecture} : Le Fortran exploite nativement mieux le parallélisme (8 threads actifs contre 5 pour le C++), avec un ratio d'activité quasi parfait.
+    \end{itemize}
+    
+    \begin{block}{Constat final}
+        \centering \fontsize{8}{9}\selectfont
+        \textit{Le Fortran demeure virtuellement imbattable pour les codes de physique numérique. Sa gestion native de l'absence d'aliasing et sa structure orientée tableaux lui permettent d'atteindre 100 \% de score d'optimisation là où le C++ se heurte à des contraintes sémantiques complexes. 
+        On constate ainsi la lourdeur d'optimiser plus loin le C++ pour tenter d'égaler le Fortran sur certains algorithmes de problèmes physiques.}
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}{Perspectives}
+    \vspace{0.6cm}
+    \centering
+    \textbf{\huge Merci de votre attention} \\
+    \vspace{0.3cm}
+    \textit{Avez-vous des questions ?}
+\end{frame}
