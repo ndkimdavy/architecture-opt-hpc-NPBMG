@@ -1,0 +1,47 @@
+\section{Introduction}
+
+\begin{frame}{Le contexte : NAS Parallel Benchmarks (NPB)}
+    \begin{itemize}
+        \item Suite de tests créée par la \textbf{NASA} (Ames Research Center).
+        \item Objectif : Représenter les calculs typiques de l'aéronautique (CFD).
+        \item Particularité : La spécification \textbf{"Pencil and Paper"}.
+            \begin{itemize}
+                \item L'algorithme est imposé, mais l'implémentation est libre.
+                \item Idéal pour comparer l'efficacité réelle des langages et des compilateurs.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Le Kernel Multi-Grid (MG)}
+    \begin{itemize}
+        \item \textbf{Pourquoi le Multi-Grid ?}
+            \begin{itemize}
+                \item Résolution d'équations physiques sur des grilles 3D.
+                \item Alternance entre grilles fines et grilles grossières.
+            \end{itemize}
+    \end{itemize}
+    \begin{alertblock}{Enjeu technique}
+        Passer d'une grille fine à une grille grossière demande de déplacer énormément de données en mémoire vive (RAM) et dans les caches (L2/L3).
+    \end{alertblock}
+    \begin{itemize}
+        \item \textbf{Ce que ce test sollicite :}
+            \begin{itemize}
+                \item La rapidité des accès mémoire (bande passante).
+                \item La capacité du processeur à traiter des calculs de type "stencil".
+                \item La qualité de la vectorisation par le compilateur.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Notre démarche : Une étude comparative}
+    \begin{itemize}
+        \item \textbf{Questionnements :}
+        \item \textbf{Q1 :} Le C++ moderne peut-il rivaliser avec les performances historiques du Fortran sur ce type de calcul ?
+        \item \textbf{Q2 :} Comment l'architecture du processeur (AMD vs Intel) influence-t-elle le comportement du code ?
+        \item \textbf{Q3 :} Jusqu'où peut-on faire monter la charge (scalabilité) avant de saturer le matériel ?
+    \end{itemize}
+    \vspace{0.5cm}
+    \begin{block}{Outil d'analyse}
+        Utilisation de \textbf{MAQAO} pour observer derrière les fonctions, les temps d'exécutions détaillés et identifier les verrous de performance.
+    \end{block}
+\end{frame}

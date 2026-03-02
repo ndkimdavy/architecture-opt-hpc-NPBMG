@@ -1,0 +1,69 @@
+\section{Méthodologie et Plateformes de travail}
+
+\begin{frame}{Topologies Matérielles}
+    \begin{itemize}
+        \item Tests effectués sur deux plateformes aux caractéristiques distinctes :
+    \end{itemize}
+    \begin{table}
+        \footnotesize
+        \centering
+        \begin{tabular}{|l|c|c|}
+            \hline
+            \textbf{Caractéristique} & \textbf{Plateforme AMD} & \textbf{Plateforme Intel} \\ \hline
+            Processeur & Ryzen 7 7840HS & Core i5-13500H \\ \hline
+            Cœurs / Threads & 8 cœurs / 16 threads & 12 cœurs / 16 threads \\ \hline
+            Fréquence Max & 3801 MHz & 4700 MHz \\ \hline
+            Cache L2 & 8 MiB (Dédié) & 9 MiB (Partagé) \\ \hline
+            Cache L3 & 16 MiB (Partagé) & 18 MiB (Partagé) \\ \hline
+            Topologie & 1 nœud NUMA & 1 nœud NUMA \\ \hline
+        \end{tabular}
+    \end{table}
+   \begin{block}{Idée}
+        Réaliser une expérience comparative pour observer comment l'architecture influence le programme selon le paradigme de langage ou le compilateur utilisé.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Paradigmes de Langage}
+    \begin{itemize}
+        \item \textbf{Fortran 90} : Benchmark officiel NPB MG de la NASA.
+        \item \textbf{C++} : Version disponible sur GitHub.
+    \end{itemize}
+    \begin{block}{Pourquoi le Fortran ?}
+        \begin{itemize}
+            \item \textbf{Par curiosité} : Langage historique du calcul scientifique, nous voulions voir s'il restait plus performant que le C++.
+            \item \textbf{Évaluation de MAQAO} : Tester l'outil sur un autre langage classique (Fortran) face à un langage objet (C++).
+            \item \textbf{Gestion des tableaux} : Vérifier si l'optimisation native du Fortran facilite le travail du compilateur.
+        \end{itemize}
+    \end{block} 
+\end{frame}
+
+\begin{frame}{Stratégie de Compilation et Automatisation}
+    \begin{itemize}
+        \item \textbf{Classe de test} : Sélection de la \textbf{Classe C} ($512^3$ points) pour saturer les caches.
+        \item \textbf{Toolchains} : Solutions constructeurs (AOCC, Intel oneAPI) et base commune (GCC, Clang++).
+        \item \textbf{Optimisations} : \texttt{-O3}, \texttt{-march=native}, \texttt{-ffast-math}, \texttt{-funroll-loops}.
+    \end{itemize}
+    \begin{block}{Automatisation}
+        Mise en place de scripts pour automatiser la génération des nombreux rapports MAQAO et gérer les combinaisons de langages.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Protocole de Mesure avec MAQAO}
+     Le script génère plusieurs types de rapports pour chaque binaire :
+    \begin{description}
+        \item[Analyse de base (-R1)] Localisation des fonctions les plus coûteuses.
+        \item[Stabilité (-S1)] \textbf{10 répétitions} pour garantir la fiabilité de nos mesures face aux variations du système.
+        \item[Scalabilité (-WS)] Étude de la montée en charge (Strong Scaling) de 1 à 8 cœurs physiques.
+        \item[Duels différentiels] Comparaison automatique des binaires (ex: C++ vs Fortran) pour isoler les écarts de performance.
+    \end{description}
+\end{frame}
+
+\begin{frame}{Fiabilisation de l'Environnement}
+    \begin{itemize}
+        \item \textbf{Affinité} : Utilisation de \texttt{export OMP\_PLACES=cores} pour empêcher l'OS de déplacer les threads.
+        \item \textbf{Fréquence} : Fixation en mode \textbf{performance} avant les tests (\texttt{sudo cpupower frequency-set -g performance}).
+    \end{itemize}
+    \begin{block}{Indicateur de préparation}
+        Ces réglages ont permis de stabiliser l'affinité à \textbf{77,9\%} (contre 23,4\% par défaut), garantissant la fiabilité des analyses.
+    \end{block}
+\end{frame}
