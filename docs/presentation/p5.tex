@@ -1,0 +1,92 @@
+\section{Optimisation et Levée des Verrous sur AMD}
+
+\begin{frame}{Stratégie d'optimisation : Briser l'aliasing}
+    \begin{itemize}
+        \fontsize{9}{10}\selectfont
+        \item L'analyse sur architecture AMD a démontré que l'ambiguïté mémoire bloquait la vectorisation automatique.
+        \item \textbf{Objectif} : Fournir des indices sémantiques au compilateur pour forcer l'usage du SIMD.
+    \end{itemize}
+    \begin{block}{Leviers techniques implémentés}
+        \fontsize{8}{9}\selectfont
+        \begin{itemize}
+            \item \textbf{\_\_restrict} : Garantit l'absence de chevauchement entre les pointeurs de tableaux.
+            \item \textbf{\#pragma omp simd} : Force explicitement la vectorisation de la boucle interne.
+            \item \textbf{Clause collapse(2)} : Fusionne les boucles imbriquées pour augmenter l'efficacité.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Transformation de la routine selon CQA}
+    \fontsize{6}{7}\selectfont
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{alertblock}{Version Originale}
+\begin{verbatim}
+void resid(double* u, double* v, 
+           double* r, ...) {
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      r[i][j] = v[i][j] - u[i][j]...;
+    }
+  }
+}
+\end{verbatim}
+            \end{alertblock}
+            \centering \textit{Le compilateur suspecte un risque d'aliasing et refuse le SIMD.}
+        \end{column}
+        
+        \begin{column}{0.48\textwidth}
+            \begin{exampleblock}{Version Optimisée}
+\begin{verbatim}
+// Code vectoriel (AVX/SIMD)
+void resid(double* __restrict u, 
+           double* __restrict v, ...) {
+  #pragma omp simd collapse(2)
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      r[i][j] = v[i][j] - u[i][j]...;
+    }
+  }
+}
+\end{verbatim}
+            \end{exampleblock}
+            \centering \textit{La sémantique \_\_restrict lève le verrou et active la vectorisation.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Impact Global sur AMD : Analyse des routines}
+    \inputImage{figures/top_functions_amd_r1_opt.png}{Routines AMD optimisées (Analyse -R1)}{0.95\textwidth}{!}{fig:global_opt_amd}
+    
+    \begin{table}
+        \fontsize{6}{7}\selectfont
+        \centering
+        \begin{tabular}{|l|c|c|}
+            \hline
+            \textbf{Fonction} & \textbf{\% Temps CPU (Initial)} & \textbf{\% Temps CPU (Optimisé)} \\ \hline
+            \texttt{resid}    & 47,85 \%            & \textbf{29,57 \%}    \\ \hline
+            \texttt{zran3}    & -                               & \textbf{25,95 \%}    \\ \hline
+            \texttt{psinv}    & 19,36 \%            & \textbf{11,68 \%}    \\ \hline
+            \texttt{interp}   & 9,50 \%             & \textbf{5,42 \%}     \\ \hline
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}{Analyse de l'anomalie de détection sur MAQAO}
+    \begin{block}{Observation du paradoxe}
+        \fontsize{8}{9}\selectfont
+        \begin{itemize}
+            \item \textbf{Performance réelle} : On observe une diminution nette du temps d'exécution relatif (ex: \texttt{resid} passe de 47,85 \% à 29,57 \%), validant l'efficacité des optimisations.
+            \item \textbf{Score réelle} : Le score de compilation reste figé à \textbf{16,7 \%} malgré l'injection de sémantique vectorielle.
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{Hypothèses sur l'origine du blocage}
+        \fontsize{8}{9}\selectfont
+        \begin{itemize}
+            \item \textbf{Visibilité des flags} : Difficulté de MAQAO à extraire les drapeaux d'optimisation des métadonnées du binaire C++.
+            \item \textbf{Liaison Makefile} : Un potentiel défaut de "binding" des flags d'optimisation lors de la phase finale d'édition de liens.
+            \item \textbf{Metadata Compilateur} : Le compilateur exécute les optimisations mais ne les consigne pas de manière lisible pour l'outil d'analyse.
+        \end{itemize}
+    \end{block}
+\end{frame}

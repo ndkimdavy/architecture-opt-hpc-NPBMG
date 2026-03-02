@@ -1,0 +1,94 @@
+\section{Analyse des résultats sur Intel}
+
+\begin{frame}{Identification des sections critiques (Option -R1)}
+    \begin{columns}[T]
+        \begin{column}{0.45\textwidth}
+            \begin{itemize}
+                \fontsize{8}{9}\selectfont
+                \item Localisation des fonctions consommant le plus de temps CPU.
+                \item \textbf{resid} est la routine dominante (35,48 \%), suivie par des temps de synchronisation importants.
+            \end{itemize}
+            \vspace{0.1cm}
+            \begin{table}
+                \fontsize{6}{7}\selectfont
+                \centering
+                \begin{tabular}{|l|c|}
+                    \hline
+                    \textbf{Fonction} & \textbf{\% Temps CPU} \\ \hline
+                    \texttt{resid}    & 35,48 \% \\ \hline
+                    \texttt{kmp\_flag} (Sync) & 25,24 \% \\ \hline
+                    \texttt{zran3}    & 17,23 \% \\ \hline
+                    \texttt{psinv}    & 15,65 \% \\ \hline
+                \end{tabular}
+            \end{table}
+        \end{column}
+        \begin{column}{0.55\textwidth}
+            \vspace{-0.4cm}
+            \inputImage{figures/top_functions_intel_r1.png}{Analyse -R1 : Routines dominantes (Intel)}{0.95\textwidth}{!}{fig:r1_intel}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Fiabilité et Stabilité des mesures (Option -S1)}
+    \begin{itemize}
+        \fontsize{8}{9}\selectfont
+        \item Validation de la robustesse des données via \textbf{10 répétitions}.
+        \item Élimination des bruits de mesure liés au système.
+    \end{itemize}
+    
+    \inputImage{figures/stability_analysis_intel_s1.png}{Analyse -S1 : Stabilité des mesures (Intel)}{0.85\textwidth}{0.45\textheight}{fig:s1_intel}
+    
+    \begin{block}{\footnotesize Constat de stabilité}
+        \fontsize{7}{8}\selectfont
+        Temps moyen stabilisé à \textbf{23,68 s}. La variance minimale entre le min (23,39 s) et le max (23,82 s) confirme la fiabilité des tests.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Étude de la montée en charge (Option -WS)}
+    \begin{itemize}
+        \fontsize{8}{9}\selectfont
+        \item Évaluation de l'efficacité de l'implémentation parallèle de 1 à 8 cœurs.
+    \end{itemize}
+    
+    \inputImage{figures/scalability_speedup_intel_ws.png}{Analyse -WS : Scalabilité (Intel)}{0.85\textwidth}{0.4\textheight}{fig:ws_intel}
+    
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{\footnotesize Performance Parallèle}
+                \fontsize{7}{8}\selectfont
+                Évolution du temps de \textbf{25,91 s} (r0) à \textbf{23,78 s} (r3).
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{alertblock}{\footnotesize Limites de scalabilité}
+                \fontsize{7}{8}\selectfont
+                \textit{Scalability Gap} critique de \textbf{7,34} à 8 threads. Code fortement limité par la mémoire (\textbf{Memory Bound}).
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Duel de Compilateurs : Intel oneAPI vs Clang++}
+    \inputImage{figures/comparison_duel_report_intel.png}{Duel de performance : Intel vs Clang++}{0.85\textwidth}{0.4\textheight}{fig:duel_intel}
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{exampleblock}{\footnotesize Intel oneAPI icpx (r0)}
+                \fontsize{7}{8}\selectfont
+                \begin{itemize}
+                    \item Temps : \textbf{23,83 s}
+                    \item Score de compilation : \textbf{16,7 \%}
+                \end{itemize}
+            \end{exampleblock}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{alertblock}{\footnotesize Clang++ (r1)}
+                \fontsize{7}{8}\selectfont
+                \begin{itemize}
+                    \item Temps : \textbf{22,55 s}
+                    \item Score de compilation : \textbf{16,7 \%}
+                \end{itemize}
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+

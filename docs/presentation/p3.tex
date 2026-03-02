@@ -1,12 +1,12 @@
 \section{Analyse des résultats sur AMD}
 
-\begin{frame}{Localisation des points chauds (Analyse temporelle)}
+\begin{frame}{Identification des sections critiques (Option -R1)}
     \begin{columns}[T]
         \begin{column}{0.45\textwidth}
             \begin{itemize}
                 \fontsize{8}{9}\selectfont
-                \item L'analyse de performance montre que le temps est concentré sur les fonctions de calcul intensif.
-                \item \textbf{resid} est la routine avec le temps d'exécution le plus long.
+                \item Localisation des fonctions consommant le plus de temps CPU.
+                \item \textbf{resid} est la routine dominante, représentant près de la moitié de la charge globale.
             \end{itemize}
             \vspace{0.1cm}
             \begin{table}
@@ -24,7 +24,46 @@
         \end{column}
         \begin{column}{0.55\textwidth}
             \vspace{-0.4cm}
-            \inputImage{figures/top_functions_amd_r1_opt.png}{Répartition du temps CPU sur AMD}{0.95\textwidth}{!}{fig:r1_amd}
+            \inputImage{figures/top_functions_amd_r1.png}{Analyse -R1 : Routines dominantes (AMD)}{0.95\textwidth}{!}{fig:r1_amd}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Fiabilité et Stabilité des mesures (Option -S1)}
+    \begin{itemize}
+        \fontsize{8}{9}\selectfont
+        \item Validation de la robustesse des données via \textbf{10 répétitions}.
+        \item Élimination des bruits de mesure liés au système.
+    \end{itemize}
+    
+    \inputImage{figures/stability_analysis_amd_s1.png}{Analyse -S1 : Stabilité des mesures (AMD)}{0.85\textwidth}{0.45\textheight}{fig:s1_amd}
+    
+    \begin{block}{\footnotesize Constat de stabilité}
+        \fontsize{7}{8}\selectfont
+        Temps moyen stabilisé à \textbf{13,11 s}. La faible variance confirme la fiabilité de l'environnement de test pour les comparaisons de performance.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Étude de la montée en charge (Option -WS)}
+    \begin{itemize}
+        \fontsize{8}{9}\selectfont
+        \item Évaluation de l'efficacité de l'implémentation parallèle de 1 à 8 cœurs.
+    \end{itemize}
+    
+    \inputImage{figures/scalability_speedup_amd_ws.png}{Analyse -WS : Scalabilité (AMD)}{0.85\textwidth}{0.4\textheight}{fig:ws_amd}
+    
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{\footnotesize Performance Parallèle}
+                \fontsize{7}{8}\selectfont
+                Accélération notable : passage de \textbf{30,27 s} à \textbf{10,73 s}.
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{alertblock}{\footnotesize Limites de scalabilité}
+                \fontsize{7}{8}\selectfont
+                Apparition d'un \textit{Scalability Gap} de \textbf{2,84}. Le profil est limité par la bande passante mémoire (\textbf{Memory Bound}).
+            \end{alertblock}
         \end{column}
     \end{columns}
 \end{frame}
@@ -33,51 +72,23 @@
     \vspace{-0.2cm}
     \begin{itemize}
         \fontsize{8}{9}\selectfont
-        \item Comparaison directe des deux implémentations sur le Ryzen 7 avec AOCC.
+        \item Comparaison des deux implémentations avec le compilateur AOCC.
     \end{itemize}
     
-    \inputImage{figures/comparison_duel_report_amd.png}{Comparaison des performances : Fortran vs C++}{0.85\textwidth}{!}{fig:duel_amd}
+    \inputImage{figures/comparison_duel_report_amd.png}{Comparaison de performance : Fortran vs C++}{0.85\textwidth}{0.4\textheight}{fig:duel_amd}
     
-    \vspace{-0.2cm}
     \begin{columns}[T]
         \begin{column}{0.48\textwidth}
             \begin{exampleblock}{\footnotesize Fortran (Référence)}
                 \fontsize{7}{8}\selectfont
-                \begin{itemize}
-                    \item Temps : \textbf{11,06 s}
-                    \item Score de compilation : \textbf{100 \%}
-                \end{itemize}
+                Score de compilation : \textbf{100 \%}. Exploitation maximale des unités de calcul vectorielles.
             \end{exampleblock}
         \end{column}
         \begin{column}{0.48\textwidth}
             \begin{alertblock}{\footnotesize C++ (NPB-CPP)}
                 \fontsize{7}{8}\selectfont
-                \begin{itemize}
-                    \item Temps : \textbf{18,24 s}
-                    \item Score de compilation : \textbf{16,7 \%}
-                \end{itemize}
+                Score de compilation : \textbf{16,7 \%}. L'aliasing des pointeurs empêche la vectorisation automatique.
             \end{alertblock}
         \end{column}
     \end{columns}
-\end{frame}
-
-\begin{frame}{Analyse de la qualité du code (CQA)}
-    \begin{itemize}
-        \fontsize{9}{10}\selectfont
-        \item Pourquoi un écart de 65 \% en faveur du Fortran ?
-    \end{itemize}
-    \begin{block}{\small Diagnostic technique}
-        \fontsize{8}{9}\selectfont
-        Le compilateur AOCC parvient à vectoriser totalement le Fortran, mais pas en C++.
-    \end{block}
-    \begin{itemize}
-        \fontsize{8}{9}\selectfont
-        \item \textbf{Fortran} : Pas d'ambiguïté (aliasing) sur les tableaux $\rightarrow$ Utilisation optimale des unités AVX-512.
-        \item \textbf{C++} : Structure de pointeurs complexe $\rightarrow$ L'aliasing empêchant la vectorisation automatique.
-    \end{itemize}
-    \vspace{0.1cm}
-    \begin{alertblock}{Conséquence}
-        \fontsize{8}{9}\selectfont
-        Le binaire C++ n'utilise pas les unités AVX-512 du Ryzen 7, limitant drastiquement le débit de calcul.
-    \end{alertblock}
 \end{frame}
