@@ -7,6 +7,22 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 
+% Input image macro
+\newcommand{\inputImage}[5]{%
+  \begin{figure}[H]
+    \centering
+    \fbox{%
+      \includegraphics[
+        width=#3,
+        height=#4,
+        keepaspectratio
+      ]{#1}%
+    }
+    \caption{#2}
+    \label{#5}
+  \end{figure}
+}
+
 \useoutertheme[subsection=false]{miniframes}
 
 \setbeamercolor{section in head/foot}{fg=white, bg=blue!80!black}

@@ -1,0 +1,83 @@
+\section{Analyse des résultats sur AMD}
+
+\begin{frame}{Localisation des points chauds (Analyse temporelle)}
+    \begin{columns}[T]
+        \begin{column}{0.45\textwidth}
+            \begin{itemize}
+                \fontsize{8}{9}\selectfont
+                \item L'analyse de performance montre que le temps est concentré sur les fonctions de calcul intensif.
+                \item \textbf{resid} est la routine avec le temps d'exécution le plus long.
+            \end{itemize}
+            \vspace{0.1cm}
+            \begin{table}
+                \fontsize{6}{7}\selectfont
+                \centering
+                \begin{tabular}{|l|c|}
+                    \hline
+                    \textbf{Fonction} & \textbf{\% Temps CPU} \\ \hline
+                    \texttt{resid}    & 47,85 \% \\ \hline
+                    \texttt{psinv}    & 19,36 \% \\ \hline
+                    \texttt{interp}   & 9,50 \%  \\ \hline
+                    \texttt{rprj3}    & 6,69 \%  \\ \hline
+                \end{tabular}
+            \end{table}
+        \end{column}
+        \begin{column}{0.55\textwidth}
+            \vspace{-0.4cm}
+            \inputImage{figures/top_functions_amd_r1_opt.png}{Répartition du temps CPU sur AMD}{0.95\textwidth}{!}{fig:r1_amd}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Duel de Paradigmes : Fortran 90 vs C++}
+    \vspace{-0.2cm}
+    \begin{itemize}
+        \fontsize{8}{9}\selectfont
+        \item Comparaison directe des deux implémentations sur le Ryzen 7 avec AOCC.
+    \end{itemize}
+    
+    \inputImage{figures/comparison_duel_report_amd.png}{Comparaison des performances : Fortran vs C++}{0.85\textwidth}{!}{fig:duel_amd}
+    
+    \vspace{-0.2cm}
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \begin{exampleblock}{\footnotesize Fortran (Référence)}
+                \fontsize{7}{8}\selectfont
+                \begin{itemize}
+                    \item Temps : \textbf{11,06 s}
+                    \item Score de compilation : \textbf{100 \%}
+                \end{itemize}
+            \end{exampleblock}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{alertblock}{\footnotesize C++ (NPB-CPP)}
+                \fontsize{7}{8}\selectfont
+                \begin{itemize}
+                    \item Temps : \textbf{18,24 s}
+                    \item Score de compilation : \textbf{16,7 \%}
+                \end{itemize}
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Analyse de la qualité du code (CQA)}
+    \begin{itemize}
+        \fontsize{9}{10}\selectfont
+        \item Pourquoi un écart de 65 \% en faveur du Fortran ?
+    \end{itemize}
+    \begin{block}{\small Diagnostic technique}
+        \fontsize{8}{9}\selectfont
+        Le compilateur AOCC parvient à vectoriser totalement le Fortran, mais pas en C++.
+    \end{block}
+    \begin{itemize}
+        \fontsize{8}{9}\selectfont
+        \item \textbf{Fortran} : Pas d'ambiguïté (aliasing) sur les tableaux $\rightarrow$ Utilisation optimale des unités AVX-512.
+        \item \textbf{C++} : Structure de pointeurs complexe $\rightarrow$ L'aliasing empêchant la vectorisation automatique.
+    \end{itemize}
+    \vspace{0.1cm}
+    \begin{alertblock}{Conséquence}
+        \fontsize{8}{9}\selectfont
+        Le binaire C++ n'utilise pas les unités AVX-512 du Ryzen 7, limitant drastiquement le débit de calcul.
+    \end{alertblock}
+\end{frame}
