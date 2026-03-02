@@ -1,0 +1,24 @@
+/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 529 - 549
+--------------------------------------------------------------------------------
+
+529:       do i2=2,n2-1
+530:          ! Optimization: Vectorize neighbor summation
+531:          !$omp simd
+532:          do i1=1,n1
+533:             r1(i1) = r(i1,i2-1,i3) + r(i1,i2+1,i3)  &
+534:             &                + r(i1,i2,i3-1) + r(i1,i2,i3+1)
+535:             r2(i1) = r(i1,i2-1,i3-1) + r(i1,i2+1,i3-1)  &
+536:             &                + r(i1,i2-1,i3+1) + r(i1,i2+1,i3+1)
+537:          enddo
+538: 
+539:          ! Optimization: Forced SIMD update to resolve scalar integer instruction overhead
+540:          !$omp simd
+541:          do i1=2,n1-1
+542:             u(i1,i2,i3) = u(i1,i2,i3)  &
+543:             &                     + c(0) * r(i1,i2,i3)  &
+544:             &                     + c(1) * ( r(i1-1,i2,i3) + r(i1+1,i2,i3)  &
+545:             &                + r1(i1) )  &
+546:             &                     + c(2) * ( r2(i1) + r1(i1-1) + r1(i1+1) )
+547:          enddo
+548:       enddo
+549:    enddo

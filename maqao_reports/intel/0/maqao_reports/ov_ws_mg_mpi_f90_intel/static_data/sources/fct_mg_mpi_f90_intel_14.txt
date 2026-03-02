@@ -1,0 +1,107 @@
+/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-MPI/MG/mg.f90: 1924 - 2114
+--------------------------------------------------------------------------------
+
+1924:       subroutine comm1p_ex( axis, u, n1, n2, n3, kk )
+[...]
+1940:       if( take_ex( axis, kk ) ) then
+[...]
+1947:          do  i=1,nm2
+1948:             buff(i,buff_id) = 0.0D0
+[...]
+1958:             buff(i,buff_id) = 0.0D0
+[...]
+1965:          indx = 0
+1966: 
+1967:          if( axis .eq.  1 )then
+1968:             do  i3=1,n3
+1969:                do  i2=1,n2
+1970:                   indx = indx + 1
+1971:                   u(n1,i2,i3) = buff(indx, buff_id )
+1972:                enddo
+1973:             enddo
+1974:          endif
+1975: 
+1976:          if( axis .eq.  2 )then
+1977:             do  i3=1,n3
+1978:                do  i1=1,n1
+1979:                   indx = indx + 1
+1980:                   u(i1,n2,i3) = buff(indx, buff_id )
+1981:                enddo
+1982:             enddo
+1983:          endif
+1984: 
+1985:          if( axis .eq.  3 )then
+1986:             do  i2=1,n2
+1987:                do  i1=1,n1
+1988:                   indx = indx + 1
+1989:                   u(i1,i2,n3) = buff(indx, buff_id )
+[...]
+1997:          indx = 0
+1998: 
+1999:          if( axis .eq.  1 )then
+2000:             do  i3=1,n3
+2001:                do  i2=1,n2
+2002:                   do  i1=1,2
+2003:                      indx = indx + 1
+2004:                      u(i1,i2,i3) = buff(indx,buff_id)
+[...]
+2011:             do  i3=1,n3
+2012:                do  i2=1,2
+2013:                   do  i1=1,n1
+2014:                      indx = indx + 1
+2015:                      u(i1,i2,i3) = buff(indx,buff_id)
+[...]
+2022:             do  i3=1,2
+2023:                do  i2=1,n2
+2024:                   do  i1=1,n1
+2025:                      indx = indx + 1
+2026:                      u(i1,i2,i3) = buff(indx,buff_id)
+[...]
+2034:       if( give_ex( axis, kk ) )then
+[...]
+2041:          if( axis .eq.  1 )then
+2042:             do  i3=1,n3
+2043:                do  i2=1,n2
+2044:                   do  i1=n1-1,n1
+2045:                      buff_len = buff_len + 1
+2046:                      buff(buff_len,buff_id)= u(i1,i2,i3)
+[...]
+2052:          if( axis .eq.  2 )then
+2053:             do  i3=1,n3
+2054:                do  i2=n2-1,n2
+2055:                   do  i1=1,n1
+2056:                      buff_len = buff_len + 1
+2057:                      buff(buff_len,buff_id )= u(i1,i2,i3)
+[...]
+2063:          if( axis .eq.  3 )then
+2064:             do  i3=n3-1,n3
+2065:                do  i2=1,n2
+2066:                   do  i1=1,n1
+2067:                      buff_len = buff_len + 1
+2068:                      buff(buff_len, buff_id ) = u( i1,i2,i3)
+[...]
+2077:          buff_len = 0
+2078: 
+2079:          if( axis .eq.  1 )then
+2080:             do  i3=1,n3
+2081:                do  i2=1,n2
+2082:                   buff_len = buff_len + 1
+2083:                   buff(buff_len,buff_id ) = u( 2,  i2,i3)
+[...]
+2089:             do  i3=1,n3
+2090:                do  i1=1,n1
+2091:                   buff_len = buff_len + 1
+2092:                   buff(buff_len, buff_id ) = u( i1,  2,i3)
+[...]
+2098:             do  i2=1,n2
+2099:                do  i1=1,n1
+2100:                   buff_len = buff_len + 1
+2101:                   buff(buff_len, buff_id ) = u( i1,i2,2)
+[...]
+2108:       do  i=1,nm2
+2109:          buff(i,4) = buff(i,3)
+2110:          buff(i,2) = buff(i,1)
+2111:       enddo
+2112: 
+2113:       return
+2114:       end

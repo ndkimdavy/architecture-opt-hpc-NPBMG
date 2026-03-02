@@ -1,0 +1,17 @@
+address;source_location;insn;indent
+0xabb0;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:888;VMOVAPD	%ZMM1,%ZMM2;
+0xabb6;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:893;VMOVUPD	0x100(%RSP,%R8,8),%ZMM1;
+0xabbe;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:891;VMOVUPD	(%RSI,%R8,8),%ZMM3;
+0xabc5;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:891;VMOVAPD	%ZMM1,%ZMM4;
+0xabcb;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:888;VMULPD	(%R9){1to8},%ZMM3,%ZMM3;
+0xabd1;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:888;VPERMT2PD	%ZMM2,%ZMM0,%ZMM4;
+0xabd7;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:892;VADDPD	0x1110(%RSP,%R8,8),%ZMM4,%ZMM2;
+0xabe2;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:893;VADDPD	0xf0(%RSP,%R8,8),%ZMM1,%ZMM4;
+0xabed;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:892;VADDPD	0x1120(%RSP,%R8,8),%ZMM2,%ZMM2;
+0xabf8;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:892;VFMADD231PD	0x10(%R9){1to8},%ZMM2,%ZMM3;
+0xabff;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:892;VFNMSUB231PD	0x18(%R9){1to8},%ZMM4,%ZMM3;
+0xac06;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:893;VADDPD	(%RCX,%R8,8),%ZMM3,%ZMM2;
+0xac0d;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:890;VMOVUPD	%ZMM2,(%RAX,%R8,8);
+0xac14;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:889;ADD	$0x8,%R8;
+0xac18;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:889;CMP	%R8,%R11;
+0xac1b;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:889;JNE	abb0 <_ZL5residPvS_S_iiiPdi+0x670>;

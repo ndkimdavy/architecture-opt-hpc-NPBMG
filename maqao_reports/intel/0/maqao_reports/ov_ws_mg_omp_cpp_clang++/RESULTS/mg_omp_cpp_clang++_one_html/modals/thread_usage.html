@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>ONEVIEW</title>
+<meta charset="utf-8" />
+<meta name="google" content="notranslate" />
+<link rel="stylesheet" type="text/css" media="screen" href="../css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="../css/themes/redmond_custom/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="../css/themes/redmond_custom/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="../css/MAQAO_theme.css" />
+<link rel="stylesheet" type="text/css" href="../css/maqao_modal.css" />
+<link rel="stylesheet" type="text/css" href="../css/global.css" />
+<script src="../js/jquery-1.9.0.min.js" ></script>
+<script src="../js/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="../js/grid.locale-en.js" ></script>
+<script src="../js/jquery.jqGrid.min.js" ></script>
+<script src="../js/d3.min.js" ></script>
+<script class="include" src="../js/jquery.jqplot.min.js"></script>
+<script class="include" src="../js/jqplot.pieRenderer.min.js"></script>
+<script class="include" src="../js/jqplot.barRenderer.min.js"></script>
+<script class="include" src="../js/jqplot.categoryAxisRenderer.min.js"></script>
+<script class="include" src="../js/jqplot.pointLabels.min.js"></script>
+<script class="include" src="../js/jqplot.cursor.min.js"></script>
+<script class="include" src="../js/jqplot.canvasTextRenderer.min.js"></script>
+<script class="include" src="../js/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script class="include" src="../js/jqplot.canvasAxisLabelRenderer.min.js"></script>
+<script class="include" src="../js/jqplot.enhancedLegendRenderer.min.js"></script>
+<script class="include" src="../js/jqplot.highlighter.min.js"></script>
+<script class="include" src="../js/jqplot.logAxisRenderer.min.js"></script>
+<script>
+$( function() {
+  $( document ).tooltip({
+    content: function() {
+      if (this.classList.contains ("tooltip-maqao")
+      ||  this.classList.contains ("tooltip-maqao-button")) {
+        return tooltips_texts[$(this).attr('tooltip_id')];
+      }
+    },
+    position: {
+      my: "center bottom-20",
+        at: "center top",
+        using: function( position, feedback ) {
+          $( this ).css( position );
+          $( "<div>" )
+            .addClass( "arrow-tt" )
+            .addClass( feedback.vertical )
+            .addClass( feedback.horizontal )
+            .appendTo( this );
+        }
+      }
+  });
+} );
+
+// Code from https://www.htmlgoodies.com/beyond/javascript/article.php/3724571/Using-Multiple-JavaScript-Onload-Functions.htm
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+      func();
+    }
+  }
+}
+function loadCSS(filename){ 
+  var file = document.createElement("link");
+  file.setAttribute("rel", "stylesheet");
+  file.setAttribute("type", "text/css");
+  file.setAttribute("href", filename);
+  document.head.appendChild(file);
+}
+addLoadEvent(function(){
+  var theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    loadCSS("../css/"+theme+".css");
+  }
+  else {
+    localStorage.setItem("__MAQAO_OV_theme__", "MAQAO_theme");
+    loadCSS("../css/MAQAO_theme.css");
+  }
+});
+</script>
+</head><body>
+<div id="anchor_file_start"></div>
+<div id="maqao_content">
+<div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2805" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2805(){
+    document.getElementById('chart_cat_2805').innerHTML = '';
+  var plot2805_data = [[97.181314229965,96.833296120167,99.982708692551,99.982708692551,99.982708692551,99.982708692551,99.982708692551,99.982708692551,99.982708692551,99.982708692551,99.982708692551,99.982708692551,99.982708692551,96.814742684365,97.01931620948,99.979877471924,99.305394291878,99.986374378204,99.986374378204,99.986374378204,99.986374378204,99.986374378204,99.986374378204,99.986374378204,99.986374378204,99.986374378204,99.986374378204,99.986374378204,99.986374378204,99.986374378204,97.526708245278,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,99.976581335068,97.962914779783,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,99.981778860092,62.451332807541,],];
+  var plot2805_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2805 = jQuery.jqplot ('chart_cat_2805', plot2805_data, {
+    seriesColors:['#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#7e3a61',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2805_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2805_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2805");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2806" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2806(){
+    document.getElementById('chart_cat_2806').innerHTML = '';
+  var plot2806_data = [[85.929516889155,64.265727065504,99.942570924759,99.942570924759,99.942570924759,99.942570924759,99.942570924759,99.942570924759,96.88718020916,99.959480762482,99.959480762482,99.959480762482,99.959480762482,99.959480762482,98.46685230732,29.553282260895,53.9122402668,69.801020622253,54.460787773132,74.922162294388,99.986106157303,99.986106157303,99.986106157303,99.986106157303,99.986106157303,97.913490980864,99.950855970383,99.950855970383,99.950855970383,99.950855970383,99.950855970383,99.950855970383,43.94366145134,69.836723804474,45.076045393944,64.043813943863,48.368021845818,70.173919200897,54.979491233826,47.857889533043,54.032021760941,69.11273598671,44.784632325172,71.269971132278,41.030204296112,65.633315593005,48.77253472805,69.286018610001,67.262357473373,40.593314170837,69.289892911911,48.621818423271,56.302958726883,59.313981235027,61.44979596138,49.492931365967,49.474141001701,67.798209190369,69.639134407043,32.642693817616,65.50315618515,57.954281568527,48.881617188454,66.835302114487,50.02698302269,59.406197071075,50.001138448715,70.339852571487,59.797251224518,38.39046061039,72.468155622482,49.423855543137,65.393823385239,53.139574080706,69.602966308594,49.492815136909,51.47197842598,60.240769386292,69.49622631073,38.528278470039,67.311298847198,52.558362483978,52.367621660233,65.969049930573,56.772685050964,52.45880484581,50.446605682373,70.2368080616,66.395151615143,39.27258849144,59.711557626724,64.057374000549,46.807524561882,65.108227729797,63.572579622269,55.432212352753,51.472622156143,55.310702323914,69.757241010666,25.390616059303,],];
+  var plot2806_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2806 = jQuery.jqplot ('chart_cat_2806', plot2806_data, {
+    seriesColors:['#af1624','#7e3a61','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#3a6db6','#6b4979','#883355','#6b4979','#922c49','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#575792','#883355','#615086','#7e3a61','#615086','#922c49','#6b4979','#615086','#6b4979','#883355','#575792','#922c49','#575792','#883355','#615086','#883355','#883355','#575792','#883355','#615086','#75426d','#75426d','#7e3a61','#615086','#615086','#883355','#883355','#4466aa','#883355','#75426d','#615086','#883355','#6b4979','#75426d','#6b4979','#922c49','#75426d','#4e5f9e','#922c49','#615086','#883355','#6b4979','#883355','#615086','#6b4979','#7e3a61','#883355','#4e5f9e','#883355','#6b4979','#6b4979','#883355','#75426d','#6b4979','#6b4979','#922c49','#883355','#4e5f9e','#75426d','#7e3a61','#615086','#883355','#7e3a61','#75426d','#6b4979','#75426d','#883355','#3a6db6',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2806_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2806_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2806");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2807" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2807(){
+    document.getElementById('chart_cat_2807').innerHTML = '';
+  var plot2807_data = [[0,81.156045198441,0,0,0,0,0,0,0,0,0,0,0,0,98.299920558929,99.648350477219,99.648350477219,99.648350477219,99.648350477219,39.579641819,0,0,0,0,0,0,0,0,0,0,0,42.320704460144,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,99.596881866455,63.058298826218,],];
+  var plot2807_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2807 = jQuery.jqplot ('chart_cat_2807', plot2807_data, {
+    seriesColors:['#0a92f3','#a51d31','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#4e5f9e','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#575792','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#7e3a61',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2807_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2807_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2807");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2808" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2808(){
+    document.getElementById('chart_cat_2808').innerHTML = '';
+  var plot2808_data = [[96.387875080109,76.420994102954,99.988126754761,99.988126754761,99.988126754761,99.988126754761,99.988126754761,99.988126754761,99.988126754761,99.988126754761,96.025487780571,99.914002418518,99.914002418518,99.914002418518,99.914002418518,70.242637395859,58.465999364853,66.832947731018,73.403942584991,72.603604849428,85.45863032341,99.876946210861,99.876946210861,99.876946210861,99.876946210861,99.876946210861,99.876946210861,99.876946210861,99.876946210861,99.876946210861,99.876946210861,99.876946210861,99.876946210861,91.135036945343,59.429442882538,65.02143740654,77.237814664841,58.267828822136,81.125593185425,57.472312450409,69.730031490326,71.869850158691,63.662455976009,68.828612565994,59.336543083191,74.589559435844,74.88779425621,52.817833423615,84.3601167202,56.844764947891,76.826012134552,62.648612260818,78.543370962143,61.617171764374,57.239085435867,78.150111436844,76.906275749207,55.04664182663,67.13108420372,78.645497560501,52.847814559937,75.61674118042,66.955578327179,64.464831352234,74.811059236526,58.809751272202,76.053357124329,62.205037102103,76.075220108032,59.922611713409,61.480921506882,79.512739181519,77.080911397934,52.498012781143,75.115532428026,64.321351051331,71.651446819305,61.868387460709,80.72851896286,76.344615221024,50.702559947968,70.378488302231,78.47598195076,57.258892059326,75.047487020493,66.409832239151,65.07420539856,76.223343610764,55.414760112762,75.628823041916,63.505166769028,74.776035547256,59.922033548355,59.93235707283,79.430717229843,77.240246534348,48.433837294579,68.475675582886,78.099483251572,28.580179810524,],];
+  var plot2808_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2808 = jQuery.jqplot ('chart_cat_2808', plot2808_data, {
+    seriesColors:['#c2070c','#9b243d','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#922c49','#75426d','#883355','#922c49','#922c49','#af1624','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#b90f18','#75426d','#883355','#9b243d','#75426d','#a51d31','#75426d','#883355','#922c49','#7e3a61','#883355','#75426d','#922c49','#922c49','#6b4979','#a51d31','#75426d','#9b243d','#7e3a61','#9b243d','#7e3a61','#75426d','#9b243d','#9b243d','#75426d','#883355','#9b243d','#6b4979','#9b243d','#883355','#7e3a61','#922c49','#75426d','#9b243d','#7e3a61','#9b243d','#75426d','#7e3a61','#9b243d','#9b243d','#6b4979','#9b243d','#7e3a61','#922c49','#7e3a61','#a51d31','#9b243d','#6b4979','#922c49','#9b243d','#75426d','#9b243d','#883355','#883355','#9b243d','#75426d','#9b243d','#7e3a61','#922c49','#75426d','#75426d','#9b243d','#9b243d','#615086','#883355','#9b243d','#3a6db6',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2808_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2808_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2808");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2809" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2809(){
+    document.getElementById('chart_cat_2809').innerHTML = '';
+  var plot2809_data = [[0,46.094998717308,0,0,0,0,0,0,0,0,0,0,0,0,6.495662778616,99.384039640427,99.384039640427,99.384039640427,99.384039640427,68.360829353333,25.35200715065,0,0,0,0,0,0,0,0,0,0,0,0,69.069796800613,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,99.24208521843,57.488811016083,],];
+  var plot2809_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2809 = jQuery.jqplot ('chart_cat_2809', plot2809_data, {
+    seriesColors:['#0a92f3','#615086','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#138ae7','#c2070c','#c2070c','#c2070c','#c2070c','#883355','#3a6db6','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#883355','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#75426d',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2809_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2809_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2809");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2810" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2810(){
+    document.getElementById('chart_cat_2810').innerHTML = '';
+  var plot2810_data = [[0,46.093139052391,0,0,0,0,0,0,0,0,0,0,0,0,6.2274392694235,99.362725019455,99.362725019455,99.362725019455,99.362725019455,71.085858345032,23.045444488525,0,0,0,0,0,0,0,0,0,0,0,0,71.930420398712,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,99.216854572296,94.128835201263,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,99.198597669601,54.890340566635,],];
+  var plot2810_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2810 = jQuery.jqplot ('chart_cat_2810', plot2810_data, {
+    seriesColors:['#0a92f3','#615086','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#138ae7','#c2070c','#c2070c','#c2070c','#c2070c','#922c49','#3175c2','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#922c49','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#6b4979',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2810_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2810_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2810");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2811" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2811(){
+    document.getElementById('chart_cat_2811').innerHTML = '';
+  var plot2811_data = [[0,29.938167333603,0,0,0,0,0,0,0,0,0,0,0,0,6.2211766839027,62.18141913414,72.184616327286,73.74854683876,72.80747294426,49.341464042664,9.2190757393837,0,0,0,0,0,0,0,0,0,0,0,0,59.922116994858,65.638595819473,66.087234020233,80.707973241806,61.584043502808,85.512244701385,59.716588258743,70.471382141113,76.863545179367,71.795529127121,68.343198299408,71.769148111343,76.506072282791,74.743664264679,61.369287967682,78.243470191956,58.22719335556,79.818648099899,71.755594015121,81.372952461243,63.736498355865,68.57123374939,81.444787979126,81.413686275482,61.266577243805,69.163602590561,78.598725795746,68.473124504089,78.754723072052,66.972428560257,71.951478719711,82.29238986969,59.952741861343,79.269772768021,72.549116611481,80.705517530441,64.782702922821,70.764446258545,79.400646686554,81.541079282761,57.148331403732,72.969663143158,63.669842481613,74.610215425491,68.386441469193,76.595640182495,76.262271404266,55.313801765442,71.510189771652,78.678697347641,68.444216251373,76.363080739975,68.887132406235,69.248086214066,79.357004165649,63.672822713852,79.467862844467,71.568363904953,80.974835157394,63.054382801056,67.317694425583,79.933571815491,80.550909042358,62.527853250504,71.514940261841,79.272019863129,31.277093291283,],];
+  var plot2811_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2811 = jQuery.jqplot ('chart_cat_2811', plot2811_data, {
+    seriesColors:['#0a92f3','#3a6db6','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#138ae7','#7e3a61','#922c49','#922c49','#922c49','#615086','#138ae7','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#75426d','#883355','#883355','#a51d31','#7e3a61','#af1624','#75426d','#922c49','#9b243d','#922c49','#883355','#922c49','#9b243d','#922c49','#7e3a61','#9b243d','#75426d','#9b243d','#922c49','#a51d31','#7e3a61','#883355','#a51d31','#a51d31','#7e3a61','#883355','#9b243d','#883355','#9b243d','#883355','#922c49','#a51d31','#75426d','#9b243d','#922c49','#a51d31','#7e3a61','#922c49','#9b243d','#a51d31','#75426d','#922c49','#7e3a61','#922c49','#883355','#9b243d','#9b243d','#75426d','#922c49','#9b243d','#883355','#9b243d','#883355','#883355','#9b243d','#7e3a61','#9b243d','#922c49','#a51d31','#7e3a61','#883355','#9b243d','#a51d31','#7e3a61','#922c49','#9b243d','#4466aa',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2811_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2811_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2811");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2812" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2812(){
+    document.getElementById('chart_cat_2812').innerHTML = '';
+  var plot2812_data = [[0,28.4823179245,0,0,0,0,0,0,0,0,0,0,0,0,11.752510815859,92.256188392639,87.749499082565,90.250903367996,92.940700054169,30.321943759918,0,0,0,0,0,0,0,0,0,0,0,0,13.684858381748,90.744525194168,86.976736783981,90.369135141373,92.843109369278,79.553556442261,90.009886026382,93.179261684418,79.225367307663,91.792833805084,90.430915355682,81.238490343094,97.565102577209,85.678505897522,90.286576747894,85.378617048264,90.330648422241,92.964023351669,77.465069293976,90.110850334167,92.252826690674,82.379174232483,98.277795314789,92.125606536865,84.701365232468,87.672477960587,90.191823244095,93.472272157669,79.890257120132,89.854258298874,93.539828062057,80.379217863083,97.217804193497,84.704822301865,84.593391418457,93.514847755432,90.832549333572,84.498602151871,92.587685585022,89.709204435349,93.057322502136,78.999936580658,89.148020744324,92.882353067398,82.905679941177,97.734534740448,84.416919946671,89.646303653717,91.443371772766,91.081029176712,94.411045312881,89.422875642776,89.763826131821,94.100683927536,81.018626689911,97.377091646194,84.205865859985,84.410935640335,93.442016839981,90.50949215889,85.075533390045,87.309914827347,90.602260828018,92.976707220078,83.400934934616,89.518225193024,93.360370397568,48.21101129055,],];
+  var plot2812_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2812 = jQuery.jqplot ('chart_cat_2812', plot2812_data, {
+    seriesColors:['#0a92f3','#3a6db6','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#1d83db','#b90f18','#af1624','#b90f18','#b90f18','#4466aa','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#1d83db','#b90f18','#af1624','#b90f18','#b90f18','#9b243d','#b90f18','#b90f18','#9b243d','#b90f18','#b90f18','#a51d31','#c2070c','#af1624','#b90f18','#af1624','#b90f18','#b90f18','#9b243d','#b90f18','#b90f18','#a51d31','#c2070c','#b90f18','#a51d31','#af1624','#b90f18','#b90f18','#9b243d','#af1624','#b90f18','#a51d31','#c2070c','#a51d31','#a51d31','#b90f18','#b90f18','#a51d31','#b90f18','#af1624','#b90f18','#9b243d','#af1624','#b90f18','#a51d31','#c2070c','#a51d31','#af1624','#b90f18','#b90f18','#b90f18','#af1624','#af1624','#b90f18','#a51d31','#c2070c','#a51d31','#a51d31','#b90f18','#b90f18','#af1624','#af1624','#b90f18','#b90f18','#a51d31','#af1624','#b90f18','#615086',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2812_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2812_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2812");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2813" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2813(){
+    document.getElementById('chart_cat_2813').innerHTML = '';
+  var plot2813_data = [[0,28.432920575142,0,0,0,0,0,0,0,0,0,0,0,0,12.061963230371,98.638093471527,93.580448627472,98.856055736542,98.856055736542,36.114344000816,0,0,0,0,0,0,0,0,0,0,0,0,14.3444865942,97.880953550339,92.77845621109,98.750275373459,98.750275373459,92.611104249954,98.685032129288,98.685032129288,92.392033338547,98.670345544815,98.670345544815,93.370056152344,98.812788724899,98.812788724899,98.812788724899,91.011506319046,98.618775606155,98.618775606155,91.161715984344,98.953425884247,98.953425884247,91.589814424515,98.790264129639,98.790264129639,98.790264129639,93.226909637451,98.92058968544,98.92058968544,93.212550878525,98.758172988892,98.758172988892,93.198829889297,98.593509197235,98.593509197235,96.336269378662,94.747364521027,98.404312133789,98.404312133789,98.404312133789,98.404312133789,98.404312133789,92.276471853256,98.469507694244,98.469507694244,93.252938985825,98.244941234589,98.244941234589,98.244941234589,92.861568927765,98.789143562317,98.789143562317,98.789143562317,98.789143562317,98.789143562317,93.667882680893,98.479682207108,98.479682207108,95.382261276245,95.603722333908,98.875111341476,98.875111341476,92.554980516434,98.764252662659,98.764252662659,93.787729740143,98.785662651062,98.785662651062,56.242215633392,],];
+  var plot2813_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2813 = jQuery.jqplot ('chart_cat_2813', plot2813_data, {
+    seriesColors:['#0a92f3','#3a6db6','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#1d83db','#c2070c','#b90f18','#c2070c','#c2070c','#4e5f9e','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#1d83db','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#75426d',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2813_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2813_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2813");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2814" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2814(){
+    document.getElementById('chart_cat_2814').innerHTML = '';
+  var plot2814_data = [[85.95529049635,83.753083646297,96.92018032074,99.90508556366,99.90508556366,99.90508556366,99.90508556366,99.90508556366,99.90508556366,99.90508556366,99.90508556366,99.90508556366,99.90508556366,99.90508556366,99.90508556366,58.031570911407,48.183450102807,64.569447934627,52.860367298126,69.568181037903,99.990099668503,99.990099668503,99.990099668503,99.990099668503,99.990099668503,97.346781939268,96.748213469982,99.981439113617,99.981439113617,98.878911137581,99.7578561306,99.7578561306,99.7578561306,57.988953590393,51.119765639305,60.612481832504,48.199161887169,46.307024359703,65.480315685272,70.050150156021,32.863613963127,54.768443107605,67.321348190308,45.922213792801,68.598163127899,43.817067146301,63.534677028656,50.935189425945,65.180343389511,46.005317568779,41.626226902008,62.702959775925,68.407866358757,39.524060487747,85.144412564114,57.506370544434,58.546054363251,55.561864376068,66.383683681488,58.31087231636,41.624262928963,58.23934674263,69.984441995621,33.899438381195,65.724790096283,57.790946960449,51.750922203064,66.917884349823,51.387077569962,50.61548948288,56.206861138344,65.57183265686,57.646441459656,41.624021530151,55.65642118454,71.068060398102,35.400956869125,65.72557091713,55.494827032089,54.047340154648,56.582671403885,66.261549293995,76.515626907349,48.198325932026,65.348374843597,70.355212688446,35.181897878647,65.725028514862,56.334608793259,51.016634702682,68.225085735321,50.033283233643,53.569114208221,51.742331683636,65.915143489838,58.799648284912,41.616868972778,57.736718654633,71.215218305588,17.835302650928,],];
+  var plot2814_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2814 = jQuery.jqplot ('chart_cat_2814', plot2814_data, {
+    seriesColors:['#af1624','#a51d31','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#75426d','#615086','#7e3a61','#6b4979','#883355','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#75426d','#6b4979','#7e3a61','#615086','#615086','#883355','#922c49','#4466aa','#6b4979','#883355','#615086','#883355','#575792','#7e3a61','#6b4979','#883355','#615086','#575792','#7e3a61','#883355','#4e5f9e','#af1624','#75426d','#75426d','#75426d','#883355','#75426d','#575792','#75426d','#883355','#4466aa','#883355','#75426d','#6b4979','#883355','#6b4979','#6b4979','#75426d','#883355','#75426d','#575792','#75426d','#922c49','#4e5f9e','#883355','#75426d','#6b4979','#75426d','#883355','#9b243d','#615086','#883355','#922c49','#4e5f9e','#883355','#75426d','#6b4979','#883355','#6b4979','#6b4979','#6b4979','#883355','#75426d','#575792','#75426d','#922c49','#277cce',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2814_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2814_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2814");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2815" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2815(){
+    document.getElementById('chart_cat_2815').innerHTML = '';
+  var plot2815_data = [[0,28.480967879295,0,0,0,0,0,0,0,0,0,0,0,0,10.148570686579,98.246949911118,93.992114067078,98.873543739319,98.873543739319,35.838651657104,0,0,0,0,0,0,0,0,0,0,0,0,14.734061062336,97.905200719833,92.666918039322,98.608309030533,98.608309030533,92.879289388657,98.710918426514,98.710918426514,92.46991276741,98.706978559494,98.706978559494,93.398517370224,98.816990852356,98.816990852356,98.816990852356,91.033011674881,98.628377914429,98.628377914429,91.227012872696,99.010223150253,99.010223150253,91.609454154968,98.808908462524,98.808908462524,98.808908462524,93.260824680328,98.945033550262,98.945033550262,93.206685781479,98.7453520298,98.7453520298,93.182200193405,98.37920665741,98.37920665741,98.127955198288,93.299549818039,98.434627056122,98.434627056122,98.434627056122,98.434627056122,98.434627056122,92.19143986702,98.495864868164,98.495864868164,93.304401636124,98.392814397812,98.392814397812,98.392814397812,93.542039394379,98.663914203644,98.663914203644,98.663914203644,98.663914203644,98.663914203644,93.497306108475,98.540461063385,98.540461063385,96.176797151566,94.648653268814,98.735988140106,98.735988140106,93.011593818665,98.754531145096,98.754531145096,93.730425834656,98.831284046173,98.831284046173,57.01864361763,],];
+  var plot2815_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2815 = jQuery.jqplot ('chart_cat_2815', plot2815_data, {
+    seriesColors:['#0a92f3','#3a6db6','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#1d83db','#c2070c','#b90f18','#c2070c','#c2070c','#4e5f9e','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#1d83db','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#75426d',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2815_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2815_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2815");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2816" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2816(){
+    document.getElementById('chart_cat_2816').innerHTML = '';
+  var plot2816_data = [[0,28.447765111923,0,0,0,0,0,0,0,0,0,0,0,0,9.9767670035362,98.212563991547,93.318313360214,98.644667863846,98.644667863846,37.15468943119,0,0,0,0,0,0,0,0,0,0,0,0,13.121691346169,97.875010967255,92.712324857712,98.514848947525,98.514848947525,92.660856246948,98.459380865097,98.459380865097,92.239779233932,98.462402820587,98.462402820587,93.110591173172,98.599523305893,98.599523305893,98.599523305893,90.720146894455,98.228681087494,98.228681087494,90.890365839005,98.767364025116,98.767364025116,91.459846496582,98.579221963882,98.579221963882,98.579221963882,93.669521808624,98.287516832352,98.287516832352,93.00742149353,98.417437076569,98.417437076569,92.91427731514,98.047006130219,98.047006130219,96.8097448349,93.25715303421,98.045086860657,98.045086860657,98.045086860657,98.045086860657,98.045086860657,91.828811168671,97.989070415497,97.989070415497,93.458956480026,97.324597835541,97.324597835541,97.324597835541,93.230670690536,98.318308591843,98.318308591843,98.318308591843,98.318308591843,98.318308591843,93.208903074265,98.053395748138,98.053395748138,94.98787522316,95.347374677658,98.578280210495,98.578280210495,93.488782644272,98.098260164261,98.098260164261,93.668228387833,98.6781001091,98.6781001091,55.687576532364,],];
+  var plot2816_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2816 = jQuery.jqplot ('chart_cat_2816', plot2816_data, {
+    seriesColors:['#0a92f3','#3a6db6','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#138ae7','#c2070c','#b90f18','#c2070c','#c2070c','#4e5f9e','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#1d83db','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#b90f18','#c2070c','#c2070c','#75426d',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2816_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2816_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2816");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2817" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2817(){
+    document.getElementById('chart_cat_2817').innerHTML = '';
+  var plot2817_data = [[0,19.71802264452,0,0,0,0,0,0,0,0,0,0,0,0,11.420165002346,54.718148708344,57.827180624008,65.141308307648,54.079395532608,10.952418297529,0,0,0,0,0,0,0,0,0,0,0,0,12.892164289951,57.215464115143,59.816861152649,65.062618255615,48.199236392975,50.119918584824,67.154842615128,71.62321805954,36.548280715942,57.172179222107,70.61430811882,46.450364589691,71.347630023956,46.008017659187,63.530796766281,56.242954730988,65.799903869629,48.831391334534,43.814790248871,61.942204087972,71.182006597519,39.952170848846,67.90137887001,46.002557873726,57.847481966019,57.216387987137,65.75762629509,57.969224452972,43.816822767258,59.497648477554,72.754716873169,36.42338886857,67.918246984482,56.636422872543,50.717151165009,68.393176794052,54.2933344841,50.563210248947,59.804575145244,66.597872972488,61.837291717529,43.817356228828,57.095247507095,72.060573101044,37.348720431328,67.917996644974,58.868718147278,57.246148586273,58.547765016556,61.945617198944,48.197966814041,43.815928697586,61.028110980988,70.061039924622,36.413130164146,66.910797357559,55.640411376953,51.712113618851,69.124454259872,49.180194735527,53.678947687149,57.292896509171,66.076469421387,59.559518098831,41.626417636871,59.108644723892,72.257143259048,17.613156139851,],];
+  var plot2817_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2817 = jQuery.jqplot ('chart_cat_2817', plot2817_data, {
+    seriesColors:['#0a92f3','#277cce','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#1d83db','#6b4979','#75426d','#883355','#6b4979','#1d83db','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#1d83db','#75426d','#75426d','#883355','#615086','#6b4979','#883355','#922c49','#4e5f9e','#75426d','#922c49','#615086','#922c49','#615086','#7e3a61','#75426d','#883355','#615086','#575792','#7e3a61','#922c49','#4e5f9e','#883355','#615086','#75426d','#75426d','#883355','#75426d','#575792','#75426d','#922c49','#4e5f9e','#883355','#75426d','#6b4979','#883355','#6b4979','#6b4979','#75426d','#883355','#7e3a61','#575792','#75426d','#922c49','#4e5f9e','#883355','#75426d','#75426d','#75426d','#7e3a61','#615086','#575792','#7e3a61','#922c49','#4e5f9e','#883355','#75426d','#6b4979','#883355','#615086','#6b4979','#75426d','#883355','#75426d','#575792','#75426d','#922c49','#277cce',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2817_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2817_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2817");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2818" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2818(){
+    document.getElementById('chart_cat_2818').innerHTML = '';
+  var plot2818_data = [[0,19.716443121433,0,0,0,0,0,0,0,0,0,0,0,0,10.866091400385,54.835146665573,55.448085814714,65.145736932755,56.887179613113,10.952440649271,0,0,0,0,0,0,0,0,0,0,0,0,13.549479842186,56.557780504227,57.59351849556,62.900994718075,48.199665546417,48.676085472107,66.475766897202,71.068125963211,35.789787769318,56.224280595779,69.173067808151,45.891144871712,73.342418670654,46.008771657944,63.535630702972,56.370556354523,65.795755386353,48.712053894997,46.006935834885,60.031896829605,68.859964609146,35.420648753643,67.914134263992,48.198962211609,56.656235456467,53.784435987473,65.94250202179,58.034491539001,43.814943730831,59.49267745018,73.05428981781,36.147373914719,67.916429042816,57.637828588486,51.900428533554,71.31569981575,51.362061500549,52.515834569931,60.516428947448,66.08881354332,59.670895338058,46.006882190704,57.104563713074,71.460253000259,37.940835952759,65.724712610245,57.759845256805,56.160490214824,57.632996328175,62.863576412201,46.00815474987,46.007725596428,64.948201179504,72.913008928299,37.554895877838,67.766362428665,57.198178768158,52.336221933365,71.212124824524,51.468473672867,54.183435440063,57.391357421875,65.999329090118,61.229079961777,41.625684499741,58.095699548721,72.883862257004,18.000018596649,],];
+  var plot2818_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2818 = jQuery.jqplot ('chart_cat_2818', plot2818_data, {
+    seriesColors:['#0a92f3','#277cce','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#1d83db','#6b4979','#75426d','#883355','#75426d','#1d83db','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#1d83db','#75426d','#75426d','#7e3a61','#615086','#615086','#883355','#922c49','#4e5f9e','#75426d','#883355','#615086','#922c49','#615086','#7e3a61','#75426d','#883355','#615086','#615086','#7e3a61','#883355','#4e5f9e','#883355','#615086','#75426d','#6b4979','#883355','#75426d','#575792','#75426d','#922c49','#4e5f9e','#883355','#75426d','#6b4979','#922c49','#6b4979','#6b4979','#7e3a61','#883355','#75426d','#615086','#75426d','#922c49','#4e5f9e','#883355','#75426d','#75426d','#75426d','#7e3a61','#615086','#615086','#7e3a61','#922c49','#4e5f9e','#883355','#75426d','#6b4979','#922c49','#6b4979','#6b4979','#75426d','#883355','#7e3a61','#575792','#75426d','#922c49','#277cce',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2818_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2818_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2818");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; display: none;"><div id="chart_cat_2819" style="height:400px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_2819(){
+    document.getElementById('chart_cat_2819').innerHTML = '';
+  var plot2819_data = [[0,28.480634093285,0,0,0,0,0,0,0,0,0,0,0,0,12.234897911549,92.030382156372,88.194864988327,90.31765460968,92.86994934082,27.416634559631,0,0,0,0,0,0,0,0,0,0,0,0,14.940282702446,90.223562717438,90.600770711899,89.121377468109,91.928213834763,80.902129411697,89.978915452957,93.013006448746,79.725629091263,92.325413227081,90.018552541733,81.697642803192,97.401344776154,85.791885852814,89.919328689575,86.367750167847,89.630526304245,92.941945791245,77.972763776779,90.160548686981,91.957974433899,82.996952533722,98.330283164978,92.186176776886,84.682947397232,88.09729218483,90.51673412323,93.181365728378,80.467134714127,89.886331558228,93.503415584564,80.615842342377,97.235864400864,84.769904613495,84.521412849426,93.920946121216,90.901452302933,84.844708442688,92.482769489288,89.60936665535,93.194115161896,79.343098402023,89.188647270203,93.195343017578,80.73702454567,97.621864080429,84.40455198288,89.16757106781,92.23935008049,90.757811069489,94.266873598099,89.583873748779,89.670652151108,93.892800807953,81.611096858978,97.375357151031,84.789454936981,84.308737516403,93.512827157974,90.613913536072,85.092562437057,87.579870223999,90.239328145981,93.260616064072,83.545082807541,89.505052566528,93.296957015991,47.739699482918,],];
+  var plot2819_ticks = [['1'],[''],[''],[''],['5'],[''],[''],[''],[''],['10'],[''],[''],[''],[''],['15'],[''],[''],[''],[''],['20'],[''],[''],[''],[''],['25'],[''],[''],[''],[''],['30'],[''],[''],[''],[''],['35'],[''],[''],[''],[''],['40'],[''],[''],[''],[''],['45'],[''],[''],[''],[''],['50'],[''],[''],[''],[''],['55'],[''],[''],[''],[''],['60'],[''],[''],[''],[''],['65'],[''],[''],[''],[''],['70'],[''],[''],[''],[''],['75'],[''],[''],[''],[''],['80'],[''],[''],[''],[''],['85'],[''],[''],[''],[''],['90'],[''],[''],[''],[''],['95'],[''],[''],[''],[''],['100'],];
+  var plot2819 = jQuery.jqplot ('chart_cat_2819', plot2819_data, {
+    seriesColors:['#0a92f3','#3a6db6','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#1d83db','#b90f18','#af1624','#b90f18','#b90f18','#3a6db6','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#0a92f3','#1d83db','#b90f18','#b90f18','#af1624','#b90f18','#a51d31','#af1624','#b90f18','#9b243d','#b90f18','#b90f18','#a51d31','#c2070c','#af1624','#af1624','#af1624','#af1624','#b90f18','#9b243d','#b90f18','#b90f18','#a51d31','#c2070c','#b90f18','#a51d31','#af1624','#b90f18','#b90f18','#a51d31','#af1624','#b90f18','#a51d31','#c2070c','#a51d31','#a51d31','#b90f18','#b90f18','#a51d31','#b90f18','#af1624','#b90f18','#9b243d','#af1624','#b90f18','#a51d31','#c2070c','#a51d31','#af1624','#b90f18','#b90f18','#b90f18','#af1624','#af1624','#b90f18','#a51d31','#c2070c','#a51d31','#a51d31','#b90f18','#b90f18','#af1624','#af1624','#b90f18','#b90f18','#a51d31','#af1624','#b90f18','#615086',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {varyBarColor: true,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot2819_ticks,label: 'Time Slice',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,tickRenderer: $.jqplot.CanvasAxisTickRenderer,tickOptions: {angle: -30, fontSize: '10pt'}},
+      yaxis: {label: 'Thread Usage',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return (pointIndex + 1)+' - '+plot2819_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'count', yaxis:'yaxis', },],
+  });
+  var div_chart = document.getElementById ("chart_cat_2819");
+  var series  = div_chart.getElementsByClassName ("jqplot-table-legend");
+  for (let i = 0; i < series.length; i++) {
+    series[i].style["display"] = "none";
+  }
+  }
+</script><script>
+function _onresize () {
+  const queryString = window.location.search;
+  const params = new URLSearchParams(queryString);
+  let thread_id = params.get("id");
+  const tid  = thread_id.match(/_[0-9]+$/g);
+  const root = thread_id.replace (/_[0-9]+_[0-9]+$/, "");
+  if (root != thread_id) {
+     thread_id = root+tid;
+  }
+  if (false) {}
+  else if (thread_id == "1_lbw-Lenovo-G5000-IRH8_94848") {
+  const d = document.getElementById ("chart_cat_2806");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2806()
+  });
+  }
+  else if (thread_id == "3_lbw-Lenovo-G5000-IRH8_96787") {
+  const d = document.getElementById ("chart_cat_2814");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2814()
+  });
+  }
+  else if (thread_id == "2_lbw-Lenovo-G5000-IRH8_95930") {
+  const d = document.getElementById ("chart_cat_2808");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2808()
+  });
+  }
+  else if (thread_id == "3_lbw-Lenovo-G5000-IRH8_96892") {
+  const d = document.getElementById ("chart_cat_2817");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2817()
+  });
+  }
+  else if (thread_id == "3_lbw-Lenovo-G5000-IRH8_96893") {
+  const d = document.getElementById ("chart_cat_2818");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2818()
+  });
+  }
+  else if (thread_id == "3_lbw-Lenovo-G5000-IRH8_96897") {
+  const d = document.getElementById ("chart_cat_2813");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2813()
+  });
+  }
+  else if (thread_id == "3_lbw-Lenovo-G5000-IRH8_96896") {
+  const d = document.getElementById ("chart_cat_2816");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2816()
+  });
+  }
+  else if (thread_id == "2_lbw-Lenovo-G5000-IRH8_95953") {
+  const d = document.getElementById ("chart_cat_2809");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2809()
+  });
+  }
+  else if (thread_id == "3_lbw-Lenovo-G5000-IRH8_96898") {
+  const d = document.getElementById ("chart_cat_2815");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2815()
+  });
+  }
+  else if (thread_id == "3_lbw-Lenovo-G5000-IRH8_96895") {
+  const d = document.getElementById ("chart_cat_2819");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2819()
+  });
+  }
+  else if (thread_id == "0_lbw-Lenovo-G5000-IRH8_93738") {
+  const d = document.getElementById ("chart_cat_2805");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2805()
+  });
+  }
+  else if (thread_id == "2_lbw-Lenovo-G5000-IRH8_95951") {
+  const d = document.getElementById ("chart_cat_2811");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2811()
+  });
+  }
+  else if (thread_id == "1_lbw-Lenovo-G5000-IRH8_94943") {
+  const d = document.getElementById ("chart_cat_2807");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2807()
+  });
+  }
+  else if (thread_id == "2_lbw-Lenovo-G5000-IRH8_95952") {
+  const d = document.getElementById ("chart_cat_2810");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2810()
+  });
+  }
+  else if (thread_id == "3_lbw-Lenovo-G5000-IRH8_96894") {
+  const d = document.getElementById ("chart_cat_2812");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+  $(document).ready(function(){
+     __generate_chart_2812()
+  });
+  }
+}
+addLoadEvent(function(){
+   _onresize();
+});
+var resizeId;
+window.addEventListener("resize", function() {
+  clearTimeout(resizeId);
+  resizeId = setTimeout(_onresize, 250);
+});
+</script>
+
+  <div id="MaqaoModal" class="maqao_modal">
+    <div class="maqao_modal-content">
+      <div class="maqao_modal-header">
+        <span class="maqao_close">&times;</span>
+      </div>
+      <div id="maqao_modal-body" class="maqao_modal-body">
+      </div>
+    </div>
+  </div>
+</div><script>
+var tooltips_texts = [];
+var modal = document.getElementById('MaqaoModal');
+var span = document.getElementsByClassName("maqao_close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx) === '' ? -1: (getCellValue(asc ? a : b, idx).replace(/\s/g,'')), 
+      getCellValue(asc ? b : a, idx) === '' ? -1: (getCellValue(asc ? b : a, idx).replace(/\s/g,'')));
+addLoadEvent(function(){
+  document.querySelectorAll('._fixed_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+  })));
+});
+addLoadEvent(function(){
+  document.querySelectorAll('._tree_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    let last_id = "";
+    const t_outermost = new Array ();
+    const t_children  = new Map ();
+    for (let i = 1, row; row = table.rows[i]; i++) {
+      if (row.classList.contains ("_outer_row")) {
+        t_outermost.push (row);
+        last_id = row.id;
+        t_children [last_id] = new Array ();
+      }
+      else {
+        t_children [last_id].push (row);
+      }
+    }
+    t_outermost.sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc));
+    for (let i = 0, row; row = t_outermost[i]; i++) {
+      table.appendChild(row)
+      for (let j = 0, child; child = t_children[row.id][j]; j++) {
+        table.appendChild(child)
+      }
+    }
+  })));
+});
+async function downloadFileAsCSV(__table__) {
+  if ("showSaveFilePicker" in self) {
+    const pickerOpts = {
+      types: [
+        {
+          description: "CSV File",
+          accept: {
+            "text/plain": [".csv"],
+          },
+        },
+      ],
+      excludeAcceptAllOption: true,
+      multiple: false,
+      startIn: "downloads",
+    };
+    // Select the file
+    let newHandle;
+    try {
+       newHandle = await window.showSaveFilePicker(pickerOpts);
+    }
+    catch (error) {
+       return ;
+    }
+    // Open it, write it, then close it
+    const writableStream = await newHandle.createWritable();
+    for (var i = 0, row; row = __table__.rows[i]; i++) {
+      let str_row = "";
+      for (var j = 0, col; col = row.cells[j]; j++) {
+        let clean_text = col.innerText.replace (/^[^a-zA-Z0-9_]+/, "");
+        clean_text =        clean_text.replace (/\+$/, "");
+        str_row += clean_text + ";";
+      }
+      await writableStream.write(str_row+"\n");
+    }
+    await writableStream.close();
+  }
+  else {
+    window.alert ("feature not available for this web browser");
+  }
+}
+function __disable_CSV_generator_buttons (__ids__){
+  if ((!("showSaveFilePicker" in self))
+  &&  __ids__) {
+    for (var i = 0, bid; bid = __ids__[i]; i++) {
+       let button = document.getElementById (bid);
+       if (button) {
+         button.style.display = "none";
+       }
+    }
+  }
+};
+function _check_all_checkbox_ (obj_id, opts_ids) {
+  var obj   = document.getElementById (obj_id);
+  var opts  = window[opts_ids];
+  var count = 0
+  for (i = 0; i < opts.length; i++) {
+    var obj_s = document.getElementById(opts[i]);
+    if (obj_s && obj_s.checked) {
+      count ++;
+    }
+  }
+  if (count == 0) {
+    obj.value = "Select all";
+  }
+  else if (count == opts.length) {
+    obj.value = "Select none";
+  }
+}
+// Fonction for table selector
+function click_table_menu (c, obj_id, opt_ids) {
+  var is_checked = document.getElementById (c).checked;
+  localStorage.setItem(c, is_checked);
+  $("."+c).each(function(index, element) {
+    if (is_checked) {
+      element.classList.remove("_tcol_hidden");
+    }
+    else {
+      element.classList.add("_tcol_hidden");
+    }
+  });
+  if (obj_id != undefined) {
+    _check_all_checkbox_ (obj_id, opt_ids)
+  }
+}
+function set_all_table_menu (obj, var_opt_ids) {
+  var opt_ids = window[var_opt_ids];
+  var is_selected = true
+  if (obj.value == "Select all") {
+    is_selected = false;
+  }
+  for (i = 0; i < opt_ids.length; i++) {
+    var obj_s = document.getElementById(opt_ids[i]);
+    if (obj_s && is_selected == obj_s.checked) {
+      obj_s.checked = !obj_s.checked;
+      click_table_menu (opt_ids[i]);
+    }
+  }
+  if (is_selected == false) {
+    obj.value = "Select none";
+  } else {
+    obj.value = "Select all";
+  }
+  localStorage.setItem(obj.id, obj.value);
+}
+// Script for accordion box
+function _click_accordion_header(obj) {
+  var content = obj.nextSibling;
+  content.classList.toggle('collapsed');
+  obj.classList.toggle('collapsed');
+  obj.parentNode.classList.toggle('collapsed');
+  // Check if the box must be openned ...
+  if (obj.classList.contains ('collapsed'))
+  {
+    obj.firstChild.textContent = "\u25B6";
+  }
+  // or closed.
+  else 
+  {
+    obj.firstChild.textContent = "\u25BC";
+  }
+  if (typeof _onresize === "function") {
+    _onresize ();
+  }
+}
+  // Script for paged table
+function _click_paged_prev(obj) {
+  var pages_content_id = '_paged_tables_page_' + obj.parentNode.parentNode.id.substr (obj.parentNode.parentNode.id.lastIndexOf('_') + 1);
+  var pages_content = document.getElementById(pages_content_id).innerHTML;
+  var max_pages = pages_content.substr (pages_content.lastIndexOf('/') + 1);
+  var cur_page  = pages_content.substring (pages_content.lastIndexOf(' ') + 1, pages_content.lastIndexOf('/'));
+  max_pages = Number (max_pages);
+  cur_page  = Number (cur_page);
+  if (cur_page > 1) {
+    var div_paged = obj.parentNode.parentNode.id;
+    var i;
+    var x = document.getElementsByClassName(div_paged + '_' + (cur_page - 1));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    x = document.getElementsByClassName(div_paged + '_' + (cur_page - 2));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+  document.getElementById(pages_content_id).textContent = "Page " + (cur_page - 1) + "/" + max_pages;
+  }
+}
+function _click_paged_next(obj) {
+  var pages_content_id = '_paged_tables_page_' + obj.parentNode.parentNode.id.substr (obj.parentNode.parentNode.id.lastIndexOf('_') + 1);
+  var pages_content = document.getElementById(pages_content_id).innerHTML;
+  var max_pages = pages_content.substr (pages_content.lastIndexOf('/') + 1);
+  var cur_page  = pages_content.substring (pages_content.lastIndexOf(' ') + 1, pages_content.lastIndexOf('/'));
+  max_pages = Number (max_pages);
+  cur_page  = Number (cur_page);
+  if (cur_page < max_pages) {
+    var div_paged = obj.parentNode.parentNode.id;
+    var i;
+    var x = document.getElementsByClassName(div_paged + '_' + (cur_page - 1));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    x = document.getElementsByClassName(div_paged + '_' + cur_page);
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    document.getElementById(pages_content_id).textContent = "Page " + (cur_page + 1) + "/" + max_pages;
+  }
+}
+// Function for tree table
+function _click_tree(obj) {
+  if (obj.innerHTML == "\u25BA") {
+    obj.textContent = "\u25BC";
+    // Open childs
+    var x = document.getElementsByClassName(obj.parentNode.parentNode.id);
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_tree_hidden');
+    }
+  }
+  else if (obj.innerHTML == "\u25BC") {
+    obj.textContent = "\u25BA";
+    // Close all childs
+    var trs = document.getElementsByTagName('tr');
+    var r   = obj.parentNode.parentNode.id+'_';
+    var re  = new RegExp (r, "g");
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+""
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (! o.classList.contains('_tree_hidden')) {
+          o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BC") {
+          o.firstChild.firstChild.textContent = "\u25BA";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '+';
+        }
+      }
+    }
+    if (obj.parentNode.childNodes.length == 3) {
+      obj.parentNode.childNodes[2].textContent = '+';
+    }
+  }
+}
+function _click_expand (obj) {
+  var trs = document.getElementsByTagName('tr');
+  var r   = obj.parentNode.parentNode.id+'_';
+  var re  = new RegExp (r, "g");
+  // Symbole + => expand all
+  if (obj.textContent == "+") {
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+"";
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (o.classList.contains('_tree_hidden')) {
+           o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BA") {
+          o.firstChild.firstChild.textContent = "\u25BC";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '\u2010';
+        }
+      }
+    }
+    var o = obj.parentNode.parentNode;
+    if (o.firstChild.firstChild.textContent == "\u25BA") {
+      o.firstChild.firstChild.textContent = "\u25BC";
+    }
+    obj.textContent = "\u2010";
+  }
+  // Symbole - => collapse all
+  else {
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+"";
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (! o.classList.contains('_tree_hidden')) {
+           o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BC") {
+          o.firstChild.firstChild.textContent = "\u25BA";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '+';
+        }
+      }
+    }
+    var o = obj.parentNode.parentNode;
+    if (o.firstChild.firstChild.textContent == "\u25BC") {
+      o.firstChild.firstChild.textContent = "\u25BA";
+    }
+    obj.textContent = "+";
+  }
+}
+// Hide unselected tabs
+addLoadEvent(function(){
+  var x = document.getElementsByClassName("_tab_header_li");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].classList.contains("selected_tab") == false) {
+      var e = document.getElementById (x[i].dataset.tab);
+      e.style.display = "none";
+    }
+  }
+});
+// Change tab
+function change_tab (e, baseId) {
+  // Handle tabs
+  var i = 1;
+  while (true) {
+    var id = baseId + i;
+    var t = document.getElementById (id);
+    if (t == null) {
+      break;
+    }
+    if (id == e.dataset.tab) {
+      t.style.removeProperty("display");
+    }
+    else {
+      t.style.display = "none";
+    }
+    i = i + 1;
+  }
+  // Handle headers
+  $(e).siblings().each( function () {
+    this.classList.remove("selected_tab");
+  });
+  e.classList.add("selected_tab");
+}
+function __maqao_legacy_onresize () {
+  var obj = document.getElementById("spacer_page_title");
+  if (obj) {
+    obj.style.height = (document.getElementById("page_title").clientHeight + 20)+"px";
+  }
+  var obj = document.getElementById("page_title");
+  if (obj) {
+    var elems = document.getElementsByClassName ("_first_menu_level")
+    if (obj.clientHeight < 90) {
+      for (var i = 0; i < elems.length; i++) {
+        elems.item(i).style.borderBottomLeftRadius = "";
+        elems.item(i).style.borderBottomRightRadius = "";
+      }
+    }
+    else {
+      for (var i = 0; i < elems.length; i++) {
+        elems.item(i).style.borderBottomLeftRadius = "10px";
+        elems.item(i).style.borderBottomRightRadius = "10px";
+      }
+    }
+  }
+}
+</script>
+</body>
+</html>

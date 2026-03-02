@@ -1,0 +1,103 @@
+/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1106 - 1372
+--------------------------------------------------------------------------------
+
+1106: !$omp parallel default(shared) private(i,i0,i1,i2,i3,j1,j2,j3,ten,  &
+1107: !$omp&  myid,num_threads) shared(best0,best1,n1,n2,n3)
+1108:    do  i=1,mm
+1109:       ten( i, 1 ) = 0.0D0
+1110:       j1( i, 1 ) = 0
+1111:       j2( i, 1 ) = 0
+1112:       j3( i, 1 ) = 0
+1113:       ten( i, 0 ) = 1.0D0
+1114:       j1( i, 0 ) = 0
+1115:       j2( i, 0 ) = 0
+1116:       j3( i, 0 ) = 0
+1117:    enddo
+1118: 
+1119: !$omp do collapse(2)
+1120:    do  i3=2,n3-1
+1121:       do  i2=2,n2-1
+1122:          do  i1=2,n1-1
+1123:             if( z(i1,i2,i3) .gt. ten( 1, 1 ) )then
+1124:                ten(1,1) = z(i1,i2,i3)
+[...]
+1130:             if( z(i1,i2,i3) .lt. ten( 1, 0 ) )then
+1131:                ten(1,0) = z(i1,i2,i3)
+[...]
+1137:          enddo
+1138:       enddo
+1139:    enddo
+1140: !$omp end do
+[...]
+1149: !$ myid = omp_get_thread_num()
+1150: !$ num_threads = omp_get_num_threads()
+[...]
+1157: !$omp master
+1158:       best1 = 0.0D0
+1159:       best0 = 1.0D0
+1160: !$omp end master
+1161: 
+1162: !$omp do ordered schedule(static)
+1163: !$    do i2=1,num_threads
+1164: !$omp ordered
+1165:          if (ten(i1,1) .gt. best1) then
+1166:             best1 = ten(i1,1)
+1167:             jg( 0, i, 1 ) = myid
+1168:          endif
+1169:          if (ten(i0,0) .lt. best0) then
+1170:             best0 = ten(i0,0)
+1171:             jg( 0, i, 0 ) = myid
+1172:          endif
+1173: !$omp end ordered
+1174: !$    end do
+1175: 
+1176:       if (myid .eq. jg( 0, i, 1 )) then
+1177:          jg( 1, i, 1 ) = j1( i1, 1 )
+1178:          jg( 2, i, 1 ) = j2( i1, 1 )
+1179:          jg( 3, i, 1 ) = j3( i1, 1 )
+1180:          i1 = i1-1
+1181:       endif
+1182: 
+1183:       if (myid .eq. jg( 0, i, 0 )) then
+1184:          jg( 1, i, 0 ) = j1( i0, 0 )
+1185:          jg( 2, i, 0 ) = j2( i0, 0 )
+1186:          jg( 3, i, 0 ) = j3( i0, 0 )
+1187:          i0 = i0-1
+1188:       endif
+1189: 
+1190:    enddo
+1191: !$omp end parallel
+[...]
+1331:          if( ten(i,ind) .gt. ten(i+1,ind) )then
+1332: 
+1333:             temp = ten( i+1, ind )
+1334:             ten( i+1, ind ) = ten( i, ind )
+1335:             ten( i, ind ) = temp
+1336: 
+1337:             j_temp           = j1( i+1, ind )
+1338:             j1( i+1, ind ) = j1( i,   ind )
+1339:             j1( i,   ind ) = j_temp
+1340: 
+1341:             j_temp           = j2( i+1, ind )
+1342:             j2( i+1, ind ) = j2( i,   ind )
+1343:             j2( i,   ind ) = j_temp
+1344: 
+1345:             j_temp           = j3( i+1, ind )
+1346:             j3( i+1, ind ) = j3( i,   ind )
+[...]
+1357:          if( ten(i,ind) .lt. ten(i+1,ind) )then
+1358: 
+1359:             temp = ten( i+1, ind )
+1360:             ten( i+1, ind ) = ten( i, ind )
+1361:             ten( i, ind ) = temp
+1362: 
+1363:             j_temp           = j1( i+1, ind )
+1364:             j1( i+1, ind ) = j1( i,   ind )
+1365:             j1( i,   ind ) = j_temp
+1366: 
+1367:             j_temp           = j2( i+1, ind )
+1368:             j2( i+1, ind ) = j2( i,   ind )
+1369:             j2( i,   ind ) = j_temp
+1370: 
+1371:             j_temp           = j3( i+1, ind )
+1372:             j3( i+1, ind ) = j3( i,   ind )

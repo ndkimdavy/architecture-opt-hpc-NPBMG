@@ -1,0 +1,11 @@
+/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1236 - 1243
+--------------------------------------------------------------------------------
+
+1236: !$omp parallel do default(shared) private(i1,i2,i3) collapse(2)
+1237:       do  i3=1,n3
+1238:          do  i2=1,n2
+1239:             do  i1=1,n1
+1240:                z(i1,i2,i3) = 0.0D0
+1241:             enddo
+1242:          enddo
+1243:       enddo

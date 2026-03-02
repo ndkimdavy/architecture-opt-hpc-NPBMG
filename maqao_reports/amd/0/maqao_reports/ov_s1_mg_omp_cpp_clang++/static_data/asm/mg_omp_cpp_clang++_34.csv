@@ -1,0 +1,98 @@
+address;source_location;insn;indent
+0x4044b0;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:840;INC	%RBX;
+0x4044b3;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:840;ADD	%RDX,%R11;
+0x4044b6;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:840;ADD	%RDX,%R14;
+0x4044b9;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:840;ADD	%RDX,%R10;
+0x4044bc;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:840;CMP	%R12,%RBX;
+0x4044bf;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:840;JE	404470 <_ZL7norm2u3PviiiPdS0_iii+0x220>;
+0x4044c1;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:840;CMP	$0x4,%RCX;
+0x4044c5;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;JAE	4044e0 <_ZL7norm2u3PviiiPdS0_iii+0x290>;
+0x4044c7;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;MOV	$0x1,%R8D;
+0x4044cd;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;JMP	404670 <_ZL7norm2u3PviiiPdS0_iii+0x420>;
+0x4044e0;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;CMP	$0x20,%RCX;
+0x4044e4;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;JAE	4044f0 <_ZL7norm2u3PviiiPdS0_iii+0x2a0>;
+0x4044e6;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;XOR	%EDI,%EDI;
+0x4044e8;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;JMP	404608 <_ZL7norm2u3PviiiPdS0_iii+0x3b8>;
+0x4044f0;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VBROADCASTSD	%XMM4,%ZMM4;
+0x4044f6;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VMOVQ	%XMM3,%XMM3;
+0x4044fa;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VXORPD	%XMM8,%XMM8,%XMM8;
+0x4044ff;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;XOR	%R8D,%R8D;
+0x404502;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VXORPD	%XMM9,%XMM9,%XMM9;
+0x404507;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VXORPD	%XMM10,%XMM10,%XMM10;
+0x40450c;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VMOVAPD	%ZMM4,%ZMM5;
+0x404512;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VMOVAPD	%ZMM4,%ZMM6;
+0x404518;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VMOVAPD	%ZMM4,%ZMM7;
+0x40451e;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;XCHG	%AX,%AX;
+0x404520;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;VMOVUPD	-0xc0(%R11,%R8,8),%ZMM11;  (32) 
+0x404528;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;VMOVUPD	-0x80(%R11,%R8,8),%ZMM12;  (32) 
+0x404530;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;VMOVUPD	-0x40(%R11,%R8,8),%ZMM13;  (32) 
+0x404538;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;VMOVUPD	(%R11,%R8,8),%ZMM14;  (32) 
+0x40453f;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;ADD	$0x20,%R8;  (32) 
+0x404543;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;VFMADD231PD	%ZMM11,%ZMM11,%ZMM3;  (32) 
+0x404549;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;VFMADD231PD	%ZMM12,%ZMM12,%ZMM8;  (32) 
+0x40454f;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;VFMADD231PD	%ZMM13,%ZMM13,%ZMM9;  (32) 
+0x404555;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:843;VANDPD	%ZMM2,%ZMM12,%ZMM12;  (32) 
+0x40455b;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;VFMADD231PD	%ZMM14,%ZMM14,%ZMM10;  (32) 
+0x404561;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:843;VANDPD	%ZMM2,%ZMM11,%ZMM11;  (32) 
+0x404567;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:843;VANDPD	%ZMM2,%ZMM13,%ZMM13;  (32) 
+0x40456d;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:844;VMAXPD	%ZMM5,%ZMM12,%ZMM5;  (32) 
+0x404573;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:843;VANDPD	%ZMM2,%ZMM14,%ZMM12;  (32) 
+0x404579;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:844;VMAXPD	%ZMM4,%ZMM11,%ZMM4;  (32) 
+0x40457f;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:844;VMAXPD	%ZMM6,%ZMM13,%ZMM6;  (32) 
+0x404585;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:844;VMAXPD	%ZMM7,%ZMM12,%ZMM7;  (32) 
+0x40458b;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:844;CMP	%R8,%RSI;  (32) 
+0x40458e;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:844;JNE	404520 <_ZL7norm2u3PviiiPdS0_iii+0x2d0>;  (32) 
+0x404590;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VADDPD	%ZMM3,%ZMM8,%ZMM3;
+0x404596;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VADDPD	%ZMM9,%ZMM10,%ZMM9;
+0x40459c;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VMAXPD	%ZMM5,%ZMM4,%ZMM4;
+0x4045a2;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VMAXPD	%ZMM7,%ZMM6,%ZMM5;
+0x4045a8;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VMAXPD	%ZMM5,%ZMM4,%ZMM4;
+0x4045ae;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VADDPD	%ZMM3,%ZMM9,%ZMM3;
+0x4045b4;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VEXTRACTF64X4	$0x1,%ZMM4,%YMM5;
+0x4045bb;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VEXTRACTF64X4	$0x1,%ZMM3,%YMM8;
+0x4045c2;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VMAXPD	%YMM5,%YMM4,%YMM4;
+0x4045c6;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VADDPD	%ZMM8,%ZMM3,%ZMM3;
+0x4045cc;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VEXTRACTF128	$0x1,%YMM4,%XMM5;
+0x4045d2;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VMAXPD	%XMM5,%XMM4,%XMM4;
+0x4045d6;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VEXTRACTF128	$0x1,%YMM3,%XMM8;
+0x4045dc;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VSHUFPD	$0x1,%XMM4,%XMM4,%XMM5;
+0x4045e1;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VADDPD	%XMM3,%XMM8,%XMM3;
+0x4045e5;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VMAXSD	%XMM5,%XMM4,%XMM4;
+0x4045e9;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VSHUFPD	$0x1,%XMM3,%XMM3,%XMM8;
+0x4045ee;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VADDSD	%XMM3,%XMM8,%XMM3;
+0x4045f2;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;CMP	%RSI,%RCX;
+0x4045f5;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;JE	4044b0 <_ZL7norm2u3PviiiPdS0_iii+0x260>;
+0x4045fb;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;MOV	0x20(%RSP),%R8;
+0x404600;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;MOV	%RSI,%RDI;
+0x404603;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;TEST	$0x1c,%CL;
+0x404606;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;JE	404670 <_ZL7norm2u3PviiiPdS0_iii+0x420>;
+0x404608;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VBROADCASTSD	%XMM4,%YMM4;
+0x40460d;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VMOVQ	%XMM3,%XMM3;
+0x404611;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;NOPW	%CS:(%RAX,%RAX,1);
+0x404620;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;VMOVUPD	(%R14,%RDI,8),%YMM5;  (36) 
+0x404626;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;ADD	$0x4,%RDI;  (36) 
+0x40462a;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;VFMADD231PD	%YMM5,%YMM5,%YMM3;  (36) 
+0x40462f;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:843;VANDPD	%YMM1,%YMM5,%YMM5;  (36) 
+0x404633;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:844;VMAXPD	%YMM4,%YMM5,%YMM4;  (36) 
+0x404637;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:844;CMP	%RDI,%R9;  (36) 
+0x40463a;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:844;JNE	404620 <_ZL7norm2u3PviiiPdS0_iii+0x3d0>;  (36) 
+0x40463c;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VEXTRACTF128	$0x1,%YMM3,%XMM5;
+0x404642;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;MOV	%R15,%R8;
+0x404645;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VADDPD	%XMM5,%XMM3,%XMM3;
+0x404649;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VSHUFPD	$0x1,%XMM3,%XMM3,%XMM5;
+0x40464e;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VADDSD	%XMM5,%XMM3,%XMM3;
+0x404652;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VEXTRACTF128	$0x1,%YMM4,%XMM5;
+0x404658;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VMAXPD	%XMM5,%XMM4,%XMM4;
+0x40465c;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VSHUFPD	$0x1,%XMM4,%XMM4,%XMM5;
+0x404661;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;VMAXSD	%XMM5,%XMM4,%XMM4;
+0x404665;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;CMP	%R9,%RCX;
+0x404668;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;JE	4044b0 <_ZL7norm2u3PviiiPdS0_iii+0x260>;
+0x40466e;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;XCHG	%AX,%AX;
+0x404670;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;VMOVSD	(%R10,%R8,8),%XMM5;  (35) 
+0x404676;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;INC	%R8;  (35) 
+0x404679;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:842;VFMADD231SD	%XMM5,%XMM5,%XMM3;  (35) 
+0x40467e;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:843;VANDPD	%XMM0,%XMM5,%XMM5;  (35) 
+0x404682;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:844;VMAXSD	%XMM4,%XMM5,%XMM4;  (35) 
+0x404686;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;CMP	%R8,%R13;  (35) 
+0x404689;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;JNE	404670 <_ZL7norm2u3PviiiPdS0_iii+0x420>;  (35) 
+0x40468b;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:841;JMP	4044b0 <_ZL7norm2u3PviiiPdS0_iii+0x260>;

@@ -1,0 +1,7 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 614 - 617
+--------------------------------------------------------------------------------
+
+614:                 #pragma omp simd
+615: 				for(i1 = 0; i1 < mm1-1; i1++){
+616: 					u[2*i3][2*i2+1][2*i1] += 0.5 * z1[i1];
+617: 					u[2*i3][2*i2+1][2*i1+1] += 0.25*( z1[i1] + z1[i1+1] );

@@ -1,0 +1,318 @@
+{
+  "report": [
+    {
+      "id_str": "Loop 47 - mg_omp_cpp_g++",
+      "module": "mg_omp_cpp_g++",
+      "id": 47,
+      "analysis": "Execution Time: 26 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 26.364824295044,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 50 - mg_omp_cpp_g++",
+      "module": "mg_omp_cpp_g++",
+      "id": 50,
+      "analysis": "Execution Time: 18 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 18.785995483398,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 2 issues ( = data accesses) costing 2 point each.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 2 issues ( = data accesses) costing 2 point each.",
+              "score": 4,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 60 - mg_omp_cpp_g++",
+      "module": "mg_omp_cpp_g++",
+      "id": 60,
+      "analysis": "Execution Time: 12 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 12.580512046814,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 131 - mg_omp_cpp_g++",
+      "module": "mg_omp_cpp_g++",
+      "id": 131,
+      "analysis": "Execution Time: 9 % - Vectorization Ratio: 0.00 % - Vector Length Use: 12.50 %",
+      "coverage": 9.2912673950195,
+      "issues": [
+      ]
+    },
+    {
+      "id_str": "Loop 63 - mg_omp_cpp_g++",
+      "module": "mg_omp_cpp_g++",
+      "id": 63,
+      "analysis": "Execution Time: 8 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 8.3926620483398,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 3 issues ( = data accesses) costing 2 point each.",
+              "score": 6,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 3 issues ( = data accesses) costing 2 point each.",
+              "score": 6,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 76 - mg_omp_cpp_g++",
+      "module": "mg_omp_cpp_g++",
+      "id": 76,
+      "analysis": "Execution Time: 5 % - Vectorization Ratio: 66.67 % - Vector Length Use: 58.33 %",
+      "coverage": 5.0186414718628,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 38,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 8 issues ( = data accesses) costing 2 point each.",
+              "score": 16,
+            },
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (INSERT/EXTRACT, SHUFFLE/PERM, Other_packing) - Simplify data access and try to get stride 1 access. There are 22 issues (= instructions) costing 1 point each.",
+              "score": 22,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 16,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 8 issues ( = data accesses) costing 2 point each.",
+              "score": 16,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 22,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (INSERT/EXTRACT, SHUFFLE/PERM, Other_packing) - Simplify data access and try to get stride 1 access. There are 22 issues (= instructions) costing 1 point each.",
+              "score": 22,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 75 - mg_omp_cpp_g++",
+      "module": "mg_omp_cpp_g++",
+      "id": 75,
+      "analysis": "Execution Time: 3 % - Vectorization Ratio: 97.96 % - Vector Length Use: 98.21 %",
+      "coverage": 3.5605227947235,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 15,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 15 issues (= instructions) costing 1 point each.",
+              "score": 15,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 15,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 15 issues (= instructions) costing 1 point each.",
+              "score": 15,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 115 - mg_omp_cpp_g++",
+      "module": "mg_omp_cpp_g++",
+      "id": 115,
+      "analysis": "Execution Time: 1 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 1.8480808734894,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 22,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 3 issues ( = data accesses) costing 2 point each.",
+              "score": 6,
+            },
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 16 issues (= instructions) costing 1 point each.",
+              "score": 16,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 3 issues ( = data accesses) costing 2 point each.",
+              "score": 6,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 16,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 16 issues (= instructions) costing 1 point each.",
+              "score": 16,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 113 - mg_omp_cpp_g++",
+      "module": "mg_omp_cpp_g++",
+      "id": 113,
+      "analysis": "Execution Time: 1 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 1.5598481893539,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 22,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 3 issues ( = data accesses) costing 2 point each.",
+              "score": 6,
+            },
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 16 issues (= instructions) costing 1 point each.",
+              "score": 16,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 3 issues ( = data accesses) costing 2 point each.",
+              "score": 6,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 16,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 16 issues (= instructions) costing 1 point each.",
+              "score": 16,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 116 - mg_omp_cpp_g++",
+      "module": "mg_omp_cpp_g++",
+      "id": 116,
+      "analysis": "Execution Time: 1 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 1.2377055883408,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

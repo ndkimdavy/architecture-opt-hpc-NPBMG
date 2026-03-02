@@ -1,0 +1,340 @@
+{
+  "report": [
+    {
+      "id_str": "Loop 44 - mg_omp_cpp_intel",
+      "module": "mg_omp_cpp_intel",
+      "id": 44,
+      "analysis": "Execution Time: 25 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 25.217189788818,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 0,
+          "issues": [
+            {
+              "code": "L2_DA_3",
+              "analysis": "[SA] Inefficient vectorization: more than 10% of the vector loads instructions are unaligned - When allocating arrays, don’t forget to align them. There are 0 issues ( = arrays) costing 2 points each",
+              "score": 0,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 42 - mg_omp_cpp_intel",
+      "module": "mg_omp_cpp_intel",
+      "id": 42,
+      "analysis": "Execution Time: 15 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 15.088321685791,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 0,
+          "issues": [
+            {
+              "code": "L2_DA_3",
+              "analysis": "[SA] Inefficient vectorization: more than 10% of the vector loads instructions are unaligned - When allocating arrays, don’t forget to align them. There are 0 issues ( = arrays) costing 2 points each",
+              "score": 0,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 81 - mg_omp_cpp_intel",
+      "module": "mg_omp_cpp_intel",
+      "id": 81,
+      "analysis": "Execution Time: 11 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 11.891826629639,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 0,
+          "issues": [
+            {
+              "code": "L2_DA_3",
+              "analysis": "[SA] Inefficient vectorization: more than 10% of the vector loads instructions are unaligned - When allocating arrays, don’t forget to align them. There are 0 issues ( = arrays) costing 2 points each",
+              "score": 0,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 80 - mg_omp_cpp_intel",
+      "module": "mg_omp_cpp_intel",
+      "id": 80,
+      "analysis": "Execution Time: 6 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 6.3604083061218,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 0,
+          "issues": [
+            {
+              "code": "L2_DA_3",
+              "analysis": "[SA] Inefficient vectorization: more than 10% of the vector loads instructions are unaligned - When allocating arrays, don’t forget to align them. There are 0 issues ( = arrays) costing 2 points each",
+              "score": 0,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 49 - mg_omp_cpp_intel",
+      "module": "mg_omp_cpp_intel",
+      "id": 49,
+      "analysis": "Execution Time: 4 % - Vectorization Ratio: 0.00 % - Vector Length Use: 25.00 %",
+      "coverage": 4.7494912147522,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 20,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 10 issues ( = data accesses) costing 2 point each.",
+              "score": 20,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 20,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 10 issues ( = data accesses) costing 2 point each.",
+              "score": 20,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 19 - mg_omp_cpp_intel",
+      "module": "mg_omp_cpp_intel",
+      "id": 19,
+      "analysis": "Execution Time: 2 % - Vectorization Ratio: 13.99 % - Vector Length Use: 21.19 %",
+      "coverage": 2.9756712913513,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_LC_6",
+              "analysis": "[SA] Presence of a large number of scalar integer instructions - Simplify loop structure, perform loop splitting or perform unroll and jam. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Control Flow Issues",
+          "score": 125,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (121 paths) - Simplify control structure. There are 121 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 125,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_6",
+              "analysis": "[SA] More than 20% of the loads are accessing the stack - Perform loop splitting to decrease pressure on registers. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 125,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (121 paths) - Simplify control structure. There are 121 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 125,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 114 - mg_omp_cpp_intel",
+      "module": "mg_omp_cpp_intel",
+      "id": 114,
+      "analysis": "Execution Time: 2 % - Vectorization Ratio: 10.00 % - Vector Length Use: 29.17 %",
+      "coverage": 2.3566455841064,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (INSERT/EXTRACT, BLEND/MERGE) - Simplify data access and try to get stride 1 access. There are 6 issues (= instructions) costing 1 point each.",
+              "score": 6,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (INSERT/EXTRACT, BLEND/MERGE) - Simplify data access and try to get stride 1 access. There are 6 issues (= instructions) costing 1 point each.",
+              "score": 6,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 109 - mg_omp_cpp_intel",
+      "module": "mg_omp_cpp_intel",
+      "id": 109,
+      "analysis": "Execution Time: 1 % - Vectorization Ratio: 100.00 % - Vector Length Use: 85.00 %",
+      "coverage": 1.8969002962112,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 10,
+          "issues": [
+            {
+              "code": "L2_DA_3",
+              "analysis": "[SA] Inefficient vectorization: more than 10% of the vector loads instructions are unaligned - When allocating arrays, don’t forget to align them. There are 0 issues ( = arrays) costing 2 points each",
+              "score": 0,
+            },
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BLEND/MERGE, SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 10 issues (= instructions) costing 1 point each.",
+              "score": 10,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 10,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BLEND/MERGE, SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 10 issues (= instructions) costing 1 point each.",
+              "score": 10,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 108 - mg_omp_cpp_intel",
+      "module": "mg_omp_cpp_intel",
+      "id": 108,
+      "analysis": "Execution Time: 1 % - Vectorization Ratio: 100.00 % - Vector Length Use: 85.00 %",
+      "coverage": 1.8389797210693,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 10,
+          "issues": [
+            {
+              "code": "L2_DA_3",
+              "analysis": "[SA] Inefficient vectorization: more than 10% of the vector loads instructions are unaligned - When allocating arrays, don’t forget to align them. There are 0 issues ( = arrays) costing 2 points each",
+              "score": 0,
+            },
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BLEND/MERGE, SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 10 issues (= instructions) costing 1 point each.",
+              "score": 10,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 10,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BLEND/MERGE, SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 10 issues (= instructions) costing 1 point each.",
+              "score": 10,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 107 - mg_omp_cpp_intel",
+      "module": "mg_omp_cpp_intel",
+      "id": 107,
+      "analysis": "Execution Time: 1 % - Vectorization Ratio: 100.00 % - Vector Length Use: 85.00 %",
+      "coverage": 1.7701988220215,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 10,
+          "issues": [
+            {
+              "code": "L2_DA_3",
+              "analysis": "[SA] Inefficient vectorization: more than 10% of the vector loads instructions are unaligned - When allocating arrays, don’t forget to align them. There are 0 issues ( = arrays) costing 2 points each",
+              "score": 0,
+            },
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BLEND/MERGE, SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 10 issues (= instructions) costing 1 point each.",
+              "score": 10,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 10,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BLEND/MERGE, SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 10 issues (= instructions) costing 1 point each.",
+              "score": 10,
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

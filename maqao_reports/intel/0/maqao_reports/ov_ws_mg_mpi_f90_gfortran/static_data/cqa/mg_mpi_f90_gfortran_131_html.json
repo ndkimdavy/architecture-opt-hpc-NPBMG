@@ -1,0 +1,386 @@
+{
+  "_cqa_text_report":
+    {
+      "_objects":
+        {
+          "image_col_maj":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/col_maj.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x32_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x32_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x64_128":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_128.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_8x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/8x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_2x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/2x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "tt_insn_vec":
+            {
+              "type": "tooltip",
+              "help": "Portion of vector registers that is actually used. Available only for instructions belonging to a SIMD/vector instructions set (like x86 AVX)",
+              "text": "Vectorization"
+            },
+          "image_1x64_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "tt_Recip_throughput":
+            {
+              "type": "tooltip",
+              "help": "Average number of cycles to retire that instruction if repeated (assuming independent instructions, with no read-after-write dependency)",
+              "text": "Recip. throughput"
+            },
+          "tt_Nb_FU":
+            {
+              "type": "tooltip",
+              "help": "Number of Fused (Front-end) uops",
+              "text": "Nb FU"
+            },
+          "image_vec_align":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/vec_align.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_128":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_128.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "list_path_1_complex_1":
+            {
+              "dynamic": true,
+              "initial": "closed",
+              "type": "list",
+              "lines":
+                [
+                "/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-MPI/MG/mg.f90:824",
+                "/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-MPI/MG/mg.f90:824"
+                ],
+              "header": ""
+            },
+          "image_2x64_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/2x64_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_row_maj":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/row_maj.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            }
+        },
+      "AVG":
+        {
+          "hint":
+            [
+              {
+                "details": "These instructions generate more than one micro-operation and only one of them can be decoded during a cycle and the extra micro-operations increase pressure on execution units.\n<ul><li>ADD: 2 occurrences<<list_path_1_complex_1>></li></ul>",
+                "title": "Complex instructions",
+                "txt": "Detected COMPLEX INSTRUCTIONS.\n"
+              },
+              {
+                "title": "Type of elements and instruction set",
+                "txt": "No instructions are processing arithmetic or math operations on FP elements. This loop is probably writing/copying data or processing integer elements."
+              },
+              {
+                "title": "Matching between your loop (in the source code) and the binary loop",
+                "txt": "The binary loop does not contain any FP arithmetical operations.\nThe binary loop is loading 172 bytes.\nThe binary loop is storing 188 bytes."
+              }
+            ],
+          "expert":
+            [
+              {
+                "title": "General properties",
+                "txt": "<table><tr><td>nb instructions</td><td>70</td></tr><tr><td>nb uops</td><td>67</td></tr><tr><td>loop length</td><td>393</td></tr><tr><td>used x86 registers</td><td>15</td></tr><tr><td>used mmx registers</td><td>0</td></tr><tr><td>used xmm registers</td><td>0</td></tr><tr><td>used ymm registers</td><td>0</td></tr><tr><td>used zmm registers</td><td>0</td></tr><tr><td>nb stack references</td><td>34</td></tr></table>"
+              },
+              {
+                "help": "Front-end corresponds to instructions fetching and decoding into macro/micro operations",
+                "title": "Front-end",
+                "txt": "MACRO FUSION NOT POSSIBLE\nFIT IN UOP CACHE\n<table><tr><td>micro-operation queue</td><td>11.17 cycles</td></tr><tr><td>front end</td><td>11.17 cycles</td></tr></table>"
+              },
+              {
+                "help": "Back-end corresponds to macro/micro operations execution (includes allocating registers, fetching operands etc.)",
+                "title": "Back-end",
+                "txt": "<table><tr><th>      </th><th>P0</th><th>P1</th><th>P2</th><th>P3</th><th>P4</th><th>P5</th><th>P6</th><th>P7</th><th>P8</th><th>P9</th><th>P10</th><th>P11</th></tr><tr><td>uops</td><td>3.70</td><td>3.60</td><td>7.67</td><td>7.67</td><td>12.00</td><td>3.67</td><td>3.50</td><td>12.00</td><td>12.00</td><td>12.00</td><td>3.53</td><td>7.67</td></tr><tr><td>cycles</td><td>3.70</td><td>5.13</td><td>7.67</td><td>7.67</td><td>12.00</td><td>3.67</td><td>3.50</td><td>12.00</td><td>12.00</td><td>12.00</td><td>3.53</td><td>7.67</td></tr></table>\nExecution ports to units layout:\n<ul><li>P0 (256 bits): VPU, BRU, ALU, DIV/SQRT</li><li>P1 (256 bits): ALU, VPU</li><li>P2 (512 bits): load</li><li>P3 (512 bits): load</li><li>P4 (512 bits): store data</li><li>P5 (512 bits): ALU, VPU</li><li>P6: ALU, BRU</li><li>P7: store address</li><li>P8: store address</li><li>P9 (512 bits): store data</li><li>P10: ALU</li><li>P11 (512 bits): load</li></ul>\n<table><tr><td>Cycles executing div or sqrt instructions</td><td>NA</td></tr></table>"
+              },
+              {
+                "title": "Cycles summary",
+                "txt": "<table><tr><td>Front-end</td><td>11.17</td></tr><tr><td>Dispatch</td><td>12.00</td></tr><tr><td>Overall L1</td><td>12.00</td></tr></table>"
+              },
+              {
+                "help": "Proportion of vectorizable instructions that are actually vectorized. Higher is better.",
+                "title": "Vectorization ratios",
+                "txt": "<table><tr><td>all</td><td>0%</td></tr><tr><td>load</td><td>0%</td></tr><tr><td>store</td><td>0%</td></tr><tr><td>mul</td><td>NA (no mul vectorizable/vectorized instructions)</td></tr><tr><td>add-sub</td><td>0%</td></tr><tr><td>fma</td><td>NA (no fma vectorizable/vectorized instructions)</td></tr><tr><td>div/sqrt</td><td>NA (no div/sqrt vectorizable/vectorized instructions)</td></tr><tr><td>other</td><td>0%</td></tr></table>"
+              },
+              {
+                "help": "Effective/average relative length/width used in vector/SIMD registers. Higher is better.",
+                "title": "Vector efficiency ratios",
+                "txt": "<table><tr><td>all</td><td>23%</td></tr><tr><td>load</td><td>23%</td></tr><tr><td>store</td><td>24%</td></tr><tr><td>mul</td><td>NA (no mul vectorizable/vectorized instructions)</td></tr><tr><td>add-sub</td><td>21%</td></tr><tr><td>fma</td><td>NA (no fma vectorizable/vectorized instructions)</td></tr><tr><td>div/sqrt</td><td>NA (no div/sqrt vectorizable/vectorized instructions)</td></tr><tr><td>other</td><td>12%</td></tr></table>"
+              },
+              {
+                "help": "Compare the CQA-computed load/store/compute metrics with the capacity of the core. For instance if CQA computes 24 bytes in the loop in 2 cycles (that is 12 cycles per cycle) and if the core can process up to 16 bytes per cycle, that metric is 75%.",
+                "title": "Cycles and memory resources usage",
+                "txt": "Assuming all data fit into the L1 cache, each iteration of the binary loop takes 12.00 cycles. At this rate:\n<ul><li>7% of peak load performance is reached (14.33 out of 192.00 bytes loaded per cycle (GB/s @ 1GHz))</li><li>12% of peak store performance is reached (15.67 out of 128.00 bytes stored per cycle (GB/s @ 1GHz))</li></ul>"
+              },
+              {
+                "help": "List of bottlenecks detected by CQA. A bottleneck is an issue which reduces front-end throughput below the core capacity.",
+                "title": "Front-end bottlenecks",
+                "txt": "Found no such bottlenecks."
+              },
+              {
+                "title": "ASM code",
+                "txt": "In the binary file, the address of the loop is: 13c50\n\n<table><tr><th>Instruction</th><th><<tt_Nb_FU>></th><th>P0</th><th>P1</th><th>P2</th><th>P3</th><th>P4</th><th>P5</th><th>P6</th><th>P7</th><th>P8</th><th>P9</th><th>P10</th><th>P11</th><th>Latency</th><th><<tt_Recip_throughput>></th><th><<tt_insn_vec>></th></tr><tr><td>IMUL %RBX,%RDI</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3</td><td>1</td><td>N/A</td></tr><tr><td>ADD $0x2,%ECX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>scal (12.5%)</td></tr><tr><td>MOV -0x260(%RBP),%RAX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV %R10,-0x138(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %R11,-0x218(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %R12,-0x220(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>LEA (%RDI,%R8,1),%R14</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>N/A</td></tr><tr><td>MOV %RDI,%RDX</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0.17</td><td>N/A</td></tr><tr><td>MOV %RDI,-0x118(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOVSXD %ECX,%RDI</td><td>1</td><td>0</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>0</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV %RDI,%RSI</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0.17</td><td>N/A</td></tr><tr><td>ADD %R11,%RDX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>MOV %R14,-0x140(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>IMUL %RBX,%RSI</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3</td><td>1</td><td>N/A</td></tr><tr><td>LEA (%R15,%RDX,8),%RDX</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>N/A</td></tr><tr><td>MOV %R8,-0x228(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %RDX,-0x130(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x1d8(%RBP),%RDX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV %R9,-0x230(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>LEA (%RSI,%R8,1),%R13</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>N/A</td></tr><tr><td>MOV %RSI,-0x120(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>LEA (%RSI,%R11,1),%RSI</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>N/A</td></tr><tr><td>MOV %R13,-0x98(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x90(%RBP),%R13</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>MOV %ECX,-0x234(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (12.5%)</td></tr><tr><td>ADD %R13,%RAX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>LEA (%R15,%RSI,8),%R13</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>N/A</td></tr><tr><td>MOV -0xb8(%RBP),%RSI</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV %R10,-0x240(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %R13,-0x128(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x258(%RBP),%R13</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>SUB %RSI,%RDX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>MOV -0x150(%RBP),%RSI</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV %RAX,-0x78(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %RDX,-0x1c8(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>ADD %R14,%RDX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>MOV -0x280(%RBP),%RAX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV %RDX,-0x1d0(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x270(%RBP),%RDX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>ADD %R14,%RSI</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>ADD %R9,%RAX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>MOV %RSI,-0x158(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>ADD %RDX,%R13</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>scal (25.0%)</td></tr><tr><td>MOV %RDI,-0x248(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %R13,-0x1e0(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %RBX,-0x250(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %RAX,-0xd8(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x274(%RBP),%EAX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>NOPW (%RAX,%RAX,1)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.17</td><td>N/A</td></tr><tr><td>MOV -0x230(%RBP),%R9</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x234(%RBP),%ECX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (12.5%)</td></tr><tr><td>MOV -0x240(%RBP),%R10</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x268(%RBP),%R13</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x288(%RBP),%RDX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV -0x238(%RBP),%ESI</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV -0x220(%RBP),%R12</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>ADD %R13,%R10</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>scal (25.0%)</td></tr><tr><td>ADD %R12,-0xb8(%RBP)</td><td>2</td><td>0.20</td><td>0.20</td><td>0.33</td><td>0.33</td><td>0.50</td><td>0.20</td><td>0.20</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0.20</td><td>0.33</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>ADD %R12,-0x90(%RBP)</td><td>2</td><td>0.20</td><td>0.20</td><td>0.33</td><td>0.33</td><td>0.50</td><td>0.20</td><td>0.20</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0.20</td><td>0.33</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>ADD %RDX,%R9</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>scal (25.0%)</td></tr><tr><td>CMP %ESI,%ECX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>scal (12.5%)</td></tr><tr><td>MOV -0x218(%RBP),%R11</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV -0x228(%RBP),%R8</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV -0x248(%RBP),%RDI</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV -0x250(%RBP),%RBX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>MOV -0xb8(%RBP),%R14</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>JE 14b4d &lt;rprj3_+0x12ad&gt;</td><td>1</td><td>0.50</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>N/A</td></tr><tr><td>ADD %R8,%R14</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>MOV %R14,-0x170(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>JMP 13c50 &lt;rprj3_+0x3b0&gt;</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2.08</td><td>N/A</td></tr></table>"
+              }
+            ],
+          "header":
+            [
+            "Warnings:\n<ul><li>The number of fused uops of the instruction [LEA	(%RDI,%R8,1),%R14] is unknown</li><li>The number of fused uops of the instruction [LEA	(%R15,%RDX,8),%RDX] is unknown</li><li>The number of fused uops of the instruction [LEA	(%RSI,%R8,1),%R13] is unknown</li><li>The number of fused uops of the instruction [LEA	(%RSI,%R11,1),%RSI] is unknown</li><li>The number of fused uops of the instruction [LEA	(%R15,%RSI,8),%R13] is unknown</li></ul>",
+            "0% of peak computational performance is used (0.00 out of 48.00 FLOP per cycle (GFLOPS @ 1GHz))"
+            ],
+          "brief":
+            [
+
+            ],
+          "gain":
+            [
+              {
+                "workaround": "<ul><li>Try another compiler or update/tune your current one</li><li>Remove inter-iterations dependences from your loop and make it unit-stride:\n<ul><li>If your arrays have 2 or more dimensions, check whether elements are accessed contiguously and, otherwise, try to permute loops accordingly:\nFortran storage order is column-major: do i do j a(i,j) = b(i,j) (slow, non stride 1) =&gt; do i do j a(j,i) = b(i,j) (fast, stride 1)<<image_col_maj>></li><li>If your loop streams arrays of structures (AoS), try to use structures of arrays instead (SoA):\ndo i a(i)%x = b(i)%x (slow, non stride 1) =&gt; do i a%x(i) = b%x(i) (fast, stride 1)</li></ul></li></ul>",
+                "details": "All SSE/AVX instructions are used in scalar version (process only one data element in vector registers).\nSince your execution units are vector units, only a vectorized loop can use their full power.\n",
+                "title": "Vectorization",
+                "txt": "Your loop is not vectorized.\nOnly 23% of vector register length is used (average across all SSE/AVX instructions).\nBy vectorizing your loop, you can lower the cost of an iteration from 12.00 to 2.94 cycles (4.09x speedup)."
+              },
+              {
+                "workaround": "<ul><li>Write less array elements</li><li>Provide more information to your compiler:\n<ul><li>hardcode the bounds of the corresponding 'for' loop</li></ul></li></ul>",
+                "title": "Execution units bottlenecks",
+                "txt": "Performance is limited by writing data to caches/RAM (the store unit is a bottleneck).\n"
+              }
+            ],
+          "potential":
+            [
+
+            ]
+        },
+      "paths":
+        [
+          {
+            "hint":
+              [
+                {
+                  "details": "These instructions generate more than one micro-operation and only one of them can be decoded during a cycle and the extra micro-operations increase pressure on execution units.\n<ul><li>ADD: 2 occurrences<<list_path_1_complex_1>></li></ul>",
+                  "title": "Complex instructions",
+                  "txt": "Detected COMPLEX INSTRUCTIONS.\n"
+                },
+                {
+                  "title": "Type of elements and instruction set",
+                  "txt": "No instructions are processing arithmetic or math operations on FP elements. This loop is probably writing/copying data or processing integer elements."
+                },
+                {
+                  "title": "Matching between your loop (in the source code) and the binary loop",
+                  "txt": "The binary loop does not contain any FP arithmetical operations.\nThe binary loop is loading 172 bytes.\nThe binary loop is storing 188 bytes."
+                }
+              ],
+            "expert":
+              [
+                {
+                  "title": "General properties",
+                  "txt": "<table><tr><td>nb instructions</td><td>70</td></tr><tr><td>nb uops</td><td>67</td></tr><tr><td>loop length</td><td>393</td></tr><tr><td>used x86 registers</td><td>15</td></tr><tr><td>used mmx registers</td><td>0</td></tr><tr><td>used xmm registers</td><td>0</td></tr><tr><td>used ymm registers</td><td>0</td></tr><tr><td>used zmm registers</td><td>0</td></tr><tr><td>nb stack references</td><td>34</td></tr></table>"
+                },
+                {
+                  "help": "Front-end corresponds to instructions fetching and decoding into macro/micro operations",
+                  "title": "Front-end",
+                  "txt": "MACRO FUSION NOT POSSIBLE\nFIT IN UOP CACHE\n<table><tr><td>micro-operation queue</td><td>11.17 cycles</td></tr><tr><td>front end</td><td>11.17 cycles</td></tr></table>"
+                },
+                {
+                  "help": "Back-end corresponds to macro/micro operations execution (includes allocating registers, fetching operands etc.)",
+                  "title": "Back-end",
+                  "txt": "<table><tr><th>      </th><th>P0</th><th>P1</th><th>P2</th><th>P3</th><th>P4</th><th>P5</th><th>P6</th><th>P7</th><th>P8</th><th>P9</th><th>P10</th><th>P11</th></tr><tr><td>uops</td><td>3.70</td><td>3.60</td><td>7.67</td><td>7.67</td><td>12.00</td><td>3.67</td><td>3.50</td><td>12.00</td><td>12.00</td><td>12.00</td><td>3.53</td><td>7.67</td></tr><tr><td>cycles</td><td>3.70</td><td>5.13</td><td>7.67</td><td>7.67</td><td>12.00</td><td>3.67</td><td>3.50</td><td>12.00</td><td>12.00</td><td>12.00</td><td>3.53</td><td>7.67</td></tr></table>\nExecution ports to units layout:\n<ul><li>P0 (256 bits): VPU, BRU, ALU, DIV/SQRT</li><li>P1 (256 bits): ALU, VPU</li><li>P2 (512 bits): load</li><li>P3 (512 bits): load</li><li>P4 (512 bits): store data</li><li>P5 (512 bits): ALU, VPU</li><li>P6: ALU, BRU</li><li>P7: store address</li><li>P8: store address</li><li>P9 (512 bits): store data</li><li>P10: ALU</li><li>P11 (512 bits): load</li></ul>\n<table><tr><td>Cycles executing div or sqrt instructions</td><td>NA</td></tr></table>"
+                },
+                {
+                  "title": "Cycles summary",
+                  "txt": "<table><tr><td>Front-end</td><td>11.17</td></tr><tr><td>Dispatch</td><td>12.00</td></tr><tr><td>Overall L1</td><td>12.00</td></tr></table>"
+                },
+                {
+                  "help": "Proportion of vectorizable instructions that are actually vectorized. Higher is better.",
+                  "title": "Vectorization ratios",
+                  "txt": "<table><tr><td>all</td><td>0%</td></tr><tr><td>load</td><td>0%</td></tr><tr><td>store</td><td>0%</td></tr><tr><td>mul</td><td>NA (no mul vectorizable/vectorized instructions)</td></tr><tr><td>add-sub</td><td>0%</td></tr><tr><td>fma</td><td>NA (no fma vectorizable/vectorized instructions)</td></tr><tr><td>div/sqrt</td><td>NA (no div/sqrt vectorizable/vectorized instructions)</td></tr><tr><td>other</td><td>0%</td></tr></table>"
+                },
+                {
+                  "help": "Effective/average relative length/width used in vector/SIMD registers. Higher is better.",
+                  "title": "Vector efficiency ratios",
+                  "txt": "<table><tr><td>all</td><td>23%</td></tr><tr><td>load</td><td>23%</td></tr><tr><td>store</td><td>24%</td></tr><tr><td>mul</td><td>NA (no mul vectorizable/vectorized instructions)</td></tr><tr><td>add-sub</td><td>21%</td></tr><tr><td>fma</td><td>NA (no fma vectorizable/vectorized instructions)</td></tr><tr><td>div/sqrt</td><td>NA (no div/sqrt vectorizable/vectorized instructions)</td></tr><tr><td>other</td><td>12%</td></tr></table>"
+                },
+                {
+                  "help": "Compare the CQA-computed load/store/compute metrics with the capacity of the core. For instance if CQA computes 24 bytes in the loop in 2 cycles (that is 12 cycles per cycle) and if the core can process up to 16 bytes per cycle, that metric is 75%.",
+                  "title": "Cycles and memory resources usage",
+                  "txt": "Assuming all data fit into the L1 cache, each iteration of the binary loop takes 12.00 cycles. At this rate:\n<ul><li>7% of peak load performance is reached (14.33 out of 192.00 bytes loaded per cycle (GB/s @ 1GHz))</li><li>12% of peak store performance is reached (15.67 out of 128.00 bytes stored per cycle (GB/s @ 1GHz))</li></ul>"
+                },
+                {
+                  "help": "List of bottlenecks detected by CQA. A bottleneck is an issue which reduces front-end throughput below the core capacity.",
+                  "title": "Front-end bottlenecks",
+                  "txt": "Found no such bottlenecks."
+                },
+                {
+                  "title": "ASM code",
+                  "txt": "In the binary file, the address of the loop is: 13c50\n\n<table><tr><th>Instruction</th><th><<tt_Nb_FU>></th><th>P0</th><th>P1</th><th>P2</th><th>P3</th><th>P4</th><th>P5</th><th>P6</th><th>P7</th><th>P8</th><th>P9</th><th>P10</th><th>P11</th><th>Latency</th><th><<tt_Recip_throughput>></th><th><<tt_insn_vec>></th></tr><tr><td>IMUL %RBX,%RDI</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3</td><td>1</td><td>N/A</td></tr><tr><td>ADD $0x2,%ECX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>scal (12.5%)</td></tr><tr><td>MOV -0x260(%RBP),%RAX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV %R10,-0x138(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %R11,-0x218(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %R12,-0x220(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>LEA (%RDI,%R8,1),%R14</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>N/A</td></tr><tr><td>MOV %RDI,%RDX</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0.17</td><td>N/A</td></tr><tr><td>MOV %RDI,-0x118(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOVSXD %ECX,%RDI</td><td>1</td><td>0</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>0</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV %RDI,%RSI</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0.17</td><td>N/A</td></tr><tr><td>ADD %R11,%RDX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>MOV %R14,-0x140(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>IMUL %RBX,%RSI</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3</td><td>1</td><td>N/A</td></tr><tr><td>LEA (%R15,%RDX,8),%RDX</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>N/A</td></tr><tr><td>MOV %R8,-0x228(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %RDX,-0x130(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x1d8(%RBP),%RDX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV %R9,-0x230(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>LEA (%RSI,%R8,1),%R13</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>N/A</td></tr><tr><td>MOV %RSI,-0x120(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>LEA (%RSI,%R11,1),%RSI</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>N/A</td></tr><tr><td>MOV %R13,-0x98(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x90(%RBP),%R13</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>MOV %ECX,-0x234(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (12.5%)</td></tr><tr><td>ADD %R13,%RAX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>LEA (%R15,%RSI,8),%R13</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>N/A</td></tr><tr><td>MOV -0xb8(%RBP),%RSI</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV %R10,-0x240(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %R13,-0x128(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x258(%RBP),%R13</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>SUB %RSI,%RDX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>MOV -0x150(%RBP),%RSI</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV %RAX,-0x78(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %RDX,-0x1c8(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>ADD %R14,%RDX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>MOV -0x280(%RBP),%RAX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV %RDX,-0x1d0(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x270(%RBP),%RDX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>ADD %R14,%RSI</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>ADD %R9,%RAX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>MOV %RSI,-0x158(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>ADD %RDX,%R13</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>scal (25.0%)</td></tr><tr><td>MOV %RDI,-0x248(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %R13,-0x1e0(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %RBX,-0x250(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV %RAX,-0xd8(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x274(%RBP),%EAX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>NOPW (%RAX,%RAX,1)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.17</td><td>N/A</td></tr><tr><td>MOV -0x230(%RBP),%R9</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x234(%RBP),%ECX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (12.5%)</td></tr><tr><td>MOV -0x240(%RBP),%R10</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x268(%RBP),%R13</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>MOV -0x288(%RBP),%RDX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV -0x238(%RBP),%ESI</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV -0x220(%RBP),%R12</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>ADD %R13,%R10</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>scal (25.0%)</td></tr><tr><td>ADD %R12,-0xb8(%RBP)</td><td>2</td><td>0.20</td><td>0.20</td><td>0.33</td><td>0.33</td><td>0.50</td><td>0.20</td><td>0.20</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0.20</td><td>0.33</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>ADD %R12,-0x90(%RBP)</td><td>2</td><td>0.20</td><td>0.20</td><td>0.33</td><td>0.33</td><td>0.50</td><td>0.20</td><td>0.20</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0.20</td><td>0.33</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>ADD %RDX,%R9</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>scal (25.0%)</td></tr><tr><td>CMP %ESI,%ECX</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>scal (12.5%)</td></tr><tr><td>MOV -0x218(%RBP),%R11</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV -0x228(%RBP),%R8</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV -0x248(%RBP),%RDI</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>MOV -0x250(%RBP),%RBX</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>scal (25.0%)</td></tr><tr><td>MOV -0xb8(%RBP),%R14</td><td>1</td><td>0</td><td>0</td><td>0.33</td><td>0.33</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.33</td><td>1</td><td>0.33</td><td>N/A</td></tr><tr><td>JE 14b4d &lt;rprj3_+0x12ad&gt;</td><td>1</td><td>0.50</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>N/A</td></tr><tr><td>ADD %R8,%R14</td><td>1</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0.20</td><td>0</td><td>0</td><td>0</td><td>0.20</td><td>0</td><td>1</td><td>0.20</td><td>N/A</td></tr><tr><td>MOV %R14,-0x170(%RBP)</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0.50</td><td>0</td><td>0</td><td>0.50</td><td>0.50</td><td>0.50</td><td>0</td><td>0</td><td>1</td><td>0.50</td><td>scal (25.0%)</td></tr><tr><td>JMP 13c50 &lt;rprj3_+0x3b0&gt;</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2.08</td><td>N/A</td></tr></table>"
+                }
+              ],
+            "header":
+              [
+              "Warnings:\n<ul><li>The number of fused uops of the instruction [LEA	(%RDI,%R8,1),%R14] is unknown</li><li>The number of fused uops of the instruction [LEA	(%R15,%RDX,8),%RDX] is unknown</li><li>The number of fused uops of the instruction [LEA	(%RSI,%R8,1),%R13] is unknown</li><li>The number of fused uops of the instruction [LEA	(%RSI,%R11,1),%RSI] is unknown</li><li>The number of fused uops of the instruction [LEA	(%R15,%RSI,8),%R13] is unknown</li></ul>",
+              "0% of peak computational performance is used (0.00 out of 48.00 FLOP per cycle (GFLOPS @ 1GHz))"
+              ],
+            "brief":
+              [
+
+              ],
+            "gain":
+              [
+                {
+                  "workaround": "<ul><li>Try another compiler or update/tune your current one</li><li>Remove inter-iterations dependences from your loop and make it unit-stride:\n<ul><li>If your arrays have 2 or more dimensions, check whether elements are accessed contiguously and, otherwise, try to permute loops accordingly:\nFortran storage order is column-major: do i do j a(i,j) = b(i,j) (slow, non stride 1) =&gt; do i do j a(j,i) = b(i,j) (fast, stride 1)<<image_col_maj>></li><li>If your loop streams arrays of structures (AoS), try to use structures of arrays instead (SoA):\ndo i a(i)%x = b(i)%x (slow, non stride 1) =&gt; do i a%x(i) = b%x(i) (fast, stride 1)</li></ul></li></ul>",
+                  "details": "All SSE/AVX instructions are used in scalar version (process only one data element in vector registers).\nSince your execution units are vector units, only a vectorized loop can use their full power.\n",
+                  "title": "Vectorization",
+                  "txt": "Your loop is not vectorized.\nOnly 23% of vector register length is used (average across all SSE/AVX instructions).\nBy vectorizing your loop, you can lower the cost of an iteration from 12.00 to 2.94 cycles (4.09x speedup)."
+                },
+                {
+                  "workaround": "<ul><li>Write less array elements</li><li>Provide more information to your compiler:\n<ul><li>hardcode the bounds of the corresponding 'for' loop</li></ul></li></ul>",
+                  "title": "Execution units bottlenecks",
+                  "txt": "Performance is limited by writing data to caches/RAM (the store unit is a bottleneck).\n"
+                }
+              ],
+            "potential":
+              [
+
+              ]
+          }
+        ],
+      "common":
+        {
+          "header":
+            [
+            "The loop is defined in /home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-MPI/MG/mg.f90:824-851.\n",
+            "Analyzed code is defined in /home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-MPI/MG/mg.f90:824,835,851.\n",
+            "Warnings:\n<ul><li>Non-innermost loop: analyzing only self part (ignoring child loops).</li><li>Ignoring paths for analysis</li><li>Too many paths. If you really need to analyze all of the 69 paths individually, rerun with max-paths=69</li><li>RecMII not computed since number of paths is unknown or > max_paths</li><li>Streams not analyzed since number of paths is unknown or > max_paths</li></ul>",
+            "Try to simplify control and/or increase the maximum number of paths per function/loop through the 'max-paths-nb' option.\n",
+            "This loop has 69 execution paths.\n",
+            "The presence of multiple execution paths is typically the main/first bottleneck.\nTry to simplify control inside loop: ideally, try to remove all conditional expressions, for example by (if applicable):\n<ul><li>hoisting them (moving them outside the loop)</li><li>turning them into conditional moves, MIN or MAX</li></ul>\n",
+            "Ex: if (x&lt;0) x=0 =&gt; x = max(0,x) (Fortran instrinsic procedure)\n"
+            ],
+          "nb_paths": 69
+        }
+    }
+}

@@ -1,0 +1,25 @@
+address;source_location;insn;indent
+0x40ce50;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:639;VMOVUPD	0x22c0(%RSP,%RBX,8),%YMM8;
+0x40ce59;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:637;VMOVUPD	(%RSI),%YMM9;
+0x40ce5d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:637;VMOVUPD	0x20(%RSI),%YMM10;
+0x40ce62;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:637;VPERM2F128	$0x20,%YMM10,%YMM9,%YMM11;
+0x40ce68;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:637;VPERM2F128	$0x31,%YMM10,%YMM9,%YMM9;
+0x40ce6e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:637;VPUNPCKLQDQ	%YMM9,%YMM11,%YMM10;
+0x40ce73;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:637;VPUNPCKHQDQ	%YMM9,%YMM11,%YMM9;
+0x40ce78;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:639;VFMADD231PD	%YMM6,%YMM8,%YMM10;
+0x40ce7d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:641;VADDPD	0x22c8(%RSP,%RBX,8),%YMM8,%YMM8;
+0x40ce86;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:641;VFMADD213PD	%YMM9,%YMM7,%YMM8;
+0x40ce8b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:640;VXORPS	%XMM9,%XMM9,%XMM9;
+0x40ce90;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:640;VPERMPD	$-0x1a,%YMM8,%YMM9;
+0x40ce96;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:640;VXORPS	%XMM11,%XMM11,%XMM11;
+0x40ce9b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:640;VPERMPD	$-0x1a,%YMM10,%YMM11;
+0x40cea1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:640;VPERMPD	$0x60,%YMM8,%YMM8;
+0x40cea7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:640;VPERMPD	$-0x2c,%YMM10,%YMM10;
+0x40cead;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:640;VBLENDPD	$0xa,%YMM8,%YMM10,%YMM8;
+0x40ceb3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:640;VMOVUPD	%YMM8,(%RSI);
+0x40ceb7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:640;VSHUFPD	$0xc,%YMM9,%YMM11,%YMM8;
+0x40cebd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:640;VMOVUPD	%YMM8,0x20(%RSI);
+0x40cec2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:637;ADD	$0x4,%RBX;
+0x40cec6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:637;ADD	$0x40,%RSI;
+0x40ceca;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:637;CMP	%RDI,%RBX;
+0x40cecd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:637;JL	40ce50 <_ZL6interpPviiiS_iiii+0xae0>;

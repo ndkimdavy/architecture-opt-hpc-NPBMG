@@ -1,0 +1,25 @@
+
+* [MAQAO] Info: To get MPI/OMP ranks, rerun with lprof-params="interposer-compiler=<C compiler>", for instance gcc if your application was compiled with gcc/g++/gfortran
+
+* [MAQAO] Info: Dumping samples (host lbw-Lenovo-G5000-IRH8, process 137524)
+* [MAQAO] Info: Dumping source info for callchain nodes (host lbw-Lenovo-G5000-IRH8, process 137524)
+* [MAQAO] Info: Building/writing metadata (host lbw-Lenovo-G5000-IRH8)
+* [MAQAO] Info: Finished collect step (host lbw-Lenovo-G5000-IRH8, process 137524)
+
+
+Your experiment path is /home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_intel/tools/lprof_run_0
+
+To display your profiling results:
+#############################################################################################################################################################
+#    LEVEL    |     REPORT     |                                                          COMMAND                                                           #
+#############################################################################################################################################################
+#  Functions  |  Cluster-wide  |  maqao lprof -df xp=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_intel/tools/lprof_run_0      #
+#  Functions  |  Per-node      |  maqao lprof -df -dn xp=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_intel/tools/lprof_run_0  #
+#  Functions  |  Per-process   |  maqao lprof -df -dp xp=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_intel/tools/lprof_run_0  #
+#  Functions  |  Per-thread    |  maqao lprof -df -dt xp=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_intel/tools/lprof_run_0  #
+#  Loops      |  Cluster-wide  |  maqao lprof -dl xp=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_intel/tools/lprof_run_0      #
+#  Loops      |  Per-node      |  maqao lprof -dl -dn xp=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_intel/tools/lprof_run_0  #
+#  Loops      |  Per-process   |  maqao lprof -dl -dp xp=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_intel/tools/lprof_run_0  #
+#  Loops      |  Per-thread    |  maqao lprof -dl -dt xp=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_intel/tools/lprof_run_0  #
+#############################################################################################################################################################
+

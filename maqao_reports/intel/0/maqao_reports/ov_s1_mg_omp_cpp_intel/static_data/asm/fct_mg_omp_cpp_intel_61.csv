@@ -1,0 +1,7 @@
+address;source_location;insn;indent
+0x40fe90;:0;ENDBR64;
+0x40fe94;:0;MOV	0xd8fd(%RIP),%RAX;
+0x40fe9b;:0;TEST	%RAX,%RAX;
+0x40fe9e;:0;JE	40feb0 <__real_memset_impl_setup>;
+0x40fea4;:0;JMP	%RAX;
+0x40fea6;:0;NOPW	%CS:(%RAX,%RAX,1);

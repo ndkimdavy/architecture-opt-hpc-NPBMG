@@ -1,0 +1,12 @@
+/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 1230 - 1244
+--------------------------------------------------------------------------------
+
+1230: static void zero3(void* pointer_z, int n1, int n2, int n3){
+1231: #ifdef __clang__
+1232: 		using custom_cast = double (*)[n2][n1];
+[...]
+1240:     #pragma omp for  
+1241: 	for(i3 = 0;i3 < n3; i3++){
+1242: 		for(i2 = 0; i2 < n2; i2++){
+1243: 			for(i1 = 0; i1 < n1; i1++){
+1244: 				z[i3][i2][i1] = 0.0;

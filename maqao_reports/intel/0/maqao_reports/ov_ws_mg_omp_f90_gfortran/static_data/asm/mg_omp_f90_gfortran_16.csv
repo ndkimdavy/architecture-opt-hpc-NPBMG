@@ -1,0 +1,912 @@
+address;source_location;insn;indent
+0x5980;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:777;MOV	0xfc(%RSP),%R8D;
+0x5988;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:777;TEST	%R8D,%R8D;
+0x598b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:777;JLE	68e6 <interp_._omp_fn.0+0x1116>;
+0x5991;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;MOV	0xe4(%RSP),%R10D;
+0x5999;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;MOV	0x60(%RSP),%R13;
+0x599e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;MOV	0x68(%RSP),%RCX;
+0x59a3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;MOVSXD	0xb8(%RSP),%RDI;
+0x59ab;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;LEA	0x1(%R10),%R11D;
+0x59af;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;MOV	0xb0(%RSP),%R9;
+0x59b7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;MOVSXD	%R11D,%RDX;
+0x59ba;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;IMUL	%RCX,%RDI;
+0x59be;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;IMUL	%R13,%RDX;
+0x59c2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;ADD	%RDI,%RCX;
+0x59c5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;LEA	(%R9,%RDI,1),%RSI;
+0x59c9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;MOV	%RDI,0x98(%RSP);
+0x59d1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;MOV	%RDX,%RAX;
+0x59d4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;ADD	%R9,%RCX;
+0x59d7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;LEA	(%RSI,%RDX,1),%RBX;
+0x59db;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;SUB	%R13,%RAX;
+0x59de;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;LEA	(%RDX,%RCX,1),%RDI;
+0x59e2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;CMPL	$0x2,0xf8(%RSP);
+0x59ea;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;LEA	(%RAX,%RCX,1),%R8;
+0x59ee;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;MOV	%RAX,0xd8(%RSP);
+0x59f6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;LEA	(%RSI,%RAX,1),%R13;
+0x59fa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;MOV	%R8,0xf0(%RSP);
+0x5a02;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	%RDI,0xe8(%RSP);
+0x5a0a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;JBE	6c57 <interp_._omp_fn.0+0x1487>;
+0x5a10;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;ADD	$0x1,%RAX;
+0x5a14;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;LEA	0x1(%RDX,%RCX,1),%R8;
+0x5a19;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;LEA	0x8(%R15,%RBX,8),%R10;
+0x5a1e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;LEA	0x100(%RSP),%RDI;
+0x5a26;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;LEA	(%RAX,%RSI,1),%R9;
+0x5a2a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;ADD	%RCX,%RAX;
+0x5a2d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	%RDI,0x90(%RSP);
+0x5a35;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;LEA	(%R15,%R9,8),%R11;
+0x5a39;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;LEA	(%R15,%RAX,8),%R9;
+0x5a3d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;XOR	%EAX,%EAX;
+0x5a3f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;LEA	0x1120(%RSP),%RDI;
+0x5a47;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;LEA	(%R15,%R8,8),%R8;
+0x5a4b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	%RDI,0x88(%RSP);
+0x5a53;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;LEA	0x2140(%RSP),%RDI;
+0x5a5b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	%RDI,0x80(%RSP);
+0x5a63;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	0xd0(%RSP),%RDI;
+0x5a6b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;SUB	$0x20,%RDI;
+0x5a6f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;SHR	$0x5,%RDI;
+0x5a73;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;ADD	$0x1,%RDI;
+0x5a77;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;AND	$0x3,%EDI;
+0x5a7a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;JE	5b72 <interp_._omp_fn.0+0x3a2>;
+0x5a80;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;CMP	$0x1,%RDI;
+0x5a84;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;JE	5b1a <interp_._omp_fn.0+0x34a>;
+0x5a8a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;CMP	$0x2,%RDI;
+0x5a8e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;JE	5ad2 <interp_._omp_fn.0+0x302>;
+0x5a90;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVUPD	(%R10),%YMM4;
+0x5a95;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVUPD	(%R8),%YMM7;
+0x5a9a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	$0x20,%EAX;
+0x5a9f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VADDPD	(%R11),%YMM4,%YMM6;
+0x5aa4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	(%R9),%YMM7,%YMM8;
+0x5aa9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVUPD	(%R11),%YMM5;
+0x5aae;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VADDPD	(%R9),%YMM5,%YMM0;
+0x5ab3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVAPD	%YMM6,0x2140(%RSP);
+0x5abc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	%YMM6,%YMM8,%YMM9;
+0x5ac0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVAPD	%YMM0,0x1120(%RSP);
+0x5ac9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVAPD	%YMM9,0x100(%RSP);
+0x5ad2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVUPD	(%R10,%RAX,1),%YMM10;
+0x5ad8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVUPD	(%R8,%RAX,1),%YMM14;
+0x5ade;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VADDPD	(%R11,%RAX,1),%YMM10,%YMM11;
+0x5ae4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	(%R9,%RAX,1),%YMM14,%YMM15;
+0x5aea;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVUPD	(%R11,%RAX,1),%YMM12;
+0x5af0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VADDPD	(%R9,%RAX,1),%YMM12,%YMM13;
+0x5af6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVAPD	%YMM11,0x2140(%RSP,%RAX,1);
+0x5aff;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	%YMM11,%YMM15,%YMM4;
+0x5b04;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVAPD	%YMM13,0x1120(%RSP,%RAX,1);
+0x5b0d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVAPD	%YMM4,0x100(%RSP,%RAX,1);
+0x5b16;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;ADD	$0x20,%RAX;
+0x5b1a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVUPD	(%R10,%RAX,1),%YMM6;
+0x5b20;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVUPD	(%R8,%RAX,1),%YMM8;
+0x5b26;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VADDPD	(%R11,%RAX,1),%YMM6,%YMM7;
+0x5b2c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	(%R9,%RAX,1),%YMM8,%YMM9;
+0x5b32;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVUPD	(%R11,%RAX,1),%YMM5;
+0x5b38;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VADDPD	(%R9,%RAX,1),%YMM5,%YMM0;
+0x5b3e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;MOV	0xd0(%RSP),%RDI;
+0x5b46;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVAPD	%YMM7,0x2140(%RSP,%RAX,1);
+0x5b4f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	%YMM7,%YMM9,%YMM10;
+0x5b53;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVAPD	%YMM0,0x1120(%RSP,%RAX,1);
+0x5b5c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVAPD	%YMM10,0x100(%RSP,%RAX,1);
+0x5b65;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;ADD	$0x20,%RAX;
+0x5b69;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;CMP	%RDI,%RAX;
+0x5b6c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;JE	5cb8 <interp_._omp_fn.0+0x4e8>;
+0x5b72;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	%RCX,0x38(%RSP);
+0x5b77;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	0x88(%RSP),%RDI;
+0x5b7f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	%RDX,0x48(%RSP);
+0x5b84;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	0x90(%RSP),%RDX;
+0x5b8c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	%RBX,0x40(%RSP);
+0x5b91;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	0x80(%RSP),%RBX;
+0x5b99;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVUPD	(%R10,%RAX,1),%YMM11;  (22) 
+0x5b9f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVUPD	(%R8,%RAX,1),%YMM15;  (22) 
+0x5ba5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VADDPD	(%R11,%RAX,1),%YMM11,%YMM12;  (22) 
+0x5bab;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	(%R9,%RAX,1),%YMM15,%YMM4;  (22) 
+0x5bb1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVUPD	(%R11,%RAX,1),%YMM13;  (22) 
+0x5bb7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVUPD	0x20(%R10,%RAX,1),%YMM7;  (22) 
+0x5bbe;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VADDPD	(%R9,%RAX,1),%YMM13,%YMM14;  (22) 
+0x5bc4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VADDPD	0x20(%R11,%RAX,1),%YMM7,%YMM8;  (22) 
+0x5bcb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	%YMM12,%YMM4,%YMM6;  (22) 
+0x5bd0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVUPD	0x20(%R11,%RAX,1),%YMM5;  (22) 
+0x5bd7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVUPD	0x20(%R8,%RAX,1),%YMM9;  (22) 
+0x5bde;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVAPD	%YMM12,(%RBX,%RAX,1);  (22) 
+0x5be3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VADDPD	0x20(%R9,%RAX,1),%YMM5,%YMM0;  (22) 
+0x5bea;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	0x20(%R9,%RAX,1),%YMM9,%YMM10;  (22) 
+0x5bf1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVUPD	0x40(%R10,%RAX,1),%YMM12;  (22) 
+0x5bf8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVUPD	0x40(%R8,%RAX,1),%YMM4;  (22) 
+0x5bff;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVAPD	%YMM14,(%RDI,%RAX,1);  (22) 
+0x5c04;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VADDPD	0x40(%R11,%RAX,1),%YMM12,%YMM13;  (22) 
+0x5c0b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVAPD	%YMM6,(%RDX,%RAX,1);  (22) 
+0x5c10;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	0x40(%R9,%RAX,1),%YMM4,%YMM6;  (22) 
+0x5c17;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	%YMM8,%YMM10,%YMM11;  (22) 
+0x5c1c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVUPD	0x40(%R11,%RAX,1),%YMM14;  (22) 
+0x5c23;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVUPD	0x60(%R11,%RAX,1),%YMM5;  (22) 
+0x5c2a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVAPD	%YMM8,0x20(%RBX,%RAX,1);  (22) 
+0x5c30;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VADDPD	0x40(%R9,%RAX,1),%YMM14,%YMM15;  (22) 
+0x5c37;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVUPD	0x60(%R10,%RAX,1),%YMM8;  (22) 
+0x5c3e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVAPD	%YMM0,0x20(%RDI,%RAX,1);  (22) 
+0x5c44;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VADDPD	0x60(%R11,%RAX,1),%YMM8,%YMM9;  (22) 
+0x5c4b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	%YMM13,%YMM6,%YMM7;  (22) 
+0x5c50;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVAPD	%YMM13,0x40(%RBX,%RAX,1);  (22) 
+0x5c56;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VADDPD	0x60(%R9,%RAX,1),%YMM5,%YMM0;  (22) 
+0x5c5d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVAPD	%YMM11,0x20(%RDX,%RAX,1);  (22) 
+0x5c63;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVAPD	%YMM15,0x40(%RDI,%RAX,1);  (22) 
+0x5c69;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVAPD	%YMM7,0x40(%RDX,%RAX,1);  (22) 
+0x5c6f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVAPD	%YMM9,0x60(%RBX,%RAX,1);  (22) 
+0x5c75;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVAPD	%YMM0,0x60(%RDI,%RAX,1);  (22) 
+0x5c7b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVUPD	0x60(%R8,%RAX,1),%YMM10;  (22) 
+0x5c82;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	0x60(%R9,%RAX,1),%YMM10,%YMM11;  (22) 
+0x5c89;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	0xd0(%RSP),%RCX;  (22) 
+0x5c91;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	%YMM9,%YMM11,%YMM12;  (22) 
+0x5c96;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVAPD	%YMM12,0x60(%RDX,%RAX,1);  (22) 
+0x5c9c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;SUB	$-0x80,%RAX;  (22) 
+0x5ca0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;CMP	%RCX,%RAX;  (22) 
+0x5ca3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;JNE	5b99 <interp_._omp_fn.0+0x3c9>;  (22) 
+0x5ca9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	0x48(%RSP),%RDX;
+0x5cae;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	0x40(%RSP),%RBX;
+0x5cb3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	0x38(%RSP),%RCX;
+0x5cb8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	0x54(%RSP),%EDI;
+0x5cbc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;CMP	%EDI,0xfc(%RSP);
+0x5cc3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;JE	5dce <interp_._omp_fn.0+0x5fe>;
+0x5cc9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:777;MOV	0x50(%RSP),%EAX;
+0x5ccd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:777;MOV	0xfc(%RSP),%R9D;
+0x5cd5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:777;SUB	%EDI,%R9D;
+0x5cd8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:777;CMP	$0x1,%R9D;
+0x5cdc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:777;JE	5d5c <interp_._omp_fn.0+0x58c>;
+0x5cde;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:777;MOV	0xd8(%RSP),%R10;
+0x5ce6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:777;LEA	0x1(%R10),%R8;
+0x5cea;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:777;LEA	(,%RDI,8),%R10;
+0x5cf2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;LEA	(%R8,%RSI,1),%R11;
+0x5cf6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;ADD	%RDX,%RSI;
+0x5cf9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;ADD	%RDI,%R8;
+0x5cfc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;ADD	%RDI,%R11;
+0x5cff;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;LEA	0x1(%RDI,%RSI,1),%RSI;
+0x5d04;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;ADD	%RCX,%R8;
+0x5d07;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;ADD	%RDX,%RDI;
+0x5d0a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVUPD	(%R15,%R11,8),%XMM13;
+0x5d10;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VADDPD	(%R15,%RSI,8),%XMM13,%XMM14;
+0x5d16;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;LEA	0x1(%RDI,%RCX,1),%RDX;
+0x5d1b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;TEST	$0x1,%R9B;
+0x5d1f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVAPD	%XMM14,0x2140(%RSP,%R10,1);
+0x5d29;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVUPD	(%R15,%R8,8),%XMM15;
+0x5d2f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VADDPD	%XMM15,%XMM13,%XMM4;
+0x5d34;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVAPD	%XMM4,0x1120(%RSP,%R10,1);
+0x5d3e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	(%R15,%RDX,8),%XMM15,%XMM6;
+0x5d44;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDPD	%XMM14,%XMM6,%XMM7;
+0x5d49;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVAPD	%XMM7,0x100(%RSP,%R10,1);
+0x5d53;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;JE	5dc0 <interp_._omp_fn.0+0x5f0>;
+0x5d55;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;AND	$-0x2,%R9D;
+0x5d59;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;ADD	%R9D,%EAX;
+0x5d5c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;MOV	0xf0(%RSP),%RCX;
+0x5d64;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;MOV	0xe8(%RSP),%R8;
+0x5d6c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;CLTQ;
+0x5d6e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;LEA	(%R13,%RAX,1),%RDI;
+0x5d73;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;LEA	(%RBX,%RAX,1),%RBX;
+0x5d77;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;ADD	%RAX,%RCX;
+0x5d7a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;ADD	%RAX,%R8;
+0x5d7d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVSD	(%R15,%RDI,8),%XMM8;
+0x5d83;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;LEA	-0x1(%RAX),%R9;
+0x5d87;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VADDSD	(%R15,%RBX,8),%XMM8,%XMM9;
+0x5d8d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVSD	(%R15,%RCX,8),%XMM5;
+0x5d93;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDSD	(%R15,%R8,8),%XMM5,%XMM10;
+0x5d99;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VADDSD	%XMM5,%XMM8,%XMM0;
+0x5d9d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:778;VMOVSD	%XMM9,0x2140(%RSP,%R9,8);
+0x5da7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VADDSD	%XMM9,%XMM10,%XMM11;
+0x5dac;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:779;VMOVSD	%XMM0,0x1120(%RSP,%R9,8);
+0x5db6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;VMOVSD	%XMM11,0x100(%RSP,%R9,8);
+0x5dc0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;CMPL	$0x1,0xfc(%RSP);
+0x5dc8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;JE	68e6 <interp_._omp_fn.0+0x1116>;
+0x5dce;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	0xb8(%RSP),%R10D;
+0x5dd6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	0xe4(%RSP),%EDI;
+0x5ddd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	0xa8(%RSP),%RDX;
+0x5de5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	0xa0(%RSP),%RBX;
+0x5ded;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;ADD	%R10D,%R10D;
+0x5df0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;ADD	%EDI,%EDI;
+0x5df2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	-0x1(%R10),%R11D;
+0x5df6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	-0x1(%RDI),%R9D;
+0x5dfa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	%EDI,0xe8(%RSP);
+0x5e01;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOVSXD	%R11D,%RSI;
+0x5e04;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOVSXD	%R9D,%RCX;
+0x5e07;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	%R10D,0xf0(%RSP);
+0x5e0f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;IMUL	%RDX,%RSI;
+0x5e13;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;IMUL	%RBX,%RCX;
+0x5e17;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;CMPL	$0x2,0xfc(%RSP);
+0x5e1f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	(%R12,%RSI,1),%R11;
+0x5e23;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	(%R11,%RCX,1),%RDI;
+0x5e27;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;JE	5e96 <interp_._omp_fn.0+0x6c6>;
+0x5e29;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	0xd8(%RSP),%RAX;
+0x5e31;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	0x98(%RSP),%R8;
+0x5e39;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	0xb0(%RSP),%R10;
+0x5e41;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	0x58(%RSP),%RBX;
+0x5e46;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;ADD	%RAX,%R8;
+0x5e49;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	(%RSI,%RCX,1),%RAX;
+0x5e4d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;ADD	%R10,%R8;
+0x5e50;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;ADD	%R12,%RAX;
+0x5e53;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	0x1(%RAX),%RDX;
+0x5e57;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;ADD	%R8,%RBX;
+0x5e5a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	0x8(,%R8,8),%R9;
+0x5e62;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	%RDX,0xd8(%RSP);
+0x5e6a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	(%R15,%RBX,8),%RBX;
+0x5e6e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	(%R14,%RDX,8),%RDX;
+0x5e72;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;CMP	%RBX,%RDX;
+0x5e75;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	(%R15,%R9,1),%R10;
+0x5e79;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;JAE	6940 <interp_._omp_fn.0+0x1170>;
+0x5e7f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	0x30(%RSP),%RBX;
+0x5e84;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	0x1(%RAX,%RBX,1),%RAX;
+0x5e89;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	(%R14,%RAX,8),%RBX;
+0x5e8d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;CMP	%RBX,%R10;
+0x5e90;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;JAE	6940 <interp_._omp_fn.0+0x1170>;
+0x5e96;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	0x28(%RSP),%R8;
+0x5e9b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	0x20(%RSP),%RDX;
+0x5ea0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	0x8(%R14,%RDI,8),%R9;
+0x5ea5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	0x8(%R15,%R13,8),%R13;
+0x5eaa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;ADD	%R8,%RDI;
+0x5ead;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	(%RDX,%RDI,8),%R10;
+0x5eb1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	%R10,%RDI;
+0x5eb4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;SUB	%R9,%RDI;
+0x5eb7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;SUB	$0x10,%RDI;
+0x5ebb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;SHR	$0x4,%RDI;
+0x5ebf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;ADD	$0x1,%RDI;
+0x5ec3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;AND	$0x3,%EDI;
+0x5ec6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;JE	5f74 <interp_._omp_fn.0+0x7a4>;
+0x5ecc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;CMP	$0x1,%RDI;
+0x5ed0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;JE	5f3a <interp_._omp_fn.0+0x76a>;
+0x5ed2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;CMP	$0x2,%RDI;
+0x5ed6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;JE	5f09 <interp_._omp_fn.0+0x739>;
+0x5ed8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	(%R9),%XMM12;
+0x5edd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VADDSD	(%R13),%XMM12,%XMM13;
+0x5ee3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;ADD	$0x10,%R9;
+0x5ee7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;ADD	$0x8,%R13;
+0x5eeb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	%XMM13,-0x10(%R9);
+0x5ef1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	(%R13),%XMM14;
+0x5ef7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VADDSD	-0x8(%R13),%XMM14,%XMM15;
+0x5efd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VFMADD213SD	-0x8(%R9),%XMM2,%XMM15;
+0x5f03;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	%XMM15,-0x8(%R9);
+0x5f09;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	(%R9),%XMM4;
+0x5f0e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VADDSD	(%R13),%XMM4,%XMM6;
+0x5f14;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;ADD	$0x10,%R9;
+0x5f18;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;ADD	$0x8,%R13;
+0x5f1c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	%XMM6,-0x10(%R9);
+0x5f22;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	(%R13),%XMM7;
+0x5f28;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VADDSD	-0x8(%R13),%XMM7,%XMM8;
+0x5f2e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VFMADD213SD	-0x8(%R9),%XMM2,%XMM8;
+0x5f34;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	%XMM8,-0x8(%R9);
+0x5f3a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	(%R9),%XMM9;
+0x5f3f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VADDSD	(%R13),%XMM9,%XMM5;
+0x5f45;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;ADD	$0x10,%R9;
+0x5f49;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;ADD	$0x8,%R13;
+0x5f4d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	%XMM5,-0x10(%R9);
+0x5f53;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	(%R13),%XMM0;
+0x5f59;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VADDSD	-0x8(%R13),%XMM0,%XMM10;
+0x5f5f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VFMADD213SD	-0x8(%R9),%XMM2,%XMM10;
+0x5f65;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	%XMM10,-0x8(%R9);
+0x5f6b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;CMP	%R10,%R9;
+0x5f6e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;JE	6030 <interp_._omp_fn.0+0x860>;
+0x5f74;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	(%R9),%XMM11;  (17) 
+0x5f79;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VADDSD	(%R13),%XMM11,%XMM12;  (17) 
+0x5f7f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;ADD	$0x40,%R9;  (17) 
+0x5f83;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;ADD	$0x20,%R13;  (17) 
+0x5f87;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	-0x30(%R9),%XMM15;  (17) 
+0x5f8d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	-0x20(%R9),%XMM8;  (17) 
+0x5f93;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	-0x10(%R9),%XMM10;  (17) 
+0x5f99;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	%XMM12,-0x40(%R9);  (17) 
+0x5f9f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	-0x18(%R13),%XMM13;  (17) 
+0x5fa5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VADDSD	-0x20(%R13),%XMM13,%XMM14;  (17) 
+0x5fab;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VFMADD213SD	-0x38(%R9),%XMM2,%XMM14;  (17) 
+0x5fb1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	%XMM14,-0x38(%R9);  (17) 
+0x5fb7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VADDSD	-0x18(%R13),%XMM15,%XMM4;  (17) 
+0x5fbd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	%XMM4,-0x30(%R9);  (17) 
+0x5fc3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	-0x10(%R13),%XMM6;  (17) 
+0x5fc9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VADDSD	-0x18(%R13),%XMM6,%XMM7;  (17) 
+0x5fcf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VFMADD213SD	-0x28(%R9),%XMM2,%XMM7;  (17) 
+0x5fd5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	%XMM7,-0x28(%R9);  (17) 
+0x5fdb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VADDSD	-0x10(%R13),%XMM8,%XMM9;  (17) 
+0x5fe1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	%XMM9,-0x20(%R9);  (17) 
+0x5fe7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	-0x8(%R13),%XMM5;  (17) 
+0x5fed;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VADDSD	-0x10(%R13),%XMM5,%XMM0;  (17) 
+0x5ff3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VFMADD213SD	-0x18(%R9),%XMM2,%XMM0;  (17) 
+0x5ff9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	%XMM0,-0x18(%R9);  (17) 
+0x5fff;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VADDSD	-0x8(%R13),%XMM10,%XMM11;  (17) 
+0x6005;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	%XMM11,-0x10(%R9);  (17) 
+0x600b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	(%R13),%XMM12;  (17) 
+0x6011;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VADDSD	-0x8(%R13),%XMM12,%XMM13;  (17) 
+0x6017;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VFMADD213SD	-0x8(%R9),%XMM2,%XMM13;  (17) 
+0x601d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	%XMM13,-0x8(%R9);  (17) 
+0x6023;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;CMP	%R10,%R9;  (17) 
+0x6026;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;JNE	5f74 <interp_._omp_fn.0+0x7a4>;  (17) 
+0x602c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;NOPL	(%RAX);
+0x6030;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;MOVSXD	0xe8(%RSP),%R13;
+0x6038;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;MOV	0xa0(%RSP),%RDI;
+0x6040;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;IMUL	%RDI,%R13;
+0x6044;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;CMPL	$0x2,0xe0(%RSP);
+0x604c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;LEA	(%R11,%R13,1),%R10;
+0x6050;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;JBE	6c63 <interp_._omp_fn.0+0x1493>;
+0x6056;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VBROADCASTSD	0xea61(%RIP),%YMM14;
+0x605f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;LEA	0x1(%R12),%R8;
+0x6064;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;MOV	0xc8(%RSP),%RBX;
+0x606c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VBROADCASTSD	0xea3b(%RIP),%YMM11;
+0x6075;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;LEA	0x2140(%RSP),%RDX;
+0x607d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;LEA	(%R8,%R13,1),%R9;
+0x6081;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;ADD	%RSI,%R9;
+0x6084;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;LEA	(%R14,%R9,8),%RDI;
+0x6088;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;LEA	(%RDI,%RBX,1),%R11;
+0x608c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;AND	$0x40,%EBX;
+0x608f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;JE	6138 <interp_._omp_fn.0+0x968>;
+0x6095;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VMOVUPD	(%RDI),%YMM12;
+0x6099;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VUNPCKHPD	0x20(%RDI),%YMM12,%YMM13;
+0x609e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;ADD	$0x40,%RDI;
+0x60a2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;LEA	0x2160(%RSP),%RDX;
+0x60aa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VMOVUPD	0x2148(%RSP),%YMM6;
+0x60b3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VMOVUPD	-0x40(%RDI),%YMM4;
+0x60b8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VADDPD	0x2140(%RSP),%YMM6,%YMM5;
+0x60c1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VUNPCKLPD	-0x20(%RDI),%YMM4,%YMM8;
+0x60c6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VXORPS	%XMM15,%XMM15,%XMM15;
+0x60cb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VPERMPD	$-0x28,%YMM13,%YMM15;
+0x60d1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VXORPS	%XMM9,%XMM9,%XMM9;
+0x60d6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VPERMPD	$-0x28,%YMM8,%YMM9;
+0x60dc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VFMADD231PD	0x2140(%RSP),%YMM14,%YMM9;
+0x60e6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VFMADD132PD	%YMM11,%YMM15,%YMM5;
+0x60eb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VXORPS	%XMM7,%XMM7,%XMM7;
+0x60ef;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VPERMPD	$0x44,%YMM9,%YMM7;
+0x60f5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VXORPS	%XMM12,%XMM12,%XMM12;
+0x60fa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VPERMPD	$-0x12,%YMM9,%YMM12;
+0x6100;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VXORPS	%XMM0,%XMM0,%XMM0;
+0x6104;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VPERMPD	$0x44,%YMM5,%YMM0;
+0x610a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VXORPS	%XMM13,%XMM13,%XMM13;
+0x610f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VPERMPD	$-0x12,%YMM5,%YMM13;
+0x6115;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VSHUFPD	$0xc,%YMM0,%YMM7,%YMM10;
+0x611a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VSHUFPD	$0xc,%YMM13,%YMM12,%YMM15;
+0x6120;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VMOVUPD	%YMM10,-0x40(%RDI);
+0x6125;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VMOVUPD	%YMM15,-0x20(%RDI);
+0x612a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;CMP	%R11,%RDI;
+0x612d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;JE	6242 <interp_._omp_fn.0+0xa72>;
+0x6133;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;NOPL	(%RAX,%RAX,1);
+0x6138;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VMOVUPD	(%RDI),%YMM4;  (20) 
+0x613c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VMOVUPD	(%RDI),%YMM6;  (20) 
+0x6140;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;SUB	$-0x80,%RDI;  (20) 
+0x6144;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;ADD	$0x40,%RDX;  (20) 
+0x6148;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VMOVUPD	-0x38(%RDX),%YMM7;  (20) 
+0x614d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VUNPCKHPD	-0x60(%RDI),%YMM4,%YMM8;  (20) 
+0x6152;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VADDPD	-0x40(%RDX),%YMM7,%YMM10;  (20) 
+0x6157;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VUNPCKLPD	-0x60(%RDI),%YMM6,%YMM5;  (20) 
+0x615c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VXORPS	%XMM9,%XMM9,%XMM9;  (20) 
+0x6161;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VPERMPD	$-0x28,%YMM8,%YMM9;  (20) 
+0x6167;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VMOVUPD	-0x40(%RDI),%YMM6;  (20) 
+0x616c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VXORPS	%XMM0,%XMM0,%XMM0;  (20) 
+0x6170;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VPERMPD	$-0x28,%YMM5,%YMM0;  (20) 
+0x6176;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VFMADD231PD	-0x40(%RDX),%YMM14,%YMM0;  (20) 
+0x617c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VUNPCKHPD	-0x20(%RDI),%YMM6,%YMM5;  (20) 
+0x6181;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VFMADD132PD	%YMM11,%YMM9,%YMM10;  (20) 
+0x6186;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VXORPS	%XMM7,%XMM7,%XMM7;  (20) 
+0x618a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VPERMPD	$-0x28,%YMM5,%YMM7;  (20) 
+0x6190;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VXORPS	%XMM12,%XMM12,%XMM12;  (20) 
+0x6195;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VPERMPD	$0x44,%YMM0,%YMM12;  (20) 
+0x619b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VXORPS	%XMM4,%XMM4,%XMM4;  (20) 
+0x619f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VPERMPD	$-0x12,%YMM0,%YMM4;  (20) 
+0x61a5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VMOVUPD	-0x40(%RDI),%YMM0;  (20) 
+0x61aa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VXORPS	%XMM13,%XMM13,%XMM13;  (20) 
+0x61af;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VPERMPD	$0x44,%YMM10,%YMM13;  (20) 
+0x61b5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VXORPS	%XMM8,%XMM8,%XMM8;  (20) 
+0x61ba;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VPERMPD	$-0x12,%YMM10,%YMM8;  (20) 
+0x61c0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VUNPCKLPD	-0x20(%RDI),%YMM0,%YMM10;  (20) 
+0x61c5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VSHUFPD	$0xc,%YMM13,%YMM12,%YMM15;  (20) 
+0x61cb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VSHUFPD	$0xc,%YMM8,%YMM4,%YMM9;  (20) 
+0x61d1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VMOVUPD	%YMM15,-0x80(%RDI);  (20) 
+0x61d6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VMOVUPD	%YMM9,-0x60(%RDI);  (20) 
+0x61db;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VMOVUPD	-0x18(%RDX),%YMM13;  (20) 
+0x61e0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VADDPD	-0x20(%RDX),%YMM13,%YMM15;  (20) 
+0x61e5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VXORPS	%XMM12,%XMM12,%XMM12;  (20) 
+0x61ea;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VPERMPD	$-0x28,%YMM10,%YMM12;  (20) 
+0x61f0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VFMADD231PD	-0x20(%RDX),%YMM14,%YMM12;  (20) 
+0x61f6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VFMADD132PD	%YMM11,%YMM7,%YMM15;  (20) 
+0x61fb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VXORPS	%XMM4,%XMM4,%XMM4;  (20) 
+0x61ff;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VPERMPD	$0x44,%YMM12,%YMM4;  (20) 
+0x6205;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VXORPS	%XMM5,%XMM5,%XMM5;  (20) 
+0x6209;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VPERMPD	$-0x12,%YMM12,%YMM5;  (20) 
+0x620f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VXORPS	%XMM8,%XMM8,%XMM8;  (20) 
+0x6214;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VPERMPD	$0x44,%YMM15,%YMM8;  (20) 
+0x621a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VXORPS	%XMM6,%XMM6,%XMM6;  (20) 
+0x621e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VPERMPD	$-0x12,%YMM15,%YMM6;  (20) 
+0x6224;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VSHUFPD	$0xc,%YMM8,%YMM4,%YMM9;  (20) 
+0x622a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VSHUFPD	$0xc,%YMM6,%YMM5,%YMM7;  (20) 
+0x622f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VMOVUPD	%YMM9,-0x40(%RDI);  (20) 
+0x6234;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VMOVUPD	%YMM7,-0x20(%RDI);  (20) 
+0x6239;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;CMP	%R11,%RDI;  (20) 
+0x623c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;JNE	6138 <interp_._omp_fn.0+0x968>;  (20) 
+0x6242;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;TESTB	$0x3,0xf8(%RSP);
+0x624a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;JE	6c10 <interp_._omp_fn.0+0x1440>;
+0x6250;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;MOV	0xc0(%RSP),%R11D;
+0x6258;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:789;MOV	0xc4(%RSP),%EAX;
+0x625f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:789;MOV	0xfc(%RSP),%EBX;
+0x6266;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:789;SUB	%R11D,%EBX;
+0x6269;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:789;CMP	$0x2,%EBX;
+0x626c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:789;LEA	-0x1(%RBX),%R8D;
+0x6270;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:789;JE	62ec <interp_._omp_fn.0+0xb1c>;
+0x6272;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:789;LEA	0x1(%R12,%R13,1),%RDX;
+0x6277;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VMOVDDUP	0xe841(%RIP),%XMM12;
+0x627f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VMOVDDUP	0xe829(%RIP),%XMM4;
+0x6287;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;ADD	%RSI,%RDX;
+0x628a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;LEA	(%RDX,%R11,2),%R9;
+0x628e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;SAL	$0x3,%R11;
+0x6292;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;TEST	$0x1,%R8B;
+0x6296;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VMOVUPD	0x2148(%RSP,%R11,1),%XMM13;
+0x62a0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;LEA	(%R14,%R9,8),%RSI;
+0x62a4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VADDPD	0x2140(%RSP,%R11,1),%XMM13,%XMM15;
+0x62ae;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VMOVUPD	0x10(%RSI),%XMM14;
+0x62b3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VMOVUPD	(%RSI),%XMM0;
+0x62b7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VMOVLPD	0x8(%RSI),%XMM14,%XMM11;
+0x62bc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VMOVHPD	0x10(%RSI),%XMM0,%XMM10;
+0x62c1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VFMADD132PD	0x2140(%RSP,%R11,1),%XMM10,%XMM12;
+0x62cb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VFMADD132PD	%XMM4,%XMM11,%XMM15;
+0x62d0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VUNPCKLPD	%XMM15,%XMM12,%XMM8;
+0x62d5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VUNPCKHPD	%XMM15,%XMM12,%XMM9;
+0x62da;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VMOVUPD	%XMM8,(%RSI);
+0x62de;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VMOVUPD	%XMM9,0x10(%RSI);
+0x62e3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;JE	6324 <interp_._omp_fn.0+0xb54>;
+0x62e5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;AND	$-0x2,%R8D;
+0x62e9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;ADD	%R8D,%EAX;
+0x62ec;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;LEA	-0x1(%RAX),%EBX;
+0x62ef;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;LEA	-0x1(%RAX,%RAX,1),%R11D;
+0x62f4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;CLTQ;
+0x62f6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;MOVSXD	%EBX,%R8;
+0x62f9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;MOVSXD	%R11D,%RDI;
+0x62fc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VMOVSD	0x2140(%RSP,%R8,8),%XMM5;
+0x6306;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;ADD	%R10,%RDI;
+0x6309;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;VADDSD	0x2140(%RSP,%RAX,8),%XMM5,%XMM6;
+0x6312;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:793;LEA	(%R14,%RDI,8),%R10;
+0x6316;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VUNPCKLPD	%XMM6,%XMM5,%XMM7;
+0x631a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VFMADD213PD	(%R10),%XMM1,%XMM7;
+0x631f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;VMOVUPD	%XMM7,(%R10);
+0x6324;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;MOVSXD	0xf0(%RSP),%R9;
+0x632c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;MOV	0xa8(%RSP),%RAX;
+0x6334;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;IMUL	%RAX,%R9;
+0x6338;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;CMPL	$0x2,0xe0(%RSP);
+0x6340;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;LEA	(%R12,%R9,1),%RSI;
+0x6344;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;LEA	(%RCX,%RSI,1),%RDI;
+0x6348;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;JBE	6c70 <interp_._omp_fn.0+0x14a0>;
+0x634e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VBROADCASTSD	0xe759(%RIP),%YMM11;
+0x6357;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;LEA	0x1(%R12),%R8;
+0x635c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VBROADCASTSD	0xe75b(%RIP),%YMM14;
+0x6365;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;LEA	(%R8,%R9,1),%R11;
+0x6369;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;MOV	0xc8(%RSP),%R10;
+0x6371;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;LEA	0x1120(%RSP),%RDX;
+0x6379;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;ADD	%RCX,%R11;
+0x637c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;LEA	(%R14,%R11,8),%RAX;
+0x6380;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;LEA	(%R10,%RAX,1),%RBX;
+0x6384;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;AND	$0x40,%R10D;
+0x6388;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;JE	6430 <interp_._omp_fn.0+0xc60>;
+0x638e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VMOVUPD	(%RAX),%YMM0;
+0x6392;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VUNPCKHPD	0x20(%RAX),%YMM0,%YMM10;
+0x6397;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;ADD	$0x40,%RAX;
+0x639b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;LEA	0x1140(%RSP),%RDX;
+0x63a3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VMOVUPD	0x1128(%RSP),%YMM4;
+0x63ac;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VUNPCKLPD	-0x20(%RAX),%YMM0,%YMM13;
+0x63b1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VADDPD	0x1120(%RSP),%YMM4,%YMM9;
+0x63ba;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VXORPS	%XMM12,%XMM12,%XMM12;
+0x63bf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VPERMPD	$-0x28,%YMM10,%YMM12;
+0x63c5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VXORPS	%XMM15,%XMM15,%XMM15;
+0x63ca;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VPERMPD	$-0x28,%YMM13,%YMM15;
+0x63d0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VFMADD231PD	0x1120(%RSP),%YMM14,%YMM15;
+0x63da;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VFMADD132PD	%YMM11,%YMM12,%YMM9;
+0x63df;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VXORPS	%XMM5,%XMM5,%XMM5;
+0x63e3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VPERMPD	$0x44,%YMM15,%YMM5;
+0x63e9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VXORPS	%XMM7,%XMM7,%XMM7;
+0x63ed;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VPERMPD	$-0x12,%YMM15,%YMM7;
+0x63f3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VXORPS	%XMM8,%XMM8,%XMM8;
+0x63f8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VPERMPD	$0x44,%YMM9,%YMM8;
+0x63fe;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VXORPS	%XMM0,%XMM0,%XMM0;
+0x6402;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VPERMPD	$-0x12,%YMM9,%YMM0;
+0x6408;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VSHUFPD	$0xc,%YMM8,%YMM5,%YMM6;
+0x640e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VSHUFPD	$0xc,%YMM0,%YMM7,%YMM10;
+0x6413;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VMOVUPD	%YMM6,-0x40(%RAX);
+0x6418;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VMOVUPD	%YMM10,-0x20(%RAX);
+0x641d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;CMP	%RAX,%RBX;
+0x6420;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;JE	6535 <interp_._omp_fn.0+0xd65>;
+0x6426;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;NOPW	%CS:(%RAX,%RAX,1);
+0x6430;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VMOVUPD	0x8(%RDX),%YMM5;  (19) 
+0x6435;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VMOVUPD	(%RAX),%YMM12;  (19) 
+0x6439;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;SUB	$-0x80,%RAX;  (19) 
+0x643d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;ADD	$0x40,%RDX;  (19) 
+0x6441;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VADDPD	-0x40(%RDX),%YMM5,%YMM6;  (19) 
+0x6446;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VUNPCKHPD	-0x60(%RAX),%YMM12,%YMM13;  (19) 
+0x644b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VUNPCKLPD	-0x60(%RAX),%YMM12,%YMM4;  (19) 
+0x6450;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VXORPS	%XMM15,%XMM15,%XMM15;  (19) 
+0x6455;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VPERMPD	$-0x28,%YMM13,%YMM15;  (19) 
+0x645b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VFMADD132PD	%YMM11,%YMM15,%YMM6;  (19) 
+0x6460;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VXORPS	%XMM9,%XMM9,%XMM9;  (19) 
+0x6465;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VPERMPD	$-0x28,%YMM4,%YMM9;  (19) 
+0x646b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VMOVUPD	-0x40(%RAX),%YMM15;  (19) 
+0x6470;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VUNPCKHPD	-0x20(%RAX),%YMM15,%YMM4;  (19) 
+0x6475;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VFMADD231PD	-0x40(%RDX),%YMM14,%YMM9;  (19) 
+0x647b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VUNPCKLPD	-0x20(%RAX),%YMM15,%YMM5;  (19) 
+0x6480;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VXORPS	%XMM8,%XMM8,%XMM8;  (19) 
+0x6485;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VPERMPD	$0x44,%YMM6,%YMM8;  (19) 
+0x648b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VXORPS	%XMM12,%XMM12,%XMM12;  (19) 
+0x6490;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VPERMPD	$-0x12,%YMM6,%YMM12;  (19) 
+0x6496;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VXORPS	%XMM7,%XMM7,%XMM7;  (19) 
+0x649a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VPERMPD	$0x44,%YMM9,%YMM7;  (19) 
+0x64a0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VXORPS	%XMM10,%XMM10,%XMM10;  (19) 
+0x64a5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VPERMPD	$-0x12,%YMM9,%YMM10;  (19) 
+0x64ab;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VXORPS	%XMM9,%XMM9,%XMM9;  (19) 
+0x64b0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VPERMPD	$-0x28,%YMM4,%YMM9;  (19) 
+0x64b6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VSHUFPD	$0xc,%YMM8,%YMM7,%YMM0;  (19) 
+0x64bc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VSHUFPD	$0xc,%YMM12,%YMM10,%YMM13;  (19) 
+0x64c2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VMOVUPD	%YMM0,-0x80(%RAX);  (19) 
+0x64c7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VXORPS	%XMM0,%XMM0,%XMM0;  (19) 
+0x64cb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VPERMPD	$-0x28,%YMM5,%YMM0;  (19) 
+0x64d1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VMOVUPD	%YMM13,-0x60(%RAX);  (19) 
+0x64d6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VMOVUPD	-0x18(%RDX),%YMM6;  (19) 
+0x64db;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VADDPD	-0x20(%RDX),%YMM6,%YMM10;  (19) 
+0x64e0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VFMADD231PD	-0x20(%RDX),%YMM14,%YMM0;  (19) 
+0x64e6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VFMADD132PD	%YMM11,%YMM9,%YMM10;  (19) 
+0x64eb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VXORPS	%XMM7,%XMM7,%XMM7;  (19) 
+0x64ef;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VPERMPD	$0x44,%YMM0,%YMM7;  (19) 
+0x64f5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VXORPS	%XMM13,%XMM13,%XMM13;  (19) 
+0x64fa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VPERMPD	$-0x12,%YMM0,%YMM13;  (19) 
+0x6500;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VXORPS	%XMM8,%XMM8,%XMM8;  (19) 
+0x6505;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VPERMPD	$0x44,%YMM10,%YMM8;  (19) 
+0x650b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VXORPS	%XMM15,%XMM15,%XMM15;  (19) 
+0x6510;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VPERMPD	$-0x12,%YMM10,%YMM15;  (19) 
+0x6516;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VSHUFPD	$0xc,%YMM8,%YMM7,%YMM12;  (19) 
+0x651c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VSHUFPD	$0xc,%YMM15,%YMM13,%YMM4;  (19) 
+0x6522;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VMOVUPD	%YMM12,-0x40(%RAX);  (19) 
+0x6527;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VMOVUPD	%YMM4,-0x20(%RAX);  (19) 
+0x652c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;CMP	%RAX,%RBX;  (19) 
+0x652f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;JNE	6430 <interp_._omp_fn.0+0xc60>;  (19) 
+0x6535;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;TESTB	$0x3,0xf8(%RSP);
+0x653d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;JE	6c00 <interp_._omp_fn.0+0x1430>;
+0x6543;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;MOV	0xc0(%RSP),%EDX;
+0x654a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:795;MOV	0xc4(%RSP),%EAX;
+0x6551;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:795;MOV	0xfc(%RSP),%R11D;
+0x6559;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:795;SUB	%EDX,%R11D;
+0x655c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:795;CMP	$0x2,%R11D;
+0x6560;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:795;LEA	-0x1(%R11),%R8D;
+0x6564;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:795;JE	65dc <interp_._omp_fn.0+0xe0c>;
+0x6566;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:795;LEA	0x1(%R12,%R9,1),%R10;
+0x656b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VMOVDDUP	0xe54d(%RIP),%XMM10;
+0x6573;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VMOVDDUP	0xe535(%RIP),%XMM6;
+0x657b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;ADD	%RCX,%R10;
+0x657e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;LEA	(%R10,%RDX,2),%RCX;
+0x6582;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;SAL	$0x3,%RDX;
+0x6586;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;TEST	$0x1,%R8B;
+0x658a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VMOVUPD	0x1128(%RSP,%RDX,1),%XMM0;
+0x6593;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;LEA	(%R14,%RCX,8),%RBX;
+0x6597;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VADDPD	0x1120(%RSP,%RDX,1),%XMM0,%XMM7;
+0x65a0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VMOVUPD	0x10(%RBX),%XMM14;
+0x65a5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VMOVUPD	(%RBX),%XMM9;
+0x65a9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VMOVLPD	0x8(%RBX),%XMM14,%XMM11;
+0x65ae;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VMOVHPD	0x10(%RBX),%XMM9,%XMM5;
+0x65b3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VFMADD132PD	0x1120(%RSP,%RDX,1),%XMM5,%XMM10;
+0x65bd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VFMADD132PD	%XMM6,%XMM11,%XMM7;
+0x65c2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VUNPCKLPD	%XMM7,%XMM10,%XMM8;
+0x65c6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VUNPCKHPD	%XMM7,%XMM10,%XMM12;
+0x65ca;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VMOVUPD	%XMM8,(%RBX);
+0x65ce;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VMOVUPD	%XMM12,0x10(%RBX);
+0x65d3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;JE	6614 <interp_._omp_fn.0+0xe44>;
+0x65d5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;AND	$-0x2,%R8D;
+0x65d9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;ADD	%R8D,%EAX;
+0x65dc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;LEA	-0x1(%RAX),%R8D;
+0x65e0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;LEA	-0x1(%RAX,%RAX,1),%EDX;
+0x65e4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;CLTQ;
+0x65e6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;MOVSXD	%R8D,%R10;
+0x65e9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;MOVSXD	%EDX,%R11;
+0x65ec;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VMOVSD	0x1120(%RSP,%R10,8),%XMM13;
+0x65f6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;ADD	%RDI,%R11;
+0x65f9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;VADDSD	0x1120(%RSP,%RAX,8),%XMM13,%XMM15;
+0x6602;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:799;LEA	(%R14,%R11,8),%RDI;
+0x6606;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VUNPCKLPD	%XMM15,%XMM13,%XMM4;
+0x660b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VFMADD213PD	(%RDI),%XMM1,%XMM4;
+0x6610;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;VMOVUPD	%XMM4,(%RDI);
+0x6614;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;ADD	%R13,%RSI;
+0x6617;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;CMPL	$0x2,0xe0(%RSP);
+0x661f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;JBE	6c4b <interp_._omp_fn.0+0x147b>;
+0x6625;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VBROADCASTSD	0xe482(%RIP),%YMM11;
+0x662e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;LEA	0x1(%R12),%R8;
+0x6633;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;ADD	%R9,%R8;
+0x6636;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;MOV	0xc8(%RSP),%R11;
+0x663e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VBROADCASTSD	0xe471(%RIP),%YMM14;
+0x6647;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;LEA	0x100(%RSP),%RDX;
+0x664f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;ADD	%R13,%R8;
+0x6652;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;LEA	(%R14,%R8,8),%RCX;
+0x6656;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;LEA	(%R11,%RCX,1),%RDI;
+0x665a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;AND	$0x40,%R11D;
+0x665e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;JE	6708 <interp_._omp_fn.0+0xf38>;
+0x6664;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VMOVUPD	(%RCX),%YMM9;
+0x6668;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VUNPCKHPD	0x20(%RCX),%YMM9,%YMM5;
+0x666d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;ADD	$0x40,%RCX;
+0x6671;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;LEA	0x120(%RSP),%RDX;
+0x6679;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VMOVUPD	0x108(%RSP),%YMM8;
+0x6682;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VMOVUPD	-0x40(%RCX),%YMM0;
+0x6687;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VADDPD	0x100(%RSP),%YMM8,%YMM12;
+0x6690;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VUNPCKLPD	-0x20(%RCX),%YMM0,%YMM7;
+0x6695;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VXORPS	%XMM10,%XMM10,%XMM10;
+0x669a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VPERMPD	$-0x28,%YMM5,%YMM10;
+0x66a0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VXORPS	%XMM6,%XMM6,%XMM6;
+0x66a4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VPERMPD	$-0x28,%YMM7,%YMM6;
+0x66aa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VFMADD231PD	0x100(%RSP),%YMM11,%YMM6;
+0x66b4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VFMADD132PD	%YMM14,%YMM10,%YMM12;
+0x66b9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VXORPS	%XMM13,%XMM13,%XMM13;
+0x66be;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VPERMPD	$0x44,%YMM6,%YMM13;
+0x66c4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VXORPS	%XMM9,%XMM9,%XMM9;
+0x66c9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VPERMPD	$-0x12,%YMM6,%YMM9;
+0x66cf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VXORPS	%XMM15,%XMM15,%XMM15;
+0x66d4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VPERMPD	$0x44,%YMM12,%YMM15;
+0x66da;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VXORPS	%XMM5,%XMM5,%XMM5;
+0x66de;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VPERMPD	$-0x12,%YMM12,%YMM5;
+0x66e4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VSHUFPD	$0xc,%YMM15,%YMM13,%YMM4;
+0x66ea;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VSHUFPD	$0xc,%YMM5,%YMM9,%YMM10;
+0x66ef;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VMOVUPD	%YMM4,-0x40(%RCX);
+0x66f4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VMOVUPD	%YMM10,-0x20(%RCX);
+0x66f9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;CMP	%RCX,%RDI;
+0x66fc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;JE	6808 <interp_._omp_fn.0+0x1038>;
+0x6702;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;NOPW	(%RAX,%RAX,1);
+0x6708;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VMOVUPD	0x8(%RDX),%YMM13;  (18) 
+0x670d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VMOVUPD	(%RCX),%YMM0;  (18) 
+0x6711;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;SUB	$-0x80,%RCX;  (18) 
+0x6715;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;ADD	$0x40,%RDX;  (18) 
+0x6719;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VADDPD	-0x40(%RDX),%YMM13,%YMM15;  (18) 
+0x671e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VUNPCKHPD	-0x60(%RCX),%YMM0,%YMM7;  (18) 
+0x6723;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VUNPCKLPD	-0x60(%RCX),%YMM0,%YMM8;  (18) 
+0x6728;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VXORPS	%XMM6,%XMM6,%XMM6;  (18) 
+0x672c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VPERMPD	$-0x28,%YMM7,%YMM6;  (18) 
+0x6732;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VFMADD132PD	%YMM14,%YMM6,%YMM15;  (18) 
+0x6737;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VXORPS	%XMM12,%XMM12,%XMM12;  (18) 
+0x673c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VPERMPD	$-0x28,%YMM8,%YMM12;  (18) 
+0x6742;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VMOVUPD	-0x40(%RCX),%YMM6;  (18) 
+0x6747;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VUNPCKHPD	-0x20(%RCX),%YMM6,%YMM8;  (18) 
+0x674c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VFMADD231PD	-0x40(%RDX),%YMM11,%YMM12;  (18) 
+0x6752;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VUNPCKLPD	-0x20(%RCX),%YMM6,%YMM13;  (18) 
+0x6757;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VXORPS	%XMM9,%XMM9,%XMM9;  (18) 
+0x675c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VPERMPD	$0x44,%YMM15,%YMM9;  (18) 
+0x6762;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VXORPS	%XMM0,%XMM0,%XMM0;  (18) 
+0x6766;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VPERMPD	$-0x12,%YMM15,%YMM0;  (18) 
+0x676c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VXORPS	%XMM15,%XMM15,%XMM15;  (18) 
+0x6771;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VPERMPD	$-0x28,%YMM13,%YMM15;  (18) 
+0x6777;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VXORPS	%XMM4,%XMM4,%XMM4;  (18) 
+0x677b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VPERMPD	$0x44,%YMM12,%YMM4;  (18) 
+0x6781;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VXORPS	%XMM10,%XMM10,%XMM10;  (18) 
+0x6786;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VPERMPD	$-0x12,%YMM12,%YMM10;  (18) 
+0x678c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VXORPS	%XMM12,%XMM12,%XMM12;  (18) 
+0x6791;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VPERMPD	$-0x28,%YMM8,%YMM12;  (18) 
+0x6797;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VSHUFPD	$0xc,%YMM9,%YMM4,%YMM5;  (18) 
+0x679d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VSHUFPD	$0xc,%YMM0,%YMM10,%YMM7;  (18) 
+0x67a2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VMOVUPD	%YMM5,-0x80(%RCX);  (18) 
+0x67a7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VMOVUPD	%YMM7,-0x60(%RCX);  (18) 
+0x67ac;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VMOVUPD	-0x18(%RDX),%YMM4;  (18) 
+0x67b1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VADDPD	-0x20(%RDX),%YMM4,%YMM9;  (18) 
+0x67b6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VFMADD231PD	-0x20(%RDX),%YMM11,%YMM15;  (18) 
+0x67bc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VFMADD132PD	%YMM14,%YMM12,%YMM9;  (18) 
+0x67c1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VXORPS	%XMM5,%XMM5,%XMM5;  (18) 
+0x67c5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VPERMPD	$0x44,%YMM15,%YMM5;  (18) 
+0x67cb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VXORPS	%XMM7,%XMM7,%XMM7;  (18) 
+0x67cf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VPERMPD	$-0x12,%YMM15,%YMM7;  (18) 
+0x67d5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VXORPS	%XMM10,%XMM10,%XMM10;  (18) 
+0x67da;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VPERMPD	$0x44,%YMM9,%YMM10;  (18) 
+0x67e0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VXORPS	%XMM6,%XMM6,%XMM6;  (18) 
+0x67e4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VPERMPD	$-0x12,%YMM9,%YMM6;  (18) 
+0x67ea;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VSHUFPD	$0xc,%YMM10,%YMM5,%YMM0;  (18) 
+0x67f0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VSHUFPD	$0xc,%YMM6,%YMM7,%YMM8;  (18) 
+0x67f5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VMOVUPD	%YMM0,-0x40(%RCX);  (18) 
+0x67fa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VMOVUPD	%YMM8,-0x20(%RCX);  (18) 
+0x67ff;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;CMP	%RCX,%RDI;  (18) 
+0x6802;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;JNE	6708 <interp_._omp_fn.0+0xf38>;  (18) 
+0x6808;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;TESTB	$0x3,0xf8(%RSP);
+0x6810;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;JE	68e6 <interp_._omp_fn.0+0x1116>;
+0x6816;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;MOV	0xc0(%RSP),%EBX;
+0x681d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:801;MOV	0xc4(%RSP),%EAX;
+0x6824;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:801;MOV	0xfc(%RSP),%R8D;
+0x682c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:801;SUB	%EBX,%R8D;
+0x682f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:801;CMP	$0x2,%R8D;
+0x6833;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:801;LEA	-0x1(%R8),%R10D;
+0x6837;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:801;JE	68b1 <interp_._omp_fn.0+0x10e1>;
+0x6839;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:801;LEA	0x1(%R12,%R9,1),%R9;
+0x683e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VMOVDDUP	0xe26a(%RIP),%XMM15;
+0x6846;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VMOVDDUP	0xe26a(%RIP),%XMM5;
+0x684e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;ADD	%R13,%R9;
+0x6851;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;LEA	(%R9,%RBX,2),%R13;
+0x6855;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;SAL	$0x3,%RBX;
+0x6859;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;TEST	$0x1,%R10B;
+0x685d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VMOVUPD	0x108(%RSP,%RBX,1),%XMM4;
+0x6866;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;LEA	(%R14,%R13,8),%RCX;
+0x686a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VADDPD	0x100(%RSP,%RBX,1),%XMM4,%XMM9;
+0x6873;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VMOVUPD	0x10(%RCX),%XMM11;
+0x6878;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VMOVUPD	(%RCX),%XMM12;
+0x687c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VMOVLPD	0x8(%RCX),%XMM11,%XMM14;
+0x6881;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VMOVHPD	0x10(%RCX),%XMM12,%XMM13;
+0x6886;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VFMADD132PD	0x100(%RSP,%RBX,1),%XMM13,%XMM15;
+0x6890;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VFMADD132PD	%XMM5,%XMM14,%XMM9;
+0x6895;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VUNPCKLPD	%XMM9,%XMM15,%XMM10;
+0x689a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VUNPCKHPD	%XMM9,%XMM15,%XMM0;
+0x689f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VMOVUPD	%XMM10,(%RCX);
+0x68a3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VMOVUPD	%XMM0,0x10(%RCX);
+0x68a8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;JE	68e6 <interp_._omp_fn.0+0x1116>;
+0x68aa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;AND	$-0x2,%R10D;
+0x68ae;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;ADD	%R10D,%EAX;
+0x68b1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;LEA	-0x1(%RAX),%EDI;
+0x68b4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;LEA	-0x1(%RAX,%RAX,1),%EBX;
+0x68b8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;CLTQ;
+0x68ba;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;MOVSXD	%EDI,%RDX;
+0x68bd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;MOVSXD	%EBX,%R11;
+0x68c0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VMOVSD	0x100(%RSP,%RDX,8),%XMM7;
+0x68c9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;ADD	%RSI,%R11;
+0x68cc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;VADDSD	0x100(%RSP,%RAX,8),%XMM7,%XMM6;
+0x68d5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:805;LEA	(%R14,%R11,8),%RSI;
+0x68d9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VUNPCKLPD	%XMM6,%XMM7,%XMM8;
+0x68dd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VFMADD213PD	(%RSI),%XMM3,%XMM8;
+0x68e2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;VMOVUPD	%XMM8,(%RSI);
+0x68e6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;MOV	0x70(%RSP),%EAX;
+0x68ea;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;CMP	%EAX,0xbc(%RSP);
+0x68f1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;JE	6928 <interp_._omp_fn.0+0x1158>;
+0x68f3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;MOV	0xe4(%RSP),%R8D;
+0x68fb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;MOV	0x74(%RSP),%R10D;
+0x6900;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;CMP	%R10D,%R8D;
+0x6903;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;LEA	0x1(%R8),%R9D;
+0x6907;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;JGE	6c38 <interp_._omp_fn.0+0x1468>;
+0x690d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;ADDL	$0x1,0xbc(%RSP);
+0x6915;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:773;MOV	%R9D,0xe4(%RSP);
+0x691d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:773;JMP	5980 <interp_._omp_fn.0+0x1b0>;
+0x6940;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:773;CMPL	$0x2,0xe0(%RSP);
+0x6948;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:773;JBE	6ca3 <interp_._omp_fn.0+0x14d3>;
+0x694e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:773;VBROADCASTSD	0xe169(%RIP),%YMM14;
+0x6957;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;XOR	%EAX,%EAX;
+0x6959;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;TESTB	$0x20,0x78(%RSP);
+0x695e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	0x8(%R15,%R9,1),%RBX;
+0x6963;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;JE	69f8 <interp_._omp_fn.0+0x1228>;
+0x6969;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVUPD	(%RBX),%YMM7;
+0x696d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVUPD	(%RDX),%YMM5;
+0x6971;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	$0x20,%EAX;
+0x6976;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VADDPD	(%R10),%YMM7,%YMM9;
+0x697b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VUNPCKHPD	0x20(%RDX),%YMM5,%YMM0;
+0x6980;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVUPD	(%RDX),%YMM15;
+0x6984;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VUNPCKLPD	0x20(%RDX),%YMM15,%YMM4;
+0x6989;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VXORPS	%XMM10,%XMM10,%XMM10;
+0x698e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VPERMPD	$-0x28,%YMM0,%YMM10;
+0x6994;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOV	0x78(%RSP),%R9;
+0x6999;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VFMADD132PD	%YMM14,%YMM10,%YMM9;
+0x699e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VXORPS	%XMM6,%XMM6,%XMM6;
+0x69a2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VPERMPD	$-0x28,%YMM4,%YMM6;
+0x69a8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VADDPD	(%R10),%YMM6,%YMM8;
+0x69ad;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;CMP	%R9,%RAX;
+0x69b0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VXORPS	%XMM11,%XMM11,%XMM11;
+0x69b5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VPERMPD	$0x44,%YMM8,%YMM11;
+0x69bb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VXORPS	%XMM15,%XMM15,%XMM15;
+0x69c0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VPERMPD	$-0x12,%YMM8,%YMM15;
+0x69c6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VXORPS	%XMM12,%XMM12,%XMM12;
+0x69cb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VPERMPD	$0x44,%YMM9,%YMM12;
+0x69d1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VXORPS	%XMM4,%XMM4,%XMM4;
+0x69d5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VPERMPD	$-0x12,%YMM9,%YMM4;
+0x69db;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VSHUFPD	$0xc,%YMM12,%YMM11,%YMM13;
+0x69e1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VSHUFPD	$0xc,%YMM4,%YMM15,%YMM6;
+0x69e6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVUPD	%YMM13,(%RDX);
+0x69ea;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVUPD	%YMM6,0x20(%RDX);
+0x69ef;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;JE	6b17 <interp_._omp_fn.0+0x1347>;
+0x69f5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;NOPL	(%RAX);
+0x69f8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVUPD	(%RBX,%RAX,1),%YMM0;  (21) 
+0x69fd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVUPD	(%RDX,%RAX,2),%YMM11;  (21) 
+0x6a02;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	0x20(%RAX),%R9;  (21) 
+0x6a06;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VADDPD	(%R10,%RAX,1),%YMM0,%YMM10;  (21) 
+0x6a0c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VUNPCKHPD	0x20(%RDX,%RAX,2),%YMM11,%YMM12;  (21) 
+0x6a12;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVUPD	(%RDX,%RAX,2),%YMM8;  (21) 
+0x6a17;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VUNPCKLPD	0x20(%RDX,%RAX,2),%YMM8,%YMM7;  (21) 
+0x6a1d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VXORPS	%XMM13,%XMM13,%XMM13;  (21) 
+0x6a22;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VPERMPD	$-0x28,%YMM12,%YMM13;  (21) 
+0x6a28;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VFMADD132PD	%YMM14,%YMM13,%YMM10;  (21) 
+0x6a2d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VXORPS	%XMM9,%XMM9,%XMM9;  (21) 
+0x6a32;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VPERMPD	$-0x28,%YMM7,%YMM9;  (21) 
+0x6a38;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VADDPD	(%R10,%RAX,1),%YMM9,%YMM5;  (21) 
+0x6a3e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VXORPS	%XMM15,%XMM15,%XMM15;  (21) 
+0x6a43;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VPERMPD	$0x44,%YMM5,%YMM15;  (21) 
+0x6a49;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VXORPS	%XMM8,%XMM8,%XMM8;  (21) 
+0x6a4e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VPERMPD	$-0x12,%YMM5,%YMM8;  (21) 
+0x6a54;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VXORPS	%XMM4,%XMM4,%XMM4;  (21) 
+0x6a58;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VPERMPD	$0x44,%YMM10,%YMM4;  (21) 
+0x6a5e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VXORPS	%XMM7,%XMM7,%XMM7;  (21) 
+0x6a62;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VPERMPD	$-0x12,%YMM10,%YMM7;  (21) 
+0x6a68;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VSHUFPD	$0xc,%YMM4,%YMM15,%YMM6;  (21) 
+0x6a6d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VSHUFPD	$0xc,%YMM7,%YMM8,%YMM9;  (21) 
+0x6a72;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVUPD	%YMM6,(%RDX,%RAX,2);  (21) 
+0x6a77;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVUPD	%YMM9,0x20(%RDX,%RAX,2);  (21) 
+0x6a7d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVUPD	0x20(%RBX,%RAX,1),%YMM12;  (21) 
+0x6a83;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVUPD	(%RDX,%R9,2),%YMM15;  (21) 
+0x6a89;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VADDPD	0x20(%R10,%RAX,1),%YMM12,%YMM13;  (21) 
+0x6a90;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VUNPCKHPD	0x20(%RDX,%R9,2),%YMM15,%YMM4;  (21) 
+0x6a97;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVUPD	(%RDX,%R9,2),%YMM5;  (21) 
+0x6a9d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VUNPCKLPD	0x20(%RDX,%R9,2),%YMM5,%YMM0;  (21) 
+0x6aa4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VXORPS	%XMM6,%XMM6,%XMM6;  (21) 
+0x6aa8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VPERMPD	$-0x28,%YMM4,%YMM6;  (21) 
+0x6aae;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VFMADD132PD	%YMM14,%YMM6,%YMM13;  (21) 
+0x6ab3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VXORPS	%XMM10,%XMM10,%XMM10;  (21) 
+0x6ab8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VPERMPD	$-0x28,%YMM0,%YMM10;  (21) 
+0x6abe;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VADDPD	0x20(%R10,%RAX,1),%YMM10,%YMM11;  (21) 
+0x6ac5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;ADD	$0x40,%RAX;  (21) 
+0x6ac9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VXORPS	%XMM8,%XMM8,%XMM8;  (21) 
+0x6ace;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VPERMPD	$0x44,%YMM11,%YMM8;  (21) 
+0x6ad4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VXORPS	%XMM5,%XMM5,%XMM5;  (21) 
+0x6ad8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VPERMPD	$-0x12,%YMM11,%YMM5;  (21) 
+0x6ade;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VXORPS	%XMM7,%XMM7,%XMM7;  (21) 
+0x6ae2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VPERMPD	$0x44,%YMM13,%YMM7;  (21) 
+0x6ae8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VXORPS	%XMM0,%XMM0,%XMM0;  (21) 
+0x6aec;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VPERMPD	$-0x12,%YMM13,%YMM0;  (21) 
+0x6af2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VSHUFPD	$0xc,%YMM7,%YMM8,%YMM9;  (21) 
+0x6af7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VSHUFPD	$0xc,%YMM0,%YMM5,%YMM10;  (21) 
+0x6afc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVUPD	%YMM9,(%RDX,%R9,2);  (21) 
+0x6b02;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVUPD	%YMM10,0x20(%RDX,%R9,2);  (21) 
+0x6b09;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;MOV	0x78(%RSP),%R9;  (21) 
+0x6b0e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;CMP	%R9,%RAX;  (21) 
+0x6b11;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;JNE	69f8 <interp_._omp_fn.0+0x1228>;  (21) 
+0x6b17;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;TESTB	$0x3,0xf8(%RSP);
+0x6b1f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;JE	6c7c <interp_._omp_fn.0+0x14ac>;
+0x6b25;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;CMPL	$0x2,0x1c(%RSP);
+0x6b2a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;MOV	0x18(%RSP),%EAX;
+0x6b2e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;JE	6cb7 <interp_._omp_fn.0+0x14e7>;
+0x6b34;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;MOV	0xc0(%RSP),%EDX;
+0x6b3b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;MOV	0xc4(%RSP),%R9D;
+0x6b43;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;MOV	0xd8(%RSP),%RBX;
+0x6b4b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVDDUP	0xdf6d(%RIP),%XMM6;
+0x6b53;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;TEST	$0x1,%AL;
+0x6b55;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;LEA	(%RBX,%RDX,2),%R10;
+0x6b59;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;LEA	0x1(%R8,%RDX,1),%RDX;
+0x6b5e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;LEA	(%R14,%R10,8),%RBX;
+0x6b62;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVUPD	0x8(%R15,%RDX,8),%XMM13;
+0x6b69;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VADDPD	(%R15,%RDX,8),%XMM13,%XMM15;
+0x6b6f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVUPD	0x10(%RBX),%XMM4;
+0x6b74;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVLPD	0x8(%RBX),%XMM4,%XMM8;
+0x6b79;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVUPD	(%RBX),%XMM14;
+0x6b7d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VFMADD132PD	%XMM6,%XMM8,%XMM15;
+0x6b82;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVHPD	0x10(%RBX),%XMM14,%XMM11;
+0x6b87;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VADDPD	(%R15,%RDX,8),%XMM11,%XMM12;
+0x6b8d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VUNPCKLPD	%XMM15,%XMM12,%XMM7;
+0x6b92;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VUNPCKHPD	%XMM15,%XMM12,%XMM9;
+0x6b97;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVUPD	%XMM7,(%RBX);
+0x6b9b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVUPD	%XMM9,0x10(%RBX);
+0x6ba0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;JE	6030 <interp_._omp_fn.0+0x860>;
+0x6ba6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;AND	$-0x2,%EAX;
+0x6ba9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;ADD	%R9D,%EAX;
+0x6bac;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	(%RAX,%RAX,1),%R10D;
+0x6bb0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOVSXD	%EAX,%RBX;
+0x6bb3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;ADD	$0x1,%EAX;
+0x6bb6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;LEA	-0x1(%R10),%R9D;
+0x6bba;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;ADD	%R13,%RBX;
+0x6bbd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;MOVSXD	%R10D,%RDX;
+0x6bc0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;CLTQ;
+0x6bc2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;MOVSXD	%R9D,%R8;
+0x6bc5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;ADD	%RDI,%RDX;
+0x6bc8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;ADD	%R13,%RAX;
+0x6bcb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;ADD	%RDI,%R8;
+0x6bce;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	(%R14,%R8,8),%XMM5;
+0x6bd4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VADDSD	(%R15,%RBX,8),%XMM5,%XMM0;
+0x6bda;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;VMOVSD	%XMM0,(%R14,%R8,8);
+0x6be0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	(%R15,%RAX,8),%XMM10;
+0x6be6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VADDSD	(%R15,%RBX,8),%XMM10,%XMM14;
+0x6bec;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VFMADD213SD	(%R14,%RDX,8),%XMM2,%XMM14;
+0x6bf2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;VMOVSD	%XMM14,(%R14,%RDX,8);
+0x6bf8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:787;JMP	6030 <interp_._omp_fn.0+0x860>;
+0x6c00;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;ADD	%R13,%RSI;
+0x6c03;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;JMP	6633 <interp_._omp_fn.0+0xe63>;
+0x6c10;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;MOV	0xa8(%RSP),%RSI;
+0x6c18;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;MOVSXD	0xf0(%RSP),%R9;
+0x6c20;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;IMUL	%RSI,%R9;
+0x6c24;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;LEA	(%R12,%R9,1),%RSI;
+0x6c28;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;LEA	(%RCX,%RSI,1),%RDI;
+0x6c2c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;JMP	6365 <interp_._omp_fn.0+0xb95>;
+0x6c38;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;ADDL	$0x1,0xb8(%RSP);
+0x6c40;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:773;MOV	$0x1,%R9D;
+0x6c46;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:773;JMP	690d <interp_._omp_fn.0+0x113d>;
+0x6c4b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:803;XOR	%EBX,%EBX;
+0x6c4d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:801;MOV	$0x1,%EAX;
+0x6c52;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:801;JMP	6824 <interp_._omp_fn.0+0x1054>;
+0x6c57;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:780;XOR	%EDI,%EDI;
+0x6c59;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:777;MOV	$0x1,%EAX;
+0x6c5e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:777;JMP	5ccd <interp_._omp_fn.0+0x4fd>;
+0x6c63;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;XOR	%R11D,%R11D;
+0x6c66;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:789;MOV	$0x1,%EAX;
+0x6c6b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:789;JMP	625f <interp_._omp_fn.0+0xa8f>;
+0x6c70;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:797;XOR	%EDX,%EDX;
+0x6c72;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:795;MOV	$0x1,%EAX;
+0x6c77;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:795;JMP	6551 <interp_._omp_fn.0+0xd81>;
+0x6c7c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;MOVSXD	0xe8(%RSP),%R13;
+0x6c84;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;MOV	0xa0(%RSP),%R8;
+0x6c8c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;IMUL	%R8,%R13;
+0x6c90;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;LEA	(%R11,%R13,1),%R10;
+0x6c94;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:791;JMP	605f <interp_._omp_fn.0+0x88f>;
+0x6ca3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:773;MOV	0xf8(%RSP),%EAX;
+0x6caa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:785;XOR	%EDX,%EDX;
+0x6cac;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;MOV	$0x1,%R9D;
+0x6cb2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;JMP	6b43 <interp_._omp_fn.0+0x1373>;
+0x6cb7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;MOV	0xc4(%RSP),%EAX;
+0x6cbe;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:783;JMP	6bac <interp_._omp_fn.0+0x13dc>;

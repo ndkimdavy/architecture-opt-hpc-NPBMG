@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - threads redirect</title>
+<meta charset="utf-8" />
+</head>
+<body onload="__redirect ()">
+<div id="err_div"></div>
+<script>
+function __redirect (){
+  const redirect_table = [
+    {lbw-Lenovo-G5000-IRH8_93738_93738: "lbw-Lenovo-G5000-IRH8_93738_93738", },
+    {lbw-Lenovo-G5000-IRH8_94848_94848: "lbw-Lenovo-G5000-IRH8_94848_94848", lbw-Lenovo-G5000-IRH8_94848_94943: "lbw-Lenovo-G5000-IRH8_94848_94943", },
+    {lbw-Lenovo-G5000-IRH8_95930_95951: "lbw-Lenovo-G5000-IRH8_95930_95951", lbw-Lenovo-G5000-IRH8_95930_95953: "lbw-Lenovo-G5000-IRH8_95930_95952", lbw-Lenovo-G5000-IRH8_95930_95952: "lbw-Lenovo-G5000-IRH8_95930_95952", lbw-Lenovo-G5000-IRH8_95930_95930: "lbw-Lenovo-G5000-IRH8_95930_95930", },
+    {lbw-Lenovo-G5000-IRH8_96787_96896: "lbw-Lenovo-G5000-IRH8_96787_96894", lbw-Lenovo-G5000-IRH8_96787_96893: "lbw-Lenovo-G5000-IRH8_96787_96892", lbw-Lenovo-G5000-IRH8_96787_96897: "lbw-Lenovo-G5000-IRH8_96787_96894", lbw-Lenovo-G5000-IRH8_96787_96898: "lbw-Lenovo-G5000-IRH8_96787_96894", lbw-Lenovo-G5000-IRH8_96787_96894: "lbw-Lenovo-G5000-IRH8_96787_96894", lbw-Lenovo-G5000-IRH8_96787_96787: "lbw-Lenovo-G5000-IRH8_96787_96787", lbw-Lenovo-G5000-IRH8_96787_96895: "lbw-Lenovo-G5000-IRH8_96787_96894", lbw-Lenovo-G5000-IRH8_96787_96892: "lbw-Lenovo-G5000-IRH8_96787_96892", },
+];
+  const queryString = window.location.search;
+  const params = new URLSearchParams(queryString);
+  let thread = params.get("thread");
+  if (thread) {
+    let elems = thread.split ("_");
+    let run_id = elems[0];
+    let key    = elems[1];
+    for (let i = 2; i < elems.length; i++) {
+      key += "_" + elems[i];
+    }
+    window.location.replace("/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_omp_cpp_clang++/RESULTS/mg_omp_cpp_clang++_one_html/topo/run_"+run_id+"_"+redirect_table[run_id][key]+".html?origin="+key);
+  }
+  else {
+    let d = document.getElementById ("err_div");
+    if (d) {
+      d.innerHTML = "Missing parameter <i>thread</i>";
+    }
+  }
+}
+</script>
+</body>
+</html>

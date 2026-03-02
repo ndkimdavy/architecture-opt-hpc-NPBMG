@@ -1,0 +1,118 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-MPI/MG/mg.f90: 2119 - 2313
+--------------------------------------------------------------------------------
+
+2119:       subroutine zran3(z,n1,n2,n3,nx,ny,k)
+[...]
+2149:       a1 = power( a, nx, 1, 0 )
+2150:       a2 = power( a, nx, ny, 0 )
+2151: 
+2152:       call zero3(z,n1,n2,n3)
+2153: 
+2154: !      i = is1-2+nx*(is2-2+ny*(is3-2))
+2155: 
+2156:       ai = power( a, nx, is2-2+ny*(is3-2), is1-2 )
+2157:       d1 = ie1 - is1 + 1
+2158:       e1 = ie1 - is1 + 2
+2159:       e2 = ie2 - is2 + 2
+2160:       e3 = ie3 - is3 + 2
+2161:       x0 = x
+2162:       rdummy = randlc( x0, ai )
+2163:       do  i3 = 2, e3
+2164:          x1 = x0
+2165:          do  i2 = 2, e2
+2166:             xx = x1
+2167:             call vranlc( d1, xx, a, z( 2, i2, i3 ))
+2168:             rdummy = randlc( x1, a1 )
+2169:          enddo
+2170:          rdummy = randlc( x0, a2 )
+[...]
+2182:          ten( i, 1 ) = 0.0D0
+2183:          j1( i, 1 ) = 0
+2184:          j2( i, 1 ) = 0
+2185:          j3( i, 1 ) = 0
+2186:          ten( i, 0 ) = 1.0D0
+2187:          j1( i, 0 ) = 0
+2188:          j2( i, 0 ) = 0
+2189:          j3( i, 0 ) = 0
+2190:       enddo
+2191: 
+2192:       do  i3=2,n3-1
+2193:          do  i2=2,n2-1
+2194:             do  i1=2,n1-1
+2195:                if( z(i1,i2,i3) .gt. ten( 1, 1 ) )then
+2196:                   ten(1,1) = z(i1,i2,i3) 
+2197:                   j1(1,1) = i1
+2198:                   j2(1,1) = i2
+2199:                   j3(1,1) = i3
+2200:                   call bubble( ten, j1, j2, j3, mm, 1 )
+2201:                endif
+2202:                if( z(i1,i2,i3) .lt. ten( 1, 0 ) )then
+2203:                   ten(1,0) = z(i1,i2,i3) 
+2204:                   j1(1,0) = i1
+2205:                   j2(1,0) = i2
+2206:                   j3(1,0) = i3
+2207:                   call bubble( ten, j1, j2, j3, mm, 0 )
+[...]
+2220:       do  i=mm,1,-1
+2221: 
+2222:          best = z( j1(i1,1), j2(i1,1), j3(i1,1) )
+2223:          call mpi_allreduce(best,temp,1,dp_type,  &
+2224:      &        mpi_max,comm_work,ierr)
+2225:          best = temp
+2226:          if(best.eq.z(j1(i1,1),j2(i1,1),j3(i1,1)))then
+2227:             jg( 0, i, 1) = me
+2228:             jg( 1, i, 1) = is1 - 2 + j1( i1, 1 ) 
+2229:             jg( 2, i, 1) = is2 - 2 + j2( i1, 1 ) 
+2230:             jg( 3, i, 1) = is3 - 2 + j3( i1, 1 ) 
+2231:             i1 = i1-1
+2232:          else
+2233:             jg( 0, i, 1) = 0
+2234:             jg( 1, i, 1) = 0
+2235:             jg( 2, i, 1) = 0
+2236:             jg( 3, i, 1) = 0
+2237:          endif
+2238:          ten( i, 1 ) = best
+2239:          call mpi_allreduce(jg(0,i,1), jg_temp,4,MPI_INTEGER,  &
+2240:      &        mpi_max,comm_work,ierr)
+2241:          jg( 0, i, 1) =  jg_temp(1)
+2242:          jg( 1, i, 1) =  jg_temp(2)
+2243:          jg( 2, i, 1) =  jg_temp(3)
+2244:          jg( 3, i, 1) =  jg_temp(4)
+2245: 
+2246:          best = z( j1(i0,0), j2(i0,0), j3(i0,0) )
+2247:          call mpi_allreduce(best,temp,1,dp_type,  &
+2248:      &        mpi_min,comm_work,ierr)
+2249:          best = temp
+2250:          if(best.eq.z(j1(i0,0),j2(i0,0),j3(i0,0)))then
+2251:             jg( 0, i, 0) = me
+2252:             jg( 1, i, 0) = is1 - 2 + j1( i0, 0 ) 
+2253:             jg( 2, i, 0) = is2 - 2 + j2( i0, 0 ) 
+2254:             jg( 3, i, 0) = is3 - 2 + j3( i0, 0 ) 
+2255:             i0 = i0-1
+2256:          else
+2257:             jg( 0, i, 0) = 0
+2258:             jg( 1, i, 0) = 0
+2259:             jg( 2, i, 0) = 0
+2260:             jg( 3, i, 0) = 0
+2261:          endif
+2262:          ten( i, 0 ) = best
+2263:          call mpi_allreduce(jg(0,i,0), jg_temp,4,MPI_INTEGER,  &
+2264:      &        mpi_max,comm_work,ierr)
+2265:          jg( 0, i, 0) =  jg_temp(1)
+[...]
+2293:       do  i3=1,n3
+2294:          do  i2=1,n2
+2295:             do  i1=1,n1
+2296:                z(i1,i2,i3) = 0.0D0
+2297:             enddo
+2298:          enddo
+2299:       enddo
+2300:       do  i=mm,m0,-1
+2301:          z( j1(i,0), j2(i,0), j3(i,0) ) = -1.0D0
+2302:       enddo
+2303:       do  i=mm,m1,-1
+2304:          z( j1(i,1), j2(i,1), j3(i,1) ) = +1.0D0
+2305:       enddo
+2306:       call comm3(z,n1,n2,n3,k)
+[...]
+2313:       end

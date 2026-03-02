@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - threads redirect</title>
+<meta charset="utf-8" />
+</head>
+<body onload="__redirect ()">
+<div id="err_div"></div>
+<script>
+function __redirect (){
+  const redirect_table = [
+    {lbw-Lenovo-G5000-IRH8_80058_80058: "lbw-Lenovo-G5000-IRH8_80058_80058", },
+    {lbw-Lenovo-G5000-IRH8_81034_81034: "lbw-Lenovo-G5000-IRH8_81034_81034", lbw-Lenovo-G5000-IRH8_81020_81020: "lbw-Lenovo-G5000-IRH8_81020_81020", },
+    {lbw-Lenovo-G5000-IRH8_81776_81776: "lbw-Lenovo-G5000-IRH8_81776_81776", lbw-Lenovo-G5000-IRH8_81788_81788: "lbw-Lenovo-G5000-IRH8_81776_81776", lbw-Lenovo-G5000-IRH8_81784_81784: "lbw-Lenovo-G5000-IRH8_81776_81776", lbw-Lenovo-G5000-IRH8_81780_81780: "lbw-Lenovo-G5000-IRH8_81776_81776", },
+    {lbw-Lenovo-G5000-IRH8_82633_82633: "lbw-Lenovo-G5000-IRH8_82633_82633", lbw-Lenovo-G5000-IRH8_82611_82611: "lbw-Lenovo-G5000-IRH8_82609_82609", lbw-Lenovo-G5000-IRH8_82634_82634: "lbw-Lenovo-G5000-IRH8_82634_82634", lbw-Lenovo-G5000-IRH8_82610_82610: "lbw-Lenovo-G5000-IRH8_82610_82610", lbw-Lenovo-G5000-IRH8_82591_82591: "lbw-Lenovo-G5000-IRH8_82634_82634", lbw-Lenovo-G5000-IRH8_82602_82602: "lbw-Lenovo-G5000-IRH8_82609_82609", lbw-Lenovo-G5000-IRH8_82632_82632: "lbw-Lenovo-G5000-IRH8_82634_82634", lbw-Lenovo-G5000-IRH8_82609_82609: "lbw-Lenovo-G5000-IRH8_82609_82609", },
+];
+  const queryString = window.location.search;
+  const params = new URLSearchParams(queryString);
+  let thread = params.get("thread");
+  if (thread) {
+    let elems = thread.split ("_");
+    let run_id = elems[0];
+    let key    = elems[1];
+    for (let i = 2; i < elems.length; i++) {
+      key += "_" + elems[i];
+    }
+    window.location.replace("/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_intel/RESULTS/mg_mpi_f90_intel_one_html/topo/run_"+run_id+"_"+redirect_table[run_id][key]+".html?origin="+key);
+  }
+  else {
+    let d = document.getElementById ("err_div");
+    if (d) {
+      d.innerHTML = "Missing parameter <i>thread</i>";
+    }
+  }
+}
+</script>
+</body>
+</html>

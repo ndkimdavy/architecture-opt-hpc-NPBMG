@@ -1,0 +1,63 @@
+/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-MPI/MG/mg.f90: 1399 - 1495
+--------------------------------------------------------------------------------
+
+1399:       subroutine take3( axis, dir, u, n1, n2, n3 )
+[...]
+1422:       if (timeron) call timer_start(t_comm3)
+1423:       call mpi_wait( msg_id( axis, dir, 1 ),status,ierr)
+1424:       if (timeron) call timer_stop(t_comm3)
+1425:       buff_id = 3 + dir
+1426:       indx = 0
+1427: 
+1428:       if( axis .eq.  1 )then
+1429:          if( dir .eq. -1 )then
+1430: 
+1431:             do  i3=2,n3-1
+1432:                do  i2=2,n2-1
+1433:                   indx = indx + 1
+1434:                   u(n1,i2,i3) = buff(indx, buff_id )
+1435:                enddo
+1436:             enddo
+1437: 
+1438:          else if( dir .eq. +1 ) then
+1439: 
+1440:             do  i3=2,n3-1
+1441:                do  i2=2,n2-1
+1442:                   indx = indx + 1
+1443:                   u(1,i2,i3) = buff(indx, buff_id )
+[...]
+1450:       if( axis .eq.  2 )then
+1451:          if( dir .eq. -1 )then
+1452: 
+1453:             do  i3=2,n3-1
+1454:                do  i1=1,n1
+1455:                   indx = indx + 1
+1456:                   u(i1,n2,i3) = buff(indx, buff_id )
+1457:                enddo
+1458:             enddo
+1459: 
+1460:          else if( dir .eq. +1 ) then
+1461: 
+1462:             do  i3=2,n3-1
+1463:                do  i1=1,n1
+1464:                   indx = indx + 1
+1465:                   u(i1,1,i3) = buff(indx, buff_id )
+[...]
+1472:       if( axis .eq.  3 )then
+1473:          if( dir .eq. -1 )then
+1474: 
+1475:             do  i2=1,n2
+1476:                do  i1=1,n1
+1477:                   indx = indx + 1
+1478:                   u(i1,i2,n3) = buff(indx, buff_id )
+1479:                enddo
+1480:             enddo
+1481: 
+1482:          else if( dir .eq. +1 ) then
+1483: 
+1484:             do  i2=1,n2
+1485:                do  i1=1,n1
+1486:                   indx = indx + 1
+1487:                   u(i1,i2,1) = buff(indx, buff_id )
+[...]
+1495:       end

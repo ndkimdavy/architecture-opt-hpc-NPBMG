@@ -1,0 +1,1 @@
+maqao oneview -R1 -WS --number-processes=1 "--mpi-command=/usr/bin/mpirun -np <number_processes>" --multiruns-params={{number_processes=2},{number_processes=4},{number_processes=8}} -xp=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_gfortran --replace -- ./mg_mpi_f90_gfortran 

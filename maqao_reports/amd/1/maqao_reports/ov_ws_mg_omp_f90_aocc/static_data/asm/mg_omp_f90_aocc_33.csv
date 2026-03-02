@@ -1,0 +1,13 @@
+address;source_location;insn;indent
+0xa730;/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:760;VMOVSD	(%RDI,%RCX,8),%XMM14;
+0xa735;/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:760;VADDSD	(%RAX,%RCX,8),%XMM14,%XMM15;
+0xa73a;/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:760;VMOVSD	%XMM15,(%RBP,%RCX,8);
+0xa740;/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:761;VMOVSD	(%RDX,%RCX,8),%XMM16;
+0xa747;/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:761;VADDSD	%XMM14,%XMM16,%XMM14;
+0xa74d;/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:761;VMOVSD	%XMM14,(%R12,%RCX,8);
+0xa753;/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:762;VADDSD	%XMM15,%XMM16,%XMM14;
+0xa759;/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:762;VADDSD	(%R10,%RCX,8),%XMM14,%XMM14;
+0xa75f;/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:762;VMOVSD	%XMM14,(%RSI,%RCX,8);
+0xa764;/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:762;INC	%RCX;
+0xa767;/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:762;CMP	%RCX,%R8;
+0xa76a;/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90:763;JNE	a730 <__nv_interp__PARALLEL_F1L753_4_+0x530>;

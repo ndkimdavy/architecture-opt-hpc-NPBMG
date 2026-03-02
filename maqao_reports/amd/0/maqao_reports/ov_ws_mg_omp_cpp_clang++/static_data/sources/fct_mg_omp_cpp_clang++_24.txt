@@ -1,0 +1,42 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 895 - 960
+--------------------------------------------------------------------------------
+
+895: static void psinv(void* pointer_r, void* pointer_u, int n1, int n2, int n3, double c[4], int k){
+[...]
+909: 	if(timeron){
+910: 		#pragma omp master
+911: 			timer_start(T_PSINV);
+912: 	}
+913: 	
+914: 	#pragma omp for
+915: 	for(i3 = 1; i3 < n3-1; i3++){
+916: 		for(i2 = 1; i2 < n2-1; i2++){
+917: 			for(i1 = 0; i1 < n1; i1++){
+918: 				r1[i1] = r[i3][i2-1][i1] + r[i3][i2+1][i1]
+919: 					+ r[i3-1][i2][i1] + r[i3+1][i2][i1];
+920: 				r2[i1] = r[i3-1][i2-1][i1] + r[i3-1][i2+1][i1]
+921: 					+ r[i3+1][i2-1][i1] + r[i3+1][i2+1][i1];
+922: 			}
+923: 			for(i1 = 1; i1 < n1-1; i1++){
+924: 				u[i3][i2][i1] = u[i3][i2][i1]
+925: 					+ c[0] * r[i3][i2][i1]
+926: 					+ c[1] * ( r[i3][i2][i1-1] + r[i3][i2][i1+1]
+927: 							+ r1[i1] )
+928: 					+ c[2] * ( r2[i1] + r1[i1-1] + r1[i1+1] );
+[...]
+939: 	if(timeron){
+940: 		#pragma omp master
+941: 			timer_stop(T_PSINV);
+[...]
+949: 	comm3(u,n1,n2,n3,k);
+950: 
+951: 	if(debug_vec[0] >= 1){
+952: 		#pragma omp single
+953: 			rep_nrm(u,n1,n2,n3,(char*)"   psinv",k);
+954: 	}
+955: 
+956: 	if(debug_vec[3] >= k){
+957: 		#pragma omp single
+958: 			showall(u,n1,n2,n3);
+959: 	}
+960: }

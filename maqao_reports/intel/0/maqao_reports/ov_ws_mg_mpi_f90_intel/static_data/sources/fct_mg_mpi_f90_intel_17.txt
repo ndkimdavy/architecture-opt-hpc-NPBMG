@@ -1,0 +1,19 @@
+/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-MPI/MG/mg.f90: 1222 - 1257
+--------------------------------------------------------------------------------
+
+1222:       subroutine ready( axis, dir, k )
+[...]
+1239:       buff_id = 3 + dir
+1240:       buff_len = nm2
+1241: 
+1242:       do  i=1,nm2
+1243:          buff(i,buff_id) = 0.0D0
+[...]
+1250:       if (timeron) call timer_start(t_comm3)
+1251: 
+1252:       call mpi_irecv( buff(1,buff_id), buff_len,  &
+1253:      &     dp_type, nbr(axis,-dir,k), msg_type(axis,dir),  &
+1254:      &     comm_work, msg_id(axis,dir,1), ierr)
+1255:       if (timeron) call timer_stop(t_comm3)
+1256:       return
+1257:       end

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - threads redirect</title>
+<meta charset="utf-8" />
+</head>
+<body onload="__redirect ()">
+<div id="err_div"></div>
+<script>
+function __redirect (){
+  const redirect_table = [
+    {lbw-Lenovo-G5000-IRH8_122054_122054: "lbw-Lenovo-G5000-IRH8_122054_122054", },
+    {lbw-Lenovo-G5000-IRH8_123262_123262: "lbw-Lenovo-G5000-IRH8_123262_123262", lbw-Lenovo-G5000-IRH8_123262_123281: "lbw-Lenovo-G5000-IRH8_123262_123281", },
+    {lbw-Lenovo-G5000-IRH8_124272_124292: "lbw-Lenovo-G5000-IRH8_124272_124293", lbw-Lenovo-G5000-IRH8_124272_124293: "lbw-Lenovo-G5000-IRH8_124272_124293", lbw-Lenovo-G5000-IRH8_124272_124291: "lbw-Lenovo-G5000-IRH8_124272_124291", lbw-Lenovo-G5000-IRH8_124272_124272: "lbw-Lenovo-G5000-IRH8_124272_124272", },
+    {lbw-Lenovo-G5000-IRH8_125240_125262: "lbw-Lenovo-G5000-IRH8_125240_125261", lbw-Lenovo-G5000-IRH8_125240_125264: "lbw-Lenovo-G5000-IRH8_125240_125263", lbw-Lenovo-G5000-IRH8_125240_125261: "lbw-Lenovo-G5000-IRH8_125240_125261", lbw-Lenovo-G5000-IRH8_125240_125263: "lbw-Lenovo-G5000-IRH8_125240_125263", lbw-Lenovo-G5000-IRH8_125240_125260: "lbw-Lenovo-G5000-IRH8_125240_125259", lbw-Lenovo-G5000-IRH8_125240_125259: "lbw-Lenovo-G5000-IRH8_125240_125259", lbw-Lenovo-G5000-IRH8_125240_125240: "lbw-Lenovo-G5000-IRH8_125240_125240", lbw-Lenovo-G5000-IRH8_125240_125265: "lbw-Lenovo-G5000-IRH8_125240_125263", },
+];
+  const queryString = window.location.search;
+  const params = new URLSearchParams(queryString);
+  let thread = params.get("thread");
+  if (thread) {
+    let elems = thread.split ("_");
+    let run_id = elems[0];
+    let key    = elems[1];
+    for (let i = 2; i < elems.length; i++) {
+      key += "_" + elems[i];
+    }
+    window.location.replace("/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_omp_cpp_intel/RESULTS/mg_omp_cpp_intel_one_html/topo/run_"+run_id+"_"+redirect_table[run_id][key]+".html?origin="+key);
+  }
+  else {
+    let d = document.getElementById ("err_div");
+    if (d) {
+      d.innerHTML = "Missing parameter <i>thread</i>";
+    }
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+address;source_location;insn;indent
+0x409210;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1029;VADDSD	%XMM3,%XMM6,%XMM7;
+0x409214;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1029;VMOVAPS	%XMM5,%XMM6;
+0x409218;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1029;VMOVSD	0x1170(%RSP,%RAX,8),%XMM5;
+0x409221;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1029;VADDSD	%XMM5,%XMM7,%XMM7;
+0x409225;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1030;VMOVSD	0x150(%RSP,%RAX,8),%XMM8;
+0x40922e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1030;VADDSD	%XMM4,%XMM8,%XMM4;
+0x409232;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1030;MOV	0x38(%RSP),%RDX;
+0x409237;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1030;VMULSD	(%RDX,%RAX,8),%XMM0,%XMM9;
+0x40923c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1030;VFMADD231SD	%XMM7,%XMM1,%XMM9;
+0x409241;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1030;VFNMSUB231SD	%XMM4,%XMM2,%XMM9;
+0x409246;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1030;MOV	0x30(%RSP),%RDX;
+0x40924b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1030;VADDSD	(%RDX,%RAX,8),%XMM9,%XMM4;
+0x409250;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1030;MOV	0x28(%RSP),%RDX;
+0x409255;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1019;VMOVSD	%XMM4,(%RDX,%RAX,8);
+0x40925a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1018;INC	%RAX;
+0x40925d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1018;VMOVAPD	%XMM3,%XMM4;
+0x409261;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1018;VMOVAPD	%XMM8,%XMM3;
+0x409265;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1018;CMP	%RAX,0x20(%RSP);
+0x40926a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:1018;JNE	409210 <_ZL5residPvS_S_iiiPdi+0x700>;

@@ -1,0 +1,19 @@
+address;source_location;insn;indent
+0x13dd0;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:163;VMULSD	%XMM3,%XMM1,%XMM7;
+0x13dd4;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:164;VROUNDSD	$0xb,%XMM7,%XMM7,%XMM7;
+0x13dda;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:165;VFNMADD231SD	%XMM4,%XMM7,%XMM1;
+0x13ddf;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:166;VMULSD	%XMM7,%XMM0,%XMM7;
+0x13de3;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:166;VFMADD231SD	%XMM2,%XMM1,%XMM7;
+0x13de8;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:167;VMULSD	%XMM3,%XMM7,%XMM8;
+0x13dec;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:167;VROUNDSD	$0xb,%XMM8,%XMM8,%XMM8;
+0x13df2;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:168;VFMSUB213SD	%XMM7,%XMM4,%XMM8;
+0x13df7;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:169;VMULSD	%XMM0,%XMM1,%XMM7;
+0x13dfb;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:169;VFNMADD231SD	%XMM8,%XMM4,%XMM7;
+0x13e00;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:170;VMULSD	%XMM5,%XMM7,%XMM1;
+0x13e04;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:170;VROUNDSD	$0xb,%XMM1,%XMM1,%XMM1;
+0x13e0a;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:171;VFMADD132SD	%XMM6,%XMM7,%XMM1;
+0x13e0f;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:172;VMULSD	%XMM5,%XMM1,%XMM7;
+0x13e13;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:172;VMOVSD	%XMM7,(%RDX,%RCX,8);
+0x13e18;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;INC	%RCX;
+0x13e1b;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;CMP	%RCX,%RAX;
+0x13e1e;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;JNE	13dd0 <_Z6vranlciPddS_+0x50>;

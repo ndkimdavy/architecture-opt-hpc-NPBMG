@@ -1,0 +1,25 @@
+********************************************************************************
+MAQAO 2026.0.0 - aae71454a81fd1916a1bb0dee97b1e5c08f6db95::20260204-200851 || 2026/02/04
+maqao oneview -R1 -WS --number-processes=1 "--mpi-command=/usr/bin/mpirun -np <number_processes>" --multiruns-params={{number_processes=2},{number_processes=4},{number_processes=8}} -xp=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_gfortran --replace -- ./mg_mpi_f90_gfortran 
+CPY:  [true] ./mg_mpi_f90_gfortran --> /home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_gfortran/binaries/mg_mpi_f90_gfortran
+CMD:   /home/lbw/maqao.x86_64.2026.0.0-b/bin/maqao lprof _caller=oneview  --xp="/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_gfortran/tools/lprof_run_0" --mpi-command="/usr/bin/mpirun -np 1" --collect-CPU-time-intervals --collect-topology tpp=8   -- /home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_gfortran/binaries/mg_mpi_f90_gfortran 
+Run run_0: At cluster level, discarded 0 functions cumulating 0.0% of application profiled time
+
+Run run_0: At cluster level, discarded 0 loops cumulating 0.0% of application profiled time
+
+CMD:   /home/lbw/maqao.x86_64.2026.0.0-b/bin/maqao lprof _caller=oneview  --xp="/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_gfortran/tools/lprof_run_1" --mpi-command="/usr/bin/mpirun -np 2" --collect-CPU-time-intervals --collect-topology tpp=8   -- /home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_gfortran/binaries/mg_mpi_f90_gfortran 
+Run run_1: At cluster level, discarded 0 functions cumulating 0.0% of application profiled time
+
+Run run_1: At cluster level, discarded 0 loops cumulating 0.0% of application profiled time
+
+CMD:   /home/lbw/maqao.x86_64.2026.0.0-b/bin/maqao lprof _caller=oneview  --xp="/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_gfortran/tools/lprof_run_2" --mpi-command="/usr/bin/mpirun -np 4" --collect-CPU-time-intervals --collect-topology tpp=8   -- /home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_gfortran/binaries/mg_mpi_f90_gfortran 
+Run run_2: At cluster level, discarded 0 functions cumulating 0.0% of application profiled time
+
+Run run_2: At cluster level, discarded 0 loops cumulating 0.0% of application profiled time
+
+CMD:   /home/lbw/maqao.x86_64.2026.0.0-b/bin/maqao lprof _caller=oneview  --xp="/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_gfortran/tools/lprof_run_3" --mpi-command="/usr/bin/mpirun -np 8" --collect-CPU-time-intervals --collect-topology tpp=8   -- /home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_gfortran/binaries/mg_mpi_f90_gfortran 
+Run run_3: At cluster level, discarded 0 functions cumulating 0.0% of application profiled time
+
+Run run_3: At cluster level, discarded 0 loops cumulating 0.0% of application profiled time
+
+CMD:  /home/lbw/maqao.x86_64.2026.0.0-b/bin/maqao otter  -input=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_gfortran/OTTER/input_manifest.csv -output=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_mpi_f90_gfortran/OTTER/output_manifest.csv --reduce-threads-files=on

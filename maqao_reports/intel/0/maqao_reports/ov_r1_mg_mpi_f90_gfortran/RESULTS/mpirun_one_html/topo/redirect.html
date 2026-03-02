@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - threads redirect</title>
+<meta charset="utf-8" />
+</head>
+<body onload="__redirect ()">
+<div id="err_div"></div>
+<script>
+function __redirect (){
+  const redirect_table = [
+    {lbw-Lenovo-G5000-IRH8_58760_58850: "lbw-Lenovo-G5000-IRH8_58760_58855", lbw-Lenovo-G5000-IRH8_58760_58854: "lbw-Lenovo-G5000-IRH8_58760_58855", lbw-Lenovo-G5000-IRH8_58760_58849: "lbw-Lenovo-G5000-IRH8_58760_58849", lbw-Lenovo-G5000-IRH8_58760_58848: "lbw-Lenovo-G5000-IRH8_58760_58853", lbw-Lenovo-G5000-IRH8_58760_58852: "lbw-Lenovo-G5000-IRH8_58760_58849", lbw-Lenovo-G5000-IRH8_58760_58851: "lbw-Lenovo-G5000-IRH8_58760_58851", lbw-Lenovo-G5000-IRH8_58760_58853: "lbw-Lenovo-G5000-IRH8_58760_58853", lbw-Lenovo-G5000-IRH8_58760_58855: "lbw-Lenovo-G5000-IRH8_58760_58855", },
+];
+  const queryString = window.location.search;
+  const params = new URLSearchParams(queryString);
+  let thread = params.get("thread");
+  if (thread) {
+    let elems = thread.split ("_");
+    let run_id = elems[0];
+    let key    = elems[1];
+    for (let i = 2; i < elems.length; i++) {
+      key += "_" + elems[i];
+    }
+    window.location.replace("/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_mpi_f90_gfortran/RESULTS/mpirun_one_html/topo/run_"+run_id+"_"+redirect_table[run_id][key]+".html?origin="+key);
+  }
+  else {
+    let d = document.getElementById ("err_div");
+    if (d) {
+      d.innerHTML = "Missing parameter <i>thread</i>";
+    }
+  }
+}
+</script>
+</body>
+</html>

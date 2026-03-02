@@ -1,0 +1,15 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp: 155 - 172
+--------------------------------------------------------------------------------
+
+155: 	for(i=0; i<n; i++){
+[...]
+163: 		t1 = r23 * x;
+164: 		x1 = (int)t1;
+165: 		x2 = x - t23 * x1;
+166: 		t1 = a1 * x2 + a2 * x1;
+167: 		t2 = (int)(r23 * t1);
+168: 		z = t1 - t23 * t2;
+169: 		t3 = t23 * z + a2 * x2;
+170: 		t4 = (int)(r46 * t3);
+171: 		x = t3 - t46 * t4;
+172: 		y[i] = r46 * x;

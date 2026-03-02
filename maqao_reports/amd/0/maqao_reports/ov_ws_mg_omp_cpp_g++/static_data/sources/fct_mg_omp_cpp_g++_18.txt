@@ -1,0 +1,67 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 969 - 1228
+--------------------------------------------------------------------------------
+
+969: 	norm2u3(pointer_u,n1,n2,n3,&rnm2,&rnmu,nx[kk],ny[kk],nz[kk]);
+970: 	#pragma omp master
+971: 		printf(" Level%2d in %8s: norms =%21.14e%21.14e\n", kk, title, rnm2, rnmu);
+972: }
+[...]
+988: static void resid(void* pointer_u, void* pointer_v, void* pointer_r, int n1, int n2, int n3, double a[4], int k){
+[...]
+997: 	double (*u)[n2][n1] = (double (*)[n2][n1])pointer_u;
+[...]
+1005: 	if(timeron){
+1006: 		#pragma omp master
+1007: 			timer_start(T_RESID);
+1008: 	}
+1009: 	#pragma omp for
+1010: 	for(i3 = 1; i3 < n3-1; i3++){
+1011: 		for(i2 = 1; i2 < n2-1; i2++){
+1012: 			for(i1 = 0; i1 < n1; i1++){
+1013: 				u1[i1] = u[i3][i2-1][i1] + u[i3][i2+1][i1]
+1014: 					+ u[i3-1][i2][i1] + u[i3+1][i2][i1];
+1015: 				u2[i1] = u[i3-1][i2-1][i1] + u[i3-1][i2+1][i1]
+1016: 					+ u[i3+1][i2-1][i1] + u[i3+1][i2+1][i1];
+1017: 			}
+1018: 			for(i1 = 1; i1 < n1-1; i1++){
+1019: 				r[i3][i2][i1] = v[i3][i2][i1]
+1020: 					- a[0] * u[i3][i2][i1]
+[...]
+1029: 					- a[2] * ( u2[i1] + u1[i1-1] + u1[i1+1] )
+1030: 					- a[3] * ( u2[i1-1] + u2[i1+1] );
+1031: 			}
+1032: 		}
+1033: 	}
+1034: 	if(timeron){
+1035: 		#pragma omp master
+1036: 			timer_stop(T_RESID);
+[...]
+1044: 	comm3(r,n1,n2,n3,k);
+1045: 
+1046: 	if(debug_vec[0] >= 1){
+1047: 		#pragma omp single
+1048: 			rep_nrm(r,n1,n2,n3,(char*)"   resid",k);
+1049: 	}
+1050: 
+1051: 	if(debug_vec[2] >= k){
+1052: 		#pragma omp single
+1053: 			showall(r,n1,n2,n3);
+1054: 	}
+1055: }
+[...]
+1213: 	m1 = min(n1,18);
+1214: 	m2 = min(n2,14);
+1215: 	m3 = min(n3,18);
+1216: 
+1217: 	printf("\n");
+1218: 	for(i3 = 0; i3 < m3; i3++){
+1219: 		for(i2 = 0; i2 < m2; i2++){
+1220: 			for(i1 = 0; i1 < m1; i1++){			
+1221: 				printf("%6.3f", z[i3][i2][i1]);
+1222: 			}
+1223: 			printf("\n");
+1224: 		}
+1225: 		printf(" - - - - - - - \n");
+1226: 	}
+1227: 	printf("\n");
+1228: }

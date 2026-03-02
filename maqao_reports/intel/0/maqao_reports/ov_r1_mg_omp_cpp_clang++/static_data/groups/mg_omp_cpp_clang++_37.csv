@@ -1,0 +1,6 @@
+group_size;pattern;opcodes;offsets;addresses;stride_status;stride;memory_status;accessed_memory;accessed_memory_nooverlap;accessed_memory_overlap;span;head;unroll_factor;
+2;SS;VMOVSD,VMOVSD,;-8,0,;0x6f96,0x6fe1,;Iteration not constant;0;Success;16;16;0;16;0;2;
+2;LL;VADDSD,VADDSD,;-8,0,;0x6f8f,0x6fdb,;Iteration not constant;0;Success;16;16;0;16;0;2;
+2;LL;VMOVSD,VMOVSD,;-8,0,;0x6f5a,0x6fa7,;Iteration not constant;0;Success;16;16;0;16;0;2;
+8;LLLLLLLL;VADDSD,VADDSD,VMOVSD,VADDSD,VADDSD,VADDSD,VMOVSD,VADDSD,;4648,4664,536,520,4656,4672,544,528,;0x6f50,0x6f61,0x6f6b,0x6f75,0x6f9d,0x6fad,0x6fb7,0x6fc1,;Iteration not constant;0;Success;64;64;0;4160;0;1;
+6;LLLLLL;VMULSD,VFMADD231SD,VFNMSUB231SD,VMULSD,VFMADD231SD,VFNMSUB231SD,;0,16,24,0,16,24,;0x6f7f,0x6f83,0x6f89,0x6fcb,0x6fcf,0x6fd5,;Not found;0;Success;48;24;24;32;0;1;

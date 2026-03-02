@@ -1,0 +1,376 @@
+{
+  "_cqa_text_report":
+    {
+      "_objects":
+        {
+          "image_col_maj":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/col_maj.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x32_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x32_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x64_128":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_128.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_8x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/8x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_2x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/2x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "tt_insn_vec":
+            {
+              "type": "tooltip",
+              "help": "Portion of vector registers that is actually used. Available only for instructions belonging to a SIMD/vector instructions set (like x86 AVX)",
+              "text": "Vectorization"
+            },
+          "image_1x64_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "tt_Recip_throughput":
+            {
+              "type": "tooltip",
+              "help": "Average number of cycles to retire that instruction if repeated (assuming independent instructions, with no read-after-write dependency)",
+              "text": "Recip. throughput"
+            },
+          "tt_Nb_FU":
+            {
+              "type": "tooltip",
+              "help": "Number of Fused (Front-end) uops",
+              "text": "Nb FU"
+            },
+          "image_vec_align":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/vec_align.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_128":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_128.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_2x64_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/2x64_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_row_maj":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/row_maj.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            }
+        },
+      "AVG":
+        {
+          "hint":
+            [
+              {
+                "title": "Type of elements and instruction set",
+                "txt": "1 SSE or AVX instructions are processing arithmetic or math operations on double precision FP elements in scalar mode (one at a time).\n4 SSE or AVX instructions are processing arithmetic or math operations on double precision FP elements in vector mode (two at a time).\n2 AVX instructions are processing arithmetic or math operations on double precision FP elements in vector mode (four at a time).\n14 AVX-512 instructions are processing arithmetic or math operations on double precision FP elements in vector mode (eight at a time).\n"
+              },
+              {
+                "title": "Matching between your loop (in the source code) and the binary loop",
+                "txt": "The binary loop is composed of 121 FP arithmetical operations:\n - 65: addition or subtraction (56 inside FMA instructions)\n - 56: multiply (all inside FMA instructions)\nThe binary loop is loading 461 bytes (57 double precision FP elements)."
+              },
+              {
+                "title": "Arithmetic intensity",
+                "txt": "Arithmetic intensity is 0.26 FP operations per loaded or stored byte."
+              }
+            ],
+          "expert":
+            [
+              {
+                "title": "General properties",
+                "txt": "nb instructions    : 83\nnb uops            : 82\nloop length        : 411\nused x86 registers : 11\nused mmx registers : 0\nused xmm registers : 9\nused ymm registers : 6\nused zmm registers : 12\nnb stack references: 3\n"
+              },
+              {
+                "help": "Front-end corresponds to instructions fetching and decoding into macro/micro operations",
+                "title": "Front-end",
+                "txt": "ASSUMED MACRO FUSION\nFIT IN UOP CACHE\nmicro-operation queue: 13.67 cycles\nfront end            : 13.67 cycles\n"
+              },
+              {
+                "help": "Back-end corresponds to macro/micro operations execution (includes allocating registers, fetching operands etc.)",
+                "title": "Back-end",
+                "txt": "       | ALU0/BRU0 | ALU1 | ALU2 | ALU3 | BRU1 | AGU0 | AGU1 | AGU2 | FP0   | FP1   | FP2  | FP3  | FP4  | FP5\n---------------------------------------------------------------------------------------------------------------\nuops   | 8.00      | 8.00 | 7.75 | 7.75 | 5.50 | 3.33 | 3.33 | 3.33 | 8.75  | 8.75  | 8.75 | 8.75 | 0.00 | 0.00\ncycles | 8.00      | 8.00 | 7.75 | 7.75 | 5.50 | 5.67 | 5.67 | 5.67 | 12.75 | 11.75 | 8.75 | 8.75 | 0.00 | 0.00\n\nExecution ports to units layout:\n - ALU0/BRU0: ALU, BRU\n - ALU1: ALU\n - ALU2: ALU\n - ALU3: ALU\n - BRU1: BRU\n - AGU0 (256 bits): store address, load\n - AGU1 (256 bits): store address, load\n - AGU2 (256 bits): store address, load\n - FP0 (256 bits): VPU, DIV/SQRT\n - FP1 (256 bits): VPU, DIV/SQRT\n - FP2 (256 bits): VPU\n - FP3 (256 bits): VPU\n - FP4 (256 bits): FP store data\n - FP5 (256 bits): FP store data\n\nCycles executing div or sqrt instructions: NA\n"
+              },
+              {
+                "title": "Cycles summary",
+                "txt": "Front-end : 13.67\nDispatch  : 12.75\nOverall L1: 13.67\n"
+              },
+              {
+                "help": "Proportion of vectorizable instructions that are actually vectorized. Higher is better.",
+                "title": "Vectorization ratios",
+                "txt": "INT\nall    : 0%\nload   : 0%\nstore  : NA (no store vectorizable/vectorized instructions)\nmul    : NA (no mul vectorizable/vectorized instructions)\nadd-sub: 0%\nfma    : NA (no fma vectorizable/vectorized instructions)\nother  : 0%\nFP\nall     : 90%\nload    : 100%\nstore   : NA (no store vectorizable/vectorized instructions)\nmul     : NA (no mul vectorizable/vectorized instructions)\nadd-sub : 75%\nfma     : 100%\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 88%\nINT+FP\nall     : 70%\nload    : 77%\nstore   : NA (no store vectorizable/vectorized instructions)\nmul     : NA (no mul vectorizable/vectorized instructions)\nadd-sub : 60%\nfma     : 100%\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 60%\n"
+              },
+              {
+                "help": "Effective/average relative length/width used in vector/SIMD registers. Higher is better.",
+                "title": "Vector efficiency ratios",
+                "txt": "INT\nall    : 10%\nload   : 3%\nstore  : NA (no store vectorizable/vectorized instructions)\nmul    : NA (no mul vectorizable/vectorized instructions)\nadd-sub: 12%\nfma    : NA (no fma vectorizable/vectorized instructions)\nother  : 10%\nFP\nall     : 73%\nload    : 100%\nstore   : NA (no store vectorizable/vectorized instructions)\nmul     : NA (no mul vectorizable/vectorized instructions)\nadd-sub : 28%\nfma     : 100%\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 66%\nINT+FP\nall     : 59%\nload    : 78%\nstore   : NA (no store vectorizable/vectorized instructions)\nmul     : NA (no mul vectorizable/vectorized instructions)\nadd-sub : 25%\nfma     : 100%\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 48%\n"
+              },
+              {
+                "help": "Compare the CQA-computed load/store/compute metrics with the capacity of the core. For instance if CQA computes 24 bytes in the loop in 2 cycles (that is 12 cycles per cycle) and if the core can process up to 16 bytes per cycle, that metric is 75%.",
+                "title": "Cycles and memory resources usage",
+                "txt": "Assuming all data fit into the L1 cache, each iteration of the binary loop takes 13.67 cycles. At this rate:\n - 35% of peak load performance is reached (33.73 out of 96.00 bytes loaded per cycle (GB/s @ 1GHz))\n"
+              },
+              {
+                "title": "Front-end bottlenecks",
+                "txt": "Performance is limited by instruction throughput (loading/decoding program instructions to execution core) (front-end is a bottleneck).\n\nBy removing all these bottlenecks, you can lower the cost of an iteration from 13.67 to 12.75 cycles (1.07x speedup).\n"
+              },
+              {
+                "title": "ASM code",
+                "txt": "In the binary file, the address of the loop is: 40195e\n\nInstruction                                 | Nb FU | ALU0/BRU0 | ALU1 | ALU2 | ALU3 | BRU1 | AGU0 | AGU1 | AGU2 | FP0  | FP1  | FP2  | FP3  | FP4 | FP5 | Latency | Recip. throughput | Vectorization\n------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nMOV %R9,%RCX                                | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 0       | 0.17              | N/A\nLEA -0x40(%R10),%RDX                        | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVBROADCASTSD %XMM10,%ZMM0                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0   | 0   | 1       | 1                 | scal (12.5%)\nVXORPD %XMM2,%XMM2,%XMM2                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 0       | 0.17              | vect (25.0%)\nIMUL %RSI,%RCX                              | 1     | 0         | 1    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | N/A\nSHR $0x6,%RDX                               | 1     | 0         | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50              | scal (12.5%)\nADD %R8,%RCX                                | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nINC %RDX                                    | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nLEA (%R12,%RCX,8),%RAX                      | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nLEA (%R10,%RAX,1),%R14                      | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nAND $0x7,%EDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (6.3%)\nJE 40173d <_ZL7norm2u3PviiiPdS0_iii+0x2dd>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nCMP $0x1,%RDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 401718 <_ZL7norm2u3PviiiPdS0_iii+0x2b8>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nCMP $0x2,%RDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 4016fc <_ZL7norm2u3PviiiPdS0_iii+0x29c>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nCMP $0x3,%RDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 4016e0 <_ZL7norm2u3PviiiPdS0_iii+0x280>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nCMP $0x4,%RDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 4016c4 <_ZL7norm2u3PviiiPdS0_iii+0x264>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nCMP $0x5,%RDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 4016a8 <_ZL7norm2u3PviiiPdS0_iii+0x248>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nCMP $0x6,%RDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 40168c <_ZL7norm2u3PviiiPdS0_iii+0x22c>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nVMOVUPD (%RAX),%ZMM7                        | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM7,%ZMM8                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM7,%ZMM7,%ZMM2               | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM8,%ZMM0,%ZMM0                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nVMOVUPD (%RAX),%ZMM10                       | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM10,%ZMM11                  | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM10,%ZMM10,%ZMM2             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM11,%ZMM0,%ZMM0                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nVMOVUPD (%RAX),%ZMM12                       | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM12,%ZMM14                  | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM12,%ZMM12,%ZMM2             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM14,%ZMM0,%ZMM0                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nVMOVUPD (%RAX),%ZMM15                       | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM15,%ZMM1                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM15,%ZMM15,%ZMM2             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM1,%ZMM0,%ZMM0                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nVMOVUPD (%RAX),%ZMM7                        | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM7,%ZMM3                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM7,%ZMM7,%ZMM2               | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM3,%ZMM0,%ZMM0                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nVMOVUPD (%RAX),%ZMM8                        | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM8,%ZMM10                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM8,%ZMM8,%ZMM2               | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM10,%ZMM0,%ZMM0                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nVMOVUPD (%RAX),%ZMM11                       | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM11,%ZMM12                  | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM11,%ZMM11,%ZMM2             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM12,%ZMM0,%ZMM0                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nCMP %RAX,%R14                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 401819 <_ZL7norm2u3PviiiPdS0_iii+0x3b9>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nVEXTRACTF64X4 $0x1,%ZMM0,%YMM15             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (50.0%)\nVEXTRACTF64X4 $0x1,%ZMM2,%YMM12             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (50.0%)\nVMAXPD %YMM0,%YMM15,%YMM7                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 0.50              | vect (50.0%)\nVADDPD %YMM2,%YMM12,%YMM14                  | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 3       | 0.50              | vect (50.0%)\nVEXTRACTF64X2 $0x1,%YMM7,%XMM1              | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 4       | 0.25              | vect (25.0%)\nVEXTRACTF64X2 $0x1,%YMM14,%XMM3             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 4       | 0.25              | vect (25.0%)\nVMAXPD %XMM7,%XMM1,%XMM8                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 0.50              | vect (25.0%)\nVADDPD %XMM14,%XMM3,%XMM7                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 3       | 0.50              | vect (25.0%)\nVUNPCKHPD %XMM8,%XMM8,%XMM11                | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0   | 0   | 1       | 0.33              | scal (12.5%)\nVUNPCKHPD %XMM7,%XMM7,%XMM1                 | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0   | 0   | 1       | 0.33              | scal (12.5%)\nVMAXPD %XMM8,%XMM11,%XMM10                  | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 0.50              | vect (25.0%)\nVADDPD %XMM7,%XMM1,%XMM8                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 3       | 0.50              | vect (25.0%)\nVADDSD %XMM5,%XMM8,%XMM11                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 3       | 0.50              | scal (12.5%)\nTESTB $0x7,0x70(%RSP)                       | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.33              | scal (1.6%)\nJE 401a50 <_ZL7norm2u3PviiiPdS0_iii+0x5f0>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nMOVSXD %ESI,%R13                            | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (6.3%)\nCMPL $0x6,0x6c(%RSP)                        | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.33              | scal (6.3%)\nJA 401610 <_ZL7norm2u3PviiiPdS0_iii+0x1b0>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nVMOVAPD %XMM11,%XMM5                        | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 0       | 0.17              | vect (25.0%)\nINC %RSI                                    | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nCMP %RSI,0x78(%RSP)                         | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.33              | N/A\nJNE 40195e <_ZL7norm2u3PviiiPdS0_iii+0x4fe> | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\n"
+              }
+            ],
+          "header":
+            [
+            "36% of peak computational performance is used (8.85 out of 24.00 FLOP per cycle (GFLOPS @ 1GHz))"
+            ],
+          "brief":
+            [
+
+            ],
+          "gain":
+            [
+              {
+                "workaround": " - Try to reorganize arrays of structures to structures of arrays\n - Consider to permute loops (see vectorization gain report)\n",
+                "title": "Code clean check",
+                "txt": "Detected a slowdown caused by scalar integer instructions (typically used for address computation).\nBy removing them, you can lower the cost of an iteration from 13.67 to 12.75 cycles (1.07x speedup)."
+              },
+              {
+                "workaround": " - Try another compiler or update/tune your current one\n - Remove inter-iterations dependences from your loop and make it unit-stride:\n  * If your arrays have 2 or more dimensions, check whether elements are accessed contiguously and, otherwise, try to permute loops accordingly:\nC storage order is row-major: for(i) for(j) a[j][i] = b[j][i]; (slow, non stride 1) => for(i) for(j) a[i][j] = b[i][j]; (fast, stride 1)<<image_row_maj>>\n  * If your loop streams arrays of structures (AoS), try to use structures of arrays instead (SoA):\nfor(i) a[i].x = b[i].x; (slow, non stride 1) => for(i) a.x[i] = b.x[i]; (fast, stride 1)\n",
+                "details": "70% of SSE/AVX instructions are used in vector version (process two or more data elements in vector registers):\n - 77% of SSE/AVX loads are used in vector version.\n - 60% of SSE/AVX addition or subtraction instructions are used in vector version.\n - 60% of SSE/AVX instructions that are not load, store, addition, subtraction nor multiply instructions are used in vector version.\nSince your execution units are vector units, only a fully vectorized loop can use their full power.\n",
+                "title": "Vectorization",
+                "txt": "Your loop is partially vectorized.\nOnly 59% of vector register length is used (average across all SSE/AVX instructions).\nBy fully vectorizing your loop, you can lower the cost of an iteration from 13.67 to 10.25 cycles (1.33x speedup)."
+              },
+              {
+                "title": "Execution units bottlenecks",
+                "txt": "Found no such bottlenecks but see expert reports for more complex bottlenecks."
+              }
+            ],
+          "potential":
+            [
+              {
+                "title": "FMA",
+                "txt": "Detected 56 FMA (fused multiply-add) operations."
+              }
+            ]
+        },
+      "paths":
+        [
+          {
+            "hint":
+              [
+                {
+                  "title": "Type of elements and instruction set",
+                  "txt": "1 SSE or AVX instructions are processing arithmetic or math operations on double precision FP elements in scalar mode (one at a time).\n4 SSE or AVX instructions are processing arithmetic or math operations on double precision FP elements in vector mode (two at a time).\n2 AVX instructions are processing arithmetic or math operations on double precision FP elements in vector mode (four at a time).\n14 AVX-512 instructions are processing arithmetic or math operations on double precision FP elements in vector mode (eight at a time).\n"
+                },
+                {
+                  "title": "Matching between your loop (in the source code) and the binary loop",
+                  "txt": "The binary loop is composed of 121 FP arithmetical operations:\n - 65: addition or subtraction (56 inside FMA instructions)\n - 56: multiply (all inside FMA instructions)\nThe binary loop is loading 461 bytes (57 double precision FP elements)."
+                },
+                {
+                  "title": "Arithmetic intensity",
+                  "txt": "Arithmetic intensity is 0.26 FP operations per loaded or stored byte."
+                }
+              ],
+            "expert":
+              [
+                {
+                  "title": "General properties",
+                  "txt": "nb instructions    : 83\nnb uops            : 82\nloop length        : 411\nused x86 registers : 11\nused mmx registers : 0\nused xmm registers : 9\nused ymm registers : 6\nused zmm registers : 12\nnb stack references: 3\n"
+                },
+                {
+                  "help": "Front-end corresponds to instructions fetching and decoding into macro/micro operations",
+                  "title": "Front-end",
+                  "txt": "ASSUMED MACRO FUSION\nFIT IN UOP CACHE\nmicro-operation queue: 13.67 cycles\nfront end            : 13.67 cycles\n"
+                },
+                {
+                  "help": "Back-end corresponds to macro/micro operations execution (includes allocating registers, fetching operands etc.)",
+                  "title": "Back-end",
+                  "txt": "       | ALU0/BRU0 | ALU1 | ALU2 | ALU3 | BRU1 | AGU0 | AGU1 | AGU2 | FP0   | FP1   | FP2  | FP3  | FP4  | FP5\n---------------------------------------------------------------------------------------------------------------\nuops   | 8.00      | 8.00 | 7.75 | 7.75 | 5.50 | 3.33 | 3.33 | 3.33 | 8.75  | 8.75  | 8.75 | 8.75 | 0.00 | 0.00\ncycles | 8.00      | 8.00 | 7.75 | 7.75 | 5.50 | 5.67 | 5.67 | 5.67 | 12.75 | 11.75 | 8.75 | 8.75 | 0.00 | 0.00\n\nExecution ports to units layout:\n - ALU0/BRU0: ALU, BRU\n - ALU1: ALU\n - ALU2: ALU\n - ALU3: ALU\n - BRU1: BRU\n - AGU0 (256 bits): store address, load\n - AGU1 (256 bits): store address, load\n - AGU2 (256 bits): store address, load\n - FP0 (256 bits): VPU, DIV/SQRT\n - FP1 (256 bits): VPU, DIV/SQRT\n - FP2 (256 bits): VPU\n - FP3 (256 bits): VPU\n - FP4 (256 bits): FP store data\n - FP5 (256 bits): FP store data\n\nCycles executing div or sqrt instructions: NA\n"
+                },
+                {
+                  "title": "Cycles summary",
+                  "txt": "Front-end : 13.67\nDispatch  : 12.75\nOverall L1: 13.67\n"
+                },
+                {
+                  "help": "Proportion of vectorizable instructions that are actually vectorized. Higher is better.",
+                  "title": "Vectorization ratios",
+                  "txt": "INT\nall    : 0%\nload   : 0%\nstore  : NA (no store vectorizable/vectorized instructions)\nmul    : NA (no mul vectorizable/vectorized instructions)\nadd-sub: 0%\nfma    : NA (no fma vectorizable/vectorized instructions)\nother  : 0%\nFP\nall     : 90%\nload    : 100%\nstore   : NA (no store vectorizable/vectorized instructions)\nmul     : NA (no mul vectorizable/vectorized instructions)\nadd-sub : 75%\nfma     : 100%\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 88%\nINT+FP\nall     : 70%\nload    : 77%\nstore   : NA (no store vectorizable/vectorized instructions)\nmul     : NA (no mul vectorizable/vectorized instructions)\nadd-sub : 60%\nfma     : 100%\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 60%\n"
+                },
+                {
+                  "help": "Effective/average relative length/width used in vector/SIMD registers. Higher is better.",
+                  "title": "Vector efficiency ratios",
+                  "txt": "INT\nall    : 10%\nload   : 3%\nstore  : NA (no store vectorizable/vectorized instructions)\nmul    : NA (no mul vectorizable/vectorized instructions)\nadd-sub: 12%\nfma    : NA (no fma vectorizable/vectorized instructions)\nother  : 10%\nFP\nall     : 73%\nload    : 100%\nstore   : NA (no store vectorizable/vectorized instructions)\nmul     : NA (no mul vectorizable/vectorized instructions)\nadd-sub : 28%\nfma     : 100%\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 66%\nINT+FP\nall     : 59%\nload    : 78%\nstore   : NA (no store vectorizable/vectorized instructions)\nmul     : NA (no mul vectorizable/vectorized instructions)\nadd-sub : 25%\nfma     : 100%\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 48%\n"
+                },
+                {
+                  "help": "Compare the CQA-computed load/store/compute metrics with the capacity of the core. For instance if CQA computes 24 bytes in the loop in 2 cycles (that is 12 cycles per cycle) and if the core can process up to 16 bytes per cycle, that metric is 75%.",
+                  "title": "Cycles and memory resources usage",
+                  "txt": "Assuming all data fit into the L1 cache, each iteration of the binary loop takes 13.67 cycles. At this rate:\n - 35% of peak load performance is reached (33.73 out of 96.00 bytes loaded per cycle (GB/s @ 1GHz))\n"
+                },
+                {
+                  "title": "Front-end bottlenecks",
+                  "txt": "Performance is limited by instruction throughput (loading/decoding program instructions to execution core) (front-end is a bottleneck).\n\nBy removing all these bottlenecks, you can lower the cost of an iteration from 13.67 to 12.75 cycles (1.07x speedup).\n"
+                },
+                {
+                  "title": "ASM code",
+                  "txt": "In the binary file, the address of the loop is: 40195e\n\nInstruction                                 | Nb FU | ALU0/BRU0 | ALU1 | ALU2 | ALU3 | BRU1 | AGU0 | AGU1 | AGU2 | FP0  | FP1  | FP2  | FP3  | FP4 | FP5 | Latency | Recip. throughput | Vectorization\n------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nMOV %R9,%RCX                                | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 0       | 0.17              | N/A\nLEA -0x40(%R10),%RDX                        | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVBROADCASTSD %XMM10,%ZMM0                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0   | 0   | 1       | 1                 | scal (12.5%)\nVXORPD %XMM2,%XMM2,%XMM2                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 0       | 0.17              | vect (25.0%)\nIMUL %RSI,%RCX                              | 1     | 0         | 1    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | N/A\nSHR $0x6,%RDX                               | 1     | 0         | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50              | scal (12.5%)\nADD %R8,%RCX                                | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nINC %RDX                                    | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nLEA (%R12,%RCX,8),%RAX                      | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nLEA (%R10,%RAX,1),%R14                      | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nAND $0x7,%EDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (6.3%)\nJE 40173d <_ZL7norm2u3PviiiPdS0_iii+0x2dd>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nCMP $0x1,%RDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 401718 <_ZL7norm2u3PviiiPdS0_iii+0x2b8>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nCMP $0x2,%RDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 4016fc <_ZL7norm2u3PviiiPdS0_iii+0x29c>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nCMP $0x3,%RDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 4016e0 <_ZL7norm2u3PviiiPdS0_iii+0x280>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nCMP $0x4,%RDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 4016c4 <_ZL7norm2u3PviiiPdS0_iii+0x264>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nCMP $0x5,%RDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 4016a8 <_ZL7norm2u3PviiiPdS0_iii+0x248>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nCMP $0x6,%RDX                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 40168c <_ZL7norm2u3PviiiPdS0_iii+0x22c>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nVMOVUPD (%RAX),%ZMM7                        | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM7,%ZMM8                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM7,%ZMM7,%ZMM2               | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM8,%ZMM0,%ZMM0                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nVMOVUPD (%RAX),%ZMM10                       | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM10,%ZMM11                  | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM10,%ZMM10,%ZMM2             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM11,%ZMM0,%ZMM0                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nVMOVUPD (%RAX),%ZMM12                       | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM12,%ZMM14                  | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM12,%ZMM12,%ZMM2             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM14,%ZMM0,%ZMM0                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nVMOVUPD (%RAX),%ZMM15                       | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM15,%ZMM1                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM15,%ZMM15,%ZMM2             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM1,%ZMM0,%ZMM0                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nVMOVUPD (%RAX),%ZMM7                        | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM7,%ZMM3                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM7,%ZMM7,%ZMM2               | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM3,%ZMM0,%ZMM0                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nVMOVUPD (%RAX),%ZMM8                        | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM8,%ZMM10                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM8,%ZMM8,%ZMM2               | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM10,%ZMM0,%ZMM0                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nVMOVUPD (%RAX),%ZMM11                       | 1     | 0         | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 3       | 1                 | vect (100.0%)\nADD $0x40,%RAX                              | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nVANDPD %ZMM4,%ZMM11,%ZMM12                  | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (100.0%)\nVFMADD231PD %ZMM11,%ZMM11,%ZMM2             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0   | 0   | 4       | 1                 | vect (100.0%)\nVMAXPD %ZMM12,%ZMM0,%ZMM0                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 1                 | vect (100.0%)\nCMP %RAX,%R14                               | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (12.5%)\nJE 401819 <_ZL7norm2u3PviiiPdS0_iii+0x3b9>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nVEXTRACTF64X4 $0x1,%ZMM0,%YMM15             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (50.0%)\nVEXTRACTF64X4 $0x1,%ZMM2,%YMM12             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 1       | 0.50              | vect (50.0%)\nVMAXPD %YMM0,%YMM15,%YMM7                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 0.50              | vect (50.0%)\nVADDPD %YMM2,%YMM12,%YMM14                  | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 3       | 0.50              | vect (50.0%)\nVEXTRACTF64X2 $0x1,%YMM7,%XMM1              | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 4       | 0.25              | vect (25.0%)\nVEXTRACTF64X2 $0x1,%YMM14,%XMM3             | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.25 | 0.25 | 0.25 | 0.25 | 0   | 0   | 4       | 0.25              | vect (25.0%)\nVMAXPD %XMM7,%XMM1,%XMM8                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 0.50              | vect (25.0%)\nVADDPD %XMM14,%XMM3,%XMM7                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 3       | 0.50              | vect (25.0%)\nVUNPCKHPD %XMM8,%XMM8,%XMM11                | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0   | 0   | 1       | 0.33              | scal (12.5%)\nVUNPCKHPD %XMM7,%XMM7,%XMM1                 | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.33 | 0.33 | 0.33 | 0   | 0   | 1       | 0.33              | scal (12.5%)\nVMAXPD %XMM8,%XMM11,%XMM10                  | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 2       | 0.50              | vect (25.0%)\nVADDPD %XMM7,%XMM1,%XMM8                    | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 3       | 0.50              | vect (25.0%)\nVADDSD %XMM5,%XMM8,%XMM11                   | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0.50 | 0.50 | 0   | 0   | 3       | 0.50              | scal (12.5%)\nTESTB $0x7,0x70(%RSP)                       | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.33              | scal (1.6%)\nJE 401a50 <_ZL7norm2u3PviiiPdS0_iii+0x5f0>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nMOVSXD %ESI,%R13                            | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | scal (6.3%)\nCMPL $0x6,0x6c(%RSP)                        | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.33              | scal (6.3%)\nJA 401610 <_ZL7norm2u3PviiiPdS0_iii+0x1b0>  | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\nVMOVAPD %XMM11,%XMM5                        | 1     | 0         | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 0       | 0.17              | vect (25.0%)\nINC %RSI                                    | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.25              | N/A\nCMP %RSI,0x78(%RSP)                         | 1     | 0.25      | 0.25 | 0.25 | 0.25 | 0    | 0.33 | 0.33 | 0.33 | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.33              | N/A\nJNE 40195e <_ZL7norm2u3PviiiPdS0_iii+0x4fe> | 1     | 0.50      | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0   | 0   | 1       | 0.50-1            | N/A\n"
+                }
+              ],
+            "header":
+              [
+              "36% of peak computational performance is used (8.85 out of 24.00 FLOP per cycle (GFLOPS @ 1GHz))"
+              ],
+            "brief":
+              [
+
+              ],
+            "gain":
+              [
+                {
+                  "workaround": " - Try to reorganize arrays of structures to structures of arrays\n - Consider to permute loops (see vectorization gain report)\n",
+                  "title": "Code clean check",
+                  "txt": "Detected a slowdown caused by scalar integer instructions (typically used for address computation).\nBy removing them, you can lower the cost of an iteration from 13.67 to 12.75 cycles (1.07x speedup)."
+                },
+                {
+                  "workaround": " - Try another compiler or update/tune your current one\n - Remove inter-iterations dependences from your loop and make it unit-stride:\n  * If your arrays have 2 or more dimensions, check whether elements are accessed contiguously and, otherwise, try to permute loops accordingly:\nC storage order is row-major: for(i) for(j) a[j][i] = b[j][i]; (slow, non stride 1) => for(i) for(j) a[i][j] = b[i][j]; (fast, stride 1)<<image_row_maj>>\n  * If your loop streams arrays of structures (AoS), try to use structures of arrays instead (SoA):\nfor(i) a[i].x = b[i].x; (slow, non stride 1) => for(i) a.x[i] = b.x[i]; (fast, stride 1)\n",
+                  "details": "70% of SSE/AVX instructions are used in vector version (process two or more data elements in vector registers):\n - 77% of SSE/AVX loads are used in vector version.\n - 60% of SSE/AVX addition or subtraction instructions are used in vector version.\n - 60% of SSE/AVX instructions that are not load, store, addition, subtraction nor multiply instructions are used in vector version.\nSince your execution units are vector units, only a fully vectorized loop can use their full power.\n",
+                  "title": "Vectorization",
+                  "txt": "Your loop is partially vectorized.\nOnly 59% of vector register length is used (average across all SSE/AVX instructions).\nBy fully vectorizing your loop, you can lower the cost of an iteration from 13.67 to 10.25 cycles (1.33x speedup)."
+                },
+                {
+                  "title": "Execution units bottlenecks",
+                  "txt": "Found no such bottlenecks but see expert reports for more complex bottlenecks."
+                }
+              ],
+            "potential":
+              [
+                {
+                  "title": "FMA",
+                  "txt": "Detected 56 FMA (fused multiply-add) operations."
+                }
+              ]
+          }
+        ],
+      "common":
+        {
+          "header":
+            [
+            "The loop is defined in /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:840-844.\n",
+            "Warnings:\n - Non-innermost loop: analyzing only self part (ignoring child loops).\n - Ignoring paths for analysis\n - Failed to get the number of paths\n - RecMII not computed since number of paths is unknown or > max_paths\n - Streams not analyzed since number of paths is unknown or > max_paths\n"
+            ]
+        }
+    }
+}

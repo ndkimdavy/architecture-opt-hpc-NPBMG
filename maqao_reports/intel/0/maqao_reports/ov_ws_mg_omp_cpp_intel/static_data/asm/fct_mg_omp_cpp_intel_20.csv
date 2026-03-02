@@ -1,0 +1,676 @@
+address;source_location;insn;indent
+0x40aa10;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:529;PUSH	%RBP;
+0x40aa11;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:529;PUSH	%R15;
+0x40aa13;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:529;PUSH	%R14;
+0x40aa15;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:529;PUSH	%R13;
+0x40aa17;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:529;PUSH	%R12;
+0x40aa19;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:529;PUSH	%RBX;
+0x40aa1a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:529;SUB	$0x148,%RSP;
+0x40aa21;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:529;MOV	%ECX,%R14D;
+0x40aa24;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:529;MOV	%EDX,%EBX;
+0x40aa26;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:529;MOV	%RSI,0x20(%RSP);
+0x40aa2b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:529;MOV	%RDI,0x38(%RSP);
+0x40aa30;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:539;LEA	0x11531(%RIP),%RDI;
+0x40aa37;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:539;CALL	4020e0 <__kmpc_global_thread_num@plt>;
+0x40aa3c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:539;MOV	%EAX,%EBP;
+0x40aa3e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;CMPB	$0x1,0x12803(%RIP);
+0x40aa45;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;JNE	40aa71 <_ZL5comm3Pviiii+0x61>;
+0x40aa47;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:539;LEA	0x1151a(%RIP),%RDI;
+0x40aa4e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:539;MOV	%EBP,%ESI;
+0x40aa50;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:539;CALL	402090 <__kmpc_master@plt>;
+0x40aa55;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:539;TEST	%EAX,%EAX;
+0x40aa57;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:539;JE	40aa71 <_ZL5comm3Pviiii+0x61>;
+0x40aa59;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:540;MOV	$0x9,%EDI;
+0x40aa5e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:540;CALL	40ee20 <_Z11timer_starti>;
+0x40aa63;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:540;LEA	0x114fe(%RIP),%RDI;
+0x40aa6a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:540;MOV	%EBP,%ESI;
+0x40aa6c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:540;CALL	402270 <__kmpc_end_master@plt>;
+0x40aa71;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:531;MOV	%EBX,%R15D;
+0x40aa74;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:531;MOV	0x20(%RSP),%EAX;
+0x40aa78;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:531;MOV	%RAX,0x10(%RSP);
+0x40aa7d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;CMP	$0x3,%R14D;
+0x40aa81;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;JL	40ab43 <_ZL5comm3Pviiii+0x133>;
+0x40aa87;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%RBX,0x88(%RSP);
+0x40aa8f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%R15,0x80(%RSP);
+0x40aa97;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%R14,0xf8(%RSP);
+0x40aa9f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;LEA	-0x3(%R14),%EBX;
+0x40aaa3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;MOVL	$0,0xc(%RSP);
+0x40aaab;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;MOV	%EBX,0x8(%RSP);
+0x40aaaf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;MOVL	$0x1,0x34(%RSP);
+0x40aab7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;MOVL	$0,0x30(%RSP);
+0x40aabf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;SUB	$0x8,%RSP;
+0x40aac3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;LEA	0x3c(%RSP),%RAX;
+0x40aac8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;LEA	0x114b1(%RIP),%RDI;
+0x40aacf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;LEA	0x38(%RSP),%RCX;
+0x40aad4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;LEA	0x14(%RSP),%R8;
+0x40aad9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;LEA	0x10(%RSP),%R9;
+0x40aade;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%EBP,0xdc(%RSP);
+0x40aae5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%EBP,%ESI;
+0x40aae7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	$0x22,%EDX;
+0x40aaec;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;PUSH	$0x1;
+0x40aaee;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;PUSH	$0x1;
+0x40aaf0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;PUSH	%RAX;
+0x40aaf1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;CALL	402240 <__kmpc_for_static_init_4@plt>;
+0x40aaf6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	$0x20,%RSP;
+0x40aafa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;MOV	0x8(%RSP),%EAX;
+0x40aafe;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;CMP	%EBX,%EAX;
+0x40ab00;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;CMOVL	%EAX,%EBX;
+0x40ab03;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;MOVSXD	0xc(%RSP),%R8;
+0x40ab08;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;MOV	%RBX,0x18(%RSP);
+0x40ab0d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;CMP	%R8D,%EBX;
+0x40ab10;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;JGE	40ad8f <_ZL5comm3Pviiii+0x37f>;
+0x40ab16;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;LEA	0x1147b(%RIP),%RDI;
+0x40ab1d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0xd4(%RSP),%EBP;
+0x40ab24;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%EBP,%ESI;
+0x40ab26;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;CALL	402040 <__kmpc_for_static_fini@plt>;
+0x40ab2b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x80(%RSP),%R15;
+0x40ab33;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x88(%RSP),%RBX;
+0x40ab3b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0xf8(%RSP),%R14;
+0x40ab43;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;LEA	0x11466(%RIP),%RDI;
+0x40ab4a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%EBP,%ESI;
+0x40ab4c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;CALL	402210 <__kmpc_barrier@plt>;
+0x40ab51;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:557;TEST	%EBX,%EBX;
+0x40ab53;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;JLE	40ad2b <_ZL5comm3Pviiii+0x31b>;
+0x40ab59;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:557;DEC	%EBX;
+0x40ab5b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:557;MOVL	$0,0xc(%RSP);
+0x40ab63;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:557;MOV	%EBX,0x8(%RSP);
+0x40ab67;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:557;MOVL	$0x1,0x34(%RSP);
+0x40ab6f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:557;MOVL	$0,0x30(%RSP);
+0x40ab77;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;SUB	$0x8,%RSP;
+0x40ab7b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;LEA	0x3c(%RSP),%RAX;
+0x40ab80;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;LEA	0x11441(%RIP),%RDI;
+0x40ab87;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;LEA	0x38(%RSP),%RCX;
+0x40ab8c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;LEA	0x14(%RSP),%R8;
+0x40ab91;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;LEA	0x10(%RSP),%R9;
+0x40ab96;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;MOV	%EBP,%ESI;
+0x40ab98;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;MOV	$0x22,%EDX;
+0x40ab9d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;PUSH	$0x1;
+0x40ab9f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;PUSH	$0x1;
+0x40aba1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;PUSH	%RAX;
+0x40aba2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;CALL	402240 <__kmpc_for_static_init_4@plt>;
+0x40aba7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;ADD	$0x20,%RSP;
+0x40abab;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:557;MOV	0x8(%RSP),%EAX;
+0x40abaf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:557;CMP	%EBX,%EAX;
+0x40abb1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:557;CMOVL	%EAX,%EBX;
+0x40abb4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:557;MOVSXD	0xc(%RSP),%RAX;
+0x40abb9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:557;CMP	%EBX,%EAX;
+0x40abbb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;JG	40ad1d <_ZL5comm3Pviiii+0x30d>;
+0x40abc1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;CMPL	$0,0x20(%RSP);
+0x40abc6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;JLE	40ad1d <_ZL5comm3Pviiii+0x30d>;
+0x40abcc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;LEA	-0x1(%R14),%ECX;
+0x40abd0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:559;ADD	$-0x2,%R14D;
+0x40abd4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:559;MOVSXD	%R14D,%RDX;
+0x40abd7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:560;MOVSXD	%ECX,%RSI;
+0x40abda;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;MOVSXD	%EBX,%RCX;
+0x40abdd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;SUB	%RAX,%RCX;
+0x40abe0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;INC	%RCX;
+0x40abe3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	0x10(%RSP),%RCX;
+0x40abe9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;CMP	$0x4,%RCX;
+0x40abed;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;JB	40acb5 <_ZL5comm3Pviiii+0x2a5>;
+0x40abf3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RCX,%RDI;
+0x40abf6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;SHR	$0x2,%RDI;
+0x40abfa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%RAX,%R15,1),%R8;
+0x40abfe;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	0x10(%RSP),%R14;
+0x40ac03;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%R14,%R8;
+0x40ac07;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	0x38(%RSP),%R9;
+0x40ac0c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;ADD	$0x18,%R9;
+0x40ac10;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RSI,%R10;
+0x40ac13;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%R15,%R10;
+0x40ac17;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;ADD	%RAX,%R10;
+0x40ac1a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%R14,%R10;
+0x40ac1e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RDX,%R11;
+0x40ac21;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%R15,%R11;
+0x40ac25;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;ADD	%RAX,%R11;
+0x40ac28;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%R14,%R11;
+0x40ac2c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RAX,%RBX;
+0x40ac2f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%R14,%RBX;
+0x40ac33;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;NEG	%RDI;
+0x40ac36;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;NOPW	%CS:(%RAX,%RAX,1);
+0x40ac40;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:559;VMOVSD	-0x18(%R9,%R11,8),%XMM0;(55) 
+0x40ac47;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:559;VMOVSD	%XMM0,-0x18(%R9,%RBX,8);(55) 
+0x40ac4e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:560;VMOVSD	-0x18(%R9,%R8,8),%XMM0;(55) 
+0x40ac55;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:560;VMOVSD	%XMM0,-0x18(%R9,%R10,8);(55) 
+0x40ac5c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:559;VMOVSD	-0x10(%R9,%R11,8),%XMM0;(55) 
+0x40ac63;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:559;VMOVSD	%XMM0,-0x10(%R9,%RBX,8);(55) 
+0x40ac6a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:560;VMOVSD	-0x10(%R9,%R8,8),%XMM0;(55) 
+0x40ac71;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:560;VMOVSD	%XMM0,-0x10(%R9,%R10,8);(55) 
+0x40ac78;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:559;VMOVSD	-0x8(%R9,%R11,8),%XMM0;(55) 
+0x40ac7f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:559;VMOVSD	%XMM0,-0x8(%R9,%RBX,8);(55) 
+0x40ac86;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:560;VMOVSD	-0x8(%R9,%R8,8),%XMM0;(55) 
+0x40ac8d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:560;VMOVSD	%XMM0,-0x8(%R9,%R10,8);(55) 
+0x40ac94;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:559;VMOVSD	(%R9,%R11,8),%XMM0;(55) 
+0x40ac9a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:559;VMOVSD	%XMM0,(%R9,%RBX,8);(55) 
+0x40aca0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:560;VMOVSD	(%R9,%R8,8),%XMM0;(55) 
+0x40aca6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:560;VMOVSD	%XMM0,(%R9,%R10,8);(55) 
+0x40acac;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;ADD	$0x20,%R9;(55) 
+0x40acb0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;INC	%RDI;(55) 
+0x40acb3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;JNE	40ac40 <_ZL5comm3Pviiii+0x230>;(55) 
+0x40acb5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;MOV	%RCX,%RDI;
+0x40acb8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;AND	$-0x4,%RDI;
+0x40acbc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;CMP	%RCX,%RDI;
+0x40acbf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;JE	40ad1d <_ZL5comm3Pviiii+0x30d>;
+0x40acc1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;LEA	(%RAX,%R15,1),%R8;
+0x40acc5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;MOV	0x10(%RSP),%R10;
+0x40acca;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;IMUL	%R10,%R8;
+0x40acce;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;MOV	0x38(%RSP),%R9;
+0x40acd3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;LEA	(%R9,%R8,8),%R8;
+0x40acd7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;IMUL	%R15,%RSI;
+0x40acdb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;ADD	%RAX,%RSI;
+0x40acde;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;IMUL	%R10,%RSI;
+0x40ace2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;LEA	(%R9,%RSI,8),%RSI;
+0x40ace6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;IMUL	%R15,%RDX;
+0x40acea;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;ADD	%RAX,%RDX;
+0x40aced;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;IMUL	%R10,%RDX;
+0x40acf1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;LEA	(%R9,%RDX,8),%RDX;
+0x40acf5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;IMUL	%R10,%RAX;
+0x40acf9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;LEA	(%R9,%RAX,8),%RAX;
+0x40acfd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;NOPL	(%RAX);
+0x40ad00;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:559;VMOVSD	(%RDX,%RDI,8),%XMM0;(54) 
+0x40ad05;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:559;VMOVSD	%XMM0,(%RAX,%RDI,8);(54) 
+0x40ad0a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:560;VMOVSD	(%R8,%RDI,8),%XMM0;(54) 
+0x40ad10;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:560;VMOVSD	%XMM0,(%RSI,%RDI,8);(54) 
+0x40ad15;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;INC	%RDI;(54) 
+0x40ad18;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;CMP	%RDI,%RCX;(54) 
+0x40ad1b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:558;JNE	40ad00 <_ZL5comm3Pviiii+0x2f0>;(54) 
+0x40ad1d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;LEA	0x112bc(%RIP),%RDI;
+0x40ad24;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;MOV	%EBP,%ESI;
+0x40ad26;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;CALL	402040 <__kmpc_for_static_fini@plt>;
+0x40ad2b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;LEA	0x112c6(%RIP),%RDI;
+0x40ad32;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;MOV	%EBP,%ESI;
+0x40ad34;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:556;CALL	402210 <__kmpc_barrier@plt>;
+0x40ad39;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:564;CMPB	$0x1,0x12508(%RIP);
+0x40ad40;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:564;JNE	40ad7d <_ZL5comm3Pviiii+0x36d>;
+0x40ad42;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:565;LEA	0x112c7(%RIP),%RDI;
+0x40ad49;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:565;MOV	%EBP,%ESI;
+0x40ad4b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:565;CALL	402090 <__kmpc_master@plt>;
+0x40ad50;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:565;TEST	%EAX,%EAX;
+0x40ad52;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:565;JE	40ad7d <_ZL5comm3Pviiii+0x36d>;
+0x40ad54;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:566;MOV	$0x9,%EDI;
+0x40ad59;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:566;CALL	40ee50 <_Z10timer_stopi>;
+0x40ad5e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:566;LEA	0x112ab(%RIP),%RDI;
+0x40ad65;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:566;MOV	%EBP,%ESI;
+0x40ad67;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:566;ADD	$0x148,%RSP;
+0x40ad6e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:566;POP	%RBX;
+0x40ad6f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:566;POP	%R12;
+0x40ad71;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:566;POP	%R13;
+0x40ad73;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:566;POP	%R14;
+0x40ad75;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:566;POP	%R15;
+0x40ad77;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:566;POP	%RBP;
+0x40ad78;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:566;JMP	402270 <__kmpc_end_master@plt>;
+0x40ad7d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:568;ADD	$0x148,%RSP;
+0x40ad84;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:568;POP	%RBX;
+0x40ad85;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:568;POP	%R12;
+0x40ad87;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:568;POP	%R13;
+0x40ad89;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:568;POP	%R14;
+0x40ad8b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:568;POP	%R15;
+0x40ad8d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:568;POP	%RBP;
+0x40ad8e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:568;RET;
+0x40ad8f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:568;MOV	0x88(%RSP),%RCX;
+0x40ad97;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;LEA	-0x2(%RCX),%EAX;
+0x40ad9a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;MOVSXD	%EAX,%R10;
+0x40ad9d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;CMP	$0x3,%ECX;
+0x40ada0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;JL	40b2c4 <_ZL5comm3Pviiii+0x8b4>;
+0x40ada6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0x20(%RSP),%RDX;
+0x40adab;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;LEA	-0x2(%RDX),%EAX;
+0x40adae;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;LEA	-0x1(%RDX),%ECX;
+0x40adb1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;MOVSXD	%EAX,%R13;
+0x40adb4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;MOVSXD	%ECX,%RDI;
+0x40adb7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;MOV	0x18(%RSP),%RAX;
+0x40adbc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;SUB	%R8D,%EAX;
+0x40adbf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;MOV	%RAX,0x18(%RSP);
+0x40adc4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;MOV	0x80(%RSP),%R15;
+0x40adcc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	-0x2(%R15),%RAX;
+0x40add0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RAX,%RCX;
+0x40add3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;SHR	$0x2,%RCX;
+0x40add7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RCX,0xe0(%RSP);
+0x40addf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;LEA	0x1(%R8),%R9;
+0x40ade3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;TEST	%EDX,%EDX;
+0x40ade5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%R13,0xf0(%RSP);
+0x40aded;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RDI,0xe8(%RSP);
+0x40adf5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RAX,0x78(%RSP);
+0x40adfa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;JLE	40b485 <_ZL5comm3Pviiii+0xa75>;
+0x40ae00;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	0x10(%RSP),%RSI;
+0x40ae05;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%ESI,%EBX;
+0x40ae07;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;SHR	$0x2,%EBX;
+0x40ae0a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%R15,%R9;
+0x40ae0e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;AND	$-0x4,%RAX;
+0x40ae12;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RAX,%RCX;
+0x40ae15;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RAX,0x58(%RSP);
+0x40ae1a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	0x4(%R9),%RAX;
+0x40ae1e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	0x3(%R9),%RDX;
+0x40ae22;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	0x2(%R9),%RBP;
+0x40ae26;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	0x1(%R9),%R14;
+0x40ae2a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%RSI,%R14;
+0x40ae2e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	0x1(%R9,%RCX,1),%R11;
+0x40ae33;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%R11,0x28(%RSP);
+0x40ae38;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%R9,%R11;
+0x40ae3b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%RSI,%R11;
+0x40ae3f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%R11,0x48(%RSP);
+0x40ae44;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	0x38(%RSP),%R12;
+0x40ae49;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%R9,%RCX;
+0x40ae4c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%R12,%R11,8),%R9;
+0x40ae50;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;ADD	%R10,%RCX;
+0x40ae53;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%RSI,%RCX;
+0x40ae57;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%R12,%RCX,8),%R10;
+0x40ae5b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;ADD	$0x2,%R8;
+0x40ae5f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%R15,%R8;
+0x40ae63;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;DEC	%R8;
+0x40ae66;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%RSI,%R8;
+0x40ae6a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%R8,0x40(%RSP);
+0x40ae6f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%R12,%R8,8),%R11;
+0x40ae73;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%R12,%R14,8),%R8;
+0x40ae77;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RBX,0x50(%RSP);
+0x40ae7c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;AND	$0x1fffffff,%EBX;
+0x40ae82;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;SAL	$0x5,%RBX;
+0x40ae86;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;ADD	%RBX,%R9;
+0x40ae89;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;ADD	%RBX,%R10;
+0x40ae8c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;ADD	%RBX,%R11;
+0x40ae8f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;ADD	%R8,%RBX;
+0x40ae92;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RBX,0x70(%RSP);
+0x40ae97;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%ESI,%R8D;
+0x40ae9a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;AND	$0x7ffffffc,%R8D;
+0x40aea1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%R8,0x90(%RSP);
+0x40aea9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%RSI,%RAX;
+0x40aead;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%R15,%R8;
+0x40aeb0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%RSI,%R8;
+0x40aeb4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;SAL	$0x3,%R8;
+0x40aeb8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%R8,0x140(%RSP);
+0x40aec0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RSI,%R8;
+0x40aec3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;SAL	$0x5,%R8;
+0x40aec7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%R8,0xc8(%RSP);
+0x40aecf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(,%RAX,8),%R8;
+0x40aed7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(,%RDI,8),%RBX;
+0x40aedf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%RBX,%RAX,8),%RDI;
+0x40aee3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RDI,0xc0(%RSP);
+0x40aeeb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%R15,%RDI;
+0x40aeee;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(,%R13,8),%R15;
+0x40aef6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%R15,%RAX,8),%RAX;
+0x40aefa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RAX,0x138(%RSP);
+0x40af02;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%RSI,%RDX;
+0x40af06;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(,%RDX,8),%R13;
+0x40af0e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%RBX,%RDX,8),%RAX;
+0x40af12;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RAX,0x130(%RSP);
+0x40af1a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%R15,%RDX,8),%RAX;
+0x40af1e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RAX,0x128(%RSP);
+0x40af26;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%RSI,%RBP;
+0x40af2a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(,%RBP,8),%RAX;
+0x40af32;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%RBX,%RBP,8),%RDX;
+0x40af36;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RDX,0x120(%RSP);
+0x40af3e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%R15,%RBP,8),%RDX;
+0x40af42;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RDX,0x118(%RSP);
+0x40af4a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%RBX,%R14,8),%RDX;
+0x40af4e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RDX,0x110(%RSP);
+0x40af56;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%R14,%RBX;
+0x40af59;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%R15,%R14,8),%RDX;
+0x40af5d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RDX,0x108(%RSP);
+0x40af65;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;SUB	0x58(%RSP),%RDI;
+0x40af6a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;ADD	$-0x2,%RDI;
+0x40af6e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RDI,0xd8(%RSP);
+0x40af76;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	0x28(%RSP),%RDX;
+0x40af7b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;IMUL	%RSI,%RDX;
+0x40af7f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(%R12,%RDX,8),%RDX;
+0x40af83;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RDX,0x68(%RSP);
+0x40af88;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	0x48(%RSP),%RDX;
+0x40af8d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	0x18(%R12,%RDX,8),%R15;
+0x40af92;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	0x18(%R12,%RCX,8),%RDI;
+0x40af97;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	0x40(%RSP),%RCX;
+0x40af9c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	0x18(%R12,%RCX,8),%RBP;
+0x40afa1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(,%R14,8),%R14;
+0x40afa9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	0x18(%R12,%RBX,8),%RDX;
+0x40afae;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;SALQ	$0x5,0x50(%RSP);
+0x40afb4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%ESI,%ECX;
+0x40afb6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;AND	$-0x7ffffffd,%ECX;
+0x40afbc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RCX,0x100(%RSP);
+0x40afc4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;LEA	(,%RSI,8),%RCX;
+0x40afcc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%RCX,0x28(%RSP);
+0x40afd1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;XOR	%EBX,%EBX;
+0x40afd3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%R12,0x60(%RSP);
+0x40afd8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;JMP	40b029 <_ZL5comm3Pviiii+0x619>;
+0x40afda;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;NOPW	(%RAX,%RAX,1);
+0x40afe0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	0x140(%RSP),%RBX;(62) 
+0x40afe8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RBX,0x60(%RSP);(62) 
+0x40afed;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RBX,%RCX;(62) 
+0x40aff0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%RCX,0x68(%RSP);(62) 
+0x40aff5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RBX,%R15;(62) 
+0x40aff8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RBX,%RDI;(62) 
+0x40affb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RBX,%RBP;(62) 
+0x40affe;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RBX,%RDX;(62) 
+0x40b001;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RBX,%R9;(62) 
+0x40b004;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RBX,%R10;(62) 
+0x40b007;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RBX,%R11;(62) 
+0x40b00a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RBX,%RSI;(62) 
+0x40b00d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%RSI,0x70(%RSP);(62) 
+0x40b012;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0xb0(%RSP),%RCX;(62) 
+0x40b01a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;CMP	0x18(%RSP),%RCX;(62) 
+0x40b01f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;LEA	0x1(%RCX),%RBX;(62) 
+0x40b023;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;JE	40ab16 <_ZL5comm3Pviiii+0x106>;(62) 
+0x40b029;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%RBP,0x98(%RSP);(62) 
+0x40b031;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%RDI,0xa0(%RSP);(62) 
+0x40b039;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%R15,0xa8(%RSP);(62) 
+0x40b041;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%RBX,0xb0(%RSP);(62) 
+0x40b049;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%R11,0xb8(%RSP);(62) 
+0x40b051;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%R10,0x40(%RSP);(62) 
+0x40b056;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%R9,0x48(%RSP);(62) 
+0x40b05b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;CMPQ	$0x4,0x78(%RSP);(62) 
+0x40b061;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x138(%RSP),%R11;(62) 
+0x40b069;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x130(%RSP),%R10;(62) 
+0x40b071;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x128(%RSP),%R15;(62) 
+0x40b079;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x120(%RSP),%RBP;(62) 
+0x40b081;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x118(%RSP),%RSI;(62) 
+0x40b089;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x110(%RSP),%RCX;(62) 
+0x40b091;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x108(%RSP),%R9;(62) 
+0x40b099;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;JB	40b13f <_ZL5comm3Pviiii+0x72f>;(62) 
+0x40b09f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x60(%RSP),%R12;(62) 
+0x40b0a4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0xe0(%RSP),%RBX;(62) 
+0x40b0ac;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;NOPL	(%RAX);(62) 
+0x40b0b0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	(%R12,%R9,1),%XMM0;  (67) 
+0x40b0b6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	%XMM0,(%R12,%R14,1);  (67) 
+0x40b0bc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	0x8(%R12,%R14,1),%XMM0;  (67) 
+0x40b0c3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	%XMM0,(%R12,%RCX,1);  (67) 
+0x40b0c9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	(%R12,%RSI,1),%XMM0;  (67) 
+0x40b0cf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	%XMM0,(%R12,%RAX,1);  (67) 
+0x40b0d5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	0x8(%R12,%RAX,1),%XMM0;  (67) 
+0x40b0dc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	%XMM0,(%R12,%RBP,1);  (67) 
+0x40b0e2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	(%R12,%R15,1),%XMM0;  (67) 
+0x40b0e8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	%XMM0,(%R12,%R13,1);  (67) 
+0x40b0ee;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	0x8(%R12,%R13,1),%XMM0;  (67) 
+0x40b0f5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	%XMM0,(%R12,%R10,1);  (67) 
+0x40b0fb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	(%R12,%R11,1),%XMM0;  (67) 
+0x40b101;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	%XMM0,(%R12,%R8,1);  (67) 
+0x40b107;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	0x8(%R12,%R8,1),%XMM0;  (67) 
+0x40b10e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;MOV	%R15,%RDI;  (67) 
+0x40b111;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;MOV	%R10,%R15;  (67) 
+0x40b114;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;MOV	%R11,%R10;  (67) 
+0x40b117;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;MOV	0xc0(%RSP),%R11;  (67) 
+0x40b11f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	%XMM0,(%R12,%R11,1);  (67) 
+0x40b125;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;MOV	%R10,%R11;  (67) 
+0x40b128;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;MOV	%R15,%R10;  (67) 
+0x40b12b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;MOV	%RDI,%R15;  (67) 
+0x40b12e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;ADD	0xc8(%RSP),%R12;  (67) 
+0x40b136;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;DEC	%RBX;  (67) 
+0x40b139;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;JNE	40b0b0 <_ZL5comm3Pviiii+0x6a0>;  (67) 
+0x40b13f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0x78(%RSP),%RCX;(62) 
+0x40b144;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;CMP	%RCX,0x58(%RSP);(62) 
+0x40b149;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0x48(%RSP),%R9;(62) 
+0x40b14e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0x40(%RSP),%R10;(62) 
+0x40b153;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0xb8(%RSP),%R11;(62) 
+0x40b15b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0x68(%RSP),%RCX;(62) 
+0x40b160;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0x28(%RSP),%RSI;(62) 
+0x40b165;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0xa8(%RSP),%R15;(62) 
+0x40b16d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0xa0(%RSP),%RDI;(62) 
+0x40b175;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0x98(%RSP),%RBP;(62) 
+0x40b17d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;JE	40b1fd <_ZL5comm3Pviiii+0x7ed>;(62) 
+0x40b17f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;CMPL	$0x1,0x20(%RSP);(62) 
+0x40b184;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;JNE	40b1c0 <_ZL5comm3Pviiii+0x7b0>;(62) 
+0x40b186;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	%RCX,%RBX;(62) 
+0x40b189;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0xd8(%RSP),%R12;(62) 
+0x40b191;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;NOPW	%CS:(%RAX,%RAX,1);(62) 
+0x40b1a0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	0x8(%RBX),%XMM0;  (66) 
+0x40b1a5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	%XMM0,(%RBX);  (66) 
+0x40b1a9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;ADD	%RSI,%RBX;  (66) 
+0x40b1ac;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;DEC	%R12;  (66) 
+0x40b1af;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;JNE	40b1a0 <_ZL5comm3Pviiii+0x790>;  (66) 
+0x40b1b1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;JMP	40b1fd <_ZL5comm3Pviiii+0x7ed>;(62) 
+0x40b1b3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;NOPW	%CS:(%RAX,%RAX,1);
+0x40b1c0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	%RCX,%RBX;(62) 
+0x40b1c3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0xd8(%RSP),%R12;(62) 
+0x40b1cb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;NOPL	(%RAX,%RAX,1);(62) 
+0x40b1d0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0xf0(%RSP),%RSI;  (65) 
+0x40b1d8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	(%RBX,%RSI,8),%XMM0;  (65) 
+0x40b1dd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	%XMM0,(%RBX);  (65) 
+0x40b1e1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	0x8(%RBX),%XMM0;  (65) 
+0x40b1e6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;MOV	0xe8(%RSP),%RSI;  (65) 
+0x40b1ee;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	%XMM0,(%RBX,%RSI,8);  (65) 
+0x40b1f3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;ADD	0x28(%RSP),%RBX;  (65) 
+0x40b1f8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;DEC	%R12;  (65) 
+0x40b1fb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;JNE	40b1d0 <_ZL5comm3Pviiii+0x7c0>;  (65) 
+0x40b1fd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;CMPL	$0x4,0x20(%RSP);(62) 
+0x40b202;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0x50(%RSP),%RSI;(62) 
+0x40b207;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;JB	40b27a <_ZL5comm3Pviiii+0x86a>;(62) 
+0x40b209;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;XOR	%EBX,%EBX;(62) 
+0x40b20b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;NOPL	(%RAX,%RAX,1);(62) 
+0x40b210;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	-0x18(%RDI,%RBX,1),%XMM0;  (64) 
+0x40b216;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	%XMM0,-0x18(%R15,%RBX,1);  (64) 
+0x40b21d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	-0x18(%RDX,%RBX,1),%XMM0;  (64) 
+0x40b223;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	%XMM0,-0x18(%RBP,%RBX,1);  (64) 
+0x40b229;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	-0x10(%RDI,%RBX,1),%XMM0;  (64) 
+0x40b22f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	%XMM0,-0x10(%R15,%RBX,1);  (64) 
+0x40b236;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	-0x10(%RDX,%RBX,1),%XMM0;  (64) 
+0x40b23c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	%XMM0,-0x10(%RBP,%RBX,1);  (64) 
+0x40b242;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	-0x8(%RDI,%RBX,1),%XMM0;  (64) 
+0x40b248;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	%XMM0,-0x8(%R15,%RBX,1);  (64) 
+0x40b24f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	-0x8(%RDX,%RBX,1),%XMM0;  (64) 
+0x40b255;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	%XMM0,-0x8(%RBP,%RBX,1);  (64) 
+0x40b25b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	(%RDI,%RBX,1),%XMM0;  (64) 
+0x40b260;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	%XMM0,(%R15,%RBX,1);  (64) 
+0x40b266;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	(%RDX,%RBX,1),%XMM0;  (64) 
+0x40b26b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	%XMM0,(%RBP,%RBX,1);  (64) 
+0x40b271;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;ADD	$0x20,%RBX;  (64) 
+0x40b275;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;CMP	%RBX,%RSI;  (64) 
+0x40b278;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;JNE	40b210 <_ZL5comm3Pviiii+0x800>;  (64) 
+0x40b27a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	0x90(%RSP),%RSI;(62) 
+0x40b282;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;CMP	%ESI,0x10(%RSP);(62) 
+0x40b286;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	0x70(%RSP),%RSI;(62) 
+0x40b28b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	0x100(%RSP),%R12;(62) 
+0x40b293;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;JE	40afe0 <_ZL5comm3Pviiii+0x5d0>;(62) 
+0x40b299;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;XOR	%EBX,%EBX;(62) 
+0x40b29b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;NOPL	(%RAX,%RAX,1);(62) 
+0x40b2a0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	(%R10,%RBX,8),%XMM0;  (63) 
+0x40b2a6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	%XMM0,(%R9,%RBX,8);  (63) 
+0x40b2ac;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	(%RSI,%RBX,8),%XMM0;  (63) 
+0x40b2b1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	%XMM0,(%R11,%RBX,8);  (63) 
+0x40b2b7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;INC	%RBX;  (63) 
+0x40b2ba;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;CMP	%RBX,%R12;  (63) 
+0x40b2bd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;JNE	40b2a0 <_ZL5comm3Pviiii+0x890>;  (63) 
+0x40b2bf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;JMP	40afe0 <_ZL5comm3Pviiii+0x5d0>;(62) 
+0x40b2c4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;CMPL	$0,0x20(%RSP);
+0x40b2c9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;JLE	40ab16 <_ZL5comm3Pviiii+0x106>;
+0x40b2cf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x18(%RSP),%RAX;
+0x40b2d4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;SUB	%R8D,%EAX;
+0x40b2d7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%RAX,0x18(%RSP);
+0x40b2dc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x10(%RSP),%R12;
+0x40b2e1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;MOV	%R12D,%EAX;
+0x40b2e4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:538;SHR	$0x2,%EAX;
+0x40b2e7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;INC	%R8;
+0x40b2ea;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;MOVSXD	0x88(%RSP),%R11;
+0x40b2f2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;MOV	%R12D,%ECX;
+0x40b2f5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;AND	$0x7ffffffc,%ECX;
+0x40b2fb;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;MOV	0x80(%RSP),%RDI;
+0x40b303;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;IMUL	%RDI,%R8;
+0x40b307;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;MOV	%R8,%RSI;
+0x40b30a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;IMUL	%R12,%RSI;
+0x40b30e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;MOV	0x38(%RSP),%RBX;
+0x40b313;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;LEA	(%RBX,%RSI,8),%RDX;
+0x40b317;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;LEA	0x18(%RBX,%RSI,8),%RSI;
+0x40b31c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;IMUL	%R12,%RDI;
+0x40b320;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;SAL	$0x3,%RDI;
+0x40b324;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;ADD	%R8,%R10;
+0x40b327;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;IMUL	%R12,%R10;
+0x40b32b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;MOV	%R8,%R14;
+0x40b32e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;LEA	(%RBX,%R10,8),%R8;
+0x40b332;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;LEA	0x18(%RBX,%R10,8),%R9;
+0x40b337;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;LEA	-0x1(%R14,%R11,1),%R11;
+0x40b33c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;IMUL	%R12,%R11;
+0x40b340;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;LEA	(%RBX,%R11,8),%R10;
+0x40b344;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;LEA	0x18(%RBX,%R11,8),%R11;
+0x40b349;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;INC	%R14;
+0x40b34c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;IMUL	%R12,%R14;
+0x40b350;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;LEA	(%RBX,%R14,8),%R15;
+0x40b354;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;LEA	0x18(%RBX,%R14,8),%RBX;
+0x40b359;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;MOV	%RAX,%R14;
+0x40b35c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;SAL	$0x5,%R14;
+0x40b360;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;AND	$0x1fffffff,%EAX;
+0x40b365;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;SAL	$0x5,%RAX;
+0x40b369;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;ADD	%RAX,%RDX;
+0x40b36c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;ADD	%RAX,%R8;
+0x40b36f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;ADD	%RAX,%R10;
+0x40b372;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;ADD	%R15,%RAX;
+0x40b375;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;MOV	%R12D,%R15D;
+0x40b378;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;AND	$-0x7ffffffd,%R15D;
+0x40b37f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;XOR	%R12D,%R12D;
+0x40b382;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;JMP	40b3b8 <_ZL5comm3Pviiii+0x9a8>;
+0x40b384;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;NOPW	%CS:(%RAX,%RAX,1);
+0x40b390;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RDI,%RSI;(56) 
+0x40b393;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RDI,%R9;(56) 
+0x40b396;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RDI,%R11;(56) 
+0x40b399;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RDI,%RBX;(56) 
+0x40b39c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RDI,%RDX;(56) 
+0x40b39f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RDI,%R8;(56) 
+0x40b3a2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RDI,%R10;(56) 
+0x40b3a5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RDI,%RAX;(56) 
+0x40b3a8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;CMP	0x18(%RSP),%R12;(56) 
+0x40b3ad;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;LEA	0x1(%R12),%R12;(56) 
+0x40b3b2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;JE	40ab16 <_ZL5comm3Pviiii+0x106>;(56) 
+0x40b3b8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;CMPL	$0x4,0x20(%RSP);(56) 
+0x40b3bd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;JB	40b445 <_ZL5comm3Pviiii+0xa35>;(56) 
+0x40b3c3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;XOR	%R13D,%R13D;(56) 
+0x40b3c6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;NOPW	%CS:(%RAX,%RAX,1);(56) 
+0x40b3d0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	-0x18(%R9,%R13,1),%XMM0;  (58) 
+0x40b3d7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	%XMM0,-0x18(%RSI,%R13,1);  (58) 
+0x40b3de;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	-0x18(%RBX,%R13,1),%XMM0;  (58) 
+0x40b3e5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	%XMM0,-0x18(%R11,%R13,1);  (58) 
+0x40b3ec;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	-0x10(%R9,%R13,1),%XMM0;  (58) 
+0x40b3f3;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	%XMM0,-0x10(%RSI,%R13,1);  (58) 
+0x40b3fa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	-0x10(%RBX,%R13,1),%XMM0;  (58) 
+0x40b401;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	%XMM0,-0x10(%R11,%R13,1);  (58) 
+0x40b408;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	-0x8(%R9,%R13,1),%XMM0;  (58) 
+0x40b40f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	%XMM0,-0x8(%RSI,%R13,1);  (58) 
+0x40b416;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	-0x8(%RBX,%R13,1),%XMM0;  (58) 
+0x40b41d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	%XMM0,-0x8(%R11,%R13,1);  (58) 
+0x40b424;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	(%R9,%R13,1),%XMM0;  (58) 
+0x40b42a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	%XMM0,(%RSI,%R13,1);  (58) 
+0x40b430;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	(%RBX,%R13,1),%XMM0;  (58) 
+0x40b436;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	%XMM0,(%R11,%R13,1);  (58) 
+0x40b43c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;ADD	$0x20,%R13;  (58) 
+0x40b440;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;CMP	%R13,%R14;  (58) 
+0x40b443;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;JNE	40b3d0 <_ZL5comm3Pviiii+0x9c0>;  (58) 
+0x40b445;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;CMP	%ECX,0x10(%RSP);(56) 
+0x40b449;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;JE	40b390 <_ZL5comm3Pviiii+0x980>;(56) 
+0x40b44f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;XOR	%R13D,%R13D;(56) 
+0x40b452;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;NOPW	%CS:(%RAX,%RAX,1);(56) 
+0x40b460;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	(%R8,%R13,8),%XMM0;  (57) 
+0x40b466;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVSD	%XMM0,(%RDX,%R13,8);  (57) 
+0x40b46c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	(%RAX,%R13,8),%XMM0;  (57) 
+0x40b472;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVSD	%XMM0,(%R10,%R13,8);  (57) 
+0x40b478;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;INC	%R13;  (57) 
+0x40b47b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;CMP	%R13,%R15;  (57) 
+0x40b47e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;JNE	40b460 <_ZL5comm3Pviiii+0xa50>;  (57) 
+0x40b480;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;JMP	40b390 <_ZL5comm3Pviiii+0x980>;(56) 
+0x40b485;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RAX,%R8;
+0x40b488;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;AND	$-0x4,%R8;
+0x40b48c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;IMUL	%R15,%R9;
+0x40b490;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	0x4(%R9),%RAX;
+0x40b494;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	0x10(%RSP),%RSI;
+0x40b499;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;IMUL	%RSI,%RAX;
+0x40b49d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(,%RAX,8),%RDX;
+0x40b4a5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%R15,%RCX;
+0x40b4a8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;IMUL	%RSI,%RCX;
+0x40b4ac;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;SAL	$0x3,%RCX;
+0x40b4b0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RCX,0x68(%RSP);
+0x40b4b5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RSI,%RCX;
+0x40b4b8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;SAL	$0x5,%RCX;
+0x40b4bc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RCX,0x48(%RSP);
+0x40b4c1;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(,%RDI,8),%RCX;
+0x40b4c9;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(%RCX,%RAX,8),%RDI;
+0x40b4cd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RDI,0x40(%RSP);
+0x40b4d2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(,%R13,8),%RDI;
+0x40b4da;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(%RDI,%RAX,8),%RAX;
+0x40b4de;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RAX,0xb8(%RSP);
+0x40b4e6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	0x3(%R9),%RAX;
+0x40b4ea;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;IMUL	%RSI,%RAX;
+0x40b4ee;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(,%RAX,8),%R10;
+0x40b4f6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(%RCX,%RAX,8),%R11;
+0x40b4fa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%R11,0xb0(%RSP);
+0x40b502;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(%RDI,%RAX,8),%RAX;
+0x40b506;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RAX,0xa8(%RSP);
+0x40b50e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	0x2(%R9),%RAX;
+0x40b512;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;IMUL	%RSI,%RAX;
+0x40b516;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(,%RAX,8),%R14;
+0x40b51e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(%RCX,%RAX,8),%R11;
+0x40b522;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%R11,0xa0(%RSP);
+0x40b52a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(%RDI,%RAX,8),%RAX;
+0x40b52e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RAX,0x98(%RSP);
+0x40b536;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	0x1(%R9),%RAX;
+0x40b53a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;IMUL	%RSI,%RAX;
+0x40b53e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(%RCX,%RAX,8),%RCX;
+0x40b542;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RCX,0x60(%RSP);
+0x40b547;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(%RDI,%RAX,8),%RCX;
+0x40b54b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RCX,0x58(%RSP);
+0x40b550;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(,%RAX,8),%RCX;
+0x40b558;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%R15,%RAX;
+0x40b55b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;SUB	%R8,%RAX;
+0x40b55e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;ADD	$-0x2,%RAX;
+0x40b562;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RAX,0x90(%RSP);
+0x40b56a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%R8,0x70(%RSP);
+0x40b56f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	0x1(%R9,%R8,1),%RAX;
+0x40b574;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;IMUL	%RSI,%RAX;
+0x40b578;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	0x38(%RSP),%RDI;
+0x40b57d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(%RDI,%RAX,8),%R11;
+0x40b581;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;LEA	(,%RSI,8),%RSI;
+0x40b589;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;XOR	%EAX,%EAX;
+0x40b58b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RDI,0x28(%RSP);
+0x40b590;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	%RSI,0x50(%RSP);
+0x40b595;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	0xb0(%RSP),%RBX;
+0x40b59d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	0xa8(%RSP),%R15;
+0x40b5a5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	0xa0(%RSP),%R12;
+0x40b5ad;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	0x98(%RSP),%R13;
+0x40b5b5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	0x60(%RSP),%RBP;
+0x40b5ba;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;JMP	40b5e4 <_ZL5comm3Pviiii+0xbd4>;
+0x40b5bc;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;NOPL	(%RAX);
+0x40b5c0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;MOV	0x68(%RSP),%RAX;(59) 
+0x40b5c5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RAX,0x28(%RSP);(59) 
+0x40b5ca;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;ADD	%RAX,%R11;(59) 
+0x40b5cd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0xc0(%RSP),%RAX;(59) 
+0x40b5d5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;CMP	0x18(%RSP),%RAX;(59) 
+0x40b5da;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:543;LEA	0x1(%RAX),%RAX;(59) 
+0x40b5de;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;JE	40ab16 <_ZL5comm3Pviiii+0x106>;(59) 
+0x40b5e4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%RAX,0xc0(%RSP);(59) 
+0x40b5ec;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	%R11,0xc8(%RSP);(59) 
+0x40b5f4;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;CMPQ	$0x4,0x78(%RSP);(59) 
+0x40b5fa;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x48(%RSP),%R8;(59) 
+0x40b5ff;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x40(%RSP),%R9;(59) 
+0x40b604;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0xb8(%RSP),%R11;(59) 
+0x40b60c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x58(%RSP),%RSI;(59) 
+0x40b611;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;JB	40b685 <_ZL5comm3Pviiii+0xc75>;(59) 
+0x40b613;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0x28(%RSP),%RAX;(59) 
+0x40b618;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:542;MOV	0xe0(%RSP),%RDI;(59) 
+0x40b620;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	(%RAX,%RSI,1),%XMM0;  (61) 
+0x40b625;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	%XMM0,(%RAX,%RCX,1);  (61) 
+0x40b62a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	0x8(%RAX,%RCX,1),%XMM0;  (61) 
+0x40b630;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	%XMM0,(%RAX,%RBP,1);  (61) 
+0x40b635;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	(%RAX,%R13,1),%XMM0;  (61) 
+0x40b63b;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	%XMM0,(%RAX,%R14,1);  (61) 
+0x40b641;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	0x8(%RAX,%R14,1),%XMM0;  (61) 
+0x40b648;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	%XMM0,(%RAX,%R12,1);  (61) 
+0x40b64e;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	(%RAX,%R15,1),%XMM0;  (61) 
+0x40b654;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	%XMM0,(%RAX,%R10,1);  (61) 
+0x40b65a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	0x8(%RAX,%R10,1),%XMM0;  (61) 
+0x40b661;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	%XMM0,(%RAX,%RBX,1);  (61) 
+0x40b666;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	(%RAX,%R11,1),%XMM0;  (61) 
+0x40b66c;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	%XMM0,(%RAX,%RDX,1);  (61) 
+0x40b671;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	0x8(%RAX,%RDX,1),%XMM0;  (61) 
+0x40b677;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	%XMM0,(%RAX,%R9,1);  (61) 
+0x40b67d;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;ADD	%R8,%RAX;  (61) 
+0x40b680;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;DEC	%RDI;  (61) 
+0x40b683;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;JNE	40b620 <_ZL5comm3Pviiii+0xc10>;  (61) 
+0x40b685;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0x70(%RSP),%RAX;(59) 
+0x40b68a;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;CMP	0x78(%RSP),%RAX;(59) 
+0x40b68f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0xf0(%RSP),%R8;(59) 
+0x40b697;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0xe8(%RSP),%R9;(59) 
+0x40b69f;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0xc8(%RSP),%R11;(59) 
+0x40b6a7;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0x50(%RSP),%RSI;(59) 
+0x40b6ac;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;JE	40b5c0 <_ZL5comm3Pviiii+0xbb0>;(59) 
+0x40b6b2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	%R11,%RAX;(59) 
+0x40b6b5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;MOV	0x90(%RSP),%RDI;(59) 
+0x40b6bd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;NOPL	(%RAX);(59) 
+0x40b6c0;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	(%RAX,%R8,8),%XMM0;  (60) 
+0x40b6c6;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:546;VMOVSD	%XMM0,(%RAX);  (60) 
+0x40b6ca;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	0x8(%RAX),%XMM0;  (60) 
+0x40b6cf;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:547;VMOVSD	%XMM0,(%RAX,%R9,8);  (60) 
+0x40b6d5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;ADD	%RSI,%RAX;  (60) 
+0x40b6d8;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;DEC	%RDI;  (60) 
+0x40b6db;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;JNE	40b6c0 <_ZL5comm3Pviiii+0xcb0>;  (60) 
+0x40b6dd;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:545;JMP	40b5c0 <_ZL5comm3Pviiii+0xbb0>;(59) 
+0x40b6e2;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:540;MOV	%RAX,%RDI;
+0x40b6e5;/home/lbw/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:540;CALL	40e6e0 <__clang_call_terminate>;
+0x40b6ea;:0;NOPW	(%RAX,%RAX,1);

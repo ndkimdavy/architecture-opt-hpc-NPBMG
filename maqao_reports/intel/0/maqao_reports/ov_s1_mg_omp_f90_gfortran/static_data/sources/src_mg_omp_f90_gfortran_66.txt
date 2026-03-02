@@ -1,0 +1,17 @@
+/home/lbw/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1143 - 1156
+--------------------------------------------------------------------------------
+
+1143:             do  i1=2,n1-1
+1144:                if( z(i1,i2,i3) .gt. ten( 1, 1 ) )then
+1145:                   ten(1,1) = z(i1,i2,i3) 
+1146:                   j1(1,1) = i1
+1147:                   j2(1,1) = i2
+1148:                   j3(1,1) = i3
+1149:                   call bubble( ten, j1, j2, j3, mm, 1 )
+1150:                endif
+1151:                if( z(i1,i2,i3) .lt. ten( 1, 0 ) )then
+1152:                   ten(1,0) = z(i1,i2,i3) 
+1153:                   j1(1,0) = i1
+1154:                   j2(1,0) = i2
+1155:                   j3(1,0) = i3
+1156:                   call bubble( ten, j1, j2, j3, mm, 0 )

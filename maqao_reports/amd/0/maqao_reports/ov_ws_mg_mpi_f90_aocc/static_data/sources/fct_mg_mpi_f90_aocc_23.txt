@@ -1,0 +1,114 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-MPI/MG/mg.f90: 1263 - 1394
+--------------------------------------------------------------------------------
+
+1263:       subroutine give3( axis, dir, u, n1, n2, n3, k )
+[...]
+1282:       buff_id = 2 + dir 
+1283:       buff_len = 0
+1284: 
+1285:       if( axis .eq.  1 )then
+1286:          if( dir .eq. -1 )then
+1287: 
+1288:             do  i3=2,n3-1
+1289:                do  i2=2,n2-1
+1290:                   buff_len = buff_len + 1
+1291:                   buff(buff_len,buff_id ) = u( 2,  i2,i3)
+1292:                enddo
+1293:             enddo
+1294: 
+1295:             if (timeron) call timer_start(t_comm3)
+1296:             call mpi_send(  &
+1297:      &           buff(1, buff_id ), buff_len,dp_type,  &
+1298:      &           nbr( axis, dir, k ), msg_type(axis,dir),  &
+1299:      &           comm_work, ierr)
+1300:             if (timeron) call timer_stop(t_comm3)
+1301: 
+1302:          else if( dir .eq. +1 ) then
+1303: 
+1304:             do  i3=2,n3-1
+1305:                do  i2=2,n2-1
+1306:                   buff_len = buff_len + 1
+1307:                   buff(buff_len, buff_id ) = u( n1-1, i2,i3)
+1308:                enddo
+1309:             enddo
+1310: 
+1311:             if (timeron) call timer_start(t_comm3)
+1312:             call mpi_send(  &
+1313:      &           buff(1, buff_id ), buff_len,dp_type,  &
+1314:      &           nbr( axis, dir, k ), msg_type(axis,dir),  &
+1315:      &           comm_work, ierr)
+1316:             if (timeron) call timer_stop(t_comm3)
+1317: 
+1318:          endif
+1319:       endif
+1320: 
+1321:       if( axis .eq.  2 )then
+1322:          if( dir .eq. -1 )then
+1323: 
+1324:             do  i3=2,n3-1
+1325:                do  i1=1,n1
+1326:                   buff_len = buff_len + 1
+1327:                   buff(buff_len, buff_id ) = u( i1,  2,i3)
+1328:                enddo
+1329:             enddo
+1330: 
+1331:             if (timeron) call timer_start(t_comm3)
+1332:             call mpi_send(  &
+1333:      &           buff(1, buff_id ), buff_len,dp_type,  &
+1334:      &           nbr( axis, dir, k ), msg_type(axis,dir),  &
+1335:      &           comm_work, ierr)
+1336:             if (timeron) call timer_stop(t_comm3)
+1337: 
+1338:          else if( dir .eq. +1 ) then
+1339: 
+1340:             do  i3=2,n3-1
+1341:                do  i1=1,n1
+1342:                   buff_len = buff_len + 1
+1343:                   buff(buff_len,  buff_id )= u( i1,n2-1,i3)
+1344:                enddo
+1345:             enddo
+1346: 
+1347:             if (timeron) call timer_start(t_comm3)
+1348:             call mpi_send(  &
+1349:      &           buff(1, buff_id ), buff_len,dp_type,  &
+1350:      &           nbr( axis, dir, k ), msg_type(axis,dir),  &
+1351:      &           comm_work, ierr)
+1352:             if (timeron) call timer_stop(t_comm3)
+1353: 
+1354:          endif
+1355:       endif
+1356: 
+1357:       if( axis .eq.  3 )then
+1358:          if( dir .eq. -1 )then
+1359: 
+1360:             do  i2=1,n2
+1361:                do  i1=1,n1
+1362:                   buff_len = buff_len + 1
+1363:                   buff(buff_len, buff_id ) = u( i1,i2,2)
+1364:                enddo
+1365:             enddo
+1366: 
+1367:             if (timeron) call timer_start(t_comm3)
+1368:             call mpi_send(  &
+1369:      &           buff(1, buff_id ), buff_len,dp_type,  &
+1370:      &           nbr( axis, dir, k ), msg_type(axis,dir),  &
+1371:      &           comm_work, ierr)
+1372:             if (timeron) call timer_stop(t_comm3)
+1373: 
+1374:          else if( dir .eq. +1 ) then
+1375: 
+1376:             do  i2=1,n2
+1377:                do  i1=1,n1
+1378:                   buff_len = buff_len + 1
+1379:                   buff(buff_len, buff_id ) = u( i1,i2,n3-1)
+1380:                enddo
+1381:             enddo
+1382: 
+1383:             if (timeron) call timer_start(t_comm3)
+1384:             call mpi_send(  &
+1385:      &           buff(1, buff_id ), buff_len,dp_type,  &
+1386:      &           nbr( axis, dir, k ), msg_type(axis,dir),  &
+1387:      &           comm_work, ierr)
+1388:             if (timeron) call timer_stop(t_comm3)
+[...]
+1394:       end

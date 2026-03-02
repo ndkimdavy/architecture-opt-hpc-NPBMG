@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - threads redirect</title>
+<meta charset="utf-8" />
+</head>
+<body onload="__redirect ()">
+<div id="err_div"></div>
+<script>
+function __redirect (){
+  const redirect_table = [
+    {fedora_29036_29036: "fedora_29036_29036", },
+    {fedora_29251_29272: "fedora_29251_29272", fedora_29251_29251: "fedora_29251_29251", },
+    {fedora_29408_29429: "fedora_29408_29429", fedora_29408_29430: "fedora_29408_29429", fedora_29408_29408: "fedora_29408_29408", fedora_29408_29431: "fedora_29408_29431", },
+    {fedora_29767_29767: "fedora_29767_29767", fedora_29767_29794: "fedora_29767_29791", fedora_29767_29790: "fedora_29767_29789", fedora_29767_29788: "fedora_29767_29789", fedora_29767_29793: "fedora_29767_29791", fedora_29767_29791: "fedora_29767_29791", fedora_29767_29792: "fedora_29767_29791", fedora_29767_29789: "fedora_29767_29789", },
+];
+  const queryString = window.location.search;
+  const params = new URLSearchParams(queryString);
+  let thread = params.get("thread");
+  if (thread) {
+    let elems = thread.split ("_");
+    let run_id = elems[0];
+    let key    = elems[1];
+    for (let i = 2; i < elems.length; i++) {
+      key += "_" + elems[i];
+    }
+    window.location.replace("/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_omp_cpp_clang++/RESULTS/mg_omp_cpp_clang++_one_html/topo/run_"+run_id+"_"+redirect_table[run_id][key]+".html?origin="+key);
+  }
+  else {
+    let d = document.getElementById ("err_div");
+    if (d) {
+      d.innerHTML = "Missing parameter <i>thread</i>";
+    }
+  }
+}
+</script>
+</body>
+</html>

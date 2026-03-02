@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - Compare Loops</title>
+<meta charset="utf-8" />
+<meta name="google" content="notranslate" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="css/MAQAO_theme.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_modal.css" />
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_menu.css" />
+<script src="js/jquery-1.9.0.min.js" ></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="js/grid.locale-en.js" ></script>
+<script src="js/jquery.jqGrid.min.js" ></script>
+<script src="js/d3.min.js" ></script>
+<script class="include" src="js/jquery.jqplot.min.js"></script>
+<script class="include" src="js/jqplot.pieRenderer.min.js"></script>
+<script class="include" src="js/jqplot.barRenderer.min.js"></script>
+<script class="include" src="js/jqplot.categoryAxisRenderer.min.js"></script>
+<script class="include" src="js/jqplot.pointLabels.min.js"></script>
+<script class="include" src="js/jqplot.cursor.min.js"></script>
+<script class="include" src="js/jqplot.canvasTextRenderer.min.js"></script>
+<script class="include" src="js/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script class="include" src="js/jqplot.canvasAxisLabelRenderer.min.js"></script>
+<script class="include" src="js/jqplot.enhancedLegendRenderer.min.js"></script>
+<script class="include" src="js/jqplot.highlighter.min.js"></script>
+<script class="include" src="js/jqplot.logAxisRenderer.min.js"></script>
+<script class="include" src="js/maqao_menu.js"></script>
+<script>
+$( function() {
+  $( document ).tooltip({
+    content: function() {
+      if (this.classList.contains ("tooltip-maqao")
+      ||  this.classList.contains ("tooltip-maqao-button")) {
+        return tooltips_texts[$(this).attr('tooltip_id')];
+      }
+    },
+    position: {
+      my: "center bottom-20",
+        at: "center top",
+        using: function( position, feedback ) {
+          $( this ).css( position );
+          $( "<div>" )
+            .addClass( "arrow-tt" )
+            .addClass( feedback.vertical )
+            .addClass( feedback.horizontal )
+            .appendTo( this );
+        }
+      }
+  });
+} );
+
+// Code from https://www.htmlgoodies.com/beyond/javascript/article.php/3724571/Using-Multiple-JavaScript-Onload-Functions.htm
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+      func();
+    }
+  }
+}
+function loadCSS(filename){ 
+  var file = document.createElement("link");
+  file.setAttribute("rel", "stylesheet");
+  file.setAttribute("type", "text/css");
+  file.setAttribute("href", filename);
+  document.head.appendChild(file);
+}
+addLoadEvent(function(){
+  var theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    loadCSS("css/"+theme+".css");
+  }
+  else {
+    localStorage.setItem("__MAQAO_OV_theme__", "MAQAO_theme");
+    loadCSS("css/MAQAO_theme.css");
+  }
+});
+</script>
+</head><body>
+<div id="page_title"><img alt="MAQAO" id="maqao_logo" src="images/MAQAO_small_logo.png"/><ul id="maqao_menu"><li ><a  href="index.html">Global</a><ul><li ><a  href="config.html">Configurations</a></li></ul></li><li ><a  href="summary.html">Summary</a></li><li ><a  href="functions.html">Functions</a></li><li ><a class="_current_page _first_menu_level" href="loops.html">Loops</a></li></ul>
+<span><img alt="options" id="menu_options_icon" src="images/gear_20.png" onclick="__open_options ()"/></span>
+</div>
+<script>
+function __change_theme () {
+  var new_theme = document.getElementById("select_theme").value;
+  localStorage.setItem("__MAQAO_OV_theme__", new_theme);
+    loadCSS("css/"+new_theme+".css");
+}
+function __open_options () {
+  var elem = document.getElementById ("options_configuration");
+  if (elem.dataset.open == "false") {
+    elem.dataset.open = "true";
+    elem.style.display = "block";
+  }
+  else {
+    elem.dataset.open = "false";
+    elem.style.display = "none";
+  }
+}
+</script>
+<div id="anchor_file_start"></div>
+<div id="maqao_content">
+<div>
+  <div id="spacer_page_title" ></div>
+  <div id="options_configuration" data-open="false" style="display:none;">
+    <h3 id="options_configuration_header">Report Configuration</h3>
+    <span style="margin-left:10px;"><label for="select_theme">Theme: </label>    <select name="theme" id="select_theme" onchange="__change_theme ()">  <option value="MAQAO_theme">MAQAO_theme</option>  <option value="darkgrey">darkgrey</option>  <option value="cyan">cyan</option></select></span>    <span style="margin-left:10px;"><label for="select_chart_theme">Chart Theme: </label>    <select name="theme" id="select_chart_theme" onchange="__change_chart_theme ()">  <option value="Default_Chart_Theme">Default_Chart_Theme</option>  <option value="grey">grey</option></select></span></div>
+</div>
+<script>
+  let theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    document.getElementById("select_theme").value = theme;
+  }
+  theme = localStorage.getItem("__MAQAO_OV_chart_theme__");
+  if (theme) {
+    document.getElementById("select_chart_theme").value = theme;
+  }
+document.getElementById("spacer_page_title").style.height = (document.getElementById("page_title").clientHeight + 25)+"px";
+var obj = document.getElementById("page_title");
+if (obj) {
+  var elems = document.getElementsByClassName ("_first_menu_level")
+  if (obj.clientHeight < 90) {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "";
+      elems.item(i).style.borderBottomRightRadius = "";
+    }
+  }
+  else {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "10px";
+      elems.item(i).style.borderBottomRightRadius = "10px";
+    }
+  }
+}
+</script>
+<button id='button_toggle_full_loops' style='margin: 0px 0px 15px 15px;' onclick='toggle_full_loops();'>Show All Loops</button><button id='button_order_coverage' style='margin: 0px 0px 15px 15px;' onclick='order_loops("coverage");'>Order by Coverages</button><button id='button_order_src' style='margin: 0px 0px 15px 15px;' onclick='order_loops("src");'>Order by Locations</button><div class="_fixed_box"  id="main_container" ><h3 class="_header">Loops<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="0" ></span></h3>
+<div class="_content"><div class="_accordion_box collapsed not_full hidden"  data-cov="27.07498973608" data-start="1012" data-file="mg.cpp"><h3 id="_accordion_header_1" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 1012  -  27.07 %</h3><div id="_accordion_content_1" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 1012-1016</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="1" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="2" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="3" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="4" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="5" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >37</td><td>3.30</td><td>4.83</td><td>26.85</td><td>100</td><td>100</td></tr>
+<tr><td colspan='6'><td class='first' >42</td><td>0.04</td><td>0.04</td><td>0.22</td><td>0</td><td>12.5</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>Sum on 1 analyzed binary loop (mg_omp_cpp_aocc - 37)</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Loop Computation Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA</td><td>1</td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="26.155564293265" data-start="608" data-file="mg.f90"><h3 id="_accordion_header_2" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 608  -  26.16 %</h3><div id="_accordion_content_2" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 608-612</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="6" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="7" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="8" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="9" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="10" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >26</td><td>3.24</td><td>2.87</td><td>26.04</td><td>100</td><td>100</td><td class='first' colspan='6'></tr>
+<tr><td >22</td><td>0.02</td><td>0.01</td><td>0.12</td><td>0</td><td>12.5</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>Sum on 1 analyzed binary loop (mg_omp_f90_aocc - 26)</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Loop Computation Issues</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of a large number of scalar integer instructions</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="20.034048080444" data-start="614" data-file="mg.f90"><h3 id="_accordion_header_3" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 614  -  20.03 %</h3><div id="_accordion_content_3" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 614-614</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="11" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="12" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="13" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="14" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="15" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >24</td><td>2.39</td><td>2.21</td><td>20.03</td><td>100</td><td>100</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>Sum on 1 analyzed binary loop (mg_omp_f90_aocc - 24)</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="17.276950120926" data-start="1018" data-file="mg.cpp"><h3 id="_accordion_header_4" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 1018  -  17.28 %</h3><div id="_accordion_content_4" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 1018-1020</li><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 1029-1030</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="16" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="17" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="18" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="19" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="20" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >41</td><td>2.06</td><td>2.98</td><td>16.54</td><td>100</td><td>100</td></tr>
+<tr><td colspan='6'><td class='first' >38</td><td>0.10</td><td>0.13</td><td>0.73</td><td>0</td><td>12.5</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>Sum on 1 analyzed binary loop (mg_omp_cpp_aocc - 41)</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Data Access Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Inefficient Vectorization</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="11.340425729752" data-start="917" data-file="mg.cpp"><h3 id="_accordion_header_5" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 917  -  11.34 %</h3><div id="_accordion_content_5" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 917-921</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="21" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="22" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="23" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="24" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="25" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >83</td><td>0.02</td><td>0.01</td><td>0.08</td><td>0</td><td>12.5</td></tr>
+<tr><td colspan='6'><td class='first' >78</td><td>1.34</td><td>2.03</td><td>11.26</td><td>100</td><td>100</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>Sum on 1 analyzed binary loop (mg_omp_cpp_aocc - 78)</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Loop Computation Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA</td><td>1</td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="11.22088309005" data-start="537" data-file="mg.f90"><h3 id="_accordion_header_6" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 537  -  11.22 %</h3><div id="_accordion_content_6" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 537-541</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="26" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="27" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="28" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="29" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="30" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >19</td><td>1.32</td><td>1.23</td><td>11.16</td><td>100</td><td>100</td><td class='first' colspan='6'></tr>
+<tr><td >15</td><td>0.01</td><td>0.01</td><td>0.06</td><td>0</td><td>12.5</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>Sum on 1 analyzed binary loop (mg_omp_f90_aocc - 19)</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Loop Computation Issues</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of a large number of scalar integer instructions</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="7.4503035545349" data-start="543" data-file="mg.f90"><h3 id="_accordion_header_7" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 543  -  7.45 %</h3><div id="_accordion_content_7" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 543-543</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="31" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="32" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="33" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="34" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="35" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >17</td><td>0.92</td><td>0.82</td><td>7.45</td><td>100</td><td>100</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>Sum on 1 analyzed binary loop (mg_omp_f90_aocc - 17)</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="6.9795770645142" data-start="923" data-file="mg.cpp"><h3 id="_accordion_header_8" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 923  -  6.98 %</h3><div id="_accordion_content_8" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 923-928</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="36" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="37" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="38" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="39" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="40" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >82</td><td>0.88</td><td>1.26</td><td>6.98</td><td>100</td><td>100</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>Sum on 1 analyzed binary loop (mg_omp_cpp_aocc - 82)</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Data Access Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Inefficient Vectorization</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="5.6899418830872" data-start="1143" data-file="mg.f90"><h3 id="_accordion_header_9" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 1143  -  5.69 %</h3><div id="_accordion_content_9" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1143-1145</li><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1151-1152</li><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1158-1158</li><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1352-1356</li><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1378-1382</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="41" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="42" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="43" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="44" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="45" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >95</td><td>0.63</td><td>0.63</td><td>5.69</td><td>12.34</td><td>8.99</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>Sum on 1 analyzed binary loop (mg_omp_f90_aocc - 95)</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Loop Computation Issues</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of a large number of scalar integer instructions</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Control Flow Issues</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of more than 4 paths</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Data Access Issues</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>More than 20% of the loads are accessing the stack</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Vectorization Roadblocks</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of more than 4 paths</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="5.6036338806152" data-start="479" data-file="mg.cpp"><h3 id="_accordion_header_10" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 479  -  5.60 %</h3><div id="_accordion_content_10" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 479-479</li><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 501-501</li><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 1315-1317</li><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 1324-1324</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="46" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="47" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="48" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="49" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="50" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >23</td><td>5.05</td><td>1.01</td><td>5.60</td><td>15.96</td><td>9.63</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>Sum on 1 analyzed binary loop (mg_omp_cpp_aocc - 23)</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Loop Computation Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of a large number of scalar integer instructions</td><td>1</td></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Control Flow Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of more than 4 paths</td><td>1</td></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Data Access Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>More than 20% of the loads are accessing the stack</td><td>1</td></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Vectorization Roadblocks</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of more than 4 paths</td><td>1</td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="4.2589387893677" data-start="700" data-file="mg.f90"><h3 id="_accordion_header_11" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 700  -  4.26 %</h3><div id="_accordion_content_11" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 700-704</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="51" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="52" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="53" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="54" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="55" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >29</td><td>0.50</td><td>0.47</td><td>4.26</td><td>0</td><td>12.5</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>Sum on 1 analyzed binary loop (mg_omp_f90_aocc - 29)</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Loop Computation Issues</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Data Access Issues</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of constant non-unit stride data access</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Vectorization Roadblocks</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of constant non-unit stride data access</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="4.0168633460999" data-start="1109" data-file="mg.cpp"><h3 id="_accordion_header_12" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 1109  -  4.02 %</h3><div id="_accordion_content_12" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 1109-1113</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="56" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="57" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="58" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="59" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="60" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >52</td><td>0.50</td><td>0.72</td><td>4.02</td><td>96.15</td><td>96.63</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>Sum on 1 analyzed binary loop (mg_omp_cpp_aocc - 52)</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Loop Computation Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA</td><td>1</td></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Data Access Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of constant non-unit stride data access</td><td>1</td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of expensive instructions: scatter/gather</td><td>1</td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Vectorization Roadblocks</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of constant non-unit stride data access</td><td>1</td></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Inefficient Vectorization</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of expensive instructions: scatter/gather</td><td>1</td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="3.0903215408325" data-start="155" data-file="c_randdp.cpp"><h3 id="_accordion_header_13" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>c_randdp.cpp: 155  -  3.09 %</h3><div id="_accordion_content_13" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp: 155-155</li><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp: 163-172</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="61" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="62" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="63" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="64" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="65" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >142</td><td>2.79</td><td>0.56</td><td>3.09</td><td>0</td><td>12.5</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>Sum on 1 analyzed binary loop (mg_omp_cpp_aocc - 142)</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="2.2802913188934" data-start="637" data-file="mg.cpp"><h3 id="_accordion_header_14" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 637  -  2.28 %</h3><div id="_accordion_content_14" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 637-641</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="66" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="67" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="68" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="69" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="70" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >137</td><td>0.28</td><td>0.41</td><td>2.28</td><td>50</td><td>18.75</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>Sum on 1 analyzed binary loop (mg_omp_cpp_aocc - 137)</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Loop Computation Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of a large number of scalar integer instructions</td><td>1</td></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Data Access Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Inefficient Vectorization</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="2.2203265558929" data-start="707" data-file="mg.f90"><h3 id="_accordion_header_15" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 707  -  2.22 %</h3><div id="_accordion_content_15" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 707-717</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="71" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="72" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="73" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="74" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="75" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >31</td><td>0.28</td><td>0.24</td><td>2.19</td><td>49.66</td><td>27.33</td><td class='first' colspan='6'></tr>
+<tr><td >30</td><td>0.01</td><td>0.00</td><td>0.03</td><td>0</td><td>12.5</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>Sum on 1 analyzed binary loop (mg_omp_f90_aocc - 31)</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Data Access Issues</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of constant non-unit stride data access</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>More than 10% of the vector loads instructions are unaligned</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Vectorization Roadblocks</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of constant non-unit stride data access</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Inefficient Vectorization</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="2.1471356824041" data-start="614" data-file="mg.cpp"><h3 id="_accordion_header_16" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 614  -  2.15 %</h3><div id="_accordion_content_16" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 614-617</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="76" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="77" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="78" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="79" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="80" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >132</td><td>0.28</td><td>0.38</td><td>2.10</td><td>100</td><td>100</td></tr>
+<tr><td colspan='6'><td class='first' >140</td><td>0.01</td><td>0.01</td><td>0.05</td><td>0</td><td>12.5</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>Sum on 1 analyzed binary loop (mg_omp_cpp_aocc - 132)</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Loop Computation Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA</td><td>1</td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="2.1465051174164" data-start="802" data-file="mg.f90"><h3 id="_accordion_header_17" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 802  -  2.15 %</h3><div id="_accordion_content_17" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 802-804</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="81" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="82" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="83" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="84" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="85" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >38</td><td>0.28</td><td>0.24</td><td>2.15</td><td>100</td><td>100</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>Sum on 1 analyzed binary loop (mg_omp_f90_aocc - 38)</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Data Access Issues</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Inefficient Vectorization</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="2.1249430179596" data-start="625" data-file="mg.cpp"><h3 id="_accordion_header_18" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 625  -  2.12 %</h3><div id="_accordion_content_18" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 625-629</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="86" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="87" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="88" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="89" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="90" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >135</td><td>0.28</td><td>0.38</td><td>2.12</td><td>50</td><td>18.75</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>Sum on 1 analyzed binary loop (mg_omp_cpp_aocc - 135)</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Loop Computation Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of a large number of scalar integer instructions</td><td>1</td></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Data Access Issues</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td></tr>
+<tr style="font-weight: bold;"><td colspan='5'></td><td></td><td class='first' colspan='5'>Inefficient Vectorization</td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'></td><td></td><td class='first s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="2.0726835727692" data-start="790" data-file="mg.f90"><h3 id="_accordion_header_19" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 790  -  2.07 %</h3><div id="_accordion_content_19" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 790-792</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="91" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="92" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="93" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="94" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="95" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >42</td><td>0.28</td><td>0.23</td><td>2.07</td><td>100</td><td>100</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>Sum on 1 analyzed binary loop (mg_omp_f90_aocc - 42)</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Data Access Issues</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Inefficient Vectorization</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Presence of special instructions executing on a single port</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="2.0583651065826" data-start="1115" data-file="mg.cpp"><h3 id="_accordion_header_20" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 1115  -  2.06 %</h3><div id="_accordion_content_20" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 1115-1125</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="96" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="97" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="98" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="99" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="100" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >49</td><td>0.28</td><td>0.37</td><td>2.06</td><td>0</td><td>12.5</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="1.942075861618" data-start="778" data-file="mg.f90"><h3 id="_accordion_header_21" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 778  -  1.94 %</h3><div id="_accordion_content_21" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 778-781</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="101" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="102" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="103" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="104" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="105" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >33</td><td>0.01</td><td>0.00</td><td>0.03</td><td>0</td><td>12.5</td><td class='first' colspan='6'></tr>
+<tr><td >46</td><td>0.27</td><td>0.21</td><td>1.91</td><td>100</td><td>100</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>Sum on 1 analyzed binary loop (mg_omp_f90_aocc - 46)</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+<tr style="font-weight: bold;"><td colspan='5'>Loop Computation Issues</td><td></td><td class='first' colspan='5'></td><td></td></tr>
+<tr><td class='s2_issue' colspan='5'>Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA</td><td>1</td><td class='first s2_issue' colspan='5'></td><td></td></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="1.6354322750121" data-start="784" data-file="mg.f90"><h3 id="_accordion_header_22" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 784  -  1.64 %</h3><div id="_accordion_content_22" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 784-788</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="106" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="107" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="108" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="109" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="110" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >34</td><td>0.01</td><td>0.00</td><td>0.02</td><td>42.86</td><td>17.86</td><td class='first' colspan='6'></tr>
+<tr><td >44</td><td>0.24</td><td>0.18</td><td>1.62</td><td>100</td><td>100</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="1.4139677025378" data-start="796" data-file="mg.f90"><h3 id="_accordion_header_23" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 796  -  1.41 %</h3><div id="_accordion_content_23" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 796-800</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="111" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="112" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="113" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="114" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="115" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >40</td><td>0.18</td><td>0.15</td><td>1.36</td><td>100</td><td>100</td><td class='first' colspan='6'></tr>
+<tr><td >36</td><td>0.01</td><td>0.01</td><td>0.05</td><td>66.67</td><td>20.83</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="1.2982679093256" data-start="620" data-file="mg.cpp"><h3 id="_accordion_header_24" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 620  -  1.30 %</h3><div id="_accordion_content_24" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 619-623</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="116" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="117" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="118" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="119" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="120" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >134</td><td>0.17</td><td>0.23</td><td>1.29</td><td>100</td><td>100</td></tr>
+<tr><td colspan='6'><td class='first' >139</td><td>0.01</td><td>0.00</td><td>0.01</td><td>0</td><td>12.5</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="1.1928530931473" data-start="631" data-file="mg.cpp"><h3 id="_accordion_header_25" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 631  -  1.19 %</h3><div id="_accordion_content_25" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 631-635</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="121" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="122" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="123" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="124" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="125" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >136</td><td>0.17</td><td>0.21</td><td>1.19</td><td>50</td><td>18.75</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="0.68797105550766" data-start="841" data-file="mg.cpp"><h3 id="_accordion_header_26" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 841  -  0.69 %</h3><div id="_accordion_content_26" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 841-844</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="126" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="127" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="128" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="129" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="130" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >32</td><td>0.20</td><td>0.12</td><td>0.69</td><td>16.67</td><td>14.58</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="0.68710875511169" data-start="954" data-file="mg.f90"><h3 id="_accordion_header_27" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 954  -  0.69 %</h3><div id="_accordion_content_27" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 954-956</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="131" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="132" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="133" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="134" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="135" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >70</td><td>0.08</td><td>0.08</td><td>0.69</td><td>100</td><td>100</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="0.6757515668869" data-start="60" data-file="randi8.f90"><h3 id="_accordion_header_28" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>randi8.f90: 60  -  0.68 %</h3><div id="_accordion_content_28" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/common/randi8.f90: 60-62</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="136" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="137" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="138" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="139" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="140" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >107</td><td>0.08</td><td>0.07</td><td>0.68</td><td>0</td><td>12.5</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="0.60474878549576" data-start="545" data-file="mg.cpp"><h3 id="_accordion_header_29" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 545  -  0.60 %</h3><div id="_accordion_content_29" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 545-547</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="141" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="142" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="143" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="144" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="145" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >64</td><td>0.09</td><td>0.11</td><td>0.60</td><td>0</td><td>12.5</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="0.51107263565063" data-start="1020" data-file="mg.f90"><h3 id="_accordion_header_30" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 1020  -  0.51 %</h3><div id="_accordion_content_30" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1020-1022</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="146" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="147" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="148" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="149" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="150" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >76</td><td>0.06</td><td>0.06</td><td>0.51</td><td>0</td><td>12.5</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="0.21010763943195" data-start="1035" data-file="mg.f90"><h3 id="_accordion_header_31" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 1035  -  0.21 %</h3><div id="_accordion_content_31" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1035-1036</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="151" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="152" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="153" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="154" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="155" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >75</td><td>0.04</td><td>0.02</td><td>0.21</td><td>100</td><td>100</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="0.16089645028114" data-start="558" data-file="mg.cpp"><h3 id="_accordion_header_32" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 558  -  0.16 %</h3><div id="_accordion_content_32" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 558-560</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="156" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="157" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="158" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="159" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="160" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >56</td><td>0.04</td><td>0.03</td><td>0.16</td><td>100</td><td>100</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="0.13870383799076" data-start="550" data-file="mg.cpp"><h3 id="_accordion_header_33" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.cpp: 550  -  0.14 %</h3><div id="_accordion_content_33" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul><li>/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 550-552</li></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="161" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="162" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="163" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="164" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="165" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td colspan='6'><td class='first' >67</td><td>0.03</td><td>0.02</td><td>0.14</td><td>100</td><td>100</td></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="0.090857356786728" data-start="1027" data-file="mg.f90"><h3 id="_accordion_header_34" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 1027  -  0.09 %</h3><div id="_accordion_content_34" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1027-1028</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="166" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="167" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="168" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="169" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="170" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >79</td><td>0.02</td><td>0.01</td><td>0.09</td><td>100</td><td>100</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="0.028392923995852" data-start="1423" data-file="mg.f90"><h3 id="_accordion_header_35" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 1423  -  0.03 %</h3><div id="_accordion_content_35" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1423-1428</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="171" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="172" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="173" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="174" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="175" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >105</td><td>0.01</td><td>0.00</td><td>0.03</td><td>0</td><td>7.14</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="0.011357169598341" data-start="1238" data-file="mg.f90"><h3 id="_accordion_header_36" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>mg.f90: 1238  -  0.01 %</h3><div id="_accordion_content_36" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul><li>/mnt/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1238-1243</li></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="176" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="177" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="178" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="179" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="180" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >96</td><td>0.00</td><td>0.00</td><td>0.01</td><td>0</td><td>7.14</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div><div class="_accordion_box collapsed not_full hidden"  data-cov="0.0056785847991705" data-start="0" data-file="<unknown>"><h3 id="_accordion_header_37" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>&lt;unknown&gt;: 0  -  0.01 %</h3><div id="_accordion_content_37" class="_content collapsed"><table id='loop_cmp_table'><tr><td colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc</td><td class='first' colspan='6'>Run /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_cpp_aocc</td></tr>
+<tr><td>Loop Source Regions</td><td colspan='5'><ul></ul></td><td class='first'>Loop Source Regions</td><td colspan='5'><ul></ul></td></tr>
+<tr><th><span class="tooltip-maqao" title="" tooltip_id="181" >ASM Loop ID</span></th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="182" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="183" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th><th class='first'>ASM Loop ID</th><th>Max Time Over Threads (s)</th><th>Time w.r.t. Wall Time (s)</th><th><span class="tooltip-maqao" title="" tooltip_id="184" >Cov (%)</span></th><th><span class="tooltip-maqao" title="" tooltip_id="185" >Vect. Ratio (%)</span></th><th>Vector Length Use (%)</th></tr>
+<tr><td >90</td><td>0.00</td><td>0.00</td><td>0.01</td><td>0</td><td>0</td><td class='first' colspan='6'></tr>
+<tr style="height: 40px;">
+<td colspan='6'></td><td class='first' colspan='6'></td></tr>
+<tr><td colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td><td class='first' colspan='6'>No Optimizer analysis found for any assembly loop. More loops can be analyzed using option --optimizer-loop-count.</td></tr>
+<tr><th colspan='5'>Analysis</th><th>Count</th><th class='first' colspan='5'>Analysis</th><th>Count</th></tr>
+</table></div></div></div></div><script>
+function order_loops (cmp_mode) {
+  var main_container = document.getElementById ("main_container");
+  var content = main_container.children[1];
+  var divs = [].slice.call (content.children);
+  if (cmp_mode === "coverage") {
+    divs.sort((a, b) => {return Number(a.dataset.cov) < Number(b.dataset.cov)} )
+  }
+  else if (cmp_mode === "src") {
+    divs.sort((a, b) => {if (a.dataset.file != b.dataset.file) {return a.dataset.file > b.dataset.file} else {return Number(a.dataset.start) > Number(b.dataset.start)} })
+  }
+  for (const d of divs) {
+    content.appendChild (d);
+  }
+}
+function toggle_full_loops () {
+  var button = document.getElementById("button_toggle_full_loops");
+  if (button.innerHTML.localeCompare ("Show All Loops") == 0) {
+    button.innerHTML = "Show Only Full Loops";
+  }
+  else {
+    button.innerHTML = "Show All Loops";
+  }
+  var data = document.getElementsByClassName("not_full");
+  for (let i = 0; i < data.length; i++) {
+    data[i].classList.toggle("hidden");
+  }
+}
+function redirect_loop (__url__) {
+  open(__url__);
+}
+function _onresize () {
+  __maqao_legacy_onresize ();
+}
+window.onresize = _onresize;
+</script>
+<style>
+.hidden {display: none;}#loop_cmp_table {border-collapse: collapse;}#loop_cmp_table .link {cursor:pointer;}#loop_cmp_table .link:hover {background-color: var(--table_row_background_hover);}#loop_cmp_table th {border-style: solid; border-color: var(--table_border); padding: 0px 3px 0px 3px; border-width: 1px 1px 3px 1px; background-color: var(--table_header_background); color: var(--table_header_font);}#loop_cmp_table td {border-style: solid; border-color: var(--table_border); padding: 0px 3px 0px 3px; border-width: 0px 1px 0px 1px;}#loop_cmp_table .first {border-left-width: 3px;}#loop_cmp_table td.s2_issue {padding-left: 15px;}</style>
+
+  <div id="MaqaoModal" class="maqao_modal">
+    <div class="maqao_modal-content">
+      <div class="maqao_modal-header">
+        <span class="maqao_close">&times;</span>
+      </div>
+      <div id="maqao_modal-body" class="maqao_modal-body">
+      </div>
+    </div>
+  </div>
+</div><script>
+var tooltips_texts = ['Source loop level comparison reports: For each run, assembly loops are gathered into source loops using debug data.<br/>      For better results, the application source code must be the same for each run.<br/>      If detailed reports are included, assembly loop identifiers can be clicked to open the corresponding loop report.<br/>      Default view shows only source loops with at least one assembly loop in each run. All detected source loops can be displayed using the "Show All Loops" button.',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Assembly Loop ID',
+'Coverage (%)',
+'Vectorization Ratio (%)',
+'Coverage (%)',
+'Vectorization Ratio (%)'];
+var modal = document.getElementById('MaqaoModal');
+var span = document.getElementsByClassName("maqao_close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx) === '' ? -1: (getCellValue(asc ? a : b, idx).replace(/\s/g,'')), 
+      getCellValue(asc ? b : a, idx) === '' ? -1: (getCellValue(asc ? b : a, idx).replace(/\s/g,'')));
+addLoadEvent(function(){
+  document.querySelectorAll('._fixed_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+  })));
+});
+addLoadEvent(function(){
+  document.querySelectorAll('._tree_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    let last_id = "";
+    const t_outermost = new Array ();
+    const t_children  = new Map ();
+    for (let i = 1, row; row = table.rows[i]; i++) {
+      if (row.classList.contains ("_outer_row")) {
+        t_outermost.push (row);
+        last_id = row.id;
+        t_children [last_id] = new Array ();
+      }
+      else {
+        t_children [last_id].push (row);
+      }
+    }
+    t_outermost.sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc));
+    for (let i = 0, row; row = t_outermost[i]; i++) {
+      table.appendChild(row)
+      for (let j = 0, child; child = t_children[row.id][j]; j++) {
+        table.appendChild(child)
+      }
+    }
+  })));
+});
+async function downloadFileAsCSV(__table__) {
+  if ("showSaveFilePicker" in self) {
+    const pickerOpts = {
+      types: [
+        {
+          description: "CSV File",
+          accept: {
+            "text/plain": [".csv"],
+          },
+        },
+      ],
+      excludeAcceptAllOption: true,
+      multiple: false,
+      startIn: "downloads",
+    };
+    // Select the file
+    let newHandle;
+    try {
+       newHandle = await window.showSaveFilePicker(pickerOpts);
+    }
+    catch (error) {
+       return ;
+    }
+    // Open it, write it, then close it
+    const writableStream = await newHandle.createWritable();
+    for (var i = 0, row; row = __table__.rows[i]; i++) {
+      let str_row = "";
+      for (var j = 0, col; col = row.cells[j]; j++) {
+        let clean_text = col.innerText.replace (/^[^a-zA-Z0-9_]+/, "");
+        clean_text =        clean_text.replace (/\+$/, "");
+        str_row += clean_text + ";";
+      }
+      await writableStream.write(str_row+"\n");
+    }
+    await writableStream.close();
+  }
+  else {
+    window.alert ("feature not available for this web browser");
+  }
+}
+function __disable_CSV_generator_buttons (__ids__){
+  if ((!("showSaveFilePicker" in self))
+  &&  __ids__) {
+    for (var i = 0, bid; bid = __ids__[i]; i++) {
+       let button = document.getElementById (bid);
+       if (button) {
+         button.style.display = "none";
+       }
+    }
+  }
+};
+function _check_all_checkbox_ (obj_id, opts_ids) {
+  var obj   = document.getElementById (obj_id);
+  var opts  = window[opts_ids];
+  var count = 0
+  for (i = 0; i < opts.length; i++) {
+    var obj_s = document.getElementById(opts[i]);
+    if (obj_s && obj_s.checked) {
+      count ++;
+    }
+  }
+  if (count == 0) {
+    obj.value = "Select all";
+  }
+  else if (count == opts.length) {
+    obj.value = "Select none";
+  }
+}
+// Fonction for table selector
+function click_table_menu (c, obj_id, opt_ids) {
+  var is_checked = document.getElementById (c).checked;
+  localStorage.setItem(c, is_checked);
+  $("."+c).each(function(index, element) {
+    if (is_checked) {
+      element.classList.remove("_tcol_hidden");
+    }
+    else {
+      element.classList.add("_tcol_hidden");
+    }
+  });
+  if (obj_id != undefined) {
+    _check_all_checkbox_ (obj_id, opt_ids)
+  }
+}
+function set_all_table_menu (obj, var_opt_ids) {
+  var opt_ids = window[var_opt_ids];
+  var is_selected = true
+  if (obj.value == "Select all") {
+    is_selected = false;
+  }
+  for (i = 0; i < opt_ids.length; i++) {
+    var obj_s = document.getElementById(opt_ids[i]);
+    if (obj_s && is_selected == obj_s.checked) {
+      obj_s.checked = !obj_s.checked;
+      click_table_menu (opt_ids[i]);
+    }
+  }
+  if (is_selected == false) {
+    obj.value = "Select none";
+  } else {
+    obj.value = "Select all";
+  }
+  localStorage.setItem(obj.id, obj.value);
+}
+// Script for accordion box
+function _click_accordion_header(obj) {
+  var content = obj.nextSibling;
+  content.classList.toggle('collapsed');
+  obj.classList.toggle('collapsed');
+  obj.parentNode.classList.toggle('collapsed');
+  // Check if the box must be openned ...
+  if (obj.classList.contains ('collapsed'))
+  {
+    obj.firstChild.textContent = "\u25B6";
+  }
+  // or closed.
+  else 
+  {
+    obj.firstChild.textContent = "\u25BC";
+  }
+  if (typeof _onresize === "function") {
+    _onresize ();
+  }
+}
+  // Script for paged table
+function _click_paged_prev(obj) {
+  var pages_content_id = '_paged_tables_page_' + obj.parentNode.parentNode.id.substr (obj.parentNode.parentNode.id.lastIndexOf('_') + 1);
+  var pages_content = document.getElementById(pages_content_id).innerHTML;
+  var max_pages = pages_content.substr (pages_content.lastIndexOf('/') + 1);
+  var cur_page  = pages_content.substring (pages_content.lastIndexOf(' ') + 1, pages_content.lastIndexOf('/'));
+  max_pages = Number (max_pages);
+  cur_page  = Number (cur_page);
+  if (cur_page > 1) {
+    var div_paged = obj.parentNode.parentNode.id;
+    var i;
+    var x = document.getElementsByClassName(div_paged + '_' + (cur_page - 1));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    x = document.getElementsByClassName(div_paged + '_' + (cur_page - 2));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+  document.getElementById(pages_content_id).textContent = "Page " + (cur_page - 1) + "/" + max_pages;
+  }
+}
+function _click_paged_next(obj) {
+  var pages_content_id = '_paged_tables_page_' + obj.parentNode.parentNode.id.substr (obj.parentNode.parentNode.id.lastIndexOf('_') + 1);
+  var pages_content = document.getElementById(pages_content_id).innerHTML;
+  var max_pages = pages_content.substr (pages_content.lastIndexOf('/') + 1);
+  var cur_page  = pages_content.substring (pages_content.lastIndexOf(' ') + 1, pages_content.lastIndexOf('/'));
+  max_pages = Number (max_pages);
+  cur_page  = Number (cur_page);
+  if (cur_page < max_pages) {
+    var div_paged = obj.parentNode.parentNode.id;
+    var i;
+    var x = document.getElementsByClassName(div_paged + '_' + (cur_page - 1));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    x = document.getElementsByClassName(div_paged + '_' + cur_page);
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    document.getElementById(pages_content_id).textContent = "Page " + (cur_page + 1) + "/" + max_pages;
+  }
+}
+// Function for tree table
+function _click_tree(obj) {
+  if (obj.innerHTML == "\u25BA") {
+    obj.textContent = "\u25BC";
+    // Open childs
+    var x = document.getElementsByClassName(obj.parentNode.parentNode.id);
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_tree_hidden');
+    }
+  }
+  else if (obj.innerHTML == "\u25BC") {
+    obj.textContent = "\u25BA";
+    // Close all childs
+    var trs = document.getElementsByTagName('tr');
+    var r   = obj.parentNode.parentNode.id+'_';
+    var re  = new RegExp (r, "g");
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+""
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (! o.classList.contains('_tree_hidden')) {
+          o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BC") {
+          o.firstChild.firstChild.textContent = "\u25BA";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '+';
+        }
+      }
+    }
+    if (obj.parentNode.childNodes.length == 3) {
+      obj.parentNode.childNodes[2].textContent = '+';
+    }
+  }
+}
+function _click_expand (obj) {
+  var trs = document.getElementsByTagName('tr');
+  var r   = obj.parentNode.parentNode.id+'_';
+  var re  = new RegExp (r, "g");
+  // Symbole + => expand all
+  if (obj.textContent == "+") {
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+"";
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (o.classList.contains('_tree_hidden')) {
+           o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BA") {
+          o.firstChild.firstChild.textContent = "\u25BC";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '\u2010';
+        }
+      }
+    }
+    var o = obj.parentNode.parentNode;
+    if (o.firstChild.firstChild.textContent == "\u25BA") {
+      o.firstChild.firstChild.textContent = "\u25BC";
+    }
+    obj.textContent = "\u2010";
+  }
+  // Symbole - => collapse all
+  else {
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+"";
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (! o.classList.contains('_tree_hidden')) {
+           o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BC") {
+          o.firstChild.firstChild.textContent = "\u25BA";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '+';
+        }
+      }
+    }
+    var o = obj.parentNode.parentNode;
+    if (o.firstChild.firstChild.textContent == "\u25BC") {
+      o.firstChild.firstChild.textContent = "\u25BA";
+    }
+    obj.textContent = "+";
+  }
+}
+// Hide unselected tabs
+addLoadEvent(function(){
+  var x = document.getElementsByClassName("_tab_header_li");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].classList.contains("selected_tab") == false) {
+      var e = document.getElementById (x[i].dataset.tab);
+      e.style.display = "none";
+    }
+  }
+});
+// Change tab
+function change_tab (e, baseId) {
+  // Handle tabs
+  var i = 1;
+  while (true) {
+    var id = baseId + i;
+    var t = document.getElementById (id);
+    if (t == null) {
+      break;
+    }
+    if (id == e.dataset.tab) {
+      t.style.removeProperty("display");
+    }
+    else {
+      t.style.display = "none";
+    }
+    i = i + 1;
+  }
+  // Handle headers
+  $(e).siblings().each( function () {
+    this.classList.remove("selected_tab");
+  });
+  e.classList.add("selected_tab");
+}
+function __maqao_legacy_onresize () {
+  var obj = document.getElementById("spacer_page_title");
+  if (obj) {
+    obj.style.height = (document.getElementById("page_title").clientHeight + 20)+"px";
+  }
+  var obj = document.getElementById("page_title");
+  if (obj) {
+    var elems = document.getElementsByClassName ("_first_menu_level")
+    if (obj.clientHeight < 90) {
+      for (var i = 0; i < elems.length; i++) {
+        elems.item(i).style.borderBottomLeftRadius = "";
+        elems.item(i).style.borderBottomRightRadius = "";
+      }
+    }
+    else {
+      for (var i = 0; i < elems.length; i++) {
+        elems.item(i).style.borderBottomLeftRadius = "10px";
+        elems.item(i).style.borderBottomRightRadius = "10px";
+      }
+    }
+  }
+}
+</script>
+</body>
+</html>

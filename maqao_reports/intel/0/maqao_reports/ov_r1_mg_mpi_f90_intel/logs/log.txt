@@ -1,0 +1,11 @@
+********************************************************************************
+MAQAO 2026.0.0 - aae71454a81fd1916a1bb0dee97b1e5c08f6db95::20260204-200851 || 2026/02/04
+maqao oneview -R1 -xp=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_mpi_f90_intel --replace -- /usr/bin/mpirun -np 8 ./mg_mpi_f90_intel 
+CPY:  [true] /usr/bin/mpirun --> /home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_mpi_f90_intel/binaries/mpirun
+debuglink section found in /usr/bin/mpirun but target 3d6b3cb592acaf7b7f8b243a71fc98940d74c8.debug not found
+CMD:   /home/lbw/maqao.x86_64.2026.0.0-b/bin/maqao lprof _caller=oneview  --xp="/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_mpi_f90_intel/tools/lprof_run_0" --mpi-command="" --collect-CPU-time-intervals --collect-topology tpp=8   -- /home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_mpi_f90_intel/binaries/mpirun  -np 8 ./mg_mpi_f90_intel
+Run run_0: At cluster level, discarded 0 functions cumulating 0.0% of application profiled time
+
+Run run_0: At cluster level, discarded 0 loops cumulating 0.0% of application profiled time
+
+CMD:  /home/lbw/maqao.x86_64.2026.0.0-b/bin/maqao otter  -input=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_mpi_f90_intel/OTTER/input_manifest.csv -output=/home/lbw/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_mpi_f90_intel/OTTER/output_manifest.csv --reduce-threads-files=on

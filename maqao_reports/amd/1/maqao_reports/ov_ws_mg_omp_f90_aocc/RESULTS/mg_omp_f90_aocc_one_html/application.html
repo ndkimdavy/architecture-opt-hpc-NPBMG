@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - mg_omp_f90_aocc - Application</title>
+<meta charset="utf-8" />
+<meta name="google" content="notranslate" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="css/MAQAO_theme.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_modal.css" />
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_menu.css" />
+<script src="js/jquery-1.9.0.min.js" ></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="js/grid.locale-en.js" ></script>
+<script src="js/jquery.jqGrid.min.js" ></script>
+<script src="js/d3.min.js" ></script>
+<script class="include" src="js/jquery.jqplot.min.js"></script>
+<script class="include" src="js/jqplot.pieRenderer.min.js"></script>
+<script class="include" src="js/jqplot.barRenderer.min.js"></script>
+<script class="include" src="js/jqplot.categoryAxisRenderer.min.js"></script>
+<script class="include" src="js/jqplot.pointLabels.min.js"></script>
+<script class="include" src="js/jqplot.cursor.min.js"></script>
+<script class="include" src="js/jqplot.canvasTextRenderer.min.js"></script>
+<script class="include" src="js/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script class="include" src="js/jqplot.canvasAxisLabelRenderer.min.js"></script>
+<script class="include" src="js/jqplot.enhancedLegendRenderer.min.js"></script>
+<script class="include" src="js/jqplot.highlighter.min.js"></script>
+<script class="include" src="js/jqplot.logAxisRenderer.min.js"></script>
+<script class="include" src="js/maqao_menu.js"></script>
+<script>
+$( function() {
+  $( document ).tooltip({
+    content: function() {
+      if (this.classList.contains ("tooltip-maqao")
+      ||  this.classList.contains ("tooltip-maqao-button")) {
+        return tooltips_texts[$(this).attr('tooltip_id')];
+      }
+    },
+    position: {
+      my: "center bottom-20",
+        at: "center top",
+        using: function( position, feedback ) {
+          $( this ).css( position );
+          $( "<div>" )
+            .addClass( "arrow-tt" )
+            .addClass( feedback.vertical )
+            .addClass( feedback.horizontal )
+            .appendTo( this );
+        }
+      }
+  });
+} );
+
+// Code from https://www.htmlgoodies.com/beyond/javascript/article.php/3724571/Using-Multiple-JavaScript-Onload-Functions.htm
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+      func();
+    }
+  }
+}
+function loadCSS(filename){ 
+  var file = document.createElement("link");
+  file.setAttribute("rel", "stylesheet");
+  file.setAttribute("type", "text/css");
+  file.setAttribute("href", filename);
+  document.head.appendChild(file);
+}
+addLoadEvent(function(){
+  var theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    loadCSS("css/"+theme+".css");
+  }
+  else {
+    localStorage.setItem("__MAQAO_OV_theme__", "MAQAO_theme");
+    loadCSS("css/MAQAO_theme.css");
+  }
+});
+</script>
+</head><body>
+<div id="page_title"><img alt="MAQAO" id="maqao_logo" src="images/MAQAO_small_logo.png"/><ul id="maqao_menu"><li ><a  href="index.html">Global</a><ul><li ><a  href="config.html">Configurations</a></li><li ><a  href="env.html">Environment Variables</a></li><li ><a  href="outputs.html">Outputs</a></li><li ><a  href="log.html">Logs</a></li><li ><a  href="tools_status.html">Tools Status</a></li></ul></li><li ><a  href="summary.html">Summary</a></li><li ><a class="_current_page _first_menu_level" href="application.html">Application</a></li><li ><a  href="fcts_and_loops.html">Functions</a></li><li ><a  href="loops_index.html">Loops</a></li><li ><a  href="topology.html">Topology</a><ul><li ><a  href="lstopo.html">lstopo</a></li><li ><a  href="lstopo_PU.html">lstopo_PU</a></li><li ><a  href="lstopo_threads.html">lstopo_threads</a></li></ul></li></ul>
+<span><img alt="options" id="menu_options_icon" src="images/gear_20.png" onclick="__open_options ()"/></span>
+</div>
+<script>
+function __change_theme () {
+  var new_theme = document.getElementById("select_theme").value;
+  localStorage.setItem("__MAQAO_OV_theme__", new_theme);
+    loadCSS("css/"+new_theme+".css");
+}
+function __open_options () {
+  var elem = document.getElementById ("options_configuration");
+  if (elem.dataset.open == "false") {
+    elem.dataset.open = "true";
+    elem.style.display = "block";
+  }
+  else {
+    elem.dataset.open = "false";
+    elem.style.display = "none";
+  }
+}
+</script>
+<div id="anchor_file_start"></div>
+<div id="maqao_content">
+<div>
+  <div id="spacer_page_title" ></div>
+  <div id="options_configuration" data-open="false" style="display:none;">
+    <h3 id="options_configuration_header">Report Configuration</h3>
+    <span style="margin-left:10px;"><label for="select_theme">Theme: </label>    <select name="theme" id="select_theme" onchange="__change_theme ()">  <option value="MAQAO_theme">MAQAO_theme</option>  <option value="darkgrey">darkgrey</option>  <option value="cyan">cyan</option></select></span>    <span style="margin-left:10px;"><label for="select_chart_theme">Chart Theme: </label>    <select name="theme" id="select_chart_theme" onchange="__change_chart_theme ()">  <option value="Default_Chart_Theme">Default_Chart_Theme</option>  <option value="grey">grey</option></select></span></div>
+</div>
+<script>
+  let theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    document.getElementById("select_theme").value = theme;
+  }
+  theme = localStorage.getItem("__MAQAO_OV_chart_theme__");
+  if (theme) {
+    document.getElementById("select_chart_theme").value = theme;
+  }
+document.getElementById("spacer_page_title").style.height = (document.getElementById("page_title").clientHeight + 25)+"px";
+var obj = document.getElementById("page_title");
+if (obj) {
+  var elems = document.getElementsByClassName ("_first_menu_level")
+  if (obj.clientHeight < 90) {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "";
+      elems.item(i).style.borderBottomRightRadius = "";
+    }
+  }
+  else {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "10px";
+      elems.item(i).style.borderBottomRightRadius = "10px";
+    }
+  }
+}
+</script>
+<div id="main_div" style="width: 100%; display: table;" class="main_section_div">
+<div style="display: table-row">
+<div id="selector_table" class="_fixed_box" style="width:30%;display: table-cell;overflow-y: auto;"><table style="width: 100%;">
+<tr><td id="select_det_app_cat" onclick="__load_det_app_cat(this);" class="td_app_selector">Detailed Application Categorization<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="0" style="background-color:var(--fixed_box_header_background);"></span></td></tr>
+<tr><td id="select_fct_tps" onclick="__load_fct_tps(this);" class="td_app_selector">Detailed Function Times<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="1" style="background-color:var(--fixed_box_header_background);"></span></td></tr>
+<tr><td id="select_scala_cov_cat" onclick="__load_scala_cov_cat(this);" class="td_app_selector">Scalability - Coverage per Category<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="2" style="background-color:var(--fixed_box_header_background);"></span></td></tr>
+<tr><td id="select_scala_tps_cat" onclick="__load_scala_tps_cat(this);" class="td_app_selector">Scalability - Time per Category<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="3" style="background-color:var(--fixed_box_header_background);"></span></td></tr>
+<tr><td id="select_scala_eff" onclick="__load_scala_eff(this);" class="td_app_selector">Scalability - Efficiency<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="4" style="background-color:var(--fixed_box_header_background);"></span></td></tr>
+<tr><td id="select_fct_prof" onclick="__load_fct_prof(this);" class="td_app_selector">Function Based Profile<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="5" style="background-color:var(--fixed_box_header_background);"></span></td></tr>
+<tr><td id="select_scala_para_eff" onclick="__load_scala_para_eff(this);" class="td_app_selector">Scalability - Coverage per Parallel Efficiency<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="6" style="background-color:var(--fixed_box_header_background);"></span></td></tr>
+<tr><td id="select_scala_para_spd" onclick="__load_scala_para_spd(this);" class="td_app_selector">Scalability - Coverage per Parallel Speedup<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="7" style="background-color:var(--fixed_box_header_background);"></span></td></tr>
+<tr><td id="select_libraries" onclick="__load_libraries(this);" class="td_app_selector">Libraries<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="8" style="background-color:var(--fixed_box_header_background);"></span></td></tr>
+</table></div>
+<div id="selected_table" class="_fixed_box" style="width:70%;display: table-cell;overflow-y: auto;">
+<div id="panel_det_app_cat" class="td_app_selected">
+<h3 class="selected_panel_h3">Detailed Application Categorization</h3>
+<div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; "><div id="chart_cat_8014" style="height:460px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_8014(){
+    document.getElementById('chart_cat_8014').innerHTML = '';
+  var plot8014_data = [[93.34,90.15,89.3,91.22,],[0.03,3.48,5.41,4.58,],[4.84,3.77,2.84,1.71,],[1.79,2.6,2.46,2.48,],];
+  var plot8014_ticks = ['run_0','run_1','run_2','run_3',];
+  var plot8014 = jQuery.jqplot ('chart_cat_8014', plot8014_data, {
+    seriesColors:['#4bb2c5','#c5b47f','#839557','#d8b83f',],
+    stackSeries: true,
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot8014_ticks,label: 'Reports',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,},
+      yaxis: {label: 'Coverage (%)',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,tickOptions:{formatString:'%.2f'},max:100,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return plot8014_ticks[pointIndex]+' - '+plot8014_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'Exe', yaxis:'yaxis', },{label:'OMP', yaxis:'yaxis', },{label:'System', yaxis:'yaxis', },{label:'Memory', yaxis:'yaxis', },],
+  });
+  var txts = ["9","10","11","12",];
+  var div_chart = document.getElementById ("chart_cat_8014");
+  if (div_chart == null) {
+    return ;
+  }
+  var div_axis  = div_chart.getElementsByClassName ("jqplot-xaxis");
+  if (div_axis.length == 0
+  ||  div_axis[0].children.length == 0) {
+    return ;
+  }
+  for (var i = 1; i < div_axis[0].children.length; i++) {
+    var div_label = div_axis[0].children[i];
+    if (txts[i - 1] != "") {
+      div_label.setAttribute ("title", "");
+      div_label.setAttribute ("tooltip_id", txts[i - 1]);
+      div_label.classList.add ("tooltip-maqao");
+      div_label.style["z-index"] = 999;
+    }
+  }
+  txts = null;
+  }
+</script><div id="det_cat_table"><div class="_div_table" ><div style="overflow:auto;">
+<input class='downloadCSVButton' id='save_button_1260' type='button' value='Download table as CSV' onclick='downloadFileAsCSV(_tree_table_1260)' />
+<table id="_tree_table_1260" class="_tree_table"><tr><th class="_freezed_row  _left "><span></span>ID</th><th class="_freezed_row "><span></span>Time(s)</th><th class="_freezed_row "><span></span>Binary(%)</th><th class="_freezed_row "><span></span>MPI(%)</th><th class="_freezed_row "><span></span>OMP(%)</th><th class="_freezed_row "><span></span>TBB(%)</th><th class="_freezed_row "><span></span>Math(%)</th><th class="_freezed_row "><span></span>System(%)</th><th class="_freezed_row "><span></span>Pthread(%)</th><th class="_freezed_row "><span></span>IO(%)</th><th class="_freezed_row "><span></span>String(%)</th><th class="_freezed_row "><span></span>Memory(%)</th><th class="_freezed_row "><span></span>Others(%)</th></tr>
+<tr class=" _outer_row"  id="_tr_1260_1" ><td id="_tr_1260_1-1"  data-_i="1" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:0px;cursor:pointer;" >&#x25BC;</span>run_0<span onclick="_click_expand(this)" class="span_expand">&#8211;</span></td><td id="_tr_1260_1-2"  data-_i="1" data-_j="2"  class=" _centered" >30.80</td><td id="_tr_1260_1-3"  data-_i="1" data-_j="3"  class=" _centered" >93.34</td><td id="_tr_1260_1-4"  data-_i="1" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_1-5"  data-_i="1" data-_j="5"  class=" _centered" >0.03</td><td id="_tr_1260_1-6"  data-_i="1" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_1-7"  data-_i="1" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_1-8"  data-_i="1" data-_j="8"  class=" _centered" >4.84</td><td id="_tr_1260_1-9"  data-_i="1" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_1-10"  data-_i="1" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_1-11"  data-_i="1" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_1-12"  data-_i="1" data-_j="12"  class=" _centered" >1.79</td><td id="_tr_1260_1-13"  data-_i="1" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_1"  id="_tr_1260_1_1" ><td id="_tr_1260_1_1-1"  data-_i="2" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:15px;cursor:pointer;" >&#x25BC;</span>Node fedora<span onclick="_click_expand(this)" class="span_expand">&#8211;</span></td><td id="_tr_1260_1_1-2"  data-_i="2" data-_j="2"  class=" _centered" >30.80</td><td id="_tr_1260_1_1-3"  data-_i="2" data-_j="3"  class=" _centered" >93.34</td><td id="_tr_1260_1_1-4"  data-_i="2" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_1_1-5"  data-_i="2" data-_j="5"  class=" _centered" >0.03</td><td id="_tr_1260_1_1-6"  data-_i="2" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_1_1-7"  data-_i="2" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_1_1-8"  data-_i="2" data-_j="8"  class=" _centered" >4.84</td><td id="_tr_1260_1_1-9"  data-_i="2" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_1_1-10"  data-_i="2" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_1_1-11"  data-_i="2" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_1_1-12"  data-_i="2" data-_j="12"  class=" _centered" >1.79</td><td id="_tr_1260_1_1-13"  data-_i="2" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_1_1"  id="_tr_1260_1_1_1" ><td id="_tr_1260_1_1_1-1"  data-_i="3" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:30px;cursor:pointer;" >&#x25BC;</span>Process 62569<span onclick="_click_expand(this)" class="span_expand">&#8211;</span></td><td id="_tr_1260_1_1_1-2"  data-_i="3" data-_j="2"  class=" _centered" >30.80</td><td id="_tr_1260_1_1_1-3"  data-_i="3" data-_j="3"  class=" _centered" >93.34</td><td id="_tr_1260_1_1_1-4"  data-_i="3" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_1_1_1-5"  data-_i="3" data-_j="5"  class=" _centered" >0.03</td><td id="_tr_1260_1_1_1-6"  data-_i="3" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_1_1_1-7"  data-_i="3" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_1_1_1-8"  data-_i="3" data-_j="8"  class=" _centered" >4.84</td><td id="_tr_1260_1_1_1-9"  data-_i="3" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_1_1_1-10"  data-_i="3" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_1_1_1-11"  data-_i="3" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_1_1_1-12"  data-_i="3" data-_j="12"  class=" _centered" >1.79</td><td id="_tr_1260_1_1_1-13"  data-_i="3" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_1_1_1"  id="_tr_1260_1_1_1_1"  ondblclick="_action_616(this,4,-1, 'topo/run_0_fedora_62569_62569.html');"  style="cursor:pointer;"><td id="_tr_1260_1_1_1_1-1"  data-_i="4" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 0 (TID 62569)</td><td id="_tr_1260_1_1_1_1-2"  data-_i="4" data-_j="2"  class=" _centered" >30.80</td><td id="_tr_1260_1_1_1_1-3"  data-_i="4" data-_j="3"  class=" _centered" >93.34</td><td id="_tr_1260_1_1_1_1-4"  data-_i="4" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_1_1_1_1-5"  data-_i="4" data-_j="5"  class=" _centered" >0.03</td><td id="_tr_1260_1_1_1_1-6"  data-_i="4" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_1_1_1_1-7"  data-_i="4" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_1_1_1_1-8"  data-_i="4" data-_j="8"  class=" _centered" >4.84</td><td id="_tr_1260_1_1_1_1-9"  data-_i="4" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_1_1_1_1-10"  data-_i="4" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_1_1_1_1-11"  data-_i="4" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_1_1_1_1-12"  data-_i="4" data-_j="12"  class=" _centered" >1.79</td><td id="_tr_1260_1_1_1_1-13"  data-_i="4" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class=" _outer_row"  id="_tr_1260_2" ><td id="_tr_1260_2-1"  data-_i="5" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:0px;cursor:pointer;" >&#x25BC;</span>run_1<span onclick="_click_expand(this)" class="span_expand">&#8211;</span></td><td id="_tr_1260_2-2"  data-_i="5" data-_j="2"  class=" _centered" >17.90</td><td id="_tr_1260_2-3"  data-_i="5" data-_j="3"  class=" _centered" >90.15</td><td id="_tr_1260_2-4"  data-_i="5" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_2-5"  data-_i="5" data-_j="5"  class=" _centered" >3.48</td><td id="_tr_1260_2-6"  data-_i="5" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_2-7"  data-_i="5" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_2-8"  data-_i="5" data-_j="8"  class=" _centered" >3.77</td><td id="_tr_1260_2-9"  data-_i="5" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_2-10"  data-_i="5" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_2-11"  data-_i="5" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_2-12"  data-_i="5" data-_j="12"  class=" _centered" >2.60</td><td id="_tr_1260_2-13"  data-_i="5" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_2"  id="_tr_1260_2_1" ><td id="_tr_1260_2_1-1"  data-_i="6" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:15px;cursor:pointer;" >&#x25BC;</span>Node fedora<span onclick="_click_expand(this)" class="span_expand">&#8211;</span></td><td id="_tr_1260_2_1-2"  data-_i="6" data-_j="2"  class=" _centered" >17.90</td><td id="_tr_1260_2_1-3"  data-_i="6" data-_j="3"  class=" _centered" >90.15</td><td id="_tr_1260_2_1-4"  data-_i="6" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_2_1-5"  data-_i="6" data-_j="5"  class=" _centered" >3.48</td><td id="_tr_1260_2_1-6"  data-_i="6" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_2_1-7"  data-_i="6" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_2_1-8"  data-_i="6" data-_j="8"  class=" _centered" >3.77</td><td id="_tr_1260_2_1-9"  data-_i="6" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_2_1-10"  data-_i="6" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_2_1-11"  data-_i="6" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_2_1-12"  data-_i="6" data-_j="12"  class=" _centered" >2.60</td><td id="_tr_1260_2_1-13"  data-_i="6" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_2_1"  id="_tr_1260_2_1_1" ><td id="_tr_1260_2_1_1-1"  data-_i="7" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:30px;cursor:pointer;" >&#x25BC;</span>Process 62969<span onclick="_click_expand(this)" class="span_expand">&#8211;</span></td><td id="_tr_1260_2_1_1-2"  data-_i="7" data-_j="2"  class=" _centered" >17.90</td><td id="_tr_1260_2_1_1-3"  data-_i="7" data-_j="3"  class=" _centered" >90.15</td><td id="_tr_1260_2_1_1-4"  data-_i="7" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1-5"  data-_i="7" data-_j="5"  class=" _centered" >3.48</td><td id="_tr_1260_2_1_1-6"  data-_i="7" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1-7"  data-_i="7" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1-8"  data-_i="7" data-_j="8"  class=" _centered" >3.77</td><td id="_tr_1260_2_1_1-9"  data-_i="7" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1-10"  data-_i="7" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1-11"  data-_i="7" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1-12"  data-_i="7" data-_j="12"  class=" _centered" >2.60</td><td id="_tr_1260_2_1_1-13"  data-_i="7" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_2_1_1"  id="_tr_1260_2_1_1_1"  ondblclick="_action_616(this,8,-1, 'topo/run_1_fedora_62969_62990.html?origin=fedora_62969_62969');"  style="cursor:pointer;"><td id="_tr_1260_2_1_1_1-1"  data-_i="8" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 0 (TID 62969)</td><td id="_tr_1260_2_1_1_1-2"  data-_i="8" data-_j="2"  class=" _centered" >17.90</td><td id="_tr_1260_2_1_1_1-3"  data-_i="8" data-_j="3"  class=" _centered" >87.46</td><td id="_tr_1260_2_1_1_1-4"  data-_i="8" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1_1-5"  data-_i="8" data-_j="5"  class=" _centered" >5.70</td><td id="_tr_1260_2_1_1_1-6"  data-_i="8" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1_1-7"  data-_i="8" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1_1-8"  data-_i="8" data-_j="8"  class=" _centered" >4.27</td><td id="_tr_1260_2_1_1_1-9"  data-_i="8" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1_1-10"  data-_i="8" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1_1-11"  data-_i="8" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1_1-12"  data-_i="8" data-_j="12"  class=" _centered" >2.57</td><td id="_tr_1260_2_1_1_1-13"  data-_i="8" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_2_1_1"  id="_tr_1260_2_1_1_2"  ondblclick="_action_616(this,9,-1, 'topo/run_1_fedora_62969_62990.html');"  style="cursor:pointer;"><td id="_tr_1260_2_1_1_2-1"  data-_i="9" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 1 (TID 62990)</td><td id="_tr_1260_2_1_1_2-2"  data-_i="9" data-_j="2"  class=" _centered" >17.90</td><td id="_tr_1260_2_1_1_2-3"  data-_i="9" data-_j="3"  class=" _centered" >92.85</td><td id="_tr_1260_2_1_1_2-4"  data-_i="9" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1_2-5"  data-_i="9" data-_j="5"  class=" _centered" >1.26</td><td id="_tr_1260_2_1_1_2-6"  data-_i="9" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1_2-7"  data-_i="9" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1_2-8"  data-_i="9" data-_j="8"  class=" _centered" >3.27</td><td id="_tr_1260_2_1_1_2-9"  data-_i="9" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1_2-10"  data-_i="9" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1_2-11"  data-_i="9" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_2_1_1_2-12"  data-_i="9" data-_j="12"  class=" _centered" >2.63</td><td id="_tr_1260_2_1_1_2-13"  data-_i="9" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class=" _outer_row"  id="_tr_1260_3" ><td id="_tr_1260_3-1"  data-_i="10" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:0px;cursor:pointer;" >&#x25BC;</span>run_2<span onclick="_click_expand(this)" class="span_expand">&#8211;</span></td><td id="_tr_1260_3-2"  data-_i="10" data-_j="2"  class=" _centered" >12.27</td><td id="_tr_1260_3-3"  data-_i="10" data-_j="3"  class=" _centered" >89.30</td><td id="_tr_1260_3-4"  data-_i="10" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_3-5"  data-_i="10" data-_j="5"  class=" _centered" >5.41</td><td id="_tr_1260_3-6"  data-_i="10" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_3-7"  data-_i="10" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_3-8"  data-_i="10" data-_j="8"  class=" _centered" >2.84</td><td id="_tr_1260_3-9"  data-_i="10" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_3-10"  data-_i="10" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_3-11"  data-_i="10" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_3-12"  data-_i="10" data-_j="12"  class=" _centered" >2.46</td><td id="_tr_1260_3-13"  data-_i="10" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_3"  id="_tr_1260_3_1" ><td id="_tr_1260_3_1-1"  data-_i="11" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:15px;cursor:pointer;" >&#x25BC;</span>Node fedora<span onclick="_click_expand(this)" class="span_expand">&#8211;</span></td><td id="_tr_1260_3_1-2"  data-_i="11" data-_j="2"  class=" _centered" >12.27</td><td id="_tr_1260_3_1-3"  data-_i="11" data-_j="3"  class=" _centered" >89.30</td><td id="_tr_1260_3_1-4"  data-_i="11" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_3_1-5"  data-_i="11" data-_j="5"  class=" _centered" >5.41</td><td id="_tr_1260_3_1-6"  data-_i="11" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_3_1-7"  data-_i="11" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_3_1-8"  data-_i="11" data-_j="8"  class=" _centered" >2.84</td><td id="_tr_1260_3_1-9"  data-_i="11" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_3_1-10"  data-_i="11" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_3_1-11"  data-_i="11" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_3_1-12"  data-_i="11" data-_j="12"  class=" _centered" >2.46</td><td id="_tr_1260_3_1-13"  data-_i="11" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_3_1"  id="_tr_1260_3_1_1" ><td id="_tr_1260_3_1_1-1"  data-_i="12" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:30px;cursor:pointer;" >&#x25BC;</span>Process 63112<span onclick="_click_expand(this)" class="span_expand">&#8211;</span></td><td id="_tr_1260_3_1_1-2"  data-_i="12" data-_j="2"  class=" _centered" >12.27</td><td id="_tr_1260_3_1_1-3"  data-_i="12" data-_j="3"  class=" _centered" >89.30</td><td id="_tr_1260_3_1_1-4"  data-_i="12" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1-5"  data-_i="12" data-_j="5"  class=" _centered" >5.41</td><td id="_tr_1260_3_1_1-6"  data-_i="12" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1-7"  data-_i="12" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1-8"  data-_i="12" data-_j="8"  class=" _centered" >2.84</td><td id="_tr_1260_3_1_1-9"  data-_i="12" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1-10"  data-_i="12" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1-11"  data-_i="12" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1-12"  data-_i="12" data-_j="12"  class=" _centered" >2.46</td><td id="_tr_1260_3_1_1-13"  data-_i="12" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_3_1_1"  id="_tr_1260_3_1_1_1"  ondblclick="_action_616(this,13,-1, 'topo/run_2_fedora_63112_63112.html');"  style="cursor:pointer;"><td id="_tr_1260_3_1_1_1-1"  data-_i="13" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 0 (TID 63112)</td><td id="_tr_1260_3_1_1_1-2"  data-_i="13" data-_j="2"  class=" _centered" >12.27</td><td id="_tr_1260_3_1_1_1-3"  data-_i="13" data-_j="3"  class=" _centered" >87.49</td><td id="_tr_1260_3_1_1_1-4"  data-_i="13" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_1-5"  data-_i="13" data-_j="5"  class=" _centered" >5.95</td><td id="_tr_1260_3_1_1_1-6"  data-_i="13" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_1-7"  data-_i="13" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_1-8"  data-_i="13" data-_j="8"  class=" _centered" >4.12</td><td id="_tr_1260_3_1_1_1-9"  data-_i="13" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_1-10"  data-_i="13" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_1-11"  data-_i="13" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_1-12"  data-_i="13" data-_j="12"  class=" _centered" >2.44</td><td id="_tr_1260_3_1_1_1-13"  data-_i="13" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_3_1_1"  id="_tr_1260_3_1_1_2"  ondblclick="_action_616(this,14,-1, 'topo/run_2_fedora_63112_63133.html');"  style="cursor:pointer;"><td id="_tr_1260_3_1_1_2-1"  data-_i="14" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 1 (TID 63133)</td><td id="_tr_1260_3_1_1_2-2"  data-_i="14" data-_j="2"  class=" _centered" >12.25</td><td id="_tr_1260_3_1_1_2-3"  data-_i="14" data-_j="3"  class=" _centered" >85.50</td><td id="_tr_1260_3_1_1_2-4"  data-_i="14" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_2-5"  data-_i="14" data-_j="5"  class=" _centered" >9.72</td><td id="_tr_1260_3_1_1_2-6"  data-_i="14" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_2-7"  data-_i="14" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_2-8"  data-_i="14" data-_j="8"  class=" _centered" >2.25</td><td id="_tr_1260_3_1_1_2-9"  data-_i="14" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_2-10"  data-_i="14" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_2-11"  data-_i="14" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_2-12"  data-_i="14" data-_j="12"  class=" _centered" >2.53</td><td id="_tr_1260_3_1_1_2-13"  data-_i="14" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_3_1_1"  id="_tr_1260_3_1_1_3"  ondblclick="_action_616(this,15,-1, 'topo/run_2_fedora_63112_63133.html?origin=fedora_63112_63134');"  style="cursor:pointer;"><td id="_tr_1260_3_1_1_3-1"  data-_i="15" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 2 (TID 63134)</td><td id="_tr_1260_3_1_1_3-2"  data-_i="15" data-_j="2"  class=" _centered" >12.25</td><td id="_tr_1260_3_1_1_3-3"  data-_i="15" data-_j="3"  class=" _centered" >92.77</td><td id="_tr_1260_3_1_1_3-4"  data-_i="15" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_3-5"  data-_i="15" data-_j="5"  class=" _centered" >2.33</td><td id="_tr_1260_3_1_1_3-6"  data-_i="15" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_3-7"  data-_i="15" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_3-8"  data-_i="15" data-_j="8"  class=" _centered" >2.53</td><td id="_tr_1260_3_1_1_3-9"  data-_i="15" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_3-10"  data-_i="15" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_3-11"  data-_i="15" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_3-12"  data-_i="15" data-_j="12"  class=" _centered" >2.37</td><td id="_tr_1260_3_1_1_3-13"  data-_i="15" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_3_1_1"  id="_tr_1260_3_1_1_4"  ondblclick="_action_616(this,16,-1, 'topo/run_2_fedora_63112_63133.html?origin=fedora_63112_63135');"  style="cursor:pointer;"><td id="_tr_1260_3_1_1_4-1"  data-_i="16" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 3 (TID 63135)</td><td id="_tr_1260_3_1_1_4-2"  data-_i="16" data-_j="2"  class=" _centered" >12.25</td><td id="_tr_1260_3_1_1_4-3"  data-_i="16" data-_j="3"  class=" _centered" >91.43</td><td id="_tr_1260_3_1_1_4-4"  data-_i="16" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_4-5"  data-_i="16" data-_j="5"  class=" _centered" >3.63</td><td id="_tr_1260_3_1_1_4-6"  data-_i="16" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_4-7"  data-_i="16" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_4-8"  data-_i="16" data-_j="8"  class=" _centered" >2.45</td><td id="_tr_1260_3_1_1_4-9"  data-_i="16" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_4-10"  data-_i="16" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_4-11"  data-_i="16" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_3_1_1_4-12"  data-_i="16" data-_j="12"  class=" _centered" >2.49</td><td id="_tr_1260_3_1_1_4-13"  data-_i="16" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class=" _outer_row"  id="_tr_1260_4" ><td id="_tr_1260_4-1"  data-_i="17" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:0px;cursor:pointer;" >&#x25BC;</span>run_3<span onclick="_click_expand(this)" class="span_expand">&#8211;</span></td><td id="_tr_1260_4-2"  data-_i="17" data-_j="2"  class=" _centered" >12.08</td><td id="_tr_1260_4-3"  data-_i="17" data-_j="3"  class=" _centered" >91.22</td><td id="_tr_1260_4-4"  data-_i="17" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_4-5"  data-_i="17" data-_j="5"  class=" _centered" >4.58</td><td id="_tr_1260_4-6"  data-_i="17" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_4-7"  data-_i="17" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_4-8"  data-_i="17" data-_j="8"  class=" _centered" >1.71</td><td id="_tr_1260_4-9"  data-_i="17" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_4-10"  data-_i="17" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_4-11"  data-_i="17" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_4-12"  data-_i="17" data-_j="12"  class=" _centered" >2.48</td><td id="_tr_1260_4-13"  data-_i="17" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_4"  id="_tr_1260_4_1" ><td id="_tr_1260_4_1-1"  data-_i="18" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:15px;cursor:pointer;" >&#x25BC;</span>Node fedora<span onclick="_click_expand(this)" class="span_expand">&#8211;</span></td><td id="_tr_1260_4_1-2"  data-_i="18" data-_j="2"  class=" _centered" >12.08</td><td id="_tr_1260_4_1-3"  data-_i="18" data-_j="3"  class=" _centered" >91.22</td><td id="_tr_1260_4_1-4"  data-_i="18" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_4_1-5"  data-_i="18" data-_j="5"  class=" _centered" >4.58</td><td id="_tr_1260_4_1-6"  data-_i="18" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_4_1-7"  data-_i="18" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_4_1-8"  data-_i="18" data-_j="8"  class=" _centered" >1.71</td><td id="_tr_1260_4_1-9"  data-_i="18" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_4_1-10"  data-_i="18" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_4_1-11"  data-_i="18" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_4_1-12"  data-_i="18" data-_j="12"  class=" _centered" >2.48</td><td id="_tr_1260_4_1-13"  data-_i="18" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_4_1"  id="_tr_1260_4_1_1" ><td id="_tr_1260_4_1_1-1"  data-_i="19" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:30px;cursor:pointer;" >&#x25BC;</span>Process 63302<span onclick="_click_expand(this)" class="span_expand">&#8211;</span></td><td id="_tr_1260_4_1_1-2"  data-_i="19" data-_j="2"  class=" _centered" >12.08</td><td id="_tr_1260_4_1_1-3"  data-_i="19" data-_j="3"  class=" _centered" >91.22</td><td id="_tr_1260_4_1_1-4"  data-_i="19" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1-5"  data-_i="19" data-_j="5"  class=" _centered" >4.58</td><td id="_tr_1260_4_1_1-6"  data-_i="19" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1-7"  data-_i="19" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1-8"  data-_i="19" data-_j="8"  class=" _centered" >1.71</td><td id="_tr_1260_4_1_1-9"  data-_i="19" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1-10"  data-_i="19" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1-11"  data-_i="19" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1-12"  data-_i="19" data-_j="12"  class=" _centered" >2.48</td><td id="_tr_1260_4_1_1-13"  data-_i="19" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_4_1_1"  id="_tr_1260_4_1_1_1"  ondblclick="_action_616(this,20,-1, 'topo/run_3_fedora_63302_63302.html');"  style="cursor:pointer;"><td id="_tr_1260_4_1_1_1-1"  data-_i="20" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 0 (TID 63302)</td><td id="_tr_1260_4_1_1_1-2"  data-_i="20" data-_j="2"  class=" _centered" >12.08</td><td id="_tr_1260_4_1_1_1-3"  data-_i="20" data-_j="3"  class=" _centered" >91.43</td><td id="_tr_1260_4_1_1_1-4"  data-_i="20" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_1-5"  data-_i="20" data-_j="5"  class=" _centered" >2.57</td><td id="_tr_1260_4_1_1_1-6"  data-_i="20" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_1-7"  data-_i="20" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_1-8"  data-_i="20" data-_j="8"  class=" _centered" >3.39</td><td id="_tr_1260_4_1_1_1-9"  data-_i="20" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_1-10"  data-_i="20" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_1-11"  data-_i="20" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_1-12"  data-_i="20" data-_j="12"  class=" _centered" >2.61</td><td id="_tr_1260_4_1_1_1-13"  data-_i="20" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_4_1_1"  id="_tr_1260_4_1_1_2"  ondblclick="_action_616(this,21,-1, 'topo/run_3_fedora_63302_63302.html?origin=fedora_63302_63323');"  style="cursor:pointer;"><td id="_tr_1260_4_1_1_2-1"  data-_i="21" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 1 (TID 63323)</td><td id="_tr_1260_4_1_1_2-2"  data-_i="21" data-_j="2"  class=" _centered" >12.06</td><td id="_tr_1260_4_1_1_2-3"  data-_i="21" data-_j="3"  class=" _centered" >90.92</td><td id="_tr_1260_4_1_1_2-4"  data-_i="21" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_2-5"  data-_i="21" data-_j="5"  class=" _centered" >5.27</td><td id="_tr_1260_4_1_1_2-6"  data-_i="21" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_2-7"  data-_i="21" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_2-8"  data-_i="21" data-_j="8"  class=" _centered" >1.24</td><td id="_tr_1260_4_1_1_2-9"  data-_i="21" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_2-10"  data-_i="21" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_2-11"  data-_i="21" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_2-12"  data-_i="21" data-_j="12"  class=" _centered" >2.57</td><td id="_tr_1260_4_1_1_2-13"  data-_i="21" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_4_1_1"  id="_tr_1260_4_1_1_3"  ondblclick="_action_616(this,22,-1, 'topo/run_3_fedora_63302_63302.html?origin=fedora_63302_63324');"  style="cursor:pointer;"><td id="_tr_1260_4_1_1_3-1"  data-_i="22" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 2 (TID 63324)</td><td id="_tr_1260_4_1_1_3-2"  data-_i="22" data-_j="2"  class=" _centered" >12.05</td><td id="_tr_1260_4_1_1_3-3"  data-_i="22" data-_j="3"  class=" _centered" >91.08</td><td id="_tr_1260_4_1_1_3-4"  data-_i="22" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_3-5"  data-_i="22" data-_j="5"  class=" _centered" >4.85</td><td id="_tr_1260_4_1_1_3-6"  data-_i="22" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_3-7"  data-_i="22" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_3-8"  data-_i="22" data-_j="8"  class=" _centered" >1.62</td><td id="_tr_1260_4_1_1_3-9"  data-_i="22" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_3-10"  data-_i="22" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_3-11"  data-_i="22" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_3-12"  data-_i="22" data-_j="12"  class=" _centered" >2.45</td><td id="_tr_1260_4_1_1_3-13"  data-_i="22" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_4_1_1"  id="_tr_1260_4_1_1_4"  ondblclick="_action_616(this,23,-1, 'topo/run_3_fedora_63302_63302.html?origin=fedora_63302_63325');"  style="cursor:pointer;"><td id="_tr_1260_4_1_1_4-1"  data-_i="23" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 3 (TID 63325)</td><td id="_tr_1260_4_1_1_4-2"  data-_i="23" data-_j="2"  class=" _centered" >12.05</td><td id="_tr_1260_4_1_1_4-3"  data-_i="23" data-_j="3"  class=" _centered" >90.16</td><td id="_tr_1260_4_1_1_4-4"  data-_i="23" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_4-5"  data-_i="23" data-_j="5"  class=" _centered" >5.85</td><td id="_tr_1260_4_1_1_4-6"  data-_i="23" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_4-7"  data-_i="23" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_4-8"  data-_i="23" data-_j="8"  class=" _centered" >1.66</td><td id="_tr_1260_4_1_1_4-9"  data-_i="23" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_4-10"  data-_i="23" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_4-11"  data-_i="23" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_4-12"  data-_i="23" data-_j="12"  class=" _centered" >2.32</td><td id="_tr_1260_4_1_1_4-13"  data-_i="23" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_4_1_1"  id="_tr_1260_4_1_1_5"  ondblclick="_action_616(this,24,-1, 'topo/run_3_fedora_63302_63302.html?origin=fedora_63302_63326');"  style="cursor:pointer;"><td id="_tr_1260_4_1_1_5-1"  data-_i="24" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 4 (TID 63326)</td><td id="_tr_1260_4_1_1_5-2"  data-_i="24" data-_j="2"  class=" _centered" >12.05</td><td id="_tr_1260_4_1_1_5-3"  data-_i="24" data-_j="3"  class=" _centered" >93.03</td><td id="_tr_1260_4_1_1_5-4"  data-_i="24" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_5-5"  data-_i="24" data-_j="5"  class=" _centered" >3.03</td><td id="_tr_1260_4_1_1_5-6"  data-_i="24" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_5-7"  data-_i="24" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_5-8"  data-_i="24" data-_j="8"  class=" _centered" >1.58</td><td id="_tr_1260_4_1_1_5-9"  data-_i="24" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_5-10"  data-_i="24" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_5-11"  data-_i="24" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_5-12"  data-_i="24" data-_j="12"  class=" _centered" >2.37</td><td id="_tr_1260_4_1_1_5-13"  data-_i="24" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_4_1_1"  id="_tr_1260_4_1_1_6"  ondblclick="_action_616(this,25,-1, 'topo/run_3_fedora_63302_63302.html?origin=fedora_63302_63327');"  style="cursor:pointer;"><td id="_tr_1260_4_1_1_6-1"  data-_i="25" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 5 (TID 63327)</td><td id="_tr_1260_4_1_1_6-2"  data-_i="25" data-_j="2"  class=" _centered" >12.05</td><td id="_tr_1260_4_1_1_6-3"  data-_i="25" data-_j="3"  class=" _centered" >90.00</td><td id="_tr_1260_4_1_1_6-4"  data-_i="25" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_6-5"  data-_i="25" data-_j="5"  class=" _centered" >6.02</td><td id="_tr_1260_4_1_1_6-6"  data-_i="25" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_6-7"  data-_i="25" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_6-8"  data-_i="25" data-_j="8"  class=" _centered" >1.41</td><td id="_tr_1260_4_1_1_6-9"  data-_i="25" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_6-10"  data-_i="25" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_6-11"  data-_i="25" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_6-12"  data-_i="25" data-_j="12"  class=" _centered" >2.57</td><td id="_tr_1260_4_1_1_6-13"  data-_i="25" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_4_1_1"  id="_tr_1260_4_1_1_7"  ondblclick="_action_616(this,26,-1, 'topo/run_3_fedora_63302_63302.html?origin=fedora_63302_63328');"  style="cursor:pointer;"><td id="_tr_1260_4_1_1_7-1"  data-_i="26" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 6 (TID 63328)</td><td id="_tr_1260_4_1_1_7-2"  data-_i="26" data-_j="2"  class=" _centered" >12.06</td><td id="_tr_1260_4_1_1_7-3"  data-_i="26" data-_j="3"  class=" _centered" >92.53</td><td id="_tr_1260_4_1_1_7-4"  data-_i="26" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_7-5"  data-_i="26" data-_j="5"  class=" _centered" >3.48</td><td id="_tr_1260_4_1_1_7-6"  data-_i="26" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_7-7"  data-_i="26" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_7-8"  data-_i="26" data-_j="8"  class=" _centered" >1.45</td><td id="_tr_1260_4_1_1_7-9"  data-_i="26" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_7-10"  data-_i="26" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_7-11"  data-_i="26" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_7-12"  data-_i="26" data-_j="12"  class=" _centered" >2.53</td><td id="_tr_1260_4_1_1_7-13"  data-_i="26" data-_j="13"  class=" _centered" >0.00</td></tr>
+<tr class="_tr_1260_4_1_1"  id="_tr_1260_4_1_1_8"  ondblclick="_action_616(this,27,-1, 'topo/run_3_fedora_63302_63302.html?origin=fedora_63302_63329');"  style="cursor:pointer;"><td id="_tr_1260_4_1_1_8-1"  data-_i="27" data-_j="1"  class=" _left" ><span style="margin-right:10px;margin-left:48px;" >&#x25CB;</span>OMP # 7 (TID 63329)</td><td id="_tr_1260_4_1_1_8-2"  data-_i="27" data-_j="2"  class=" _centered" >12.06</td><td id="_tr_1260_4_1_1_8-3"  data-_i="27" data-_j="3"  class=" _centered" >90.63</td><td id="_tr_1260_4_1_1_8-4"  data-_i="27" data-_j="4"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_8-5"  data-_i="27" data-_j="5"  class=" _centered" >5.60</td><td id="_tr_1260_4_1_1_8-6"  data-_i="27" data-_j="6"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_8-7"  data-_i="27" data-_j="7"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_8-8"  data-_i="27" data-_j="8"  class=" _centered" >1.33</td><td id="_tr_1260_4_1_1_8-9"  data-_i="27" data-_j="9"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_8-10"  data-_i="27" data-_j="10"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_8-11"  data-_i="27" data-_j="11"  class=" _centered" >0.00</td><td id="_tr_1260_4_1_1_8-12"  data-_i="27" data-_j="12"  class=" _centered" >2.45</td><td id="_tr_1260_4_1_1_8-13"  data-_i="27" data-_j="13"  class=" _centered" >0.00</td></tr>
+</table></div>
+</div>
+<script>
+function _action_616 (obj, i, j, p){open(""+p+"");}
+</script>
+</div><script>
+addLoadEvent(function(){
+  __disable_CSV_generator_buttons (["save_button_1260"]);
+});
+</script>
+</div>
+<div id="panel_fct_tps" class="td_app_selected">
+<div><h3 class="selected_panel_h3">Detailed Function Times</h3>
+<span style="text-align:center; width:100%; display:inline-block;"><select id="select_fct_tps_run" style="cursor:pointer;" size="1" onchange="__load_fct_tps (select_fct_tps);" autocomplete="off">
+<option value="1">run_0</option>
+<option value="2">run_1</option>
+<option value="3">run_2</option>
+<option value="4">run_3</option>
+</select></span>
+<div id="__div_chart_1" style="display: none;">
+<div style="margin: 10px; overflow-x:auto; overflow-y:hidden;"><div id="chart_cat_8015" style="height:500px" ></div><div style="text-align:center;"><span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="13"><div class="zoom_legend_color" style="background:#333399;"></div>__nv_resid__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="14"><div class="zoom_legend_color" style="background:#cc00cc;"></div>__nv_psinv__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="15"><div class="zoom_legend_color" style="background:#ffcc00;"></div>__nv_zran3__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="16"><div class="zoom_legend_color" style="background:#339966;"></div>__nv_rprj3__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="17"><div class="zoom_legend_color" style="background:#80ccff;"></div>__nv_interp__PARALLE...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="18"><div class="zoom_legend_color" style="background:#80ffcc;"></div>_raw_spin_unlock_irq...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="19"><div class="zoom_legend_color" style="background:#7979d2;"></div>__memset_avx512_unal...</span>
+<span class="zoom_legend_block"><div class="zoom_legend_color" style="background:#ff4dff;"></div>vranlc</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="20"><div class="zoom_legend_color" style="background:#ffe066;"></div>__nv_comm3__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="21"><div class="zoom_legend_color" style="background:#66cc99;"></div>__nv_norm2u3__PARALL...</span>
+<span class="zoom_legend_block"><div class="zoom_legend_color" style="background:#ccebff;"></div>Other Functions</span>
+</div></div>
+<script class="code">
+</script>
+</div>
+<div id="__div_chart_2" style="display: none;">
+<div style="margin: 10px; overflow-x:auto; overflow-y:hidden;"><div id="chart_cat_8016" style="height:500px" ></div><div style="text-align:center;"><span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="22"><div class="zoom_legend_color" style="background:#333399;"></div>__nv_resid__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="23"><div class="zoom_legend_color" style="background:#cc00cc;"></div>__nv_psinv__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="24"><div class="zoom_legend_color" style="background:#ffcc00;"></div>__nv_zran3__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="25"><div class="zoom_legend_color" style="background:#339966;"></div>__nv_rprj3__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="26"><div class="zoom_legend_color" style="background:#80ccff;"></div>__nv_interp__PARALLE...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="27"><div class="zoom_legend_color" style="background:#80ffcc;"></div>_raw_spin_unlock_irq...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="28"><div class="zoom_legend_color" style="background:#7979d2;"></div>__memset_avx512_unal...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="29"><div class="zoom_legend_color" style="background:#ff4dff;"></div>__kmp_hardware_times...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="30"><div class="zoom_legend_color" style="background:#ffe066;"></div>__kmp_hyper_barrier_...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="31"><div class="zoom_legend_color" style="background:#66cc99;"></div>__nv_comm3__PARALLEL...</span>
+<span class="zoom_legend_block"><div class="zoom_legend_color" style="background:#ccebff;"></div>Other Functions</span>
+</div></div>
+<script class="code">
+</script>
+</div>
+<div id="__div_chart_3" style="display: none;">
+<div style="margin: 10px; overflow-x:auto; overflow-y:hidden;"><div id="chart_cat_8017" style="height:500px" ></div><div style="text-align:center;"><span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="32"><div class="zoom_legend_color" style="background:#333399;"></div>__nv_resid__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="33"><div class="zoom_legend_color" style="background:#cc00cc;"></div>__nv_psinv__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="34"><div class="zoom_legend_color" style="background:#ffcc00;"></div>__nv_zran3__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="35"><div class="zoom_legend_color" style="background:#339966;"></div>__nv_interp__PARALLE...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="36"><div class="zoom_legend_color" style="background:#80ccff;"></div>__nv_rprj3__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="37"><div class="zoom_legend_color" style="background:#80ffcc;"></div>_raw_spin_unlock_irq...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="38"><div class="zoom_legend_color" style="background:#7979d2;"></div>__memset_avx512_unal...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="39"><div class="zoom_legend_color" style="background:#ff4dff;"></div>__kmp_hardware_times...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="40"><div class="zoom_legend_color" style="background:#ffe066;"></div>__kmp_hyper_barrier_...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="41"><div class="zoom_legend_color" style="background:#66cc99;"></div>__nv_comm3__PARALLEL...</span>
+<span class="zoom_legend_block"><div class="zoom_legend_color" style="background:#ccebff;"></div>Other Functions</span>
+</div></div>
+<script class="code">
+</script>
+</div>
+<div id="__div_chart_4" style="display: none;">
+<div style="margin: 10px; overflow-x:auto; overflow-y:hidden;"><div id="chart_cat_8018" style="height:500px" ></div><div style="text-align:center;"><span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="42"><div class="zoom_legend_color" style="background:#333399;"></div>__nv_resid__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="43"><div class="zoom_legend_color" style="background:#cc00cc;"></div>__nv_psinv__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="44"><div class="zoom_legend_color" style="background:#ffcc00;"></div>__nv_interp__PARALLE...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="45"><div class="zoom_legend_color" style="background:#339966;"></div>__nv_rprj3__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="46"><div class="zoom_legend_color" style="background:#80ccff;"></div>__nv_zran3__PARALLEL...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="47"><div class="zoom_legend_color" style="background:#80ffcc;"></div>__memset_avx512_unal...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="48"><div class="zoom_legend_color" style="background:#7979d2;"></div>_raw_spin_unlock_irq...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="49"><div class="zoom_legend_color" style="background:#ff4dff;"></div>__kmp_hyper_barrier_...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="50"><div class="zoom_legend_color" style="background:#ffe066;"></div>__kmp_hardware_times...</span>
+<span class="zoom_legend_block tooltip-maqao" title="" tooltip_id="51"><div class="zoom_legend_color" style="background:#66cc99;"></div>__nv_norm2u3__PARALL...</span>
+<span class="zoom_legend_block"><div class="zoom_legend_color" style="background:#ccebff;"></div>Other Functions</span>
+</div></div>
+<script class="code">
+</script>
+</div>
+</div>
+</div>
+<div id="panel_scala_cov_cat" class="td_app_selected">
+<div><h3 class="selected_panel_h3">Scalability - Coverage per Category</h3>
+<div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; "><div id="chart_cat_8019" style="height:500px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_8019(){
+    document.getElementById('chart_cat_8019').innerHTML = '';
+  var plot8019_data = [[93.34,90.15,89.3,91.22,],[0.03,3.48,5.41,4.58,],[4.84,3.77,2.84,1.71,],[1.79,2.6,2.46,2.48,],];
+  var plot8019_ticks = ['run_0','run_1','run_2','run_3',];
+  var plot8019 = jQuery.jqplot ('chart_cat_8019', plot8019_data, {
+    seriesColors:['#4bb2c5','#c5b47f','#839557','#d8b83f',],
+    stackSeries: true,
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot8019_ticks,label: 'Runs',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,},
+      yaxis: {label: 'Coverage (%)',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,tickOptions:{formatString:'%.2f'},max:100,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return plot8019_ticks[pointIndex]+' - '+plot8019_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'Binary', yaxis:'yaxis', },{label:'OMP', yaxis:'yaxis', },{label:'System', yaxis:'yaxis', },{label:'Memory', yaxis:'yaxis', },],
+  });
+  var txts = ["52","53","54","55",];
+  var div_chart = document.getElementById ("chart_cat_8019");
+  if (div_chart == null) {
+    return ;
+  }
+  var div_axis  = div_chart.getElementsByClassName ("jqplot-xaxis");
+  if (div_axis.length == 0
+  ||  div_axis[0].children.length == 0) {
+    return ;
+  }
+  for (var i = 1; i < div_axis[0].children.length; i++) {
+    var div_label = div_axis[0].children[i];
+    if (txts[i - 1] != "") {
+      div_label.setAttribute ("title", "");
+      div_label.setAttribute ("tooltip_id", txts[i - 1]);
+      div_label.classList.add ("tooltip-maqao");
+      div_label.style["z-index"] = 999;
+    }
+  }
+  txts = null;
+  }
+</script><div id="scala_cov_cat_table">
+<div class="_accordion_box collapsed" ><h3 id="_accordion_header_1" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>Detailed Coverage per Category</h3><div id="_accordion_content_1" class="_content collapsed"><div class="_div_table" id="_fixed_1261" ><table class="_fixed_table" id="_fixed_table_1261"><tr><th class="_freezed_row  _left _freezed_col"><span></span>Run</th><th class="_freezed_row "><span></span>Number of threads</th><th class="_freezed_row "><span></span>Binary (%)</th><th class="_freezed_row "><span></span>OMP (%)</th><th class="_freezed_row "><span></span>System (%)</th><th class="_freezed_row "><span></span>Memory (%)</th></tr><tr id="_tr_1261_1" ><td id="_td_1261_1_1"  data-_i="1" data-_j="1"  title="" tooltip_id="56" class=" _left _freezed_col  _centered tooltip-maqao" >run_0</td><td id="_td_1261_1_2"  data-_i="1" data-_j="2"  class=" _centered" >1</td><td id="_td_1261_1_3"  data-_i="1" data-_j="3"  class=" _centered"  style="background:#942610;" >93.34</td><td id="_td_1261_1_4"  data-_i="1" data-_j="4"  class=" _centered"  style="background:#7B90C8;" >0.03</td><td id="_td_1261_1_5"  data-_i="1" data-_j="5"  class=" _centered"  style="background:#947FA5;" >4.84</td><td id="_td_1261_1_6"  data-_i="1" data-_j="6"  class=" _centered"  style="background:#947FA5;" >1.79</td></tr>
+<tr id="_tr_1261_2" ><td id="_td_1261_2_1"  data-_i="2" data-_j="1"  title="" tooltip_id="57" class=" _left _freezed_col  _centered tooltip-maqao" >run_1</td><td id="_td_1261_2_2"  data-_i="2" data-_j="2"  class=" _centered" >2</td><td id="_td_1261_2_3"  data-_i="2" data-_j="3"  class=" _centered"  style="background:#942610;" >90.15</td><td id="_td_1261_2_4"  data-_i="2" data-_j="4"  class=" _centered"  style="background:#947FA5;" >3.48</td><td id="_td_1261_2_5"  data-_i="2" data-_j="5"  class=" _centered"  style="background:#947FA5;" >3.77</td><td id="_td_1261_2_6"  data-_i="2" data-_j="6"  class=" _centered"  style="background:#947FA5;" >2.6</td></tr>
+<tr id="_tr_1261_3" ><td id="_td_1261_3_1"  data-_i="3" data-_j="1"  title="" tooltip_id="58" class=" _left _freezed_col  _centered tooltip-maqao" >run_2</td><td id="_td_1261_3_2"  data-_i="3" data-_j="2"  class=" _centered" >4</td><td id="_td_1261_3_3"  data-_i="3" data-_j="3"  class=" _centered"  style="background:#942610;" >89.3</td><td id="_td_1261_3_4"  data-_i="3" data-_j="4"  class=" _centered"  style="background:#D29588;" >5.41</td><td id="_td_1261_3_5"  data-_i="3" data-_j="5"  class=" _centered"  style="background:#947FA5;" >2.84</td><td id="_td_1261_3_6"  data-_i="3" data-_j="6"  class=" _centered"  style="background:#947FA5;" >2.46</td></tr>
+<tr id="_tr_1261_4" ><td id="_td_1261_4_1"  data-_i="4" data-_j="1"  title="" tooltip_id="59" class=" _left _freezed_col  _centered tooltip-maqao" >run_3</td><td id="_td_1261_4_2"  data-_i="4" data-_j="2"  class=" _centered" >8</td><td id="_td_1261_4_3"  data-_i="4" data-_j="3"  class=" _centered"  style="background:#942610;" >91.22</td><td id="_td_1261_4_4"  data-_i="4" data-_j="4"  class=" _centered"  style="background:#947FA5;" >4.58</td><td id="_td_1261_4_5"  data-_i="4" data-_j="5"  class=" _centered"  style="background:#947FA5;" >1.71</td><td id="_td_1261_4_6"  data-_i="4" data-_j="6"  class=" _centered"  style="background:#947FA5;" >2.48</td></tr>
+</table></div></div></div></div>
+</div>
+</div>
+<div id="panel_scala_tps_cat" class="td_app_selected">
+<div><h3 class="selected_panel_h3">Scalability - Time per Category</h3>
+<div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; "><div id="chart_cat_8020" style="height:500px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_8020(){
+    document.getElementById('chart_cat_8020').innerHTML = '';
+  var plot8020_data = [[28.75,16.14,10.96,11.02,],[0.01,0.62,0.66,0.55,],[1.49,0.68,0.35,0.21,],[0.55,0.47,0.3,0.3,],];
+  var plot8020_ticks = ['run_0','run_1','run_2','run_3',];
+  var plot8020 = jQuery.jqplot ('chart_cat_8020', plot8020_data, {
+    seriesColors:['#4bb2c5','#c5b47f','#839557','#d8b83f',],
+    stackSeries: true,
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot8020_ticks,label: 'Runs',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,},
+      yaxis: {label: 'Time (s) (lower is better)',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return plot8020_ticks[pointIndex]+' - '+plot8020_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'Binary', yaxis:'yaxis', },{label:'OMP', yaxis:'yaxis', },{label:'System', yaxis:'yaxis', },{label:'Memory', yaxis:'yaxis', },],
+  });
+  var txts = ["60","61","62","63",];
+  var div_chart = document.getElementById ("chart_cat_8020");
+  if (div_chart == null) {
+    return ;
+  }
+  var div_axis  = div_chart.getElementsByClassName ("jqplot-xaxis");
+  if (div_axis.length == 0
+  ||  div_axis[0].children.length == 0) {
+    return ;
+  }
+  for (var i = 1; i < div_axis[0].children.length; i++) {
+    var div_label = div_axis[0].children[i];
+    if (txts[i - 1] != "") {
+      div_label.setAttribute ("title", "");
+      div_label.setAttribute ("tooltip_id", txts[i - 1]);
+      div_label.classList.add ("tooltip-maqao");
+      div_label.style["z-index"] = 999;
+    }
+  }
+  txts = null;
+  }
+</script><div id="scala_tps_cat_table">
+<div class="_accordion_box collapsed" ><h3 id="_accordion_header_2" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>Detailed Time per Category</h3><div id="_accordion_content_2" class="_content collapsed"><div class="_div_table" id="_fixed_1262" ><table class="_fixed_table" id="_fixed_table_1262"><tr><th class="_freezed_row  _left _freezed_col"><span></span>Run</th><th class="_freezed_row "><span></span>Number of threads</th><th class="_freezed_row "><span></span>Total Time (s)</th><th class="_freezed_row "><span></span>Binary (s)</th><th class="_freezed_row "><span></span>OMP (s)</th><th class="_freezed_row "><span></span>System (s)</th><th class="_freezed_row "><span></span>Memory (s)</th></tr><tr id="_tr_1262_1" ><td id="_td_1262_1_1"  data-_i="1" data-_j="1"  title="" tooltip_id="64" class=" _left _freezed_col  _centered tooltip-maqao" >run_0</td><td id="_td_1262_1_2"  data-_i="1" data-_j="2"  class=" _centered" >1</td><td id="_td_1262_1_3"  data-_i="1" data-_j="3"  class=" _centered" >30.8</td><td id="_td_1262_1_4"  data-_i="1" data-_j="4"  class=" _centered" >28.75</td><td id="_td_1262_1_5"  data-_i="1" data-_j="5"  class=" _centered" >0.01</td><td id="_td_1262_1_6"  data-_i="1" data-_j="6"  class=" _centered" >1.49</td><td id="_td_1262_1_7"  data-_i="1" data-_j="7"  class=" _centered" >0.55</td></tr>
+<tr id="_tr_1262_2" ><td id="_td_1262_2_1"  data-_i="2" data-_j="1"  title="" tooltip_id="65" class=" _left _freezed_col  _centered tooltip-maqao" >run_1</td><td id="_td_1262_2_2"  data-_i="2" data-_j="2"  class=" _centered" >2</td><td id="_td_1262_2_3"  data-_i="2" data-_j="3"  class=" _centered" >17.9</td><td id="_td_1262_2_4"  data-_i="2" data-_j="4"  class=" _centered" >16.14</td><td id="_td_1262_2_5"  data-_i="2" data-_j="5"  class=" _centered" >0.62</td><td id="_td_1262_2_6"  data-_i="2" data-_j="6"  class=" _centered" >0.68</td><td id="_td_1262_2_7"  data-_i="2" data-_j="7"  class=" _centered" >0.47</td></tr>
+<tr id="_tr_1262_3" ><td id="_td_1262_3_1"  data-_i="3" data-_j="1"  title="" tooltip_id="66" class=" _left _freezed_col  _centered tooltip-maqao" >run_2</td><td id="_td_1262_3_2"  data-_i="3" data-_j="2"  class=" _centered" >4</td><td id="_td_1262_3_3"  data-_i="3" data-_j="3"  class=" _centered" >12.27</td><td id="_td_1262_3_4"  data-_i="3" data-_j="4"  class=" _centered" >10.96</td><td id="_td_1262_3_5"  data-_i="3" data-_j="5"  class=" _centered" >0.66</td><td id="_td_1262_3_6"  data-_i="3" data-_j="6"  class=" _centered" >0.35</td><td id="_td_1262_3_7"  data-_i="3" data-_j="7"  class=" _centered" >0.3</td></tr>
+<tr id="_tr_1262_4" ><td id="_td_1262_4_1"  data-_i="4" data-_j="1"  title="" tooltip_id="67" class=" _left _freezed_col  _centered tooltip-maqao" >run_3</td><td id="_td_1262_4_2"  data-_i="4" data-_j="2"  class=" _centered" >8</td><td id="_td_1262_4_3"  data-_i="4" data-_j="3"  class=" _centered" >12.08</td><td id="_td_1262_4_4"  data-_i="4" data-_j="4"  class=" _centered" >11.02</td><td id="_td_1262_4_5"  data-_i="4" data-_j="5"  class=" _centered" >0.55</td><td id="_td_1262_4_6"  data-_i="4" data-_j="6"  class=" _centered" >0.21</td><td id="_td_1262_4_7"  data-_i="4" data-_j="7"  class=" _centered" >0.3</td></tr>
+</table></div></div></div></div>
+</div>
+</div>
+<div id="panel_scala_eff" class="td_app_selected">
+<div><h3 class="selected_panel_h3">Scalability - Efficiency</h3>
+<div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; "><div id="chart_cat_8021" style="height:500px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_8021(){
+    document.getElementById('chart_cat_8021').innerHTML = '';
+  var plot8021_data = [[1,0.86,0.63,0.32,],];
+  var plot8021_ticks = ['run_0','run_1','run_2','run_3',];
+  var plot8021 = jQuery.jqplot ('chart_cat_8021', plot8021_data, {
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot8021_ticks,label: 'Run',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,},
+      yaxis: {label: 'Efficiency (higher is better)',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return plot8021_ticks[pointIndex]+' - '+plot8021_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'Efficiency', yaxis:'yaxis', },],
+  });
+  var txts = ["68","69","70","71",];
+  var div_chart = document.getElementById ("chart_cat_8021");
+  if (div_chart == null) {
+    return ;
+  }
+  var div_axis  = div_chart.getElementsByClassName ("jqplot-xaxis");
+  if (div_axis.length == 0
+  ||  div_axis[0].children.length == 0) {
+    return ;
+  }
+  for (var i = 1; i < div_axis[0].children.length; i++) {
+    var div_label = div_axis[0].children[i];
+    if (txts[i - 1] != "") {
+      div_label.setAttribute ("title", "");
+      div_label.setAttribute ("tooltip_id", txts[i - 1]);
+      div_label.classList.add ("tooltip-maqao");
+      div_label.style["z-index"] = 999;
+    }
+  }
+  txts = null;
+  }
+</script><div id="scala_eff_table">
+<div class="_accordion_box collapsed" ><h3 id="_accordion_header_3" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>Detailed Efficiency</h3><div id="_accordion_content_3" class="_content collapsed"><div class="_div_table" id="_fixed_1263" ><table class="_fixed_table" id="_fixed_table_1263"><tr><th class="_freezed_row  _left _freezed_col"><span></span>Run</th><th class="_freezed_row "><span></span>Number of observed threads</th><th class="_freezed_row "><span></span>Efficiency (ideal is 1)</th></tr><tr id="_tr_1263_1" ><td id="_td_1263_1_1"  data-_i="1" data-_j="1"  title="" tooltip_id="72" class=" _left _freezed_col  _centered tooltip-maqao" >run_0</td><td id="_td_1263_1_2"  data-_i="1" data-_j="2"  class=" _centered" >1</td><td id="_td_1263_1_3"  data-_i="1" data-_j="3"  class=" _centered"  style="background:#579619;" >1</td></tr>
+<tr id="_tr_1263_2" ><td id="_td_1263_2_1"  data-_i="2" data-_j="1"  title="" tooltip_id="73" class=" _left _freezed_col  _centered tooltip-maqao" >run_1</td><td id="_td_1263_2_2"  data-_i="2" data-_j="2"  class=" _centered" >2</td><td id="_td_1263_2_3"  data-_i="2" data-_j="3"  class=" _centered"  style="background:#6AA232;" >0.86</td></tr>
+<tr id="_tr_1263_3" ><td id="_td_1263_3_1"  data-_i="3" data-_j="1"  title="" tooltip_id="74" class=" _left _freezed_col  _centered tooltip-maqao" >run_2</td><td id="_td_1263_3_2"  data-_i="3" data-_j="2"  class=" _centered" >4</td><td id="_td_1263_3_3"  data-_i="3" data-_j="3"  class=" _centered"  style="background:#8FB966;" >0.63</td></tr>
+<tr id="_tr_1263_4" ><td id="_td_1263_4_1"  data-_i="4" data-_j="1"  title="" tooltip_id="75" class=" _left _freezed_col  _centered tooltip-maqao" >run_3</td><td id="_td_1263_4_2"  data-_i="4" data-_j="2"  class=" _centered" >8</td><td id="_td_1263_4_3"  data-_i="4" data-_j="3"  class=" _centered"  style="background:#C06A59;" >0.32</td></tr>
+</table></div></div></div></div>
+</div>
+</div>
+<div id="panel_fct_prof" class="td_app_selected">
+<div><h3 class="selected_panel_h3">Function Based Profile</h3>
+<div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; "><div id="chart_cat_8022" style="height:500px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_8022(){
+    document.getElementById('chart_cat_8022').innerHTML = '';
+  var plot8022_data = [[85.37,5.83,0,1.79,4.27,0.39,0.45,1.9,],[81.63,5.94,2.6,2.7,3.1,1.19,0.71,2.14,],[78.83,8,4.62,1.85,3.55,1.22,0.19,1.73,],[76.13,12.75,2.48,3.78,2.3,0.94,0.58,1.04,],[85.37,91.2,91.2,92.99,97.26,97.65,98.1,100,],[81.63,87.57,90.17,92.86,95.96,97.15,97.86,100,],[78.83,86.83,91.45,93.3,96.85,98.07,98.27,100,],[76.13,88.88,91.36,95.15,97.44,98.39,98.96,100,],];
+  var plot8022_ticks = ['> 8%','4% to 8%','2% to 4%','1% to 2%','0.5% to 1%','0.25% to 0.5%','0.125% to 0.25%','< 0.125%',];
+  var plot8022 = jQuery.jqplot ('chart_cat_8022', plot8022_data, {
+    seriesColors:['#333399','#cc00cc','#ffcc00','#339966','#7979d2','#ff4dff','#ffe066','#66cc99',],
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {},
+      pointLabels: {show: true      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot8022_ticks,label: 'Coverage Ranges',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,},
+      yaxis: {label: 'Coverage (%)',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,tickOptions:{formatString:'%.2f'},},
+      y2axis: {label: 'Cumulated Coverage (%)',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return plot8022_ticks[pointIndex]+' - '+plot8022_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'run_0', yaxis:'yaxis', },{label:'run_1', yaxis:'yaxis', },{label:'run_2', yaxis:'yaxis', },{label:'run_3', yaxis:'yaxis', },{label:'cumul. cov. run_0', renderer: $.jqplot.LineRenderer, yaxis:'yaxis', },{label:'cumul. cov. run_1', renderer: $.jqplot.LineRenderer, yaxis:'yaxis', },{label:'cumul. cov. run_2', renderer: $.jqplot.LineRenderer, yaxis:'yaxis', },{label:'cumul. cov. run_3', renderer: $.jqplot.LineRenderer, yaxis:'yaxis', },],
+  });
+  }
+</script></div>
+</div>
+<div id="panel_scala_para_eff" class="td_app_selected">
+<div><h3 class="selected_panel_h3">Scalability - Coverage per Parallel Efficiency at Function Level</h3>
+<div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; "><div id="chart_cat_8023" style="height:500px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_8023(){
+    document.getElementById('chart_cat_8023').innerHTML = '';
+  var plot8023_data = [[0,2.07,1.85,1.43,],[0,0.6,0.77,1.15,],[0,0.5,1.05,59.54,],[0,0.42,0.06,20.04,],[0,1.06,10.79,8.37,],[0,2.6,43.75,0,],[0,0,17.82,0,],[0,0.92,8,0,],[0,46.93,0,0,],[0,41.7,11.05,5.32,],[100,3.2,4.87,4.16,],];
+  var plot8023_ticks = ['run_0','run_1','run_2','run_3',];
+  var plot8023 = jQuery.jqplot ('chart_cat_8023', plot8023_data, {
+    seriesColors:['#A52B12','#AE4029','#B75541','#C06A59','#BF9223','#C69E3B','#8FB966','#7CAD4C','#6AA232','#579619','#B3B3B3',],
+    stackSeries: true,
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {barMargin: 20,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot8023_ticks,label: 'Runs',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,},
+      yaxis: {label: 'Coverage (%)',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,tickOptions:{formatString:'%.2f'},max:100,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return plot8023_ticks[pointIndex]+' - '+plot8023_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'0% to 10% efficiency', yaxis:'yaxis', },{label:'10% to 20% efficiency', yaxis:'yaxis', },{label:'20% to 30% efficiency', yaxis:'yaxis', },{label:'30% to 40% efficiency', yaxis:'yaxis', },{label:'40% to 50% efficiency', yaxis:'yaxis', },{label:'50% to 60% efficiency', yaxis:'yaxis', },{label:'60% to 70% efficiency', yaxis:'yaxis', },{label:'70% to 80% efficiency', yaxis:'yaxis', },{label:'80% to 90% efficiency', yaxis:'yaxis', },{label:'90% to 100% efficiency', yaxis:'yaxis', },{label:'New or unmeasured functions', yaxis:'yaxis', },],
+  });
+  var txts = ["76","77","78","79",];
+  var div_chart = document.getElementById ("chart_cat_8023");
+  if (div_chart == null) {
+    return ;
+  }
+  var div_axis  = div_chart.getElementsByClassName ("jqplot-xaxis");
+  if (div_axis.length == 0
+  ||  div_axis[0].children.length == 0) {
+    return ;
+  }
+  for (var i = 1; i < div_axis[0].children.length; i++) {
+    var div_label = div_axis[0].children[i];
+    if (txts[i - 1] != "") {
+      div_label.setAttribute ("title", "");
+      div_label.setAttribute ("tooltip_id", txts[i - 1]);
+      div_label.classList.add ("tooltip-maqao");
+      div_label.style["z-index"] = 999;
+    }
+  }
+  txts = null;
+  }
+</script><div id="scala_para_eff_table">
+<div class="_accordion_box collapsed" ><h3 id="_accordion_header_4" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>Detailed Coverage per Parallel Efficiency</h3><div id="_accordion_content_4" class="_content collapsed"><div class="_div_table" id="_fixed_1264" ><div class="_accordion_box" ><h3 id="_accordion_header_5" class="_header" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25BC;</span>Columns Filter<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="80" ></span></h3><div id="_accordion_content_5" class="_content"><div style="max-height:165px;"><form>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table1264_opt13" onclick="click_table_menu('_table1264_opt13', '_table1264_opt_all', 'list_opts_table1264')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Coverage (%) new or unmeasured functions</span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="button" id="_table1264_opt_all" onclick="set_all_table_menu(this, 'list_opts_table1264')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" value="Select all"></span>
+</form></div>
+</div></div><table class="_fixed_table" id="_fixed_table_1264"><tr><th class="_freezed_row  _left _freezed_col"><span></span>Run</th><th class="_freezed_row "><span></span>Number of observed threads</th><th class="_freezed_row "><span></span>Coverage (%)<br/>0% to 10%  eff. </th><th class="_freezed_row "><span></span>Coverage (%)<br/>10% to 20% eff.</th><th class="_freezed_row "><span></span>Coverage (%)<br/>20% to 30% eff.</th><th class="_freezed_row "><span></span>Coverage (%)<br/>30% to 40% eff.</th><th class="_freezed_row "><span></span>Coverage (%)<br/>40% to 50% eff.</th><th class="_freezed_row "><span></span>Coverage (%)<br/>50% to 60% eff.</th><th class="_freezed_row "><span></span>Coverage (%)<br/>60% to 70% eff.</th><th class="_freezed_row "><span></span>Coverage (%)<br/>70% to 80% eff.</th><th class="_freezed_row "><span></span>Coverage (%)<br/>80% to 90% eff.</th><th class="_freezed_row "><span></span>Coverage (%)<br/>90% to 100% eff.</th><th class="_freezed_row  _table1264_opt13 _tcol_hidden"><span></span>Coverage (%) new or unmeasured functions</th></tr><tr id="_tr_1264_1" ><td id="_td_1264_1_1"  data-_i="1" data-_j="1"  title="" tooltip_id="81" class=" _left _freezed_col  _centered tooltip-maqao" >run_0</td><td id="_td_1264_1_2"  data-_i="1" data-_j="2"  class=" _centered" >1</td><td id="_td_1264_1_3"  data-_i="1" data-_j="3"  class=" _centered"  style="background:#D29588;" >0</td><td id="_td_1264_1_4"  data-_i="1" data-_j="4"  class=" _centered"  style="background:#D29588;" >0</td><td id="_td_1264_1_5"  data-_i="1" data-_j="5"  class=" _centered"  style="background:#D29588;" >0</td><td id="_td_1264_1_6"  data-_i="1" data-_j="6"  class=" _centered"  style="background:#D29588;" >0</td><td id="_td_1264_1_7"  data-_i="1" data-_j="7"  class=" _centered"  style="background:#DBC285;" >0</td><td id="_td_1264_1_8"  data-_i="1" data-_j="8"  class=" _centered"  style="background:#DBC285;" >0</td><td id="_td_1264_1_9"  data-_i="1" data-_j="9"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1264_1_10"  data-_i="1" data-_j="10"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1264_1_11"  data-_i="1" data-_j="11"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1264_1_12"  data-_i="1" data-_j="12"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1264_1_13"  data-_i="1" data-_j="13"  class=" _centered _table1264_opt13 _tcol_hidden"  style="background:#3E7D00;" >100</td></tr>
+<tr id="_tr_1264_2" ><td id="_td_1264_2_1"  data-_i="2" data-_j="1"  title="" tooltip_id="82" class=" _left _freezed_col  _centered tooltip-maqao" >run_1</td><td id="_td_1264_2_2"  data-_i="2" data-_j="2"  class=" _centered" >2</td><td id="_td_1264_2_3"  data-_i="2" data-_j="3"  class=" _centered"  style="background:#D29588;" >2.07</td><td id="_td_1264_2_4"  data-_i="2" data-_j="4"  class=" _centered"  style="background:#D29588;" >0.6</td><td id="_td_1264_2_5"  data-_i="2" data-_j="5"  class=" _centered"  style="background:#D29588;" >0.5</td><td id="_td_1264_2_6"  data-_i="2" data-_j="6"  class=" _centered"  style="background:#D29588;" >0.42</td><td id="_td_1264_2_7"  data-_i="2" data-_j="7"  class=" _centered"  style="background:#DBC285;" >1.06</td><td id="_td_1264_2_8"  data-_i="2" data-_j="8"  class=" _centered"  style="background:#DBC285;" >2.6</td><td id="_td_1264_2_9"  data-_i="2" data-_j="9"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1264_2_10"  data-_i="2" data-_j="10"  class=" _centered"  style="background:#A2C57F;" >0.92</td><td id="_td_1264_2_11"  data-_i="2" data-_j="11"  class=" _centered"  style="background:#6AA232;" >46.93</td><td id="_td_1264_2_12"  data-_i="2" data-_j="12"  class=" _centered"  style="background:#6AA232;" >41.7</td><td id="_td_1264_2_13"  data-_i="2" data-_j="13"  class=" _centered _table1264_opt13 _tcol_hidden"  style="background:#A2C57F;" >3.2</td></tr>
+<tr id="_tr_1264_3" ><td id="_td_1264_3_1"  data-_i="3" data-_j="1"  title="" tooltip_id="83" class=" _left _freezed_col  _centered tooltip-maqao" >run_2</td><td id="_td_1264_3_2"  data-_i="3" data-_j="2"  class=" _centered" >4</td><td id="_td_1264_3_3"  data-_i="3" data-_j="3"  class=" _centered"  style="background:#D29588;" >1.85</td><td id="_td_1264_3_4"  data-_i="3" data-_j="4"  class=" _centered"  style="background:#D29588;" >0.77</td><td id="_td_1264_3_5"  data-_i="3" data-_j="5"  class=" _centered"  style="background:#D29588;" >1.05</td><td id="_td_1264_3_6"  data-_i="3" data-_j="6"  class=" _centered"  style="background:#D29588;" >0.06</td><td id="_td_1264_3_7"  data-_i="3" data-_j="7"  class=" _centered"  style="background:#D4B66C;" >10.79</td><td id="_td_1264_3_8"  data-_i="3" data-_j="8"  class=" _centered"  style="background:#C69E3B;" >43.75</td><td id="_td_1264_3_9"  data-_i="3" data-_j="9"  class=" _centered"  style="background:#8FB966;" >17.82</td><td id="_td_1264_3_10"  data-_i="3" data-_j="10"  class=" _centered"  style="background:#A2C57F;" >8</td><td id="_td_1264_3_11"  data-_i="3" data-_j="11"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1264_3_12"  data-_i="3" data-_j="12"  class=" _centered"  style="background:#8FB966;" >11.05</td><td id="_td_1264_3_13"  data-_i="3" data-_j="13"  class=" _centered _table1264_opt13 _tcol_hidden"  style="background:#A2C57F;" >4.87</td></tr>
+<tr id="_tr_1264_4" ><td id="_td_1264_4_1"  data-_i="4" data-_j="1"  title="" tooltip_id="84" class=" _left _freezed_col  _centered tooltip-maqao" >run_3</td><td id="_td_1264_4_2"  data-_i="4" data-_j="2"  class=" _centered" >8</td><td id="_td_1264_4_3"  data-_i="4" data-_j="3"  class=" _centered"  style="background:#D29588;" >1.43</td><td id="_td_1264_4_4"  data-_i="4" data-_j="4"  class=" _centered"  style="background:#D29588;" >1.15</td><td id="_td_1264_4_5"  data-_i="4" data-_j="5"  class=" _centered"  style="background:#AE4029;" >59.54</td><td id="_td_1264_4_6"  data-_i="4" data-_j="6"  class=" _centered"  style="background:#C97F70;" >20.04</td><td id="_td_1264_4_7"  data-_i="4" data-_j="7"  class=" _centered"  style="background:#DBC285;" >8.37</td><td id="_td_1264_4_8"  data-_i="4" data-_j="8"  class=" _centered"  style="background:#DBC285;" >0</td><td id="_td_1264_4_9"  data-_i="4" data-_j="9"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1264_4_10"  data-_i="4" data-_j="10"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1264_4_11"  data-_i="4" data-_j="11"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1264_4_12"  data-_i="4" data-_j="12"  class=" _centered"  style="background:#A2C57F;" >5.32</td><td id="_td_1264_4_13"  data-_i="4" data-_j="13"  class=" _centered _table1264_opt13 _tcol_hidden"  style="background:#A2C57F;" >4.16</td></tr>
+</table></div><script>
+var list_opts_table1264 = ['_table1264_opt13',];
+function __reset_checkboxes_table1264 () {
+  var displayed_columns = [{id:"_table1264_opt1", value:true}, {id:"_table1264_opt2", value:true}, {id:"_table1264_opt3", value:true}, {id:"_table1264_opt4", value:true}, {id:"_table1264_opt5", value:true}, {id:"_table1264_opt6", value:true}, {id:"_table1264_opt7", value:true}, {id:"_table1264_opt8", value:true}, {id:"_table1264_opt9", value:true}, {id:"_table1264_opt10", value:true}, {id:"_table1264_opt11", value:true}, {id:"_table1264_opt12", value:true}, {id:"_table1264_opt13", value:false}];
+  // Update initial state using localStorage
+  for (var i = 0; i < displayed_columns.length; i++) {
+    var dcol = displayed_columns[i];
+    var val = localStorage.getItem (dcol.id);
+    if (val) {
+      dcol.value = (val === "true");
+    }
+    var obj = document.getElementById(dcol.id);
+    if (obj) {
+      if (dcol.value == true) {
+        obj.checked = true;
+      }
+      else {
+        obj.checked = false;
+      }
+    }
+  }
+  // Update table
+  var table = document.getElementById("_fixed_table_1264");
+  for (let i in table.rows) {
+    let row = table.rows[i]
+    for (let j in row.cells) {
+      let col = row.cells[j]
+      if (col.classList) {
+        if (displayed_columns[j].value == true) {
+          col.classList.remove("_tcol_hidden");
+        }
+        else {
+          col.classList.add("_tcol_hidden");
+        }
+      }
+    }
+  }
+  {
+    var value = localStorage.getItem("_table1264_opt_all");
+    if (value) {
+      var obj = document.getElementById ("_table1264_opt_all");
+      if (obj) {
+        obj.value = value;
+      }
+    }
+  }
+  _check_all_checkbox_ ("_table1264_opt_all", "list_opts_table1264");
+};
+addLoadEvent(function(){
+  __reset_checkboxes_table1264 ();
+});
+</script>
+</div></div></div>
+</div>
+</div>
+<div id="panel_scala_para_spd" class="td_app_selected">
+<div><h3 class="selected_panel_h3">Scalability - Coverage per Parallel Speedup at Function Level</h3>
+<div style="margin-top: 10px; margin-bottom: 10px; background-color: var(--chart_background); overflow-x:auto; overflow-y:hidden; "><div id="chart_cat_8024" style="height:500px;margin-top:20px;" ></div>
+</div>
+<script class="code" >
+  function __generate_chart_8024(){
+    document.getElementById('chart_cat_8024').innerHTML = '';
+  var plot8024_data = [[0,1.52,1.36,0,],[0,0.54,0.38,1.17,],[0,0.2,0,0,],[0,0.41,0.11,0,],[0,0.5,0.16,0.09,],[0,0,0.21,0,],[0,0.42,0.18,0.06,],[0,0,0.2,0.11,],[0,0.75,0,0.05,],[0,3.51,5.07,4.2,],[0,92.15,92.32,94.33,],[100,0,0,0,],];
+  var plot8024_ticks = ['run_0','run_1','run_2','run_3',];
+  var plot8024 = jQuery.jqplot ('chart_cat_8024', plot8024_data, {
+    seriesColors:['#A52B12','#AE4029','#B75541','#C06A59','#BF9223','#C69E3B','#8FB966','#7CAD4C','#6AA232','#579619','#458B00','#B3B3B3',],
+    stackSeries: true,
+    seriesDefaults: {
+      renderer: jQuery.jqplot.BarRenderer,
+      rendererOptions: {barMargin: 20,},
+      pointLabels: {show: false      },
+    },
+    axes: {
+      xaxis: {
+        renderer: $.jqplot.CategoryAxisRenderer,ticks: plot8024_ticks,label: 'Runs',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,},
+      yaxis: {label: 'Coverage (%)',labelRenderer: $.jqplot.CanvasAxisLabelRenderer,autoscale:true,min:0,tickOptions:{formatString:'%.2f'},max:100,},
+      y2axis: {autoscale:true,min:0,}
+    },
+    highlighter: {tooltipContentEditor: function (str, seriesIndex, pointIndex) {return plot8024_ticks[pointIndex]+' - '+plot8024_data[seriesIndex][pointIndex];},show: true,showTooltip: true,sizeAdjust: 10,formatString: '%s',tooltipLocation: 'n',useAxesFormatters: false,},
+    legend: {renderer: $.jqplot.EnhancedLegendRenderer, show: true,location: 's',placement: 'outsideGrid',rendererOptions: {numberRows: '1',},},
+    series: [{label:'0% to 10% speedup', yaxis:'yaxis', },{label:'10% to 20% speedup', yaxis:'yaxis', },{label:'20% to 30% speedup', yaxis:'yaxis', },{label:'30% to 40% speedup', yaxis:'yaxis', },{label:'40% to 50% speedup', yaxis:'yaxis', },{label:'50% to 60% speedup', yaxis:'yaxis', },{label:'60% to 70% speedup', yaxis:'yaxis', },{label:'70% to 80% speedup', yaxis:'yaxis', },{label:'80% to 90% speedup', yaxis:'yaxis', },{label:'90% to 100% speedup', yaxis:'yaxis', },{label:'&gt; 100% speedup', yaxis:'yaxis', },{label:'New or unmeasured functions', yaxis:'yaxis', },],
+  });
+  var txts = ["85","86","87","88",];
+  var div_chart = document.getElementById ("chart_cat_8024");
+  if (div_chart == null) {
+    return ;
+  }
+  var div_axis  = div_chart.getElementsByClassName ("jqplot-xaxis");
+  if (div_axis.length == 0
+  ||  div_axis[0].children.length == 0) {
+    return ;
+  }
+  for (var i = 1; i < div_axis[0].children.length; i++) {
+    var div_label = div_axis[0].children[i];
+    if (txts[i - 1] != "") {
+      div_label.setAttribute ("title", "");
+      div_label.setAttribute ("tooltip_id", txts[i - 1]);
+      div_label.classList.add ("tooltip-maqao");
+      div_label.style["z-index"] = 999;
+    }
+  }
+  txts = null;
+  }
+</script><div id="scala_para_spd_table">
+<div class="_accordion_box collapsed" ><h3 id="_accordion_header_6" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>Detailed Coverage per Parallel Speedup</h3><div id="_accordion_content_6" class="_content collapsed"><div class="_div_table" id="_fixed_1265" ><div class="_accordion_box" ><h3 id="_accordion_header_7" class="_header" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25BC;</span>Columns Filter<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="89" ></span></h3><div id="_accordion_content_7" class="_content"><div style="max-height:165px;"><form>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table1265_opt14" onclick="click_table_menu('_table1265_opt14', '_table1265_opt_all', 'list_opts_table1265')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Coverage (%) new or unmeasured functions</span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="button" id="_table1265_opt_all" onclick="set_all_table_menu(this, 'list_opts_table1265')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" value="Select all"></span>
+</form></div>
+</div></div><table class="_fixed_table" id="_fixed_table_1265"><tr><th class="_freezed_row  _left _freezed_col"><span></span>Run</th><th class="_freezed_row "><span></span>Number of observed threads</th><th class="_freezed_row "><span></span>Coverage (%)<br/>0% to 10%  speedup </th><th class="_freezed_row "><span></span>Coverage (%)<br/>10% to 20% speedup</th><th class="_freezed_row "><span></span>Coverage (%)<br/>20% to 30% speedup</th><th class="_freezed_row "><span></span>Coverage (%)<br/>30% to 40% speedup</th><th class="_freezed_row "><span></span>Coverage (%)<br/>40% to 50% speedup</th><th class="_freezed_row "><span></span>Coverage (%)<br/>50% to 60% speedup</th><th class="_freezed_row "><span></span>Coverage (%)<br/>60% to 70% speedup</th><th class="_freezed_row "><span></span>Coverage (%)<br/>70% to 80% speedup</th><th class="_freezed_row "><span></span>Coverage (%)<br/>80% to 90% speedup</th><th class="_freezed_row "><span></span>Coverage (%)<br/>90% to 100% speedup</th><th class="_freezed_row "><span></span>Coverage (%)<br/> &gt; 100% speedup</th><th class="_freezed_row  _table1265_opt14 _tcol_hidden"><span></span>Coverage (%) new or unmeasured functions</th></tr><tr id="_tr_1265_1" ><td id="_td_1265_1_1"  data-_i="1" data-_j="1"  title="" tooltip_id="90" class=" _left _freezed_col  _centered tooltip-maqao" >run_0</td><td id="_td_1265_1_2"  data-_i="1" data-_j="2"  class=" _centered" >1</td><td id="_td_1265_1_3"  data-_i="1" data-_j="3"  class=" _centered"  style="background:#D29588;" >0</td><td id="_td_1265_1_4"  data-_i="1" data-_j="4"  class=" _centered"  style="background:#D29588;" >0</td><td id="_td_1265_1_5"  data-_i="1" data-_j="5"  class=" _centered"  style="background:#D29588;" >0</td><td id="_td_1265_1_6"  data-_i="1" data-_j="6"  class=" _centered"  style="background:#D29588;" >0</td><td id="_td_1265_1_7"  data-_i="1" data-_j="7"  class=" _centered"  style="background:#DBC285;" >0</td><td id="_td_1265_1_8"  data-_i="1" data-_j="8"  class=" _centered"  style="background:#DBC285;" >0</td><td id="_td_1265_1_9"  data-_i="1" data-_j="9"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1265_1_10"  data-_i="1" data-_j="10"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1265_1_11"  data-_i="1" data-_j="11"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1265_1_12"  data-_i="1" data-_j="12"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1265_1_13"  data-_i="1" data-_j="13"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1265_1_14"  data-_i="1" data-_j="14"  class=" _centered _table1265_opt14 _tcol_hidden" >100</td></tr>
+<tr id="_tr_1265_2" ><td id="_td_1265_2_1"  data-_i="2" data-_j="1"  title="" tooltip_id="91" class=" _left _freezed_col  _centered tooltip-maqao" >run_1</td><td id="_td_1265_2_2"  data-_i="2" data-_j="2"  class=" _centered" >2</td><td id="_td_1265_2_3"  data-_i="2" data-_j="3"  class=" _centered"  style="background:#D29588;" >1.52</td><td id="_td_1265_2_4"  data-_i="2" data-_j="4"  class=" _centered"  style="background:#D29588;" >0.54</td><td id="_td_1265_2_5"  data-_i="2" data-_j="5"  class=" _centered"  style="background:#D29588;" >0.2</td><td id="_td_1265_2_6"  data-_i="2" data-_j="6"  class=" _centered"  style="background:#D29588;" >0.41</td><td id="_td_1265_2_7"  data-_i="2" data-_j="7"  class=" _centered"  style="background:#DBC285;" >0.5</td><td id="_td_1265_2_8"  data-_i="2" data-_j="8"  class=" _centered"  style="background:#DBC285;" >0</td><td id="_td_1265_2_9"  data-_i="2" data-_j="9"  class=" _centered"  style="background:#A2C57F;" >0.42</td><td id="_td_1265_2_10"  data-_i="2" data-_j="10"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1265_2_11"  data-_i="2" data-_j="11"  class=" _centered"  style="background:#A2C57F;" >0.75</td><td id="_td_1265_2_12"  data-_i="2" data-_j="12"  class=" _centered"  style="background:#A2C57F;" >3.51</td><td id="_td_1265_2_13"  data-_i="2" data-_j="13"  class=" _centered"  style="background:#3E7D00;" >92.15</td><td id="_td_1265_2_14"  data-_i="2" data-_j="14"  class=" _centered _table1265_opt14 _tcol_hidden" >0</td></tr>
+<tr id="_tr_1265_3" ><td id="_td_1265_3_1"  data-_i="3" data-_j="1"  title="" tooltip_id="92" class=" _left _freezed_col  _centered tooltip-maqao" >run_2</td><td id="_td_1265_3_2"  data-_i="3" data-_j="2"  class=" _centered" >4</td><td id="_td_1265_3_3"  data-_i="3" data-_j="3"  class=" _centered"  style="background:#D29588;" >1.36</td><td id="_td_1265_3_4"  data-_i="3" data-_j="4"  class=" _centered"  style="background:#D29588;" >0.38</td><td id="_td_1265_3_5"  data-_i="3" data-_j="5"  class=" _centered"  style="background:#D29588;" >0</td><td id="_td_1265_3_6"  data-_i="3" data-_j="6"  class=" _centered"  style="background:#D29588;" >0.11</td><td id="_td_1265_3_7"  data-_i="3" data-_j="7"  class=" _centered"  style="background:#DBC285;" >0.16</td><td id="_td_1265_3_8"  data-_i="3" data-_j="8"  class=" _centered"  style="background:#DBC285;" >0.21</td><td id="_td_1265_3_9"  data-_i="3" data-_j="9"  class=" _centered"  style="background:#A2C57F;" >0.18</td><td id="_td_1265_3_10"  data-_i="3" data-_j="10"  class=" _centered"  style="background:#A2C57F;" >0.2</td><td id="_td_1265_3_11"  data-_i="3" data-_j="11"  class=" _centered"  style="background:#A2C57F;" >0</td><td id="_td_1265_3_12"  data-_i="3" data-_j="12"  class=" _centered"  style="background:#A2C57F;" >5.07</td><td id="_td_1265_3_13"  data-_i="3" data-_j="13"  class=" _centered"  style="background:#3E7D00;" >92.32</td><td id="_td_1265_3_14"  data-_i="3" data-_j="14"  class=" _centered _table1265_opt14 _tcol_hidden" >0</td></tr>
+<tr id="_tr_1265_4" ><td id="_td_1265_4_1"  data-_i="4" data-_j="1"  title="" tooltip_id="93" class=" _left _freezed_col  _centered tooltip-maqao" >run_3</td><td id="_td_1265_4_2"  data-_i="4" data-_j="2"  class=" _centered" >8</td><td id="_td_1265_4_3"  data-_i="4" data-_j="3"  class=" _centered"  style="background:#D29588;" >0</td><td id="_td_1265_4_4"  data-_i="4" data-_j="4"  class=" _centered"  style="background:#D29588;" >1.17</td><td id="_td_1265_4_5"  data-_i="4" data-_j="5"  class=" _centered"  style="background:#D29588;" >0</td><td id="_td_1265_4_6"  data-_i="4" data-_j="6"  class=" _centered"  style="background:#D29588;" >0</td><td id="_td_1265_4_7"  data-_i="4" data-_j="7"  class=" _centered"  style="background:#DBC285;" >0.09</td><td id="_td_1265_4_8"  data-_i="4" data-_j="8"  class=" _centered"  style="background:#DBC285;" >0</td><td id="_td_1265_4_9"  data-_i="4" data-_j="9"  class=" _centered"  style="background:#A2C57F;" >0.06</td><td id="_td_1265_4_10"  data-_i="4" data-_j="10"  class=" _centered"  style="background:#A2C57F;" >0.11</td><td id="_td_1265_4_11"  data-_i="4" data-_j="11"  class=" _centered"  style="background:#A2C57F;" >0.05</td><td id="_td_1265_4_12"  data-_i="4" data-_j="12"  class=" _centered"  style="background:#A2C57F;" >4.2</td><td id="_td_1265_4_13"  data-_i="4" data-_j="13"  class=" _centered"  style="background:#3E7D00;" >94.33</td><td id="_td_1265_4_14"  data-_i="4" data-_j="14"  class=" _centered _table1265_opt14 _tcol_hidden" >0</td></tr>
+</table></div><script>
+var list_opts_table1265 = ['_table1265_opt14',];
+function __reset_checkboxes_table1265 () {
+  var displayed_columns = [{id:"_table1265_opt1", value:true}, {id:"_table1265_opt2", value:true}, {id:"_table1265_opt3", value:true}, {id:"_table1265_opt4", value:true}, {id:"_table1265_opt5", value:true}, {id:"_table1265_opt6", value:true}, {id:"_table1265_opt7", value:true}, {id:"_table1265_opt8", value:true}, {id:"_table1265_opt9", value:true}, {id:"_table1265_opt10", value:true}, {id:"_table1265_opt11", value:true}, {id:"_table1265_opt12", value:true}, {id:"_table1265_opt13", value:true}, {id:"_table1265_opt14", value:false}];
+  // Update initial state using localStorage
+  for (var i = 0; i < displayed_columns.length; i++) {
+    var dcol = displayed_columns[i];
+    var val = localStorage.getItem (dcol.id);
+    if (val) {
+      dcol.value = (val === "true");
+    }
+    var obj = document.getElementById(dcol.id);
+    if (obj) {
+      if (dcol.value == true) {
+        obj.checked = true;
+      }
+      else {
+        obj.checked = false;
+      }
+    }
+  }
+  // Update table
+  var table = document.getElementById("_fixed_table_1265");
+  for (let i in table.rows) {
+    let row = table.rows[i]
+    for (let j in row.cells) {
+      let col = row.cells[j]
+      if (col.classList) {
+        if (displayed_columns[j].value == true) {
+          col.classList.remove("_tcol_hidden");
+        }
+        else {
+          col.classList.add("_tcol_hidden");
+        }
+      }
+    }
+  }
+  {
+    var value = localStorage.getItem("_table1265_opt_all");
+    if (value) {
+      var obj = document.getElementById ("_table1265_opt_all");
+      if (obj) {
+        obj.value = value;
+      }
+    }
+  }
+  _check_all_checkbox_ ("_table1265_opt_all", "list_opts_table1265");
+};
+addLoadEvent(function(){
+  __reset_checkboxes_table1265 ();
+});
+</script>
+</div></div></div>
+</div>
+</div>
+<div id="panel_libraries" class="td_app_selected">
+<div><h3 class="selected_panel_h3">Libraries</h3>
+<div><ul><li><span class="_green_cell">green cell</span>: the library has been found during the run profiling</li>
+<li><span class="_red_cell">red cell</span>: the library does not appear in the run profiling</li></ul></div>
+<table><tr><th>Library</th><th>run_0</th><th>run_1</th><th>run_2</th><th>run_3</th></tr><tr><td>/mnt/lab/spack/opt/spack/linux-zen4/aocc-5.1.0-kjuv6fm52r3cd2cegofjhsfjlgirugmg/lib/libflang.so</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr><tr><td>/mnt/lab/spack/opt/spack/linux-zen4/aocc-5.1.0-kjuv6fm52r3cd2cegofjhsfjlgirugmg/lib/libflangrti.so</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr><tr><td>/mnt/lab/spack/opt/spack/linux-zen4/aocc-5.1.0-kjuv6fm52r3cd2cegofjhsfjlgirugmg/lib/libomp.so</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr><tr><td>/mnt/lab/spack/opt/spack/linux-zen4/aocc-5.1.0-kjuv6fm52r3cd2cegofjhsfjlgirugmg/lib/libpgmath.so</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr><tr><td>/usr/lib64/ld-linux-x86-64.so.2</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr><tr><td>/usr/lib64/libarcher.so</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr><tr><td>/usr/lib64/libc.so.6</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr><tr><td>/usr/lib64/libdl.so.2</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr><tr><td>/usr/lib64/libgcc_s-15-20260123.so.1</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr><tr><td>/usr/lib64/libm.so.6</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr><tr><td>/usr/lib64/libpthread.so.0</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr><tr><td>/usr/lib64/libquadmath.so.0.0.0</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr><tr><td>/usr/lib64/librt.so.1</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr><tr><td>/usr/lib64/libstdc++.so.6.0.34</td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td><td class="_green_cell"></td></tr></table></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+function __reset_current_selector (sel) {
+  var objs = document.getElementsByClassName("td_app_selector");
+  for (var i = 0; i < objs.length; ++i) {
+    objs[i].classList.remove ("current");
+  }
+  sel.classList.add ("current");
+}
+function __reset_current_selected () {
+  var objs = document.getElementsByClassName("td_app_selected");
+  for (var i = 0; i < objs.length; ++i) {
+    objs[i].style.display = "none";
+  }
+}
+function __load_det_app_cat (sel) {
+  __reset_current_selector (sel);
+  __reset_current_selected ();
+  panel_det_app_cat.style.display = "";
+  var winwidth = window.outerWidth;
+  var rpos = getPos (document.getElementById ("selected_table")).x;
+  var _width = winwidth - rpos - 20;
+  document.getElementById ("det_cat_table").style.width = (winwidth - rpos - 19)+"px";
+  document.getElementById('chart_cat_8014').innerHTML = '';
+  $(document).ready(function(){
+     __generate_chart_8014()
+  });
+}
+function __load_fct_tps (sel) {
+  __reset_current_selector (sel);
+  __reset_current_selected ();
+  panel_fct_tps.style.display = "";
+  var selected_value = document.getElementById("select_fct_tps_run").value;
+  var winwidth = window.outerWidth;
+  var rpos = getPos (document.getElementById ("selected_table")).x;
+  var _width = winwidth - rpos - 20;
+  document.getElementById('__div_chart_1').style.display = 'none';
+  document.getElementById('chart_cat_8015').innerHTML = '';
+  if (selected_value == 1) {
+  document.getElementById('__div_chart_1').style.display = '';
+$(document).ready(function(){
+  var ordinals = ['1'];
+  var data = [{value:12.53,offset:0, i:0,color:"#333399"},{value:5.82,offset:12.53, i:0,color:"#cc00cc"},{value:4.99,offset:18.35, i:0,color:"#ffcc00"},{value:2.96,offset:23.34, i:0,color:"#339966"},{value:1.79,offset:26.3, i:0,color:"#80ccff"},{value:0.01,offset:28.09, i:0,color:"#80ffcc"},{value:0.55,offset:28.1, i:0,color:"#7979d2"},{value:0.29,offset:28.65, i:0,color:"#ff4dff"},{value:0.24,offset:28.94, i:0,color:"#ffe066"},{value:0.12,offset:29.18, i:0,color:"#66cc99"},{value:0.02,offset:29.3, i:0,color:"#ccebff"}];
+  var widthgl  = _width;
+  var widthin  = _width;
+  var heightgl = 480;
+  var heightin = 495;
+  let margin = {top:10,right:30,bottom:30,left:50},
+  width = widthgl - margin.left - margin.right,
+  height = heightgl - margin.top - margin.bottom,
+  radius = (Math.min(width, height) / 2) - 10,
+  node;
+  const svg = d3.select('#chart_cat_8015')
+      .append('svg')
+      .attr('width', widthin)
+      .attr('height', heightin)
+      .append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`)
+      .call(
+        d3.zoom()
+          .translateExtent([[0,0], [width, height] ])
+          .extent([[0, 0], [width, height] ])
+        .on('zoom', zoom)
+      ).on("dblclick.zoom", null);
+  let x = d3.scaleLinear().range([0, width])
+  let y = d3.scaleLinear().range([height, 0])
+  let color = d3.scaleOrdinal(d3.schemeCategory10)
+  let xScale = x.domain([-1, ordinals.length])
+  let yScale = y.domain([0, d3.max(data, function(d){return d.value + d.offset})])
+  let xBand = d3.scaleBand().domain(d3.range(-1, ordinals.length)).range([0, width])
+  svg.append('rect')
+    .attr('class', 'zoom-panel')
+    .attr('width', width)
+    .attr('height', height)
+    .style('fill', 'var(--background)')
+  let xAxis = svg.append('g')
+    .attr('class', 'xAxis')
+    .attr('transform', `translate(0, ${height})`)
+    .call(
+      d3.axisBottom(xScale).tickFormat((d, e) => {
+        return ordinals[d]
+      })
+    );
+  svg.append("text")
+    .attr("transform",
+          "translate(" + (width/2) + " ," + (height + margin.top + 30) + ")")
+    .style("text-anchor", "middle")
+    .style("fill", "var(--font)")
+    .text("MAQAO thread rank");
+  let yAxis = svg.append('g')
+    .attr('class', 'yAxis')
+    .call(d3.axisLeft(yScale));
+  yAxis.selectAll(".tick text").attr("fill","var(--font)");
+  yAxis.selectAll(".tick line").attr("stroke","var(--font)");
+  yAxis.selectAll(".domain").attr("stroke","var(--font)");
+  xAxis.selectAll(".tick text").attr("fill","var(--font)");
+  xAxis.selectAll(".tick line").attr("stroke","var(--font)");
+  xAxis.selectAll(".domain").attr("stroke","var(--font)");
+  svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0 - margin.left)
+    .attr("x",0 - (height / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .style("fill", "var(--font)")
+    .text("Time (s)");
+  let tooltip = d3.select("body").append("div").attr("class", "D3tooltip");
+  let bars = svg.append('g')
+    .attr('clip-path','url(#my-clip-path)')
+    .attr('id', 'zoom_chart_8015')
+    .selectAll('.bar')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('class', 'bar')
+    .attr('id', function (d, i) {return 'zoom_chart_8015_'+i;})
+    .attr('x',  function (d, i) {return xScale(d.i) - xBand.bandwidth()*0.9/2})
+    .attr('y',  function (d, i) {return yScale (d.value + d.offset)})
+    .attr('width', xBand.bandwidth()*0.9)
+    .attr('height',  function(d) {return height - yScale(d.value)})
+    .style("fill", function(d) {return d.color})
+    .on("mousemove", function(d){
+      tooltip
+        .style("left", d3.event.pageX - 50 + "px")
+        .style("top", d3.event.pageY - 50 + "px")
+        .style("display", "inline-block")
+        .html(Number.parseFloat(d.value).toFixed (2));
+    })
+    .on("mouseout", function(d) {tooltip.style("display", "none");});
+  let defs = svg.append('defs')
+    defs.append('clipPath')
+      .attr('id', 'my-clip-path')
+      .append('rect')
+      .attr('width', width)
+      .attr('height', height)
+    let hideTicksWithoutLabel = function() {
+      d3.selectAll('.xAxis .tick text').each(function(d){
+        if(this.innerHTML === '') {
+          this.parentNode.style.display = 'none';
+        }
+      })
+    }
+    function zoom() {
+      if (d3.event.transform.k < 0.9) {
+        d3.event.transform.k = 1;
+        return;
+      }
+      if (d3.event.transform.k < 1) {
+        d3.event.transform.k = 1;
+      }
+    xAxis.call(
+      d3.axisBottom(d3.event.transform.rescaleX(xScale)).tickFormat((d, e, target) => {
+        if (Math.floor(d) === d3.format(".1f")(d)) return ordinals[Math.floor(d)]
+          return ordinals[d];
+      })
+    )
+    hideTicksWithoutLabel()
+      bars.attr("transform", "translate(" + d3.event.transform.x+",0)scale(" + d3.event.transform.k + ",1)")
+  }
+});
+  }
+  document.getElementById('__div_chart_2').style.display = 'none';
+  document.getElementById('chart_cat_8016').innerHTML = '';
+  if (selected_value == 2) {
+  document.getElementById('__div_chart_2').style.display = '';
+$(document).ready(function(){
+  var ordinals = ['1','2'];
+  var data = [{value:7.02,offset:0, i:0,color:"#333399"},{value:7.65,offset:0, i:1,color:"#333399"},{value:3.14,offset:7.02, i:0,color:"#cc00cc"},{value:3.29,offset:7.65, i:1,color:"#cc00cc"},{value:2.5,offset:10.16, i:0,color:"#ffcc00"},{value:2.5,offset:10.94, i:1,color:"#ffcc00"},{value:1.55,offset:12.66, i:0,color:"#339966"},{value:1.56,offset:13.44, i:1,color:"#339966"},{value:0.98,offset:14.21, i:0,color:"#80ccff"},{value:1.15,offset:15, i:1,color:"#80ccff"},{value:0.01,offset:15.19, i:0,color:"#80ffcc"},{value:0,offset:16.15, i:1,color:"#80ffcc"},{value:0.46,offset:15.2, i:0,color:"#7979d2"},{value:0.47,offset:16.15, i:1,color:"#7979d2"},{value:0.44,offset:15.66, i:0,color:"#ff4dff"},{value:0.1,offset:16.62, i:1,color:"#ff4dff"},{value:0.42,offset:16.1, i:0,color:"#ffe066"},{value:0,offset:16.72, i:1,color:"#ffe066"},{value:0.16,offset:16.52, i:0,color:"#66cc99"},{value:0.17,offset:16.72, i:1,color:"#66cc99"},{value:0.36,offset:16.68, i:0,color:"#ccebff"},{value:0.39,offset:16.89, i:1,color:"#ccebff"}];
+  var widthgl  = _width;
+  var widthin  = _width;
+  var heightgl = 480;
+  var heightin = 495;
+  let margin = {top:10,right:30,bottom:30,left:50},
+  width = widthgl - margin.left - margin.right,
+  height = heightgl - margin.top - margin.bottom,
+  radius = (Math.min(width, height) / 2) - 10,
+  node;
+  const svg = d3.select('#chart_cat_8016')
+      .append('svg')
+      .attr('width', widthin)
+      .attr('height', heightin)
+      .append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`)
+      .call(
+        d3.zoom()
+          .translateExtent([[0,0], [width, height] ])
+          .extent([[0, 0], [width, height] ])
+        .on('zoom', zoom)
+      ).on("dblclick.zoom", null);
+  let x = d3.scaleLinear().range([0, width])
+  let y = d3.scaleLinear().range([height, 0])
+  let color = d3.scaleOrdinal(d3.schemeCategory10)
+  let xScale = x.domain([-1, ordinals.length])
+  let yScale = y.domain([0, d3.max(data, function(d){return d.value + d.offset})])
+  let xBand = d3.scaleBand().domain(d3.range(-1, ordinals.length)).range([0, width])
+  svg.append('rect')
+    .attr('class', 'zoom-panel')
+    .attr('width', width)
+    .attr('height', height)
+    .style('fill', 'var(--background)')
+  let xAxis = svg.append('g')
+    .attr('class', 'xAxis')
+    .attr('transform', `translate(0, ${height})`)
+    .call(
+      d3.axisBottom(xScale).tickFormat((d, e) => {
+        return ordinals[d]
+      })
+    );
+  svg.append("text")
+    .attr("transform",
+          "translate(" + (width/2) + " ," + (height + margin.top + 30) + ")")
+    .style("text-anchor", "middle")
+    .style("fill", "var(--font)")
+    .text("MAQAO thread rank");
+  let yAxis = svg.append('g')
+    .attr('class', 'yAxis')
+    .call(d3.axisLeft(yScale));
+  yAxis.selectAll(".tick text").attr("fill","var(--font)");
+  yAxis.selectAll(".tick line").attr("stroke","var(--font)");
+  yAxis.selectAll(".domain").attr("stroke","var(--font)");
+  xAxis.selectAll(".tick text").attr("fill","var(--font)");
+  xAxis.selectAll(".tick line").attr("stroke","var(--font)");
+  xAxis.selectAll(".domain").attr("stroke","var(--font)");
+  svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0 - margin.left)
+    .attr("x",0 - (height / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .style("fill", "var(--font)")
+    .text("Time (s)");
+  let tooltip = d3.select("body").append("div").attr("class", "D3tooltip");
+  let bars = svg.append('g')
+    .attr('clip-path','url(#my-clip-path)')
+    .attr('id', 'zoom_chart_8016')
+    .selectAll('.bar')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('class', 'bar')
+    .attr('id', function (d, i) {return 'zoom_chart_8016_'+i;})
+    .attr('x',  function (d, i) {return xScale(d.i) - xBand.bandwidth()*0.9/2})
+    .attr('y',  function (d, i) {return yScale (d.value + d.offset)})
+    .attr('width', xBand.bandwidth()*0.9)
+    .attr('height',  function(d) {return height - yScale(d.value)})
+    .style("fill", function(d) {return d.color})
+    .on("mousemove", function(d){
+      tooltip
+        .style("left", d3.event.pageX - 50 + "px")
+        .style("top", d3.event.pageY - 50 + "px")
+        .style("display", "inline-block")
+        .html(Number.parseFloat(d.value).toFixed (2));
+    })
+    .on("mouseout", function(d) {tooltip.style("display", "none");});
+  let defs = svg.append('defs')
+    defs.append('clipPath')
+      .attr('id', 'my-clip-path')
+      .append('rect')
+      .attr('width', width)
+      .attr('height', height)
+    let hideTicksWithoutLabel = function() {
+      d3.selectAll('.xAxis .tick text').each(function(d){
+        if(this.innerHTML === '') {
+          this.parentNode.style.display = 'none';
+        }
+      })
+    }
+    function zoom() {
+      if (d3.event.transform.k < 0.9) {
+        d3.event.transform.k = 1;
+        return;
+      }
+      if (d3.event.transform.k < 1) {
+        d3.event.transform.k = 1;
+      }
+    xAxis.call(
+      d3.axisBottom(d3.event.transform.rescaleX(xScale)).tickFormat((d, e, target) => {
+        if (Math.floor(d) === d3.format(".1f")(d)) return ordinals[Math.floor(d)]
+          return ordinals[d];
+      })
+    )
+    hideTicksWithoutLabel()
+      bars.attr("transform", "translate(" + d3.event.transform.x+",0)scale(" + d3.event.transform.k + ",1)")
+  }
+});
+  }
+  document.getElementById('__div_chart_3').style.display = 'none';
+  document.getElementById('chart_cat_8017').innerHTML = '';
+  if (selected_value == 3) {
+  document.getElementById('__div_chart_3').style.display = '';
+$(document).ready(function(){
+  var ordinals = ['1','2','3','4'];
+  var data = [{value:5.11,offset:0, i:0,color:"#333399"},{value:4.83,offset:0, i:1,color:"#333399"},{value:5.61,offset:0, i:2,color:"#333399"},{value:5.41,offset:0, i:3,color:"#333399"},{value:2.14,offset:5.11, i:0,color:"#cc00cc"},{value:2.11,offset:4.83, i:1,color:"#cc00cc"},{value:2.24,offset:5.61, i:2,color:"#cc00cc"},{value:2.24,offset:5.41, i:3,color:"#cc00cc"},{value:1.24,offset:7.25, i:0,color:"#ffcc00"},{value:1.24,offset:6.94, i:1,color:"#ffcc00"},{value:1.25,offset:7.85, i:2,color:"#ffcc00"},{value:1.24,offset:7.65, i:3,color:"#ffcc00"},{value:0.92,offset:8.49, i:0,color:"#339966"},{value:0.99,offset:8.18, i:1,color:"#339966"},{value:1.03,offset:9.1, i:2,color:"#339966"},{value:1.02,offset:8.89, i:3,color:"#339966"},{value:0.99,offset:9.41, i:0,color:"#80ccff"},{value:0.97,offset:9.17, i:1,color:"#80ccff"},{value:0.97,offset:10.13, i:2,color:"#80ccff"},{value:0.99,offset:9.91, i:3,color:"#80ccff"},{value:0.01,offset:10.4, i:0,color:"#80ffcc"},{value:0,offset:10.14, i:1,color:"#80ffcc"},{value:0,offset:11.1, i:2,color:"#80ffcc"},{value:0.01,offset:10.9, i:3,color:"#80ffcc"},{value:0.3,offset:10.41, i:0,color:"#7979d2"},{value:0.31,offset:10.14, i:1,color:"#7979d2"},{value:0.29,offset:11.1, i:2,color:"#7979d2"},{value:0.31,offset:10.91, i:3,color:"#7979d2"},{value:0.31,offset:10.71, i:0,color:"#ff4dff"},{value:0.45,offset:10.45, i:1,color:"#ff4dff"},{value:0.13,offset:11.39, i:2,color:"#ff4dff"},{value:0.17,offset:11.22, i:3,color:"#ff4dff"},{value:0,offset:11.02, i:0,color:"#ffe066"},{value:0.56,offset:10.9, i:1,color:"#ffe066"},{value:0.11,offset:11.52, i:2,color:"#ffe066"},{value:0.24,offset:11.39, i:3,color:"#ffe066"},{value:0.14,offset:11.02, i:0,color:"#66cc99"},{value:0.14,offset:11.46, i:1,color:"#66cc99"},{value:0.08,offset:11.63, i:2,color:"#66cc99"},{value:0.12,offset:11.63, i:3,color:"#66cc99"},{value:0.51,offset:11.16, i:0,color:"#ccebff"},{value:0.25,offset:11.6, i:1,color:"#ccebff"},{value:0.21,offset:11.71, i:2,color:"#ccebff"},{value:0.19,offset:11.75, i:3,color:"#ccebff"}];
+  var widthgl  = _width;
+  var widthin  = _width;
+  var heightgl = 480;
+  var heightin = 495;
+  let margin = {top:10,right:30,bottom:30,left:50},
+  width = widthgl - margin.left - margin.right,
+  height = heightgl - margin.top - margin.bottom,
+  radius = (Math.min(width, height) / 2) - 10,
+  node;
+  const svg = d3.select('#chart_cat_8017')
+      .append('svg')
+      .attr('width', widthin)
+      .attr('height', heightin)
+      .append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`)
+      .call(
+        d3.zoom()
+          .translateExtent([[0,0], [width, height] ])
+          .extent([[0, 0], [width, height] ])
+        .on('zoom', zoom)
+      ).on("dblclick.zoom", null);
+  let x = d3.scaleLinear().range([0, width])
+  let y = d3.scaleLinear().range([height, 0])
+  let color = d3.scaleOrdinal(d3.schemeCategory10)
+  let xScale = x.domain([-1, ordinals.length])
+  let yScale = y.domain([0, d3.max(data, function(d){return d.value + d.offset})])
+  let xBand = d3.scaleBand().domain(d3.range(-1, ordinals.length)).range([0, width])
+  svg.append('rect')
+    .attr('class', 'zoom-panel')
+    .attr('width', width)
+    .attr('height', height)
+    .style('fill', 'var(--background)')
+  let xAxis = svg.append('g')
+    .attr('class', 'xAxis')
+    .attr('transform', `translate(0, ${height})`)
+    .call(
+      d3.axisBottom(xScale).tickFormat((d, e) => {
+        return ordinals[d]
+      })
+    );
+  svg.append("text")
+    .attr("transform",
+          "translate(" + (width/2) + " ," + (height + margin.top + 30) + ")")
+    .style("text-anchor", "middle")
+    .style("fill", "var(--font)")
+    .text("MAQAO thread rank");
+  let yAxis = svg.append('g')
+    .attr('class', 'yAxis')
+    .call(d3.axisLeft(yScale));
+  yAxis.selectAll(".tick text").attr("fill","var(--font)");
+  yAxis.selectAll(".tick line").attr("stroke","var(--font)");
+  yAxis.selectAll(".domain").attr("stroke","var(--font)");
+  xAxis.selectAll(".tick text").attr("fill","var(--font)");
+  xAxis.selectAll(".tick line").attr("stroke","var(--font)");
+  xAxis.selectAll(".domain").attr("stroke","var(--font)");
+  svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0 - margin.left)
+    .attr("x",0 - (height / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .style("fill", "var(--font)")
+    .text("Time (s)");
+  let tooltip = d3.select("body").append("div").attr("class", "D3tooltip");
+  let bars = svg.append('g')
+    .attr('clip-path','url(#my-clip-path)')
+    .attr('id', 'zoom_chart_8017')
+    .selectAll('.bar')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('class', 'bar')
+    .attr('id', function (d, i) {return 'zoom_chart_8017_'+i;})
+    .attr('x',  function (d, i) {return xScale(d.i) - xBand.bandwidth()*0.9/2})
+    .attr('y',  function (d, i) {return yScale (d.value + d.offset)})
+    .attr('width', xBand.bandwidth()*0.9)
+    .attr('height',  function(d) {return height - yScale(d.value)})
+    .style("fill", function(d) {return d.color})
+    .on("mousemove", function(d){
+      tooltip
+        .style("left", d3.event.pageX - 50 + "px")
+        .style("top", d3.event.pageY - 50 + "px")
+        .style("display", "inline-block")
+        .html(Number.parseFloat(d.value).toFixed (2));
+    })
+    .on("mouseout", function(d) {tooltip.style("display", "none");});
+  let defs = svg.append('defs')
+    defs.append('clipPath')
+      .attr('id', 'my-clip-path')
+      .append('rect')
+      .attr('width', width)
+      .attr('height', height)
+    let hideTicksWithoutLabel = function() {
+      d3.selectAll('.xAxis .tick text').each(function(d){
+        if(this.innerHTML === '') {
+          this.parentNode.style.display = 'none';
+        }
+      })
+    }
+    function zoom() {
+      if (d3.event.transform.k < 0.9) {
+        d3.event.transform.k = 1;
+        return;
+      }
+      if (d3.event.transform.k < 1) {
+        d3.event.transform.k = 1;
+      }
+    xAxis.call(
+      d3.axisBottom(d3.event.transform.rescaleX(xScale)).tickFormat((d, e, target) => {
+        if (Math.floor(d) === d3.format(".1f")(d)) return ordinals[Math.floor(d)]
+          return ordinals[d];
+      })
+    )
+    hideTicksWithoutLabel()
+      bars.attr("transform", "translate(" + d3.event.transform.x+",0)scale(" + d3.event.transform.k + ",1)")
+  }
+});
+  }
+  document.getElementById('__div_chart_4').style.display = 'none';
+  document.getElementById('chart_cat_8018').innerHTML = '';
+  if (selected_value == 4) {
+  document.getElementById('__div_chart_4').style.display = '';
+$(document).ready(function(){
+  var ordinals = ['1','2','3','4','5','6','7','8'];
+  var data = [{value:5.87,offset:0, i:0,color:"#333399"},{value:5.75,offset:0, i:1,color:"#333399"},{value:5.8,offset:0, i:2,color:"#333399"},{value:5.72,offset:0, i:3,color:"#333399"},{value:5.98,offset:0, i:4,color:"#333399"},{value:5.73,offset:0, i:5,color:"#333399"},{value:5.97,offset:0, i:6,color:"#333399"},{value:5.79,offset:0, i:7,color:"#333399"},{value:2.29,offset:5.87, i:0,color:"#cc00cc"},{value:2.31,offset:5.75, i:1,color:"#cc00cc"},{value:2.31,offset:5.8, i:2,color:"#cc00cc"},{value:2.3,offset:5.72, i:3,color:"#cc00cc"},{value:2.33,offset:5.98, i:4,color:"#cc00cc"},{value:2.27,offset:5.73, i:5,color:"#cc00cc"},{value:2.33,offset:5.97, i:6,color:"#cc00cc"},{value:2.28,offset:5.79, i:7,color:"#cc00cc"},{value:1.07,offset:8.16, i:0,color:"#ffcc00"},{value:1.05,offset:8.06, i:1,color:"#ffcc00"},{value:1.07,offset:8.11, i:2,color:"#ffcc00"},{value:1.05,offset:8.02, i:3,color:"#ffcc00"},{value:1.06,offset:8.31, i:4,color:"#ffcc00"},{value:1,offset:8, i:5,color:"#ffcc00"},{value:1.04,offset:8.3, i:6,color:"#ffcc00"},{value:1.05,offset:8.07, i:7,color:"#ffcc00"},{value:0.92,offset:9.23, i:0,color:"#339966"},{value:0.93,offset:9.11, i:1,color:"#339966"},{value:0.91,offset:9.18, i:2,color:"#339966"},{value:0.89,offset:9.07, i:3,color:"#339966"},{value:0.9,offset:9.37, i:4,color:"#339966"},{value:0.92,offset:9, i:5,color:"#339966"},{value:0.92,offset:9.34, i:6,color:"#339966"},{value:0.92,offset:9.12, i:7,color:"#339966"},{value:0.62,offset:10.15, i:0,color:"#80ccff"},{value:0.63,offset:10.04, i:1,color:"#80ccff"},{value:0.63,offset:10.09, i:2,color:"#80ccff"},{value:0.63,offset:9.96, i:3,color:"#80ccff"},{value:0.63,offset:10.27, i:4,color:"#80ccff"},{value:0.63,offset:9.92, i:5,color:"#80ccff"},{value:0.62,offset:10.26, i:6,color:"#80ccff"},{value:0.62,offset:10.04, i:7,color:"#80ccff"},{value:0.31,offset:10.77, i:0,color:"#80ffcc"},{value:0.31,offset:10.67, i:1,color:"#80ffcc"},{value:0.3,offset:10.72, i:2,color:"#80ffcc"},{value:0.28,offset:10.59, i:3,color:"#80ffcc"},{value:0.29,offset:10.9, i:4,color:"#80ffcc"},{value:0.31,offset:10.55, i:5,color:"#80ffcc"},{value:0.31,offset:10.88, i:6,color:"#80ffcc"},{value:0.3,offset:10.66, i:7,color:"#80ffcc"},{value:0,offset:11.08, i:0,color:"#7979d2"},{value:0.01,offset:10.98, i:1,color:"#7979d2"},{value:0,offset:11.02, i:2,color:"#7979d2"},{value:0,offset:10.87, i:3,color:"#7979d2"},{value:0,offset:11.19, i:4,color:"#7979d2"},{value:0,offset:10.86, i:5,color:"#7979d2"},{value:0,offset:11.19, i:6,color:"#7979d2"},{value:0,offset:10.96, i:7,color:"#7979d2"},{value:0,offset:11.08, i:0,color:"#ff4dff"},{value:0.3,offset:10.99, i:1,color:"#ff4dff"},{value:0.31,offset:11.02, i:2,color:"#ff4dff"},{value:0.29,offset:10.87, i:3,color:"#ff4dff"},{value:0.12,offset:11.19, i:4,color:"#ff4dff"},{value:0.31,offset:10.86, i:5,color:"#ff4dff"},{value:0.19,offset:11.19, i:6,color:"#ff4dff"},{value:0.31,offset:10.96, i:7,color:"#ff4dff"},{value:0.16,offset:11.08, i:0,color:"#ffe066"},{value:0.23,offset:11.29, i:1,color:"#ffe066"},{value:0.22,offset:11.33, i:2,color:"#ffe066"},{value:0.33,offset:11.16, i:3,color:"#ffe066"},{value:0.16,offset:11.31, i:4,color:"#ffe066"},{value:0.31,offset:11.17, i:5,color:"#ffe066"},{value:0.15,offset:11.38, i:6,color:"#ffe066"},{value:0.27,offset:11.27, i:7,color:"#ffe066"},{value:0.1,offset:11.24, i:0,color:"#66cc99"},{value:0.11,offset:11.52, i:1,color:"#66cc99"},{value:0.1,offset:11.55, i:2,color:"#66cc99"},{value:0.1,offset:11.49, i:3,color:"#66cc99"},{value:0.1,offset:11.47, i:4,color:"#66cc99"},{value:0.1,offset:11.48, i:5,color:"#66cc99"},{value:0.1,offset:11.53, i:6,color:"#66cc99"},{value:0.1,offset:11.54, i:7,color:"#66cc99"},{value:0.3,offset:11.34, i:0,color:"#ccebff"},{value:0.24,offset:11.63, i:1,color:"#ccebff"},{value:0.17,offset:11.65, i:2,color:"#ccebff"},{value:0.21,offset:11.59, i:3,color:"#ccebff"},{value:0.26,offset:11.57, i:4,color:"#ccebff"},{value:0.23,offset:11.58, i:5,color:"#ccebff"},{value:0.18,offset:11.63, i:6,color:"#ccebff"},{value:0.21,offset:11.64, i:7,color:"#ccebff"}];
+  var widthgl  = _width;
+  var widthin  = _width;
+  var heightgl = 480;
+  var heightin = 495;
+  let margin = {top:10,right:30,bottom:30,left:50},
+  width = widthgl - margin.left - margin.right,
+  height = heightgl - margin.top - margin.bottom,
+  radius = (Math.min(width, height) / 2) - 10,
+  node;
+  const svg = d3.select('#chart_cat_8018')
+      .append('svg')
+      .attr('width', widthin)
+      .attr('height', heightin)
+      .append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`)
+      .call(
+        d3.zoom()
+          .translateExtent([[0,0], [width, height] ])
+          .extent([[0, 0], [width, height] ])
+        .on('zoom', zoom)
+      ).on("dblclick.zoom", null);
+  let x = d3.scaleLinear().range([0, width])
+  let y = d3.scaleLinear().range([height, 0])
+  let color = d3.scaleOrdinal(d3.schemeCategory10)
+  let xScale = x.domain([-1, ordinals.length])
+  let yScale = y.domain([0, d3.max(data, function(d){return d.value + d.offset})])
+  let xBand = d3.scaleBand().domain(d3.range(-1, ordinals.length)).range([0, width])
+  svg.append('rect')
+    .attr('class', 'zoom-panel')
+    .attr('width', width)
+    .attr('height', height)
+    .style('fill', 'var(--background)')
+  let xAxis = svg.append('g')
+    .attr('class', 'xAxis')
+    .attr('transform', `translate(0, ${height})`)
+    .call(
+      d3.axisBottom(xScale).tickFormat((d, e) => {
+        return ordinals[d]
+      })
+    );
+  svg.append("text")
+    .attr("transform",
+          "translate(" + (width/2) + " ," + (height + margin.top + 30) + ")")
+    .style("text-anchor", "middle")
+    .style("fill", "var(--font)")
+    .text("MAQAO thread rank");
+  let yAxis = svg.append('g')
+    .attr('class', 'yAxis')
+    .call(d3.axisLeft(yScale));
+  yAxis.selectAll(".tick text").attr("fill","var(--font)");
+  yAxis.selectAll(".tick line").attr("stroke","var(--font)");
+  yAxis.selectAll(".domain").attr("stroke","var(--font)");
+  xAxis.selectAll(".tick text").attr("fill","var(--font)");
+  xAxis.selectAll(".tick line").attr("stroke","var(--font)");
+  xAxis.selectAll(".domain").attr("stroke","var(--font)");
+  svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0 - margin.left)
+    .attr("x",0 - (height / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .style("fill", "var(--font)")
+    .text("Time (s)");
+  let tooltip = d3.select("body").append("div").attr("class", "D3tooltip");
+  let bars = svg.append('g')
+    .attr('clip-path','url(#my-clip-path)')
+    .attr('id', 'zoom_chart_8018')
+    .selectAll('.bar')
+    .data(data)
+    .enter()
+    .append('rect')
+    .attr('class', 'bar')
+    .attr('id', function (d, i) {return 'zoom_chart_8018_'+i;})
+    .attr('x',  function (d, i) {return xScale(d.i) - xBand.bandwidth()*0.9/2})
+    .attr('y',  function (d, i) {return yScale (d.value + d.offset)})
+    .attr('width', xBand.bandwidth()*0.9)
+    .attr('height',  function(d) {return height - yScale(d.value)})
+    .style("fill", function(d) {return d.color})
+    .on("mousemove", function(d){
+      tooltip
+        .style("left", d3.event.pageX - 50 + "px")
+        .style("top", d3.event.pageY - 50 + "px")
+        .style("display", "inline-block")
+        .html(Number.parseFloat(d.value).toFixed (2));
+    })
+    .on("mouseout", function(d) {tooltip.style("display", "none");});
+  let defs = svg.append('defs')
+    defs.append('clipPath')
+      .attr('id', 'my-clip-path')
+      .append('rect')
+      .attr('width', width)
+      .attr('height', height)
+    let hideTicksWithoutLabel = function() {
+      d3.selectAll('.xAxis .tick text').each(function(d){
+        if(this.innerHTML === '') {
+          this.parentNode.style.display = 'none';
+        }
+      })
+    }
+    function zoom() {
+      if (d3.event.transform.k < 0.9) {
+        d3.event.transform.k = 1;
+        return;
+      }
+      if (d3.event.transform.k < 1) {
+        d3.event.transform.k = 1;
+      }
+    xAxis.call(
+      d3.axisBottom(d3.event.transform.rescaleX(xScale)).tickFormat((d, e, target) => {
+        if (Math.floor(d) === d3.format(".1f")(d)) return ordinals[Math.floor(d)]
+          return ordinals[d];
+      })
+    )
+    hideTicksWithoutLabel()
+      bars.attr("transform", "translate(" + d3.event.transform.x+",0)scale(" + d3.event.transform.k + ",1)")
+  }
+});
+  }
+}
+function __load_flops (sel) {
+  __reset_current_selector (sel);
+  __reset_current_selected ();
+  panel_flops.style.display = "";
+  var winwidth = window.outerWidth;
+  var rpos = getPos (document.getElementById ("selected_table")).x;
+  var _width = winwidth - rpos - 20;
+  document.getElementById ("flops_table").style.width = (winwidth - rpos - 19)+"px";
+}
+function __load_scala_cov_cat (sel) {
+  __reset_current_selector (sel);
+  __reset_current_selected ();
+  panel_scala_cov_cat.style.display = "";
+  var winwidth = window.outerWidth;
+  var rpos = getPos (document.getElementById ("selected_table")).x;
+  var _width = winwidth - rpos - 20;
+  document.getElementById ("scala_cov_cat_table").style.width = (winwidth - rpos - 19)+"px";
+  document.getElementById('chart_cat_8019').innerHTML = '';
+  $(document).ready(function(){
+     __generate_chart_8019()
+  });
+}
+function __load_scala_tps_cat (sel) {
+  __reset_current_selector (sel);
+  __reset_current_selected ();
+  panel_scala_tps_cat.style.display = "";
+  var winwidth = window.outerWidth;
+  var rpos = getPos (document.getElementById ("selected_table")).x;
+  var _width = winwidth - rpos - 20;
+  document.getElementById ("scala_tps_cat_table").style.width = (winwidth - rpos - 19)+"px";
+  document.getElementById('chart_cat_8020').innerHTML = '';
+  $(document).ready(function(){
+     __generate_chart_8020()
+  });
+}
+function __load_scala_eff (sel) {
+  __reset_current_selector (sel);
+  __reset_current_selected ();
+  panel_scala_eff.style.display = "";
+  var winwidth = window.outerWidth;
+  var rpos = getPos (document.getElementById ("selected_table")).x;
+  var _width = winwidth - rpos - 20;
+  document.getElementById ("scala_eff_table").style.width = (winwidth - rpos - 19)+"px";
+  document.getElementById('chart_cat_8021').innerHTML = '';
+  $(document).ready(function(){
+     __generate_chart_8021()
+  });
+}
+function __load_fct_prof (sel) {
+  __reset_current_selector (sel);
+  __reset_current_selected ();
+  panel_fct_prof.style.display = "";
+  document.getElementById('chart_cat_8022').innerHTML = '';
+  $(document).ready(function(){
+     __generate_chart_8022()
+  });
+}
+function __load_scala_para_eff (sel) {
+  __reset_current_selector (sel);
+  __reset_current_selected ();
+  panel_scala_para_eff.style.display = "";
+  var winwidth = window.outerWidth;
+  var rpos = getPos (document.getElementById ("selected_table")).x;
+  var _width = winwidth - rpos - 20;
+  document.getElementById ("scala_para_eff_table").style.width = (winwidth - rpos - 19)+"px";
+  document.getElementById('chart_cat_8023').innerHTML = '';
+  $(document).ready(function(){
+     __generate_chart_8023()
+  });
+}
+function __load_scala_para_spd (sel) {
+  __reset_current_selector (sel);
+  __reset_current_selected ();
+  panel_scala_para_spd.style.display = "";
+  var winwidth = window.outerWidth;
+  var rpos = getPos (document.getElementById ("selected_table")).x;
+  var _width = winwidth - rpos - 20;
+  document.getElementById ("scala_para_spd_table").style.width = (winwidth - rpos - 19)+"px";
+  document.getElementById('chart_cat_8024').innerHTML = '';
+  $(document).ready(function(){
+     __generate_chart_8024()
+  });
+}
+function __load_prompt_para_eff (sel) {
+  __reset_current_selector (sel);
+  __reset_current_selected ();
+  panel_prompt_para_eff.style.display = "";
+  var winwidth = window.outerWidth;
+  var rpos = getPos (document.getElementById ("selected_table")).x;
+  var _width = winwidth - rpos - 20;
+  document.getElementById ("prompt_para_eff_table").style.width = (winwidth - rpos - 19)+"px";
+}
+function __load_prompt_para_spd (sel) {
+  __reset_current_selector (sel);
+  __reset_current_selected ();
+  panel_prompt_para_spd.style.display = "";
+  var winwidth = window.outerWidth;
+  var rpos = getPos (document.getElementById ("selected_table")).x;
+  var _width = winwidth - rpos - 20;
+  document.getElementById ("prompt_para_spd_table").style.width = (winwidth - rpos - 19)+"px";
+}
+function __load_pop (sel) {
+  __reset_current_selector (sel);
+  __reset_current_selected ();
+  panel_pop.style.display = "";
+}
+function __load_libraries (sel) {
+  __reset_current_selector (sel);
+  __reset_current_selected ();
+  panel_libraries.style.display = "";
+}
+function getPos(el) {
+  for (var lx=0, ly=0;
+      el != null;
+      lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
+  return {x: lx,y: ly};
+}
+function _onresize () {
+  __maqao_legacy_onresize ();
+  var d = document.getElementById ("main_div");
+  d.style.maxHeight = (window.innerHeight - getPos (d).y - 20)+"px";
+  d.style.height = (window.innerHeight - getPos (d).y - 20)+"px";
+  var objs = document.getElementsByClassName("current");
+  if (objs.length > 0 ) {
+    var sec = objs[0].id.substring (7);
+    eval ("if (typeof __load_"+sec+" === \"function\") {__load_"+sec+" ("+objs[0].id+")}");
+  }
+}
+window.onresize = _onresize;
+addLoadEvent(function(){
+  _onresize ();
+  __reset_current_selector (select_det_app_cat);
+  __load_det_app_cat (select_det_app_cat);
+});
+</script>
+<style>
+.td_app_selector {
+  padding-top: 0px;
+  padding-bottom: 5px;
+  padding-left: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 385px;;
+}
+.td_app_selector:hover {
+  border-left: 4px solid var(--fixed_box_borders);
+  padding-left: 4px;
+}
+.td_app_selector.current {
+  background: var(--fixed_box_borders);
+}
+.td_app_selected {
+  overflow-y: auto;
+}
+.selected_panel_h3 {
+  text-align: left;
+  background-color: var(--fixed_box_header_background);
+  color: var(--fixed_box_header_font);
+  margin: 0px;
+  padding: 5px 0px 5px 10px;
+}
+._green_cell {background-color: #8cd98c;}
+._red_cell {background-color: #ff4d4d;}
+</style>
+
+  <div id="MaqaoModal" class="maqao_modal">
+    <div class="maqao_modal-content">
+      <div class="maqao_modal-header">
+        <span class="maqao_close">&times;</span>
+      </div>
+      <div id="maqao_modal-body" class="maqao_modal-body">
+      </div>
+    </div>
+  </div>
+</div><script>
+var tooltips_texts = ['Details how the time<br/>is spent between several categories: <i>System</i> (system calls), <i>Binary</i> (user code),<br/><i>MPI</i> (MPI runtime functions), <i>OMP</i> (OpenMP runtime functions),<i>Math</i><br/>(Math libraries), <i>Pthread</i> (Pthread runtime), <i>I/O</i> (I/O functions), <i>String</i><br/>(string manipulation functions), <i>Memory</i> (Memory management functions), user<br/>categories described in custom_categories table and finally <i>Others</i><br/>(everything not included in previous categories).<br/>Values are at the application level and are not affacted by <i>object_coverage_threshold</i> value.',
+'Details function execution times per thread',
+'Same analysis than <b>Application Categorization</b> for all runs described in the<br/>scalability analysis.<br>Run configurations are available as tooltip over chart X axis labels.',
+'Same analysis than <b>Application Categorization</b> for all runs described in the<br/>scalability analysis, but displayed in time (seconds) and not coverage (percentage).<br><br/>Run configurations are available as tooltip over chart X axis labels.',
+'Efficiency for each run described in the scalability analysis.<br><br/>Run configurations are available as tooltip over chart X axis labels. Higher is better.',
+'Profiling of the application at the function level.',
+'Strong Scalability: Efficiency = (time(Ref) / time (Run)) / Ideal_Speedup',
+'Speedup = time(Ref) / time (Run)',
+'Dynamically loaded shared libraries.',
+'run_0<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 1<br>',
+'run_1<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 2<br>',
+'run_2<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 4<br>',
+'run_3<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 8<br>',
+'__nv_resid__PARALLEL_F1L594_2',
+'__nv_psinv__PARALLEL_F1L527_1',
+'__nv_zran3__PARALLEL_F1L1106_9',
+'__nv_rprj3__PARALLEL_F1L680_3',
+'__nv_interp__PARALLEL_F1L753_4',
+'_raw_spin_unlock_irqrestore',
+'__memset_avx512_unaligned_erms',
+'__nv_comm3__PARALLEL_F1L995_7',
+'__nv_norm2u3__PARALLEL_F1L928_6',
+'__nv_resid__PARALLEL_F1L594_2',
+'__nv_psinv__PARALLEL_F1L527_1',
+'__nv_zran3__PARALLEL_F1L1106_9',
+'__nv_rprj3__PARALLEL_F1L680_3',
+'__nv_interp__PARALLEL_F1L753_4',
+'_raw_spin_unlock_irqrestore',
+'__memset_avx512_unaligned_erms',
+'__kmp_hardware_timestamp',
+'__kmp_hyper_barrier_gather(barrier_type, kmp_info*, int, int, void (*)(void*, void*), void*)',
+'__nv_comm3__PARALLEL_F1L995_7',
+'__nv_resid__PARALLEL_F1L594_2',
+'__nv_psinv__PARALLEL_F1L527_1',
+'__nv_zran3__PARALLEL_F1L1106_9',
+'__nv_interp__PARALLEL_F1L753_4',
+'__nv_rprj3__PARALLEL_F1L680_3',
+'_raw_spin_unlock_irqrestore',
+'__memset_avx512_unaligned_erms',
+'__kmp_hardware_timestamp',
+'__kmp_hyper_barrier_release(barrier_type, kmp_info*, int, int, int, void*)',
+'__nv_comm3__PARALLEL_F1L995_7',
+'__nv_resid__PARALLEL_F1L594_2',
+'__nv_psinv__PARALLEL_F1L527_1',
+'__nv_interp__PARALLEL_F1L753_4',
+'__nv_rprj3__PARALLEL_F1L680_3',
+'__nv_zran3__PARALLEL_F1L1106_9',
+'__memset_avx512_unaligned_erms',
+'_raw_spin_unlock_irqrestore',
+'__kmp_hyper_barrier_release(barrier_type, kmp_info*, int, int, int, void*)',
+'__kmp_hardware_timestamp',
+'__nv_norm2u3__PARALLEL_F1L928_6',
+'run_0<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 1<br>',
+'run_1<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 2<br>',
+'run_2<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 4<br>',
+'run_3<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 8<br>',
+'run_0<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 1<br>',
+'run_1<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 2<br>',
+'run_2<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 4<br>',
+'run_3<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 8<br>',
+'run_0<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 1<br>',
+'run_1<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 2<br>',
+'run_2<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 4<br>',
+'run_3<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 8<br>',
+'run_0<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 1<br>',
+'run_1<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 2<br>',
+'run_2<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 4<br>',
+'run_3<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 8<br>',
+'run_0<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 1<br>',
+'run_1<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 2<br>',
+'run_2<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 4<br>',
+'run_3<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 8<br>',
+'run_0<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 1<br>',
+'run_1<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 2<br>',
+'run_2<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 4<br>',
+'run_3<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 8<br>',
+'run_0<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 1<br>',
+'run_1<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 2<br>',
+'run_2<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 4<br>',
+'run_3<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 8<br>',
+'A set of filters to display / hide some columns',
+'run_0<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 1<br>',
+'run_1<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 2<br>',
+'run_2<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 4<br>',
+'run_3<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 8<br>',
+'run_0<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 1<br>',
+'run_1<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 2<br>',
+'run_2<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 4<br>',
+'run_3<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 8<br>',
+'A set of filters to display / hide some columns',
+'run_0<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 1<br>',
+'run_1<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 2<br>',
+'run_2<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 4<br>',
+'run_3<br><b>Run Command:</b> &lt;executable&gt; <br><b>MPI Command:</b> <br><b>Dataset:</b> <br><b>Run Directory:</b> .<br><b>OMP_NUM_THREADS:</b> 8<br>'];
+var modal = document.getElementById('MaqaoModal');
+var span = document.getElementsByClassName("maqao_close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx) === '' ? -1: (getCellValue(asc ? a : b, idx).replace(/\s/g,'')), 
+      getCellValue(asc ? b : a, idx) === '' ? -1: (getCellValue(asc ? b : a, idx).replace(/\s/g,'')));
+addLoadEvent(function(){
+  document.querySelectorAll('._fixed_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+  })));
+});
+addLoadEvent(function(){
+  document.querySelectorAll('._tree_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    let last_id = "";
+    const t_outermost = new Array ();
+    const t_children  = new Map ();
+    for (let i = 1, row; row = table.rows[i]; i++) {
+      if (row.classList.contains ("_outer_row")) {
+        t_outermost.push (row);
+        last_id = row.id;
+        t_children [last_id] = new Array ();
+      }
+      else {
+        t_children [last_id].push (row);
+      }
+    }
+    t_outermost.sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc));
+    for (let i = 0, row; row = t_outermost[i]; i++) {
+      table.appendChild(row)
+      for (let j = 0, child; child = t_children[row.id][j]; j++) {
+        table.appendChild(child)
+      }
+    }
+  })));
+});
+async function downloadFileAsCSV(__table__) {
+  if ("showSaveFilePicker" in self) {
+    const pickerOpts = {
+      types: [
+        {
+          description: "CSV File",
+          accept: {
+            "text/plain": [".csv"],
+          },
+        },
+      ],
+      excludeAcceptAllOption: true,
+      multiple: false,
+      startIn: "downloads",
+    };
+    // Select the file
+    let newHandle;
+    try {
+       newHandle = await window.showSaveFilePicker(pickerOpts);
+    }
+    catch (error) {
+       return ;
+    }
+    // Open it, write it, then close it
+    const writableStream = await newHandle.createWritable();
+    for (var i = 0, row; row = __table__.rows[i]; i++) {
+      let str_row = "";
+      for (var j = 0, col; col = row.cells[j]; j++) {
+        let clean_text = col.innerText.replace (/^[^a-zA-Z0-9_]+/, "");
+        clean_text =        clean_text.replace (/\+$/, "");
+        str_row += clean_text + ";";
+      }
+      await writableStream.write(str_row+"\n");
+    }
+    await writableStream.close();
+  }
+  else {
+    window.alert ("feature not available for this web browser");
+  }
+}
+function __disable_CSV_generator_buttons (__ids__){
+  if ((!("showSaveFilePicker" in self))
+  &&  __ids__) {
+    for (var i = 0, bid; bid = __ids__[i]; i++) {
+       let button = document.getElementById (bid);
+       if (button) {
+         button.style.display = "none";
+       }
+    }
+  }
+};
+function _check_all_checkbox_ (obj_id, opts_ids) {
+  var obj   = document.getElementById (obj_id);
+  var opts  = window[opts_ids];
+  var count = 0
+  for (i = 0; i < opts.length; i++) {
+    var obj_s = document.getElementById(opts[i]);
+    if (obj_s && obj_s.checked) {
+      count ++;
+    }
+  }
+  if (count == 0) {
+    obj.value = "Select all";
+  }
+  else if (count == opts.length) {
+    obj.value = "Select none";
+  }
+}
+// Fonction for table selector
+function click_table_menu (c, obj_id, opt_ids) {
+  var is_checked = document.getElementById (c).checked;
+  localStorage.setItem(c, is_checked);
+  $("."+c).each(function(index, element) {
+    if (is_checked) {
+      element.classList.remove("_tcol_hidden");
+    }
+    else {
+      element.classList.add("_tcol_hidden");
+    }
+  });
+  if (obj_id != undefined) {
+    _check_all_checkbox_ (obj_id, opt_ids)
+  }
+}
+function set_all_table_menu (obj, var_opt_ids) {
+  var opt_ids = window[var_opt_ids];
+  var is_selected = true
+  if (obj.value == "Select all") {
+    is_selected = false;
+  }
+  for (i = 0; i < opt_ids.length; i++) {
+    var obj_s = document.getElementById(opt_ids[i]);
+    if (obj_s && is_selected == obj_s.checked) {
+      obj_s.checked = !obj_s.checked;
+      click_table_menu (opt_ids[i]);
+    }
+  }
+  if (is_selected == false) {
+    obj.value = "Select none";
+  } else {
+    obj.value = "Select all";
+  }
+  localStorage.setItem(obj.id, obj.value);
+}
+// Script for accordion box
+function _click_accordion_header(obj) {
+  var content = obj.nextSibling;
+  content.classList.toggle('collapsed');
+  obj.classList.toggle('collapsed');
+  obj.parentNode.classList.toggle('collapsed');
+  // Check if the box must be openned ...
+  if (obj.classList.contains ('collapsed'))
+  {
+    obj.firstChild.textContent = "\u25B6";
+  }
+  // or closed.
+  else 
+  {
+    obj.firstChild.textContent = "\u25BC";
+  }
+  if (typeof _onresize === "function") {
+    _onresize ();
+  }
+}
+  // Script for paged table
+function _click_paged_prev(obj) {
+  var pages_content_id = '_paged_tables_page_' + obj.parentNode.parentNode.id.substr (obj.parentNode.parentNode.id.lastIndexOf('_') + 1);
+  var pages_content = document.getElementById(pages_content_id).innerHTML;
+  var max_pages = pages_content.substr (pages_content.lastIndexOf('/') + 1);
+  var cur_page  = pages_content.substring (pages_content.lastIndexOf(' ') + 1, pages_content.lastIndexOf('/'));
+  max_pages = Number (max_pages);
+  cur_page  = Number (cur_page);
+  if (cur_page > 1) {
+    var div_paged = obj.parentNode.parentNode.id;
+    var i;
+    var x = document.getElementsByClassName(div_paged + '_' + (cur_page - 1));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    x = document.getElementsByClassName(div_paged + '_' + (cur_page - 2));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+  document.getElementById(pages_content_id).textContent = "Page " + (cur_page - 1) + "/" + max_pages;
+  }
+}
+function _click_paged_next(obj) {
+  var pages_content_id = '_paged_tables_page_' + obj.parentNode.parentNode.id.substr (obj.parentNode.parentNode.id.lastIndexOf('_') + 1);
+  var pages_content = document.getElementById(pages_content_id).innerHTML;
+  var max_pages = pages_content.substr (pages_content.lastIndexOf('/') + 1);
+  var cur_page  = pages_content.substring (pages_content.lastIndexOf(' ') + 1, pages_content.lastIndexOf('/'));
+  max_pages = Number (max_pages);
+  cur_page  = Number (cur_page);
+  if (cur_page < max_pages) {
+    var div_paged = obj.parentNode.parentNode.id;
+    var i;
+    var x = document.getElementsByClassName(div_paged + '_' + (cur_page - 1));
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    x = document.getElementsByClassName(div_paged + '_' + cur_page);
+    for (i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_paged_hidden');
+    }
+    document.getElementById(pages_content_id).textContent = "Page " + (cur_page + 1) + "/" + max_pages;
+  }
+}
+// Function for tree table
+function _click_tree(obj) {
+  if (obj.innerHTML == "\u25BA") {
+    obj.textContent = "\u25BC";
+    // Open childs
+    var x = document.getElementsByClassName(obj.parentNode.parentNode.id);
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.toggle('_tree_hidden');
+    }
+  }
+  else if (obj.innerHTML == "\u25BC") {
+    obj.textContent = "\u25BA";
+    // Close all childs
+    var trs = document.getElementsByTagName('tr');
+    var r   = obj.parentNode.parentNode.id+'_';
+    var re  = new RegExp (r, "g");
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+""
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (! o.classList.contains('_tree_hidden')) {
+          o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BC") {
+          o.firstChild.firstChild.textContent = "\u25BA";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '+';
+        }
+      }
+    }
+    if (obj.parentNode.childNodes.length == 3) {
+      obj.parentNode.childNodes[2].textContent = '+';
+    }
+  }
+}
+function _click_expand (obj) {
+  var trs = document.getElementsByTagName('tr');
+  var r   = obj.parentNode.parentNode.id+'_';
+  var re  = new RegExp (r, "g");
+  // Symbole + => expand all
+  if (obj.textContent == "+") {
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+"";
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (o.classList.contains('_tree_hidden')) {
+           o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BA") {
+          o.firstChild.firstChild.textContent = "\u25BC";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '\u2010';
+        }
+      }
+    }
+    var o = obj.parentNode.parentNode;
+    if (o.firstChild.firstChild.textContent == "\u25BA") {
+      o.firstChild.firstChild.textContent = "\u25BC";
+    }
+    obj.textContent = "\u2010";
+  }
+  // Symbole - => collapse all
+  else {
+    for (var i = 0; i < trs.length; i++) {
+      var s = trs[i].id+"";
+      if (s.match(re)) {
+        var o = document.getElementById(s);
+        if (! o.classList.contains('_tree_hidden')) {
+           o.classList.toggle('_tree_hidden');
+        }
+        if (o.firstChild.firstChild.textContent == "\u25BC") {
+          o.firstChild.firstChild.textContent = "\u25BA";
+        }
+        if (o.firstChild.childNodes.length == 3) {
+          o.firstChild.childNodes[2].textContent = '+';
+        }
+      }
+    }
+    var o = obj.parentNode.parentNode;
+    if (o.firstChild.firstChild.textContent == "\u25BC") {
+      o.firstChild.firstChild.textContent = "\u25BA";
+    }
+    obj.textContent = "+";
+  }
+}
+// Hide unselected tabs
+addLoadEvent(function(){
+  var x = document.getElementsByClassName("_tab_header_li");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].classList.contains("selected_tab") == false) {
+      var e = document.getElementById (x[i].dataset.tab);
+      e.style.display = "none";
+    }
+  }
+});
+// Change tab
+function change_tab (e, baseId) {
+  // Handle tabs
+  var i = 1;
+  while (true) {
+    var id = baseId + i;
+    var t = document.getElementById (id);
+    if (t == null) {
+      break;
+    }
+    if (id == e.dataset.tab) {
+      t.style.removeProperty("display");
+    }
+    else {
+      t.style.display = "none";
+    }
+    i = i + 1;
+  }
+  // Handle headers
+  $(e).siblings().each( function () {
+    this.classList.remove("selected_tab");
+  });
+  e.classList.add("selected_tab");
+}
+function __maqao_legacy_onresize () {
+  var obj = document.getElementById("spacer_page_title");
+  if (obj) {
+    obj.style.height = (document.getElementById("page_title").clientHeight + 20)+"px";
+  }
+  var obj = document.getElementById("page_title");
+  if (obj) {
+    var elems = document.getElementsByClassName ("_first_menu_level")
+    if (obj.clientHeight < 90) {
+      for (var i = 0; i < elems.length; i++) {
+        elems.item(i).style.borderBottomLeftRadius = "";
+        elems.item(i).style.borderBottomRightRadius = "";
+      }
+    }
+    else {
+      for (var i = 0; i < elems.length; i++) {
+        elems.item(i).style.borderBottomLeftRadius = "10px";
+        elems.item(i).style.borderBottomRightRadius = "10px";
+      }
+    }
+  }
+}
+</script>
+</body>
+</html>

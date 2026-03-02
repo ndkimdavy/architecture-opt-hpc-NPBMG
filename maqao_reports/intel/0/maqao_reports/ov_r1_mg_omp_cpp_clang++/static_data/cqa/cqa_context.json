@@ -1,0 +1,219 @@
+{
+  "_cqa_uarch_const":
+    {
+      "nb simple decoders": 5,
+      "RS_STORE size": 38,
+      "unlamination threshold": 4,
+      "LFB size": 16,
+      "Is supported by UFS": true,
+      "Max Loop Buffer bytes": 2048,
+      "LM size": 32,
+      "ROB size": 512,
+      "INT vector size in bytes": 32,
+      "vector size in bytes": 32,
+      "L1D_ports":
+        [
+
+        ],
+      "RS size": 205,
+      "store latency": 3,
+      "UQ throughput": 6,
+      "PRF_INT size": 280,
+      "nb complex decoders": 1,
+      "PRF_FLOAT size": 332,
+      "load latency": 5,
+      "RS_LOAD size": 70,
+      "FP load latency": 6,
+      "uop cache capacity": 3072,
+      "predicted taken branch ports":
+        [
+        6
+        ],
+      "Max Loop Buffer uops": 144,
+      "vector-unaligned optimal pattern": "1x256",
+      "LB size": 192,
+      "decode throughput": 6,
+      "predec insns per cycle": 6,
+      "SB size": 114,
+      "RS_MATH size": 97,
+      "ports":
+        [
+          {
+            "width": 256,
+            "name": "ALU/V256+",
+            "units":
+              {
+                "VPU":
+                  {
+                    "FMA": true,
+                    "FMUL": true,
+                    "merged_with":
+                      {
+                        "unit": "VPU",
+                        "port": 2
+                      }
+                  },
+                "BRU":
+                  [
+
+                  ],
+                "ALU":
+                  [
+
+                  ],
+                "DIV/SQRT":
+                  {
+                    "width": 128
+                  }
+              }
+          },
+          {
+            "width": 256,
+            "name": "ALU/V256",
+            "units":
+              {
+                "ALU":
+                  [
+
+                  ],
+                "VPU":
+                  {
+                    "FMA": true,
+                    "FMUL": true,
+                    "FADD": true
+                  }
+              }
+          },
+          {
+            "width": 512,
+            "name": "LD",
+            "units":
+              {
+                "load":
+                  [
+
+                  ]
+              }
+          },
+          {
+            "width": 512,
+            "name": "LD",
+            "units":
+              {
+                "load":
+                  [
+
+                  ]
+              }
+          },
+          {
+            "width": 512,
+            "name": "STD",
+            "units":
+              {
+                "store data":
+                  [
+
+                  ]
+              }
+          },
+          {
+            "width": 512,
+            "name": "ALU/V512",
+            "units":
+              {
+                "ALU":
+                  [
+
+                  ],
+                "VPU":
+                  {
+                    "FADD": true
+                  }
+              }
+          },
+          {
+            "name": "ALU/JMP",
+            "units":
+              {
+                "ALU":
+                  [
+
+                  ],
+                "BRU":
+                  [
+
+                  ]
+              }
+          },
+          {
+            "name": "STA",
+            "units":
+              {
+                "store address":
+                  [
+
+                  ]
+              }
+          },
+          {
+            "name": "STA",
+            "units":
+              {
+                "store address":
+                  [
+
+                  ]
+              }
+          },
+          {
+            "width": 512,
+            "name": "STD",
+            "units":
+              {
+                "store data":
+                  [
+
+                  ]
+              }
+          },
+          {
+            "name": "ALU",
+            "units":
+              {
+                "ALU":
+                  [
+
+                  ]
+              }
+          },
+          {
+            "width": 512,
+            "name": "LD",
+            "units":
+              {
+                "load":
+                  [
+
+                  ]
+              }
+          }
+        ],
+      "UFS resources":
+        [
+        "ROB",
+        "RS",
+        "LB",
+        "LM",
+        "LFB",
+        "SB",
+        "PRF_INT",
+        "PRF_FLOAT"
+        ],
+      "NOP 0f 1f decode": "fast",
+      "bytes fetched per cycle": 32,
+      "retire throughput": 8,
+      "nb execution ports": 12,
+      "IQ throughput": 6
+    }
+}

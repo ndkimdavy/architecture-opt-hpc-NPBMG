@@ -1,0 +1,13 @@
+address;source_location;insn;indent
+0x411fc7;:0;VMOVDQA	%YMM0,(%R11);
+0x411fcc;:0;VMOVDQA	%YMM0,0x20(%R11);
+0x411fd2;:0;VMOVDQA	%YMM0,0x40(%R11);
+0x411fd8;:0;VMOVDQA	%YMM0,0x60(%R11);
+0x411fde;:0;ADD	$0x100,%R11;
+0x411fe5;:0;SUB	$0x100,%RDX;
+0x411fec;:0;VMOVDQA	%YMM0,-0x80(%R11);
+0x411ff2;:0;VMOVDQA	%YMM0,-0x60(%R11);
+0x411ff8;:0;VMOVDQA	%YMM0,-0x40(%R11);
+0x411ffe;:0;VMOVDQA	%YMM0,-0x20(%R11);
+0x412004;:0;CMP	$0x100,%RDX;
+0x41200b;:0;JGE	411fc7 <__intel_avx_rep_memset+0xa7>;
