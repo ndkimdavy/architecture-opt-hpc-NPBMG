@@ -1,4 +1,4 @@
-\section{Analyse des résultats sur AMD}
+\section[Analyse AMD]{Analyse des résultats sur AMD}
 
 \begin{frame}{Identification des sections critiques (Option -R1)}
     \begin{columns}[T]
@@ -24,7 +24,7 @@
         \end{column}
         \begin{column}{0.55\textwidth}
             \vspace{-0.4cm}
-            \inputImage{figures/top_functions_amd_r1.png}{Analyse -R1 : Routines dominantes (AMD)}{0.95\textwidth}{!}{fig:r1_amd}
+            \inputImage{figures/top_functions_amd_r1.png}{Analyse -R1 : Routines dominantes (AMD)}{0.9\textwidth}{!}{fig:top_functions_amd_r1}
         \end{column}
     \end{columns}
 \end{frame}
@@ -36,8 +36,9 @@
         \item Élimination des bruits de mesure liés au système.
     \end{itemize}
     
-    \inputImage{figures/stability_analysis_amd_s1.png}{Analyse -S1 : Stabilité des mesures (AMD)}{0.85\textwidth}{0.45\textheight}{fig:s1_amd}
+    \inputImage{figures/stability_analysis_amd_s1.png}{Analyse -S1 : Stabilité des mesures (AMD)}{0.9\textwidth}{!}{fig:stability_analysis_amd_s1}
     
+    \vspace{-0.5cm}
     \begin{block}{\footnotesize Constat de stabilité}
         \fontsize{7}{8}\selectfont
         Temps moyen stabilisé à \textbf{13,11 s}. La faible variance confirme la fiabilité de l'environnement de test pour les comparaisons de performance.
@@ -50,8 +51,9 @@
         \item Évaluation de l'efficacité de l'implémentation parallèle de 1 à 8 cœurs.
     \end{itemize}
     
-    \inputImage{figures/scalability_speedup_amd_ws.png}{Analyse -WS : Scalabilité (AMD)}{0.85\textwidth}{0.4\textheight}{fig:ws_amd}
+    \inputImage{figures/scalability_speedup_amd_ws.png}{Analyse -WS : Scalabilité (AMD)}{0.8\textwidth}{!}{fig:scalability_speedup_amd_ws}
     
+    \vspace{-0.5cm}
     \begin{columns}[T]
         \begin{column}{0.48\textwidth}
             \begin{block}{\footnotesize Performance Parallèle}
@@ -69,14 +71,14 @@
 \end{frame}
 
 \begin{frame}{Duel de Paradigmes : Fortran 90 vs C++}
-    \vspace{-0.2cm}
     \begin{itemize}
         \fontsize{8}{9}\selectfont
         \item Comparaison des deux implémentations avec le compilateur AOCC.
     \end{itemize}
     
-    \inputImage{figures/comparison_duel_report_amd.png}{Comparaison de performance : Fortran vs C++}{0.85\textwidth}{0.4\textheight}{fig:duel_amd}
+    \inputImage{figures/comparison_duel_report_amd.png}{Comparaison de performance : Fortran vs C++}{0.8\textwidth}{!}{fig:comparison_duel_report_amd}
     
+    \vspace{-0.5cm}
     \begin{columns}[T]
         \begin{column}{0.48\textwidth}
             \begin{exampleblock}{\footnotesize Fortran (Référence)}

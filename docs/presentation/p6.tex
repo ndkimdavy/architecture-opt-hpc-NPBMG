@@ -1,4 +1,4 @@
-\section{Conclusion et Perspectives}
+\section[Conclusion]{Conclusion et Perspectives}
 
 \begin{frame}{Bilan technique des optimisations}
     \begin{block}{Synthèse des gains en C++}
@@ -11,11 +11,13 @@
     \end{block}
 \end{frame}
 
+
+
 \begin{frame}{Le Duel Final : C++ Optimisé vs Fortran Natif}
     \centering
-    \inputImage{figures/comparison_duel_report_amd_cpp_vs_f90_opt.png}{Duel final sur architecture AMD (r0: Fortran vs r1: C++ opt)}{0.8\textwidth}{!}{fig:duel_final}
+    \inputImage{figures/comparison_duel_report_amd_cpp_vs_f90_opt.png}{Comparaison finale sur AMD : Fortran vs C++ optimisé}{0.8\textwidth}{!}{fig:comparison_duel_report_amd_cpp_vs_f90_opt}
     
-    \vspace{-0.3cm}
+    \vspace{-0.5cm}
     \begin{columns}[T]
         \begin{column}{0.48\textwidth}
             \begin{exampleblock}{\footnotesize Fortran (Référence)}
@@ -40,18 +42,16 @@
     \end{columns}
 \end{frame}
 
-
-
 \begin{frame}{Conclusion}
     \begin{itemize}
         \fontsize{9}{10}\selectfont
         \item \textbf{Performance} : Malgré les optimisations manuelles, le Fortran reste \textbf{1,65x plus rapide} que le C++ sur cet algorithme multigrid.
-        \item \textbf{Architecture} : Le Fortran exploite nativement mieux le parallélisme (8 threads actifs contre 5 pour le C++), avec un ratio d'activité quasi parfait.
+        \item \textbf{Architecture} : Le Fortran exploite nativement mieux le parallélisme (8 threads actifs contre 5 pour le C++), avec un ratio d'activité quasi parfait (99,6 \%).
     \end{itemize}
     
-    \begin{block}{Constat final}
-        \centering \fontsize{8}{9}\selectfont
-        \textit{Le Fortran demeure virtuellement imbattable pour les codes de physique numérique. Sa gestion native de l'absence d'aliasing et sa structure orientée tableaux lui permettent d'atteindre 100 \% de score d'optimisation là où le C++ se heurte à des contraintes sémantiques complexes. 
+    \begin{block}{}
+        \centering \fontsize{12}{14}\selectfont
+        \textit{Le Fortran demeure virtuellement imbattable pour les codes de physique numérique. Sa gestion native de l'absence d'aliasing et sa structure orientée tableaux lui permettent d'atteindre 100 \% de score d'optimisation là où le C++ se heurte à des contraintes sémantiques complexes.
         On constate ainsi la lourdeur d'optimiser plus loin le C++ pour tenter d'égaler le Fortran sur certains algorithmes de problèmes physiques.}
     \end{block}
 \end{frame}
