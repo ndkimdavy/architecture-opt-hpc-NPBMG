@@ -6,7 +6,7 @@
         \item L'analyse sur architecture AMD a démontré que l'ambiguïté mémoire bloquait la vectorisation automatique.
         \item \textbf{Objectif} : Fournir des indices sémantiques au compilateur pour forcer l'usage du SIMD.
     \end{itemize}
-    \begin{block}{Leviers techniques implémentés}
+    \begin{block}{Implémentation}
         \fontsize{8}{9}\selectfont
         \begin{itemize}
             \item \textbf{\_\_restrict} : Garantit l'absence de chevauchement entre les pointeurs de tableaux.

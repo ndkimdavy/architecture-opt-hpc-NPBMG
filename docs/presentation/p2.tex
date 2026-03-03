@@ -63,7 +63,8 @@
         \item \textbf{Affinité} : Utilisation de \texttt{export OMP\_PLACES=cores} pour empêcher l'OS de déplacer les threads.
         \item \textbf{Fréquence} : Fixation en mode \textbf{performance} avant les tests (\texttt{sudo cpupower frequency-set -g performance}).
     \end{itemize}
-    \begin{block}{Indicateur de préparation}
-        Ces réglages ont permis de stabiliser l'affinité à \textbf{77,9\%} (contre 23,4\% par défaut), garantissant la fiabilité des analyses.
+    
+    \begin{block}{Objectif : Reproductibilité}
+        Ces réglages visent à réduire le bruit système et à stabiliser l'exécution, garantissant ainsi une base de comparaison fiable entre les architectures et les langages.
     \end{block}
 \end{frame}
