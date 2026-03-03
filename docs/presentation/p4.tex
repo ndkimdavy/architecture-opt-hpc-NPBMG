@@ -1,5 +1,87 @@
 \section[Analyse Intel]{Analyse des résultats sur Intel}
 
+\begin{frame}{Intel Fortran MPI : duel \texttt{ifx} / \texttt{gfortran}}
+\small
+
+\begin{columns}[T,onlytextwidth]
+    \begin{column}{0.44\textwidth}
+        \begin{block}{Contexte}
+            \begin{itemize}\setlength{\itemsep}{1em}
+                \item Comparaison sur la version \textbf{Fortran MPI officielle} de NPB MG.
+                \item Évaluation de l'efficacité du compilateur Intel face au standard \texttt{gfortran}.
+            \end{itemize}
+        \end{block}
+    \end{column}
+    \hfill 
+    \begin{column}{0.52\textwidth}
+        \begin{block}{Métriques principales}
+            \centering
+            \renewcommand{\arraystretch}{1.1}
+            \footnotesize
+            \begin{tabular}{|l|c|c|}
+                \hline
+                \textbf{Métrique} & \textbf{ifx} & \textbf{gfortran} \\ \hline
+                Total Time (s)      & 18,10 & 22,92 \\ \hline
+                Max Active (s)      & 17,69 & 22,53 \\ \hline
+                Avg Active (s)      & 17,60 & 22,40 \\ \hline
+                Activity Ratio (\%) & 97,3  & 97,8  \\ \hline
+                Threads actifs      & 7,779 & 7,819 \\ \hline
+                Scalability Gap     & 1,00  & 1,27  \\ \hline
+            \end{tabular}
+        \end{block}
+    \end{column}
+\end{columns}
+\vfill 
+\begin{exampleblock}{Analyse du gain}
+    \centering
+    \small
+    L'utilisation de \texttt{ifx} permet de passer de \textbf{22,92 s} à \textbf{18,10 s}, soit un gain de performance de \textbf{21 \%} directement visible sur le temps total.
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{Intel Fortran MPI : stabilité et scalabilité}
+\footnotesize 
+
+\begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+        \begin{block}{\texttt{-S1} : stabilité (10 runs)}
+            \begin{itemize}\setlength{\itemsep}{0pt} 
+                \item Total Time : \textbf{18,09 s}
+                \item Max Active moyen : \textbf{17,60 s}
+                \item Min / Max : \textbf{16,46 s} / \textbf{17,88 s}
+                \item Médiane : \textbf{17,71 s}
+                \item \textbf{0 outlier}
+            \end{itemize}
+        \end{block}
+    \end{column}
+
+    \begin{column}{0.48\textwidth}
+        \begin{block}{\texttt{-WS} : 1 à 8 processus}
+            \centering
+            \setlength{\tabcolsep}{4pt}
+            \renewcommand{\arraystretch}{0.9} 
+            \begin{tabular}{|c|c|c|}
+                \hline
+                \textbf{Config} & \textbf{Temps (s)} & \textbf{Gap} \\ \hline
+                1 proc & 21,18 & 1,00 \\ \hline
+                2 proc & 16,03 & 1,51 \\ \hline
+                4 proc & 15,02 & 2,84 \\ \hline
+                8 proc & 14,30 & 5,40 \\ \hline
+            \end{tabular}
+        \end{block}
+    \end{column}
+\end{columns}
+
+\begin{block}{Constats}
+    \begin{itemize}\setlength{\itemsep}{0pt}
+        \item \textbf{Stabilité} : Comportement reproductible validant le protocole.
+        \item \textbf{Scalabilité} : Gain limité par la saturation mémoire (\textit{Memory Bound}).
+    \end{itemize}
+\end{block}
+
+\end{frame}
+
 \begin{frame}{Identification des sections critiques (Option -R1)}
     \begin{columns}[T]
         \begin{column}{0.45\textwidth}
@@ -7,6 +89,8 @@
                 \fontsize{8}{9}\selectfont
                 \item Localisation des fonctions consommant le plus de temps CPU.
                 \item \textbf{resid} est la routine dominante (35,48 \%), suivie par des temps de synchronisation importants.
+                \item Profil analysé : \textbf{NPB-CPP (C++ OpenMP)} compilé avec \texttt{icpx}.
+                \item Les noyaux stencil restent dominants, mais une part importante du temps est perdue dans le runtime OpenMP.
             \end{itemize}
             \vspace{0.1cm}
             \begin{table}
@@ -29,69 +113,100 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Fiabilité et Stabilité des mesures (Option -S1)}
-    \begin{itemize}
-        \fontsize{8}{9}\selectfont
-        \item Validation de la robustesse des données via \textbf{10 répétitions}.
-        \item Élimination des bruits de mesure liés au système.
-    \end{itemize}
-    
-    \inputImage{figures/stability_analysis_intel_s1.png}{Analyse -S1 : Stabilité des mesures (Intel)}{0.9\textwidth}{!}{fig:stability_analysis_intel_s1}
-    
-    \vspace{-0.5cm}
-    \begin{block}{\footnotesize Constat de stabilité}
-        \fontsize{7}{8}\selectfont
-        Temps moyen stabilisé à \textbf{23,68 s}. La variance minimale entre le min (23,39 s) et le max (23,82 s) confirme la fiabilité des tests.
-    \end{block}
-\end{frame}
+\begin{frame}{Intel C++ OpenMP : duel de compilateurs (\texttt{icpx} vs \texttt{clang++})}
 
-\begin{frame}{Étude de la montée en charge (Option -WS)}
-    \begin{itemize}
+    \begin{itemize}\setlength{\itemsep}{0pt}
         \fontsize{8}{9}\selectfont
-        \item Évaluation de l'efficacité de l'implémentation parallèle de 1 à 8 cœurs.
+        \item Comparaison sur le même code C++ OpenMP : seule la \textbf{toolchain} change.
+        \item Objectif : isoler l'impact du compilateur sur la performance brute et le runtime.
     \end{itemize}
-    
-    \inputImage{figures/scalability_speedup_intel_ws.png}{Analyse -WS : Scalabilité (Intel)}{0.8\textwidth}{!}{fig:scalability_speedup_intel_ws}
-    
-    \vspace{-0.5cm}
-    \begin{columns}[T]
-        \begin{column}{0.48\textwidth}
-            \begin{block}{\footnotesize Performance Parallèle}
-                \fontsize{7}{8}\selectfont
-                Évolution du temps de \textbf{25,91 s} (r0) à \textbf{23,78 s} (r3).
-            \end{block}
-        \end{column}
-        \begin{column}{0.48\textwidth}
-            \begin{alertblock}{\footnotesize Limites de scalabilité}
-                \fontsize{7}{8}\selectfont
-                \textit{Scalability Gap} critique de \textbf{7,34} à 8 threads. Code fortement limité par la mémoire (\textbf{Memory Bound}).
-            \end{alertblock}
-        \end{column}
-    \end{columns}
-\end{frame}
 
-\begin{frame}{Duel de Compilateurs : Intel oneAPI vs Clang++}
-    \inputImage{figures/comparison_duel_report_intel.png}{Duel de performance : Intel vs Clang++}{0.8\textwidth}{!}{fig:comparison_duel_report_intel}
-    \vspace{-0.5cm}
-    \begin{columns}[T]
+    \centering
+    \inputImage{figures/comparison_duel_report_intel.png}{Comparaison Intel : icpx vs clang++}{0.7\textwidth}{!}{fig:comparison_duel_report_intel}
+
+    \vspace{-0.8cm}
+    \begin{columns}[T,onlytextwidth]
         \begin{column}{0.48\textwidth}
-            \begin{exampleblock}{\footnotesize Intel oneAPI icpx (r0)}
+            \begin{exampleblock}{\footnotesize \texttt{icpx} (r0)}
                 \fontsize{7}{8}\selectfont
-                \begin{itemize}
-                    \item Temps : \textbf{23,83 s}
-                    \item Score de compilation : \textbf{16,7 \%}
+                \begin{itemize}\setlength{\itemsep}{0pt}
+                    \item Temps : \textbf{23,83 s}.
+                    \item Array access : \textbf{97,4 \%}.
+                    \item Activity Ratio : \textbf{72,8 \%}.
                 \end{itemize}
             \end{exampleblock}
         \end{column}
         \begin{column}{0.48\textwidth}
-            \begin{alertblock}{\footnotesize Clang++ (r1)}
+            \begin{alertblock}{\footnotesize \texttt{clang++} (r1)}
                 \fontsize{7}{8}\selectfont
-                \begin{itemize}
-                    \item Temps : \textbf{22,55 s}
-                    \item Score de compilation : \textbf{16,7 \%}
+                \begin{itemize}\setlength{\itemsep}{0pt}
+                    \item Temps : \textbf{22,55 s}.
+                    \item Array access : \textbf{95,9 \%}.
+                    \item Activity Ratio : \textbf{64,4 \%}.
                 \end{itemize}
             \end{alertblock}
         \end{column}
     \end{columns}
 \end{frame}
 
+\begin{frame}{Intel C++ OpenMP : stabilité et scalabilité}
+    \begin{columns}[T,onlytextwidth]
+        \begin{column}{0.46\textwidth}
+            \inputImage{figures/stability_analysis_intel_s1.png}
+                       {Stabilité -S1 (Intel)}
+                       {1.0\linewidth}
+                       {!}   
+                       {fig:stability_analysis_intel_s1}
+            
+            \vspace{-0.2cm}
+            \begin{itemize}\setlength{\itemsep}{2pt}
+                \fontsize{7}{8}\selectfont
+                \item Temps moyen : \textbf{23,68 s}.
+                \item Min -- Max : \textbf{23,39 s} -- \textbf{23,82 s}.
+                \item \textbf{0 outlier} : mesure fiable.
+            \end{itemize}
+        \end{column}
+
+        \hfill 
+
+        \begin{column}{0.46\textwidth}
+            \inputImage{figures/scalability_speedup_intel_ws.png}
+                       {Scalabilité -WS (Intel)}
+                       {1.0\linewidth} 
+                       {!}           
+                       {fig:scalability_speedup_intel_ws}
+            
+            \vspace{-0.2cm}
+            \begin{itemize}\setlength{\itemsep}{2pt}
+                \fontsize{7}{8}\selectfont
+                \item Séquentiel (r0) : \textbf{25,91 s}.
+                \item OMP 4 (r2) : \textbf{23,33 s} (optimum).
+                \item OMP 8 (r3) : \textbf{23,78 s} (saturation).
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Synthèse Intel : Fortran MPI et C++ OpenMP}
+    \begin{itemize}
+        \fontsize{8}{9}\selectfont
+        \item \textbf{Fortran MPI} : le compilateur Intel \texttt{ifx} est le résultat le plus convaincant sur la plateforme Intel.
+        \begin{itemize}
+            \fontsize{8}{9}\selectfont
+            \item \texttt{ifx} réduit le temps de \textbf{22,92 s} à \textbf{18,10 s} face à \texttt{gfortran}.
+            \item La stabilité est bonne et la scalabilité reste utile jusqu'à \textbf{8 processus}.
+        \end{itemize}
+        \item \textbf{C++ OpenMP} : le code reste limité par la structure du runtime et la synchronisation.
+        \begin{itemize}
+            \fontsize{8}{9}\selectfont
+            \item \texttt{kmp\_wait} représente \textbf{25,24 \%} du temps.
+            \item \texttt{icpx} reste légèrement derrière \texttt{clang++} en temps total.
+            \item Le meilleur point est obtenu à \textbf{4 threads}, puis la montée en charge plafonne.
+        \end{itemize}
+    \end{itemize}
+
+    \begin{block}{Conclusion}
+        \fontsize{8}{9}\selectfont
+        Sur la plateforme Intel, \textbf{le Fortran MPI profite bien du compilateur Intel}, tandis que le \textbf{C++ OpenMP reste surtout limité par l'efficacité du parallélisme partagé}. Les pistes prioritaires sont donc différentes selon le paradigme.
+    \end{block}
+\end{frame}
