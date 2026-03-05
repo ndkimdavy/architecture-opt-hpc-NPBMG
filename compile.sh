@@ -11,7 +11,7 @@ CLEAN_ENABLED=1
 
 # For AOCC/INTEL need Spack to be installed
 # -fPIC is mandatory for AOCC/LLVM to handle relocations in Class C
-FLAGS="-g -Ofast -march=native -mavx2 -funroll-loops -fPIC"
+FLAGS="-g -Ofast -march=native -mavx2 -funroll-loops -fPIC -fno-omit-frame-pointer"
 COMPILERS=("gfortran" "g++" "clang++" "aocc") # "intel"
 
 WORK_DIR=$(pwd)
@@ -53,6 +53,18 @@ build() {
         fi
     fi
 
+    # MAQAO: record compilation flags inside the binary
+    # MPI Fortran uses mpif90 (often wraps gfortran) -> use GCC record flag
+    # GCC/gfortran  -> -frecord-gcc-switches
+    # LLVM/AOCC/Intel -> -frecord-command-line
+    if [[ "$ext" == "f90" && "$path" == *"MPI"* ]]; then
+        local RECORD_FLAG="-frecord-gcc-switches"
+    elif [[ "$compiler" == "gfortran" || "$compiler" == "g++" ]]; then
+        local RECORD_FLAG="-frecord-gcc-switches"
+    else
+        local RECORD_FLAG="-frecord-command-line"
+    fi
+
     echo "Compiling: $path with $compiler"
     cd "$path"
     mkdir -p ../bin
@@ -90,8 +102,8 @@ build() {
         sed -i "s|^F77[[:space:]]*=.*|F77 = $fc|" "$make_def"
         sed -i "s|^FLINK[[:space:]]*=.*|FLINK = $fc|" "$make_def"
         
-        local flags_="$FLAGS"
-        [[ "$path" == *"OMP"* ]] && flags_="$FLAGS -fopenmp"
+        local flags_="$FLAGS $RECORD_FLAG"
+        [[ "$path" == *"OMP"* ]] && flags_="$FLAGS $RECORD_FLAG -fopenmp"
         
         sed -i "s|^FFLAGS[[:space:]]*=.*|FFLAGS = $flags_|" "$make_def"
         sed -i "s|^FLINKFLAGS[[:space:]]*=.*|FLINKFLAGS = $flags_|" "$make_def"
@@ -100,8 +112,8 @@ build() {
         # Injection for C++ OMP
         sed -i "s|^CC[[:space:]]*=.*|CC = $compiler|" "$make_def"
         sed -i "s|^CLINK[[:space:]]*=.*|CLINK = \$(CC)|" "$make_def"
-        sed -i "s|^CFLAGS[[:space:]]*=.*|CFLAGS = $FLAGS -fopenmp|" "$make_def"
-        sed -i "s|^CLINKFLAGS[[:space:]]*=.*|CLINKFLAGS = $FLAGS -fopenmp|" "$make_def"
+        sed -i "s|^CFLAGS[[:space:]]*=.*|CFLAGS = $FLAGS $RECORD_FLAG -fopenmp|" "$make_def"
+        sed -i "s|^CLINKFLAGS[[:space:]]*=.*|CLINKFLAGS = $FLAGS $RECORD_FLAG -fopenmp|" "$make_def"
         sed -i "s|^WTIME[[:space:]]*=.*|WTIME = wtime.cpp|" "$make_def"
     fi
 

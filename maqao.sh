@@ -14,19 +14,19 @@ NP=8
 
 # OpenMP environment variables
 export OMP_NUM_THREADS=$NP
-export OMP_PROC_BIND=spread
+export OMP_PROC_BIND=close
 export OMP_PLACES=cores
 
 BINARIES=(
-    # "mg_mpi_f90_aocc"
-    # "mg_mpi_f90_gfortran"
-    # "mg_mpi_f90_intel"
+    "mg_mpi_f90_aocc"
+    "mg_mpi_f90_gfortran"
+    "mg_mpi_f90_intel"
     "mg_omp_cpp_aocc"
-    # "mg_omp_cpp_clang++"
+    "mg_omp_cpp_clang++"
     "mg_omp_cpp_g++"
     "mg_omp_cpp_intel"
     "mg_omp_f90_aocc"
-    # "mg_omp_f90_gfortran"
+    "mg_omp_f90_gfortran"
     "mg_omp_f90_intel"
 )
 
@@ -84,11 +84,10 @@ analyze() {
     # Scalability Report (-R1 -WS)
     if [[ "$bin" == *"mpi"* ]]; then
         # MPI Scalability: 1 -> 2 -> 4 -> 8 processes
-        # maqao oneview -R1 -WS --number-processes=1 \
-        #     --mpi-command="$(which mpirun) -np <number_processes>" \
-        #     --multiruns-params='{{number_processes=2},{number_processes=4},{number_processes=8}}' \
-        #     -xp="${OUTPUT_DIR}/ov_ws_${bin}" --replace -- ./${bin}
-        :
+        maqao oneview -R1 -WS --number-processes=1 \
+            --mpi-command="$(which mpirun) -np <number_processes>" \
+            --multiruns-params='{{number_processes=2},{number_processes=4},{number_processes=8}}' \
+            -xp="${OUTPUT_DIR}/ov_ws_${bin}" --replace -- ./${bin}
     else
         # OpenMP Scalability: 1 -> 2 -> 4 -> 8 threads
         maqao oneview -R1 -WS --envv_OMP_NUM_THREADS=1 \
