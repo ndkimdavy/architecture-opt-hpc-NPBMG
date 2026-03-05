@@ -13,9 +13,25 @@ OUTPUT_DIR="${BUILD_DIR}/maqao_reports"
 NP=8
 
 # OpenMP environment variables
+# - OMP_NUM_THREADS: number of threads used by OpenMP regions
+# - OMP_PROC_BIND: bind threads close to their parent core to reduce migration
+# - OMP_PLACES: define hardware placement (here one thread per core)
+# - OMP_DYNAMIC: disable runtime adjustment of the number of threads
+# - OMP_SCHEDULE: static scheduling to reduce scheduling overhead
+# - GOMP_CPU_AFFINITY: GCC/libgomp specific CPU pinning to stabilize thread affinity
+# - KMP_AFFINITY: LLVM/Intel OpenMP runtime thread affinity policy
+# - KMP_BLOCKTIME: reduce idle spin time of worker threads (improves CPU utilization)
+
 export OMP_NUM_THREADS=$NP
 export OMP_PROC_BIND=close
 export OMP_PLACES=cores
+export OMP_DYNAMIC=FALSE
+export OMP_SCHEDULE=static
+# GCC / libgomp runtime
+export GOMP_CPU_AFFINITY="0-$((NP-1))"
+# LLVM / AOCC / Intel OpenMP runtime
+export KMP_AFFINITY=granularity=fine,compact,1,0
+export KMP_BLOCKTIME=0
 
 BINARIES=(
     "mg_mpi_f90_aocc"
