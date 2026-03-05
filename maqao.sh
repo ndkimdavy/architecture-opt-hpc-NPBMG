@@ -14,24 +14,24 @@ NP=8
 
 # OpenMP environment variables
 # - OMP_NUM_THREADS: number of threads used by OpenMP regions
-# - OMP_PROC_BIND: bind threads close to their parent core to reduce migration
 # - OMP_PLACES: define hardware placement (here one thread per core)
+# - OMP_PROC_BIND: bind threads close to their parent core to reduce migration
 # - OMP_DYNAMIC: disable runtime adjustment of the number of threads
 # - OMP_SCHEDULE: static scheduling to reduce scheduling overhead
 # - GOMP_CPU_AFFINITY: GCC/libgomp specific CPU pinning to stabilize thread affinity
 # - KMP_AFFINITY: LLVM/Intel OpenMP runtime thread affinity policy
 # - KMP_BLOCKTIME: reduce idle spin time of worker threads (improves CPU utilization)
 
-export OMP_NUM_THREADS=$NP
-export OMP_PROC_BIND=close
-export OMP_PLACES=cores
-export OMP_DYNAMIC=FALSE
-export OMP_SCHEDULE=static
+OMP_NUM_THREADS=$NP
+OMP_PLACES=cores
+OMP_PROC_BIND=close
+OMP_DYNAMIC=FALSE
+OMP_SCHEDULE=static
 # GCC / libgomp runtime
-export GOMP_CPU_AFFINITY="0-$((NP-1))"
+GOMP_CPU_AFFINITY="0-$((NP-1))"
 # LLVM / AOCC / Intel OpenMP runtime
-export KMP_AFFINITY=granularity=fine,compact,1,0
-export KMP_BLOCKTIME=0
+KMP_AFFINITY=granularity=fine,compact,1,0
+KMP_BLOCKTIME=0
 
 BINARIES=(
     "mg_mpi_f90_aocc"
@@ -84,46 +84,70 @@ analyze() {
         return
     fi
 
-    local cmd="./${bin}"
-    [[ "$bin" == *"mpi"* ]] && cmd="$(which mpirun) -np ${NP} ./${bin}"
+    local mpi_cmd=""
+    local prefix_cmd=""
+    if [[ "$bin" == *"mpi"* ]]; then
+        mpi_cmd="$(which mpirun) -np ${NP} \
+            --bind-to core \
+            --map-by core \
+            --report-bindings" 
+    else
+        # Force execution on cores 0..NP-1 to stabilize CPU affinity
+        prefix_cmd="$(which taskset) -c 0-$(($NP-1))"
+    fi
 
     echo "=== Analyzing ${bin} ==="
 
     cd "${BUILD_DIR}"
 
     # Normal Report (-R1)
+    if [[ "$bin" == *"mpi"* ]]; then
     maqao oneview -R1 \
-    --envv_OMP_NUM_THREADS=$OMP_NUM_THREADS \
-    --envv_OMP_PROC_BIND=$OMP_PROC_BIND \
-    --envv_OMP_PLACES=$OMP_PLACES \
-    --envv_OMP_DYNAMIC=$OMP_DYNAMIC \
-    --envv_OMP_SCHEDULE=$OMP_SCHEDULE \
-    --envv_GOMP_CPU_AFFINITY="$GOMP_CPU_AFFINITY" \
-    --envv_KMP_AFFINITY="$KMP_AFFINITY" \
-    --envv_KMP_BLOCKTIME=$KMP_BLOCKTIME \
-    -xp="${OUTPUT_DIR}/ov_r1_${bin}" --replace -- ${cmd}
+        --number-processes=$NP \
+        --mpi-command="$mpi_cmd" \
+        -xp="${OUTPUT_DIR}/ov_r1_${bin}" --replace -- ./${bin}
+    else
+    $prefix_cmd maqao oneview -R1 \
+        --envv_OMP_NUM_THREADS=$OMP_NUM_THREADS \
+        --envv_OMP_PROC_BIND=$OMP_PROC_BIND \
+        --envv_OMP_PLACES=$OMP_PLACES \
+        --envv_OMP_DYNAMIC=$OMP_DYNAMIC \
+        --envv_OMP_SCHEDULE=$OMP_SCHEDULE \
+        --envv_GOMP_CPU_AFFINITY="$GOMP_CPU_AFFINITY" \
+        --envv_KMP_AFFINITY="$KMP_AFFINITY" \
+        --envv_KMP_BLOCKTIME=$KMP_BLOCKTIME \
+        -xp="${OUTPUT_DIR}/ov_r1_${bin}" --replace -- ./${bin}
+    fi
 
     # Stability Report (-S1)
+    if [[ "$bin" == *"mpi"* ]]; then
     maqao oneview -S1 --repetitions=10 \
-    --envv_OMP_NUM_THREADS=$OMP_NUM_THREADS \
-    --envv_OMP_PROC_BIND=$OMP_PROC_BIND \
-    --envv_OMP_PLACES=$OMP_PLACES \
-    --envv_OMP_DYNAMIC=$OMP_DYNAMIC \
-    --envv_OMP_SCHEDULE=$OMP_SCHEDULE \
-    --envv_GOMP_CPU_AFFINITY="$GOMP_CPU_AFFINITY" \
-    --envv_KMP_AFFINITY="$KMP_AFFINITY" \
-    --envv_KMP_BLOCKTIME=$KMP_BLOCKTIME \
-    -xp="${OUTPUT_DIR}/ov_s1_${bin}" --replace -- ${cmd}
+        --number-processes=$NP \
+        --mpi-command="$mpi_cmd" \
+        -xp="${OUTPUT_DIR}/ov_s1_${bin}" --replace -- ./${bin}
+    else
+    $prefix_cmd maqao oneview -S1 --repetitions=10 \
+        --envv_OMP_NUM_THREADS=$OMP_NUM_THREADS \
+        --envv_OMP_PROC_BIND=$OMP_PROC_BIND \
+        --envv_OMP_PLACES=$OMP_PLACES \
+        --envv_OMP_DYNAMIC=$OMP_DYNAMIC \
+        --envv_OMP_SCHEDULE=$OMP_SCHEDULE \
+        --envv_GOMP_CPU_AFFINITY="$GOMP_CPU_AFFINITY" \
+        --envv_KMP_AFFINITY="$KMP_AFFINITY" \
+        --envv_KMP_BLOCKTIME=$KMP_BLOCKTIME \
+        -xp="${OUTPUT_DIR}/ov_s1_${bin}" --replace -- ./${bin}
+    fi
 
     # Scalability Report (-R1 -WS)
     if [[ "$bin" == *"mpi"* ]]; then
         # MPI Scalability: 1 -> 2 -> 4 -> 8 processes
         maqao oneview -R1 -WS --number-processes=1 \
-            --mpi-command="$(which mpirun) -np <number_processes>" \
+            --mpi-command="$(which mpirun) -np <number_processes> --bind-to core --map-by core --report-bindings" \
             --multiruns-params='{{number_processes=2},{number_processes=4},{number_processes=8}}' \
             -xp="${OUTPUT_DIR}/ov_ws_${bin}" --replace -- ./${bin}
     else
         # OpenMP Scalability: 1 -> 2 -> 4 -> 8 threads
+        $prefix_cmd \
         maqao oneview -R1 -WS \
         --envv_OMP_PROC_BIND=$OMP_PROC_BIND \
         --envv_OMP_PLACES=$OMP_PLACES \
@@ -136,7 +160,7 @@ analyze() {
         --multiruns-params='{{envv_OMP_NUM_THREADS="2"},{envv_OMP_NUM_THREADS="4"},{envv_OMP_NUM_THREADS="8"}}' \
         -xp="${OUTPUT_DIR}/ov_ws_${bin}" --replace -- ./${bin}
     fi
-    
+
     cd ..
 }
 
