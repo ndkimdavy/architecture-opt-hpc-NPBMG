@@ -92,10 +92,28 @@ analyze() {
     cd "${BUILD_DIR}"
 
     # Normal Report (-R1)
-    maqao oneview -R1 -xp="${OUTPUT_DIR}/ov_r1_${bin}" --replace -- ${cmd}
+    maqao oneview -R1 \
+    --envv_OMP_NUM_THREADS=$OMP_NUM_THREADS \
+    --envv_OMP_PROC_BIND=$OMP_PROC_BIND \
+    --envv_OMP_PLACES=$OMP_PLACES \
+    --envv_OMP_DYNAMIC=$OMP_DYNAMIC \
+    --envv_OMP_SCHEDULE=$OMP_SCHEDULE \
+    --envv_GOMP_CPU_AFFINITY="$GOMP_CPU_AFFINITY" \
+    --envv_KMP_AFFINITY="$KMP_AFFINITY" \
+    --envv_KMP_BLOCKTIME=$KMP_BLOCKTIME \
+    -xp="${OUTPUT_DIR}/ov_r1_${bin}" --replace -- ${cmd}
 
     # Stability Report (-S1)
-    # maqao oneview -S1 --repetitions=10 -xp="${OUTPUT_DIR}/ov_s1_${bin}" --replace -- ${cmd}
+    maqao oneview -S1 --repetitions=10 \
+    --envv_OMP_NUM_THREADS=$OMP_NUM_THREADS \
+    --envv_OMP_PROC_BIND=$OMP_PROC_BIND \
+    --envv_OMP_PLACES=$OMP_PLACES \
+    --envv_OMP_DYNAMIC=$OMP_DYNAMIC \
+    --envv_OMP_SCHEDULE=$OMP_SCHEDULE \
+    --envv_GOMP_CPU_AFFINITY="$GOMP_CPU_AFFINITY" \
+    --envv_KMP_AFFINITY="$KMP_AFFINITY" \
+    --envv_KMP_BLOCKTIME=$KMP_BLOCKTIME \
+    -xp="${OUTPUT_DIR}/ov_s1_${bin}" --replace -- ${cmd}
 
     # Scalability Report (-R1 -WS)
     if [[ "$bin" == *"mpi"* ]]; then
@@ -106,10 +124,19 @@ analyze() {
             -xp="${OUTPUT_DIR}/ov_ws_${bin}" --replace -- ./${bin}
     else
         # OpenMP Scalability: 1 -> 2 -> 4 -> 8 threads
-        maqao oneview -R1 -WS --envv_OMP_NUM_THREADS=1 \
-            --multiruns-params='{{envv_OMP_NUM_THREADS="2"},{envv_OMP_NUM_THREADS="4"},{envv_OMP_NUM_THREADS="8"}}' \
-            -xp="${OUTPUT_DIR}/ov_ws_${bin}" --replace -- ./${bin}
+        maqao oneview -R1 -WS \
+        --envv_OMP_PROC_BIND=$OMP_PROC_BIND \
+        --envv_OMP_PLACES=$OMP_PLACES \
+        --envv_OMP_DYNAMIC=$OMP_DYNAMIC \
+        --envv_OMP_SCHEDULE=$OMP_SCHEDULE \
+        --envv_GOMP_CPU_AFFINITY="$GOMP_CPU_AFFINITY" \
+        --envv_KMP_AFFINITY="$KMP_AFFINITY" \
+        --envv_KMP_BLOCKTIME=$KMP_BLOCKTIME \
+        --envv_OMP_NUM_THREADS=1 \
+        --multiruns-params='{{envv_OMP_NUM_THREADS="2"},{envv_OMP_NUM_THREADS="4"},{envv_OMP_NUM_THREADS="8"}}' \
+        -xp="${OUTPUT_DIR}/ov_ws_${bin}" --replace -- ./${bin}
     fi
+    
     cd ..
 }
 
