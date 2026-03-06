@@ -1,0 +1,71 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1107 - 1187
+--------------------------------------------------------------------------------
+
+1107: !$omp&  myid,num_threads) shared(best0,best1,n1,n2,n3)
+1108:    do  i=1,mm
+1109:       ten( i, 1 ) = 0.0D0
+1110:       j1( i, 1 ) = 0
+1111:       j2( i, 1 ) = 0
+1112:       j3( i, 1 ) = 0
+1113:       ten( i, 0 ) = 1.0D0
+1114:       j1( i, 0 ) = 0
+1115:       j2( i, 0 ) = 0
+1116:       j3( i, 0 ) = 0
+1117:    enddo
+1118: 
+1119: !$omp do collapse(2)
+1120:    do  i3=2,n3-1
+1121:       do  i2=2,n2-1
+1122:          do  i1=2,n1-1
+1123:             if( z(i1,i2,i3) .gt. ten( 1, 1 ) )then
+1124:                ten(1,1) = z(i1,i2,i3)
+1125:                j1(1,1) = i1
+1126:                j2(1,1) = i2
+1127:                j3(1,1) = i3
+1128:                call bubble( ten, j1, j2, j3, mm, 1 )
+1129:             endif
+1130:             if( z(i1,i2,i3) .lt. ten( 1, 0 ) )then
+1131:                ten(1,0) = z(i1,i2,i3)
+1132:                j1(1,0) = i1
+1133:                j2(1,0) = i2
+1134:                j3(1,0) = i3
+1135:                call bubble( ten, j1, j2, j3, mm, 0 )
+[...]
+1146:    i1 = mm
+1147:    i0 = mm
+1148:    myid = 0
+1149: !$ myid = omp_get_thread_num()
+1150: !$ num_threads = omp_get_num_threads()
+1151:    do  i=mm,1,-1
+[...]
+1157: !$omp master
+1158:       best1 = 0.0D0
+1159:       best0 = 1.0D0
+1160: !$omp end master
+1161: 
+1162: !$omp do ordered schedule(static)
+1163: !$    do i2=1,num_threads
+1164: !$omp ordered
+1165:          if (ten(i1,1) .gt. best1) then
+1166:             best1 = ten(i1,1)
+1167:             jg( 0, i, 1 ) = myid
+1168:          endif
+1169:          if (ten(i0,0) .lt. best0) then
+1170:             best0 = ten(i0,0)
+1171:             jg( 0, i, 0 ) = myid
+1172:          endif
+1173: !$omp end ordered
+1174: !$    end do
+1175: 
+1176:       if (myid .eq. jg( 0, i, 1 )) then
+1177:          jg( 1, i, 1 ) = j1( i1, 1 )
+1178:          jg( 2, i, 1 ) = j2( i1, 1 )
+1179:          jg( 3, i, 1 ) = j3( i1, 1 )
+1180:          i1 = i1-1
+1181:       endif
+1182: 
+1183:       if (myid .eq. jg( 0, i, 0 )) then
+1184:          jg( 1, i, 0 ) = j1( i0, 0 )
+1185:          jg( 2, i, 0 ) = j2( i0, 0 )
+1186:          jg( 3, i, 0 ) = j3( i0, 0 )
+1187:          i0 = i0-1

@@ -1,0 +1,104 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 479 - 1248
+--------------------------------------------------------------------------------
+
+479: 			if(ten[ind][i] > ten[ind][i+1]){
+[...]
+501: 			if(ten[ind][i] < ten[ind][i+1]){
+[...]
+763: 	power = 1.0;
+764: 	nj = n;
+765: 	aj = a;
+766: 
+767: 	while(nj != 0){
+768: 		if((nj%2)==1){rdummy = randlc(&power, aj);}
+769: 		rdummy = randlc(&aj, aj);
+770: 		nj = nj/2;
+771: 	}
+772: 
+773: 	return power;
+[...]
+1117: static void zran3(void* pointer_z, int n1, int n2, int n3, int nx, int ny, int k){
+1118: #ifdef __clang__
+1119: 	using custom_cast = double (*)[n2][n1];
+1120: 	custom_cast z = reinterpret_cast<custom_cast>(pointer_z);
+[...]
+1135: 	a2 = power(A, nx*ny);
+1136: 
+1137: 	#pragma omp parallel
+1138: 		zero3(z, n1, n2, n3);
+1139: 
+1140: 	i = is1-2+nx*(is2-2+ny*(is3-2));
+1141: 
+1142: 	ai = power(A, i);
+1143: 	d1 = ie1 - is1 + 1;
+1144: 	e1 = ie1 - is1 + 2;
+1145: 	e2 = ie2 - is2 + 2;
+1146: 	e3 = ie3 - is3 + 2;
+1147: 	x0 = X;
+1148: 	randlc(&x0, ai);
+1149: 	for(i3 = 1; i3 < e3; i3++){
+1150: 		x1 = x0;
+1151: 		for(i2 = 1; i2 < e2; i2++){
+1152: 			xx = x1;
+1153: 			vranlc(d1, &xx, A, &(z[i3][i2][1]));
+1154: 			randlc(&x1,a1);
+1155: 		}
+1156: 		randlc(&x0, a2);
+[...]
+1165: 		ten[1][i] = 0.0;
+1166: 		j1[1][i] = 0;
+1167: 		j2[1][i] = 0;
+1168: 		j3[1][i] = 0;
+1169: 		ten[0][i] = 1.0;
+1170: 		j1[0][i] = 0;
+1171: 		j2[0][i] = 0;
+1172: 		j3[0][i] = 0;
+1173: 	}
+1174: 	for(i3 = 1; i3 < n3-1; i3++){
+1175: 		for(i2 = 1; i2 < n2-1; i2++){
+1176: 			for(i1 = 1; i1 < n1-1; i1++){
+1177: 				if(z[i3][i2][i1] > ten[1][0]){
+[...]
+1184: 				if(z[i3][i2][i1] < ten[0][0]){
+[...]
+1202: 	for(i = MM - 1; i >= 0; i--){
+1203: 		best = 0.0;
+1204: 		if(best < ten[1][i1]){
+1205: 			jg[1][i][0] = 0;
+1206: 			jg[1][i][1] = is1 - 2 + j1[1][i1];
+1207: 			jg[1][i][2] = is2 - 2 + j2[1][i1];
+1208: 			jg[1][i][3] = is3 - 2 + j3[1][i1];
+1209: 			i1 = i1-1;
+1210: 		}else{
+1211: 			jg[1][i][0] = 0;
+1212: 			jg[1][i][1] = 0;
+1213: 			jg[1][i][2] = 0;
+1214: 			jg[1][i][3] = 0;
+1215: 		}
+1216: 		best = 1.0;
+1217: 		if(best > ten[0][i0]){
+1218: 			jg[0][i][0] = 0;
+1219: 			jg[0][i][1] = is1 - 2 + j1[0][i0];
+1220: 			jg[0][i][2] = is2 - 2 + j2[0][i0];
+1221: 			jg[0][i][3] = is3 - 2 + j3[0][i0];
+1222: 			i0 = i0-1;
+1223: 		}else{
+1224: 			jg[0][i][0] = 0;
+1225: 			jg[0][i][1] = 0;
+[...]
+1233: 	for(i3 = 0; i3 < n3; i3++){
+1234: 		for(i2 = 0; i2 < n2; i2++){
+1235: 			for(i1 = 0; i1 < n1; i1++){
+1236: 				z[i3][i2][i1] = 0.0;
+1237: 			}
+1238: 		}
+1239: 	}
+1240: 	for (i = MM-1; i >= m0; i--){
+1241: 		z[jg[0][i][3]][jg[0][i][2]][jg[0][i][1]] = -1.0;
+1242: 	}
+1243: 	for(i = MM-1; i >= m1; i--){
+1244: 		z[jg[1][i][3]][jg[1][i][2]][jg[1][i][1]] = +1.0;
+1245: 	}
+1246: 	#pragma omp parallel 
+1247: 	comm3(z, n1, n2, n3, k);
+1248: }

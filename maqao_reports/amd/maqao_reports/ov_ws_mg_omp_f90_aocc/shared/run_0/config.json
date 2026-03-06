@@ -1,0 +1,143 @@
+{
+  "config" : {
+    "experiment_name" : "",
+    "comments" : "",
+    "executable"     : "./mg_omp_f90_aocc",
+    "external_libraries" : [],
+    "custom_categories" : [],
+    "run_command"    : "<executable> ",
+    "_scripts"    : {
+       "command"    : "sbatch <myscript>",
+       "files"     : [
+         {"path": "path/to/script.sh", "tag": "myscript"}
+       ],
+       "variables": {
+         "name": "value"
+       }
+    },
+    "_number_processes" : 1,
+    "_number_nodes" : 1,
+    "_number_processes_per_node" : 1,
+    "_number_threads_per_process" : 1,
+    "mpi_command"    : "",
+    "pinning_command"    : "",
+    "throughput_core"    : -1,
+    "throughput_max_core"    : 0,
+    "filter" : {
+      "type" : "number",
+      "value" : 10
+    },
+    "profile_start": {
+      "unit": "none"    },
+    "profile_stop": {
+      "unit": "none"    },
+    "run_directory"  : ".",
+    "dataset"        : "",
+    "dataset_handler": "link",
+    "_frequencies"    : [3801000, 416548],
+    "additional_hwc" : [],
+    "excluded_areas" : [],
+    "included_areas" : [],
+    "decan_multi_variant" : true,
+    "decan_all_variants" :true,
+    "decan_threshold" : 500,
+    "source_code_location" : "",
+    "maximal_path_number" : 4,
+    "optimizer_loop_count" : 10,
+    "is_sudo_available" : false,
+    "lprof_params" : "",
+    "lprof_post_process_params": {
+    },
+    "vprof_params": "",
+    "decan_params": "",
+    "cqa_params": {
+    },
+    "ratelprof_params": "",
+    "ratelprof_format_params": "",
+    "keep_executable_location": false,
+    "multiruns_params": [
+      {
+        "run_command": "<executable> ",
+        "mpi_command": "",
+        "run_directory": ".",
+        "dataset": "",
+        "profile_start": {"unit": "none", "value": 0, },
+        "script_variables": {},
+        "environment_variables": [
+           {"name": "OMP_NUM_THREADS", "value": "2"},
+           {"name": "OMP_DYNAMIC", "value": "FALSE"},
+           {"name": "OMP_PROC_BIND", "value": "close"},
+           {"name": "KMP_BLOCKTIME", "value": "0"},
+           {"name": "KMP_AFFINITY", "value": "granularity=fine,compact,1,0"},
+           {"name": "OMP_SCHEDULE", "value": "static"},
+           {"name": "OMP_PLACES", "value": "cores"},
+           {"name": "GOMP_CPU_AFFINITY", "value": "0-7"}
+        ],
+        "throughput_core": -1,
+        "throughput_max_core": 0,
+        "name": "run_1"
+      },
+      {
+        "run_command": "<executable> ",
+        "mpi_command": "",
+        "run_directory": ".",
+        "dataset": "",
+        "profile_start": {"unit": "none", "value": 0, },
+        "script_variables": {},
+        "environment_variables": [
+           {"name": "OMP_NUM_THREADS", "value": "4"},
+           {"name": "OMP_DYNAMIC", "value": "FALSE"},
+           {"name": "OMP_PROC_BIND", "value": "close"},
+           {"name": "KMP_BLOCKTIME", "value": "0"},
+           {"name": "KMP_AFFINITY", "value": "granularity=fine,compact,1,0"},
+           {"name": "OMP_SCHEDULE", "value": "static"},
+           {"name": "OMP_PLACES", "value": "cores"},
+           {"name": "GOMP_CPU_AFFINITY", "value": "0-7"}
+        ],
+        "throughput_core": -1,
+        "throughput_max_core": 0,
+        "name": "run_2"
+      },
+      {
+        "run_command": "<executable> ",
+        "mpi_command": "",
+        "run_directory": ".",
+        "dataset": "",
+        "profile_start": {"unit": "none", "value": 0, },
+        "script_variables": {},
+        "environment_variables": [
+           {"name": "OMP_NUM_THREADS", "value": "8"},
+           {"name": "OMP_DYNAMIC", "value": "FALSE"},
+           {"name": "OMP_PROC_BIND", "value": "close"},
+           {"name": "KMP_BLOCKTIME", "value": "0"},
+           {"name": "KMP_AFFINITY", "value": "granularity=fine,compact,1,0"},
+           {"name": "OMP_SCHEDULE", "value": "static"},
+           {"name": "OMP_PLACES", "value": "cores"},
+           {"name": "GOMP_CPU_AFFINITY", "value": "0-7"}
+        ],
+        "throughput_core": -1,
+        "throughput_max_core": 0,
+        "name": "run_3"
+      }
+    ],
+    "scalability_reference": "main",
+    "base_run_name": "run_0",
+    "environment_variables": [
+      {"name": "OMP_DYNAMIC", "value": "FALSE"},
+      {"name": "OMP_PROC_BIND", "value": "close"},
+      {"name": "OMP_NUM_THREADS", "value": "1"},
+      {"name": "KMP_BLOCKTIME", "value": "0"},
+      {"name": "KMP_AFFINITY", "value": "granularity=fine,compact,1,0"},
+      {"name": "OMP_SCHEDULE", "value": "static"},
+      {"name": "OMP_PLACES", "value": "cores"},
+      {"name": "GOMP_CPU_AFFINITY", "value": "0-7"}
+    ],
+    "qplot_path": "nil",
+    "thread_filter_threshold" : "1%",
+    "object_coverage_threshold" : 0.01,
+    "repetitions" : 31,
+    "ranges_count" : 20,
+    "outliers_count" : 0,
+    "delay" : 0
+  }
+}

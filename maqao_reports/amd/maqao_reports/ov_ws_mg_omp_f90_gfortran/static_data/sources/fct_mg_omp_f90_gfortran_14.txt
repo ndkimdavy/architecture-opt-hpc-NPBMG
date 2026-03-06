@@ -1,0 +1,15 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 527 - 546
+--------------------------------------------------------------------------------
+
+527: !$omp parallel do default(shared) private(i1,i2,i3,r1,r2) collapse(2)
+528:    do i3=2,n3-1
+529:       do i2=2,n2-1
+530:          ! Optimization: Vectorize neighbor summation
+531:          !$omp simd
+532:          do i1=1,n1
+533:             r1(i1) = r(i1,i2-1,i3) + r(i1,i2+1,i3)  &
+534:             &                + r(i1,i2,i3-1) + r(i1,i2,i3+1)
+535:             r2(i1) = r(i1,i2-1,i3-1) + r(i1,i2+1,i3-1)  &
+536:             &                + r(i1,i2-1,i3+1) + r(i1,i2+1,i3+1)
+[...]
+546:             &                     + c(2) * ( r2(i1) + r1(i1-1) + r1(i1+1) )

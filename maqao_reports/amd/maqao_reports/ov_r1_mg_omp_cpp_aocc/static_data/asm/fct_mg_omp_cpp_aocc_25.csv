@@ -1,0 +1,47 @@
+address;source_location;insn;indent
+0xe0b0;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:148;VMOVSD	(%RSI),%XMM1;
+0xe0b4;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;TEST	%EDI,%EDI;
+0xe0b6;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;JLE	e151 <_Z6vranlciPddS_+0xa1>;
+0xe0bc;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;PUSH	%RBP;
+0xe0bd;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;MOV	%RSP,%RBP;
+0xe0c0;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;VMULSD	-0xcd10(%RIP),%XMM0,%XMM2;
+0xe0c8;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;VMOVSD	-0xcd18(%RIP),%XMM3;
+0xe0d0;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;VMOVSD	-0xcd80(%RIP),%XMM4;
+0xe0d8;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;VMOVSD	-0xcda8(%RIP),%XMM5;
+0xe0e0;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;VMOVSD	-0xcd28(%RIP),%XMM6;
+0xe0e8;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;MOV	%EDI,%EAX;
+0xe0ea;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;XOR	%ECX,%ECX;
+0xe0ec;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;VROUNDSD	$0xb,%XMM2,%XMM2,%XMM2;
+0xe0f2;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;VFMADD231SD	-0xcddb(%RIP),%XMM2,%XMM0;
+0xe0fb;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;NOPL	(%RAX,%RAX,1);
+0xe100;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:163;VMULSD	%XMM3,%XMM1,%XMM7;(93) 
+0xe104;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:164;VROUNDSD	$0xb,%XMM7,%XMM7,%XMM7;(93) 
+0xe10a;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:165;VFNMADD231SD	%XMM4,%XMM7,%XMM1;(93) 
+0xe10f;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:166;VMULSD	%XMM7,%XMM0,%XMM7;(93) 
+0xe113;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:166;VFMADD231SD	%XMM2,%XMM1,%XMM7;(93) 
+0xe118;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:167;VMULSD	%XMM3,%XMM7,%XMM8;(93) 
+0xe11c;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:167;VROUNDSD	$0xb,%XMM8,%XMM8,%XMM8;(93) 
+0xe122;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:168;VFMSUB213SD	%XMM7,%XMM4,%XMM8;(93) 
+0xe127;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:169;VMULSD	%XMM0,%XMM1,%XMM7;(93) 
+0xe12b;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:169;VFNMADD231SD	%XMM8,%XMM4,%XMM7;(93) 
+0xe130;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:170;VMULSD	%XMM5,%XMM7,%XMM1;(93) 
+0xe134;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:170;VROUNDSD	$0xb,%XMM1,%XMM1,%XMM1;(93) 
+0xe13a;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:171;VFMADD132SD	%XMM6,%XMM7,%XMM1;(93) 
+0xe13f;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:172;VMULSD	%XMM5,%XMM1,%XMM7;(93) 
+0xe143;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:172;VMOVSD	%XMM7,(%RDX,%RCX,8);(93) 
+0xe148;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;INC	%RCX;(93) 
+0xe14b;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;CMP	%RCX,%RAX;(93) 
+0xe14e;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;JNE	e100 <_Z6vranlciPddS_+0x50>;(93) 
+0xe150;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:155;POP	%RBP;
+0xe151;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:174;VMOVSD	%XMM1,(%RSI);
+0xe155;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/common/c_randdp.cpp:175;RET;
+0xe156;:0;INT	$0x3;
+0xe157;:0;INT	$0x3;
+0xe158;:0;INT	$0x3;
+0xe159;:0;INT	$0x3;
+0xe15a;:0;INT	$0x3;
+0xe15b;:0;INT	$0x3;
+0xe15c;:0;INT	$0x3;
+0xe15d;:0;INT	$0x3;
+0xe15e;:0;INT	$0x3;
+0xe15f;:0;INT	$0x3;

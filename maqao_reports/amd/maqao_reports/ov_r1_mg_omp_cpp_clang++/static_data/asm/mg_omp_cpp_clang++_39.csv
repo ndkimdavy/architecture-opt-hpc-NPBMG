@@ -1,0 +1,17 @@
+address;source_location;insn;indent
+0x404dc0;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:900;VMOVAPD	%ZMM1,%ZMM2;
+0x404dc6;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:905;VMOVUPD	-0x1110(%RBP,%RDI,8),%ZMM1;
+0x404dd1;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:903;VMOVUPD	(%RDX,%RDI,8),%ZMM3;
+0x404dd8;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:900;VMULPD	(%RSI){1to8},%ZMM3,%ZMM3;
+0x404dde;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:900;VMOVAPD	%ZMM1,%ZMM4;
+0x404de4;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:900;VPERMT2PD	%ZMM2,%ZMM0,%ZMM4;
+0x404dea;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:904;VADDPD	-0x2140(%RBP,%RDI,8),%ZMM4,%ZMM2;
+0x404df5;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:905;VADDPD	-0x1120(%RBP,%RDI,8),%ZMM1,%ZMM4;
+0x404e00;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:904;VADDPD	-0x2130(%RBP,%RDI,8),%ZMM2,%ZMM2;
+0x404e0b;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:905;VFMADD231PD	0x10(%RSI){1to8},%ZMM2,%ZMM3;
+0x404e12;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:905;VFNMSUB231PD	0x18(%RSI){1to8},%ZMM4,%ZMM3;
+0x404e19;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:905;VADDPD	(%RCX,%RDI,8),%ZMM3,%ZMM2;
+0x404e20;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:902;VMOVUPD	%ZMM2,(%RAX,%RDI,8);
+0x404e27;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:901;ADD	$0x8,%RDI;
+0x404e2b;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:901;CMP	%RDI,%R8;
+0x404e2e;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:901;JNE	404dc0 <_ZL5residPvS_S_iiiPdi+0x540>;

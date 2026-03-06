@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - threads redirect</title>
+<meta charset="utf-8" />
+</head>
+<body onload="__redirect ()">
+<div id="err_div"></div>
+<script>
+function __redirect (){
+  const redirect_table = [
+    {fedora_570358_570358: "fedora_570358_570358", },
+    {fedora_570773_570788: "fedora_570773_570773", fedora_570773_570773: "fedora_570773_570773", },
+    {fedora_570913_570913: "fedora_570913_570929", fedora_570913_570929: "fedora_570913_570929", fedora_570913_570930: "fedora_570913_570929", fedora_570913_570928: "fedora_570913_570928", },
+    {fedora_571048_571066: "fedora_571048_571067", fedora_571048_571068: "fedora_571048_571065", fedora_571048_571065: "fedora_571048_571065", fedora_571048_571069: "fedora_571048_571065", fedora_571048_571064: "fedora_571048_571067", fedora_571048_571067: "fedora_571048_571067", fedora_571048_571063: "fedora_571048_571065", fedora_571048_571048: "fedora_571048_571067", },
+];
+  const queryString = window.location.search;
+  const params = new URLSearchParams(queryString);
+  let thread = params.get("thread");
+  if (thread) {
+    let elems = thread.split ("_");
+    let run_id = elems[0];
+    let key    = elems[1];
+    for (let i = 2; i < elems.length; i++) {
+      key += "_" + elems[i];
+    }
+    window.location.replace("/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_ws_mg_omp_f90_gfortran/RESULTS/mg_omp_f90_gfortran_one_html/topo/run_"+run_id+"_"+redirect_table[run_id][key]+".html?origin="+key);
+  }
+  else {
+    let d = document.getElementById ("err_div");
+    if (d) {
+      d.innerHTML = "Missing parameter <i>thread</i>";
+    }
+  }
+}
+</script>
+</body>
+</html>

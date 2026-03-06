@@ -1,0 +1,29 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-MPI/MG/mg.f90: 1136 - 2566
+--------------------------------------------------------------------------------
+
+1136:       subroutine comm3(u,n1,n2,n3,kk)
+[...]
+1154:       if( .not. dead(kk) )then
+1155:          do  axis = 1, 3
+1156:             if( nprocs .ne. 1) then
+1157:    
+1158:                call ready( axis, -1, kk )
+1159:                call ready( axis, +1, kk )
+1160:    
+1161:                call give3( axis, +1, u, n1, n2, n3, kk )
+1162:                call give3( axis, -1, u, n1, n2, n3, kk )
+1163:    
+1164:                call take3( axis, -1, u, n1, n2, n3 )
+1165:                call take3( axis, +1, u, n1, n2, n3 )
+1166:    
+1167:             else
+1168:                call comm1p( axis, u, n1, n2, n3, kk )
+[...]
+1175:       end
+[...]
+2551:       subroutine zero3(z,n1,n2,n3)
+[...]
+2563:       do  i3=1,n3
+2564:          do  i2=1,n2
+2565:             do  i1=1,n1
+2566:                z(i1,i2,i3)=0.0D0

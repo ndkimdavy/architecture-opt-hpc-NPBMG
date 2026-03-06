@@ -1,0 +1,13 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-MPI/MG/mg.f90: 2163 - 2306
+--------------------------------------------------------------------------------
+
+2163:       do  i3 = 2, e3
+2164:          x1 = x0
+2165:          do  i2 = 2, e2
+2166:             xx = x1
+2167:             call vranlc( d1, xx, a, z( 2, i2, i3 ))
+2168:             rdummy = randlc( x1, a1 )
+2169:          enddo
+2170:          rdummy = randlc( x0, a2 )
+[...]
+2306:       call comm3(z,n1,n2,n3,k)

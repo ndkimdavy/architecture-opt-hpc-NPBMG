@@ -1,0 +1,20 @@
+address;source_location;insn;indent
+0xcf80;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:814;VMOVAPD	%ZMM1,%ZMM3;
+0xcf86;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:818;VMOVUPD	(%RCX,%RSI,8),%ZMM1;
+0xcf8d;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:817;VBROADCASTSD	(%RBX),%ZMM2;
+0xcf93;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:817;VMOVUPD	-0x8(%RCX,%RSI,8),%ZMM4;
+0xcf9e;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:819;VMOVUPD	-0x1130(%RBP,%RSI,8),%ZMM5;
+0xcfa9;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:818;VADDPD	-0x10(%RCX,%RSI,8),%ZMM1,%ZMM7;
+0xcfb4;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:819;VMOVUPD	-0x1120(%RBP,%RSI,8),%ZMM1;
+0xcfbf;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:819;VADDPD	-0x2148(%RBP,%RSI,8),%ZMM5,%ZMM5;
+0xcfca;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:817;VFMADD213PD	(%RAX,%RSI,8),%ZMM2,%ZMM4;
+0xcfd1;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:817;VMOVAPD	%ZMM1,%ZMM6;
+0xcfd7;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:817;VPERMT2PD	%ZMM3,%ZMM0,%ZMM6;
+0xcfdd;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:819;VADDPD	%ZMM1,%ZMM5,%ZMM3;
+0xcfe3;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:818;VADDPD	%ZMM6,%ZMM7,%ZMM2;
+0xcfe9;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:818;VFMADD132PD	0x8(%RBX){1to8},%ZMM4,%ZMM2;
+0xcff0;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:819;VFMADD132PD	0x10(%RBX){1to8},%ZMM2,%ZMM3;
+0xcff7;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:816;VMOVUPD	%ZMM3,(%RAX,%RSI,8);
+0xcffe;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:815;ADD	$0x8,%RSI;
+0xd002;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:815;CMP	%RSI,%R8;
+0xd005;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:815;JNE	cf80 <_ZL5psinvPvS_iiiPdi+0x650>;

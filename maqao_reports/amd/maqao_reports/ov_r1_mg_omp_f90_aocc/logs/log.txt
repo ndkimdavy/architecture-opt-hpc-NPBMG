@@ -1,0 +1,10 @@
+********************************************************************************
+MAQAO 2026.0.0 - aae71454a81fd1916a1bb0dee97b1e5c08f6db95::20260204-200851 || 2026/02/04
+maqao oneview -R1 --envv_OMP_NUM_THREADS=8 --envv_OMP_PROC_BIND=close --envv_OMP_PLACES=cores --envv_OMP_DYNAMIC=FALSE --envv_OMP_SCHEDULE=static --envv_GOMP_CPU_AFFINITY=0-7 --envv_KMP_AFFINITY=granularity=fine,compact,1,0 --envv_KMP_BLOCKTIME=0 -xp=/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc --replace -- ./mg_omp_f90_aocc 
+CPY:  [true] ./mg_omp_f90_aocc --> /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc/binaries/mg_omp_f90_aocc
+CMD:  OMP_DYNAMIC=FALSE  GOMP_CPU_AFFINITY=0-7  OMP_PROC_BIND=close  KMP_BLOCKTIME=0  KMP_AFFINITY=granularity=fine,compact,1,0  OMP_SCHEDULE=static  OMP_PLACES=cores  OMP_NUM_THREADS=8   /home/ndkd/lab/maqao/bin/maqao lprof _caller=oneview  --xp="/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc/tools/lprof_run_0" --mpi-command="" --collect-CPU-time-intervals --collect-topology tpp=8   -- /home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc/binaries/mg_omp_f90_aocc 
+Run run_0: At cluster level, discarded 0 functions cumulating 0.0% of application profiled time
+
+Run run_0: At cluster level, discarded 0 loops cumulating 0.0% of application profiled time
+
+CMD:  /home/ndkd/lab/maqao/bin/maqao otter  -input=/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc/OTTER/input_manifest.csv -output=/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/build/maqao_reports/ov_r1_mg_omp_f90_aocc/OTTER/output_manifest.csv --reduce-threads-files=on

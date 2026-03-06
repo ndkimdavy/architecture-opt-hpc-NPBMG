@@ -1,0 +1,334 @@
+{
+  "report": [
+    {
+      "id_str": "Loop 8 - mg_omp_f90_gfortran",
+      "module": "mg_omp_f90_gfortran",
+      "id": 8,
+      "analysis": "Execution Time: 29 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 29.523420333862,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 7 - mg_omp_f90_gfortran",
+      "module": "mg_omp_f90_gfortran",
+      "id": 7,
+      "analysis": "Execution Time: 20 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 20.473503112793,
+      "issues": [
+      ]
+    },
+    {
+      "id_str": "Loop 18 - mg_omp_f90_gfortran",
+      "module": "mg_omp_f90_gfortran",
+      "id": 18,
+      "analysis": "Execution Time: 13 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 13.118183135986,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 17 - mg_omp_f90_gfortran",
+      "module": "mg_omp_f90_gfortran",
+      "id": 17,
+      "analysis": "Execution Time: 7 % - Vectorization Ratio: 92.31 % - Vector Length Use: 93.27 %",
+      "coverage": 7.2651786804199,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BROADCAST) - Simplify data access and try to get stride 1 access. There are 2 issues (= instructions) costing 1 point each.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BROADCAST) - Simplify data access and try to get stride 1 access. There are 2 issues (= instructions) costing 1 point each.",
+              "score": 2,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 51 - mg_omp_f90_gfortran",
+      "module": "mg_omp_f90_gfortran",
+      "id": 51,
+      "analysis": "Execution Time: 4 % - Vectorization Ratio: 66.67 % - Vector Length Use: 58.33 %",
+      "coverage": 4.3446850776672,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 42,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 10 issues ( = data accesses) costing 2 point each.",
+              "score": 20,
+            },
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (INSERT/EXTRACT, SHUFFLE/PERM, Other_packing) - Simplify data access and try to get stride 1 access. There are 22 issues (= instructions) costing 1 point each.",
+              "score": 22,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 20,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 10 issues ( = data accesses) costing 2 point each.",
+              "score": 20,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 22,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (INSERT/EXTRACT, SHUFFLE/PERM, Other_packing) - Simplify data access and try to get stride 1 access. There are 22 issues (= instructions) costing 1 point each.",
+              "score": 22,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 50 - mg_omp_f90_gfortran",
+      "module": "mg_omp_f90_gfortran",
+      "id": 50,
+      "analysis": "Execution Time: 2 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 2.9204938411713,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 15,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 15 issues (= instructions) costing 1 point each.",
+              "score": 15,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 15,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 15 issues (= instructions) costing 1 point each.",
+              "score": 15,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 24 - mg_omp_f90_gfortran",
+      "module": "mg_omp_f90_gfortran",
+      "id": 24,
+      "analysis": "Execution Time: 2 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 2.133282661438,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 22,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 3 issues ( = data accesses) costing 2 point each.",
+              "score": 6,
+            },
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 16 issues (= instructions) costing 1 point each.",
+              "score": 16,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 3 issues ( = data accesses) costing 2 point each.",
+              "score": 6,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 16,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 16 issues (= instructions) costing 1 point each.",
+              "score": 16,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 26 - mg_omp_f90_gfortran",
+      "module": "mg_omp_f90_gfortran",
+      "id": 26,
+      "analysis": "Execution Time: 2 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 2.1092455387115,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 22 - mg_omp_f90_gfortran",
+      "module": "mg_omp_f90_gfortran",
+      "id": 22,
+      "analysis": "Execution Time: 2 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 2.0912175178528,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 22,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 3 issues ( = data accesses) costing 2 point each.",
+              "score": 6,
+            },
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 16 issues (= instructions) costing 1 point each.",
+              "score": 16,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 3 issues ( = data accesses) costing 2 point each.",
+              "score": 6,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 16,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 16 issues (= instructions) costing 1 point each.",
+              "score": 16,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 25 - mg_omp_f90_gfortran",
+      "module": "mg_omp_f90_gfortran",
+      "id": 25,
+      "analysis": "Execution Time: 1 % - Vectorization Ratio: 100.00 % - Vector Length Use: 100.00 %",
+      "coverage": 1.9650235176086,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 18,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 1 issues ( = data accesses) costing 2 point each.",
+              "score": 2,
+            },
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 16 issues (= instructions) costing 1 point each.",
+              "score": 16,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 1 issues ( = data accesses) costing 2 point each.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 16,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (SHUFFLE/PERM) - Simplify data access and try to get stride 1 access. There are 16 issues (= instructions) costing 1 point each.",
+              "score": 16,
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

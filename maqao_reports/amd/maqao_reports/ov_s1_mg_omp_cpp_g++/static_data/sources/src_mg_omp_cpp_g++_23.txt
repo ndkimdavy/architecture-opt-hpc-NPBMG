@@ -1,0 +1,51 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp: 479 - 1188
+--------------------------------------------------------------------------------
+
+479: 			if(ten[ind][i] > ten[ind][i+1]){
+480: 				temp = ten[ind][i+1];
+481: 				ten[ind][i+1] = ten[ind][i];
+482: 				ten[ind][i] = temp;
+483: 
+484: 				j_temp = j1[ind][i+1];
+485: 				j1[ind][i+1] = j1[ind][i];
+486: 				j1[ind][i] = j_temp;
+487: 
+488: 				j_temp = j2[ind][i+1];
+489: 				j2[ind][i+1] = j2[ind][i];
+490: 				j2[ind][i] = j_temp;
+491: 
+492: 				j_temp = j3[ind][i+1];
+493: 				j3[ind][i+1] = j3[ind][i];
+494: 				j3[ind][i] = j_temp;
+[...]
+501: 			if(ten[ind][i] < ten[ind][i+1]){
+502: 				temp = ten[ind][i+1];
+503: 				ten[ind][i+1] = ten[ind][i];
+504: 				ten[ind][i] = temp;
+505: 
+506: 				j_temp = j1[ind][i+1];
+507: 				j1[ind][i+1] = j1[ind][i];
+508: 				j1[ind][i] = j_temp;
+509: 
+510: 				j_temp = j2[ind][i+1];
+511: 				j2[ind][i+1] = j2[ind][i];
+512: 				j2[ind][i] = j_temp;
+513: 
+514: 				j_temp = j3[ind][i+1];
+515: 				j3[ind][i+1] = j3[ind][i];
+516: 				j3[ind][i] = j_temp;
+[...]
+1175: 		for(i2 = 1; i2 < n2-1; i2++){
+1176: 			for(i1 = 1; i1 < n1-1; i1++){
+1177: 				if(z[i3][i2][i1] > ten[1][0]){
+1178: 					ten[1][0] = z[i3][i2][i1];
+1179: 					j1[1][0] = i1;
+1180: 					j2[1][0] = i2;
+1181: 					j3[1][0] = i3;
+1182: 					bubble(ten, j1, j2, j3, MM, 1);
+1183: 				}
+1184: 				if(z[i3][i2][i1] < ten[0][0]){
+1185: 					ten[0][0] = z[i3][i2][i1];
+1186: 					j1[0][0] = i1;
+1187: 					j2[0][0] = i2;
+1188: 					j3[0][0] = i3;

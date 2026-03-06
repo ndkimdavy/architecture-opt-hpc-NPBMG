@@ -1,0 +1,17 @@
+address;source_location;insn;indent
+0xa3a0;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:900;VMOVAPD	%ZMM1,%ZMM2;
+0xa3a6;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:905;VMOVUPD	-0x1130(%RBP,%RSI,8),%ZMM1;
+0xa3b1;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:903;VMOVUPD	(%RDX,%RSI,8),%ZMM3;
+0xa3b8;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:903;VMOVAPD	%ZMM1,%ZMM4;
+0xa3be;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:900;VMULPD	(%R9){1to8},%ZMM3,%ZMM3;
+0xa3c4;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:900;VPERMT2PD	%ZMM2,%ZMM0,%ZMM4;
+0xa3ca;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:904;VADDPD	-0x2160(%RBP,%RSI,8),%ZMM4,%ZMM2;
+0xa3d5;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:905;VADDPD	-0x1140(%RBP,%RSI,8),%ZMM1,%ZMM4;
+0xa3dd;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:904;VADDPD	-0x2150(%RBP,%RSI,8),%ZMM2,%ZMM2;
+0xa3e8;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:904;VFMADD231PD	0x10(%R9){1to8},%ZMM2,%ZMM3;
+0xa3ef;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:904;VFNMSUB231PD	0x18(%R9){1to8},%ZMM4,%ZMM3;
+0xa3f6;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:905;VADDPD	(%RCX,%RSI,8),%ZMM3,%ZMM2;
+0xa3fd;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:902;VMOVUPD	%ZMM2,(%RAX,%RSI,8);
+0xa404;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:901;ADD	$0x8,%RSI;
+0xa408;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:901;CMP	%RSI,%R8;
+0xa40b;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:901;JNE	a3a0 <_ZL5residPvS_S_iiiPdi+0x670>;

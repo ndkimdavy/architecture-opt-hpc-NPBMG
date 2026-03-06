@@ -1,0 +1,12 @@
+address;source_location;insn;indent
+0xc480;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVUPS	-0x40(%R9,%RSI,1),%ZMM0;
+0xc488;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVUPS	(%R9,%RSI,1),%ZMM1;
+0xc48f;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVUPS	%ZMM0,-0x40(%RDI,%RSI,1);
+0xc497;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:551;VMOVUPS	%ZMM1,(%RDI,%RSI,1);
+0xc49e;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVUPS	(%R11,%RSI,1),%ZMM0;
+0xc4a5;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVUPS	0x40(%R11,%RSI,1),%ZMM1;
+0xc4ad;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVUPS	%ZMM0,-0x40(%R13,%RSI,1);
+0xc4b5;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:552;VMOVUPS	%ZMM1,(%R13,%RSI,1);
+0xc4bd;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;SUB	$-0x80,%RSI;
+0xc4c1;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;CMP	%RSI,%R10;
+0xc4c4;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:550;JNE	c480 <_ZL5comm3Pviiii+0x7c0>;

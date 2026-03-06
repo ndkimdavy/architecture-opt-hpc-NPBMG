@@ -1,0 +1,15 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/common/randi8.f90: 41 - 66
+--------------------------------------------------------------------------------
+
+41:       SUBROUTINE VRANLC (N, X, A, Y)
+[...]
+57:       Lx = X
+58:       La = A
+59:       do i = 1, N
+60:          Lx   = iand(Lx*La,i246m1)
+61:          y(i) = d2m46*dble(Lx)
+62:       end do
+63:       x    = dble(Lx)
+64: 
+65:       return
+66:       end

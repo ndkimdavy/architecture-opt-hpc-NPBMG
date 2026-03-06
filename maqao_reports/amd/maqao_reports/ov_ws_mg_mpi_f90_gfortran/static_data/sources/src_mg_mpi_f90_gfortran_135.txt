@@ -1,0 +1,17 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-MPI/MG/mg.f90: 1155 - 1168
+--------------------------------------------------------------------------------
+
+1155:          do  axis = 1, 3
+1156:             if( nprocs .ne. 1) then
+1157:    
+1158:                call ready( axis, -1, kk )
+1159:                call ready( axis, +1, kk )
+1160:    
+1161:                call give3( axis, +1, u, n1, n2, n3, kk )
+1162:                call give3( axis, -1, u, n1, n2, n3, kk )
+1163:    
+1164:                call take3( axis, -1, u, n1, n2, n3 )
+1165:                call take3( axis, +1, u, n1, n2, n3 )
+1166:    
+1167:             else
+1168:                call comm1p( axis, u, n1, n2, n3, kk )

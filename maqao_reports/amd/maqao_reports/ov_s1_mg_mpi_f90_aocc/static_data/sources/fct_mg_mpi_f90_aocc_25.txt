@@ -1,0 +1,71 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-MPI/MG/mg.f90: 778 - 871
+--------------------------------------------------------------------------------
+
+778:       subroutine rprj3( r,m1k,m2k,m3k,s,m1j,m2j,m3j,k )
+[...]
+802:       double precision x1(m), y1(m), x2,y2
+803: 
+804: 
+805:       if (timeron) call timer_start(t_rprj3)
+806:       if(m1k.eq.3)then
+807:         d1 = 2
+808:       else
+809:         d1 = 1
+810:       endif
+811: 
+812:       if(m2k.eq.3)then
+813:         d2 = 2
+[...]
+819:         d3 = 2
+820:       else
+821:         d3 = 1
+822:       endif
+823: 
+824:       do  j3=2,m3j-1
+825:          i3 = 2*j3-d3
+826: !        i3 = 2*j3-1
+827:          do  j2=2,m2j-1
+828:             i2 = 2*j2-d2
+829: !           i2 = 2*j2-1
+830: 
+831:             do j1=2,m1j
+832:               i1 = 2*j1-d1
+833: !             i1 = 2*j1-1
+834:               x1(i1-1) = r(i1-1,i2-1,i3  ) + r(i1-1,i2+1,i3  )  &
+835:      &                 + r(i1-1,i2,  i3-1) + r(i1-1,i2,  i3+1)
+836:               y1(i1-1) = r(i1-1,i2-1,i3-1) + r(i1-1,i2-1,i3+1)  &
+837:      &                 + r(i1-1,i2+1,i3-1) + r(i1-1,i2+1,i3+1)
+838:             enddo
+839: 
+840:             do  j1=2,m1j-1
+841:               i1 = 2*j1-d1
+842: !             i1 = 2*j1-1
+843:               y2 = r(i1,  i2-1,i3-1) + r(i1,  i2-1,i3+1)  &
+844:      &           + r(i1,  i2+1,i3-1) + r(i1,  i2+1,i3+1)
+845:               x2 = r(i1,  i2-1,i3  ) + r(i1,  i2+1,i3  )  &
+846:      &           + r(i1,  i2,  i3-1) + r(i1,  i2,  i3+1)
+847:               s(j1,j2,j3) =  &
+848:      &               0.5D0 * r(i1,i2,i3)  &
+849:      &             + 0.25D0 * ( r(i1-1,i2,i3) + r(i1+1,i2,i3) + x2)  &
+850:      &             + 0.125D0 * ( x1(i1-1) + x1(i1+1) + y2)  &
+851:      &             + 0.0625D0 * ( y1(i1-1) + y1(i1+1) )
+852:             enddo
+853: 
+854:          enddo
+855:       enddo
+856:       if (timeron) call timer_stop(t_rprj3)
+857: 
+858: 
+859:       j = k-1
+860:       call comm3(s,m1j,m2j,m3j,j)
+861: 
+862:       if( debug_vec(0) .ge. 1 )then
+863:          call rep_nrm(s,m1j,m2j,m3j,'   rprj3',k-1)
+864:       endif
+865: 
+866:       if( debug_vec(4) .ge. k )then
+867:          call showall(s,m1j,m2j,m3j)
+868:       endif
+869: 
+870:       return
+871:       end

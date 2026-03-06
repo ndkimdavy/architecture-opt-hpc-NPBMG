@@ -1,0 +1,14 @@
+group_size;pattern;opcodes;offsets;addresses;stride_status;stride;memory_status;accessed_memory;accessed_memory_nooverlap;accessed_memory_overlap;span;head;unroll_factor;
+1;L;VADDSD,;0,;0x9b78,;Success;16;Success;8;8;0;8;0;1;
+1;L;VADDSD,;0,;0x9b73,;Success;16;Success;8;8;0;8;0;1;
+1;L;VADDSD,;0,;0x9b7e,;Success;16;Success;8;8;0;8;0;1;
+2;LL;VMOVSD,VADDSD,;-16,0,;0x9b47,0x9b61,;Success;16;Success;16;16;0;24;16;1;
+2;LL;VADDSD,VADDSD,;0,-16,;0x9b84,0x9b94,;Success;16;Success;16;16;0;24;16;2;
+1;L;VMOVSD,;0,;0x9b40,;Success;16;Success;8;8;0;8;0;1;
+1;L;VADDSD,;0,;0x9b67,;Success;16;Success;8;8;0;8;0;1;
+1;S;VMOVSD,;0,;0x9bb1,;Success;8;Success;8;8;0;8;8;1;
+1;L;VADDSD,;0,;0x9b5b,;Success;16;Success;8;8;0;8;0;1;
+1;L;VMOVSD,;0,;0x9b4d,;Success;16;Success;8;8;0;8;0;1;
+1;L;VADDSD,;0,;0x9b6d,;Success;16;Success;8;8;0;8;0;1;
+1;L;MOV,;8,;0x9b53,;Success;0;Success;8;8;0;8;0;1;
+3;LLL;VADDSD,VADDSD,VFMADD231SD,;8,-8,0,;0x9b8a,0x9b9b,0x9ba6,;Success;16;Success;24;24;0;24;24;1;

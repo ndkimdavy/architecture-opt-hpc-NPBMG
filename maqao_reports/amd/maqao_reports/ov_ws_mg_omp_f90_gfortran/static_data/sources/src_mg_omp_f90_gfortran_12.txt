@@ -1,0 +1,10 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1087 - 1093
+--------------------------------------------------------------------------------
+
+1087: !$omp&  shared(e2,e3,d1,a1)
+1088:    do  i3 = 2, e3
+1089:       x1 = starts(i3)
+1090:       do  i2 = 2, e2
+1091:          xx = x1
+1092:          call vranlc( d1, xx, a, z( 2, i2, i3 ))
+1093:          rdummy = randlc( x1, a1 )

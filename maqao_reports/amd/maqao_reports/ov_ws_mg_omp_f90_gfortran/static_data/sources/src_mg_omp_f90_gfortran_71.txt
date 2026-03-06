@@ -1,0 +1,19 @@
+/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/OFFICIAL-NASA/NPB3.4.4/NPB3.4-OMP/MG/mg.f90: 1107 - 1135
+--------------------------------------------------------------------------------
+
+1107: !$omp&  myid,num_threads) shared(best0,best1,n1,n2,n3)
+[...]
+1122:          do  i1=2,n1-1
+1123:             if( z(i1,i2,i3) .gt. ten( 1, 1 ) )then
+1124:                ten(1,1) = z(i1,i2,i3)
+1125:                j1(1,1) = i1
+1126:                j2(1,1) = i2
+1127:                j3(1,1) = i3
+1128:                call bubble( ten, j1, j2, j3, mm, 1 )
+1129:             endif
+1130:             if( z(i1,i2,i3) .lt. ten( 1, 0 ) )then
+1131:                ten(1,0) = z(i1,i2,i3)
+1132:                j1(1,0) = i1
+1133:                j2(1,0) = i2
+1134:                j3(1,0) = i3
+1135:                call bubble( ten, j1, j2, j3, mm, 0 )

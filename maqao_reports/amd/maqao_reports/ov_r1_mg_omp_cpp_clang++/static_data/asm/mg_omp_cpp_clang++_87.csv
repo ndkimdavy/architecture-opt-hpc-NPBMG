@@ -1,0 +1,18 @@
+address;source_location;insn;indent
+0x408ac0;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:611;VMOVUPD	(%RCX,%RDI,2),%ZMM9;
+0x408ac7;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:611;VMOVUPD	0x40(%RCX,%RDI,2),%ZMM10;
+0x408acf;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:611;VMOVUPD	(%RSI,%RDI,1),%ZMM8;
+0x408ad6;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:611;VMOVAPD	%ZMM9,%ZMM11;
+0x408adc;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:611;VPERMT2PD	%ZMM10,%ZMM3,%ZMM11;
+0x408ae2;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:611;VPERMT2PD	%ZMM10,%ZMM4,%ZMM9;
+0x408ae8;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:611;VADDPD	%ZMM8,%ZMM11,%ZMM10;
+0x408aee;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:612;VADDPD	0x8(%RSI,%RDI,1),%ZMM8,%ZMM8;
+0x408af9;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:612;VFMADD132PD	%ZMM5,%ZMM9,%ZMM8;
+0x408aff;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:612;VMOVAPD	%ZMM10,%ZMM9;
+0x408b05;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:612;VPERMT2PD	%ZMM8,%ZMM6,%ZMM9;
+0x408b0b;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:612;VPERMT2PD	%ZMM8,%ZMM7,%ZMM10;
+0x408b11;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:612;VMOVUPD	%ZMM10,(%RCX,%RDI,2);
+0x408b18;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:612;VMOVUPD	%ZMM9,0x40(%RCX,%RDI,2);
+0x408b20;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:612;ADD	$0x40,%RDI;
+0x408b24;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:612;CMP	%RDI,%R8;
+0x408b27;/home/ndkd/lab/ihpc/aoc/architecture-opt-hpc-NPBMG/NPBx/NPB-CPP/NPB-OMP/MG/mg.cpp:612;JNE	408ac0 <_ZL6interpPviiiS_iiii+0x530>;
