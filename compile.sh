@@ -53,16 +53,18 @@ build() {
         fi
     fi
 
-    # MAQAO: record compilation flags inside the binary
-    # MPI Fortran uses mpif90 (often wraps gfortran) -> use GCC record flag
-    # GCC/gfortran  -> -frecord-gcc-switches
-    # LLVM/AOCC/Intel -> -frecord-command-line
+    # MAQAO: record compilation flags for ONE-View (DWARF)
+    # GCC/gfortran/mpif90 -> -frecord-gcc-switches
+    # AOCC/Clang/Intel    -> -grecord-gcc-switches
     if [[ "$ext" == "f90" && "$path" == *"MPI"* ]]; then
+        # mpif90 wrapper (usually gfortran)
         local RECORD_FLAG="-frecord-gcc-switches"
     elif [[ "$compiler" == "gfortran" || "$compiler" == "g++" ]]; then
+        # GCC toolchain
         local RECORD_FLAG="-frecord-gcc-switches"
     else
-        local RECORD_FLAG="-frecord-command-line"
+        # AOCC / Clang / Intel
+        local RECORD_FLAG="-grecord-gcc-switches"
     fi
 
     echo "Compiling: $path with $compiler"

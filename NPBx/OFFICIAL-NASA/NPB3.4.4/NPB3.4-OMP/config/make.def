@@ -46,13 +46,13 @@ F_INC =
 #---------------------------------------------------------------------------
 # Global *compile time* flags for Fortran programs
 #---------------------------------------------------------------------------
-FFLAGS = -g -Ofast -march=native -mavx2 -funroll-loops -fPIC -fno-omit-frame-pointer -frecord-command-line -fopenmp
+FFLAGS = -g -Ofast -march=native -mavx2 -funroll-loops -fPIC -fno-omit-frame-pointer -grecord-gcc-switches -fopenmp
 
 #---------------------------------------------------------------------------
 # Global *link time* flags. Flags for increasing maximum executable 
 # size usually go here. 
 #---------------------------------------------------------------------------
-FLINKFLAGS = -g -Ofast -march=native -mavx2 -funroll-loops -fPIC -fno-omit-frame-pointer -frecord-command-line -fopenmp
+FLINKFLAGS = -g -Ofast -march=native -mavx2 -funroll-loops -fPIC -fno-omit-frame-pointer -grecord-gcc-switches -fopenmp
 
 
 #---------------------------------------------------------------------------
