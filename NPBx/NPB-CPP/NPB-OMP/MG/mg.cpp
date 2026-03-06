@@ -876,22 +876,34 @@ static void resid(void* pointer_u, void* pointer_v, void* pointer_r, int n1, int
 	#pragma omp for collapse(2)
 	for(i3 = 1; i3 < n3-1; i3++){
 		for(i2 = 1; i2 < n2-1; i2++){
-            // Forced SIMD: Ensuring hardware vector unit usage by overriding conservative heuristics.
+            // Force SIMD vectorization of the loop to help the compiler exploit the hardware vector units.
+            double* __restrict uim1 = &u[i3][i2-1][0];
+            double* __restrict ui   = &u[i3][i2][0];
+            double* __restrict uip1 = &u[i3][i2+1][0];
+            double* __restrict ukm1 = &u[i3-1][i2][0];
+            double* __restrict ukp1 = &u[i3+1][i2][0];
+
+            double* __restrict ukm1_im1 = &u[i3-1][i2-1][0];
+            double* __restrict ukm1_ip1 = &u[i3-1][i2+1][0];
+            double* __restrict ukp1_im1 = &u[i3+1][i2-1][0];
+            double* __restrict ukp1_ip1 = &u[i3+1][i2+1][0];
+
+            double* __restrict vi = &v[i3][i2][0];
+            double* __restrict ri = &r[i3][i2][0];
+
             #pragma omp simd
-			for(i1 = 0; i1 < n1; i1++){
-				u1[i1] = u[i3][i2-1][i1] + u[i3][i2+1][i1]
-					+ u[i3-1][i2][i1] + u[i3+1][i2][i1];
-				u2[i1] = u[i3-1][i2-1][i1] + u[i3-1][i2+1][i1]
-					+ u[i3+1][i2-1][i1] + u[i3+1][i2+1][i1];
-			}
-            
+            for(i1 = 0; i1 < n1; i1++){
+                u1[i1] = uim1[i1] + uip1[i1] + ukm1[i1] + ukp1[i1];
+                u2[i1] = ukm1_im1[i1] + ukm1_ip1[i1] + ukp1_im1[i1] + ukp1_ip1[i1];
+            }
+
             #pragma omp simd
-			for(i1 = 1; i1 < n1-1; i1++){
-				r[i3][i2][i1] = v[i3][i2][i1]
-					- a[0] * u[i3][i2][i1]
-					- a[2] * ( u2[i1] + u1[i1-1] + u1[i1+1] )
-					- a[3] * ( u2[i1-1] + u2[i1+1] );
-			}
+            for(i1 = 1; i1 < n1-1; i1++){
+                ri[i1] = vi[i1]
+                    - a[0] * ui[i1]
+                    - a[2] * ( u2[i1] + u1[i1-1] + u1[i1+1] )
+                    - a[3] * ( u2[i1-1] + u2[i1+1] );
+            }
 		}
 	}
 	if(timeron){
